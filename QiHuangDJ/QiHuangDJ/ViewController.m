@@ -45,24 +45,7 @@
     [imgLogo setImage:[UIImage imageNamed:@"shouye_logo.png"]];
     UIBarButtonItem *imgLeft = [[UIBarButtonItem alloc ] initWithCustomView:imgLogo];
     self.navigationItem.leftBarButtonItem = imgLeft;
-    //中部搜索条
-    UISearchBar *search = [[UISearchBar alloc] init];
-    
-    UITextField *searchFiled ;
-    searchFiled = Nil;
-    searchFiled=  [[UITextField alloc] initWithFrame:CGRectMake(0, 0,search.frame.size.width, 44)];
-    searchFiled  = [search valueForKey:@"_searchField"];
-
-    searchFiled.textAlignment = NSTextAlignmentLeft;
-    if (!(searchFiled == nil)) {
-        [searchFiled setBorderStyle:UITextBorderStyleLine];
-        
-        UIImage *image = [UIImage imageNamed: @"nav_icon_sousuo.png"];
-        UIImageView *iView = [[UIImageView alloc] initWithImage:image];
-        searchFiled.leftView = iView;
-    }
    
-    self.navigationItem.titleView = search;
     //右侧按钮
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 60, 40);
@@ -71,6 +54,28 @@
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] init];
     [leftBtn setCustomView:btn];
     self.navigationItem.rightBarButtonItem = leftBtn;
+}
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    //中部搜索条
+//    UISearchBar *search = [[UISearchBar alloc] init];
+//    
+//    UITextField *searchFiled ;
+//    searchFiled = Nil;
+//    searchFiled=  [[UITextField alloc] initWithFrame:CGRectMake(0, 0,search.frame.size.width, 44)];
+//    searchFiled  = [search valueForKey:@"_searchField"];
+//
+//    searchFiled.textAlignment = NSTextAlignmentLeft;
+//
+//    if (!(searchFiled == nil)) {
+//        [searchFiled setBorderStyle:UITextBorderStyleLine];
+//        
+//        UIImage *image = [UIImage imageNamed: @"nav_icon_sousuo.png"];
+//        UIImageView *iView = [[UIImageView alloc] initWithImage:image];
+//        searchFiled.leftView = iView;
+//    }
+//    
+//    self.navigationItem.titleView = search;
 }
 
 - (void)fanhuiBtnMethond {
