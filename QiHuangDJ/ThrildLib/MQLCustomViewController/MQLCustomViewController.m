@@ -7,7 +7,7 @@
 //
 
 #import "MQLCustomViewController.h"
-#import "LeveyTabBarController.h"
+
 @interface MQLCustomViewController ()
 
 @end
@@ -49,7 +49,7 @@
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 34, 21);
-    [btn setImage:[UIImage imageNamed:@"btn_jiantou.png"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"nav_btn_fanhui.png"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(fanhuiBtn) forControlEvents:UIControlEventTouchUpInside];;
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] init];
     [leftBtn setCustomView:btn];
@@ -59,14 +59,14 @@
 -(void)fanhuiBtn
 {
     [self.navigationController popViewControllerAnimated:YES];
-
+    
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_top@2x.png"] forBarMetrics:UIBarMetricsDefault];
-    [self.leveyTabBarController hidesTabBar:YES animated:YES];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_top.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)didReceiveMemoryWarning

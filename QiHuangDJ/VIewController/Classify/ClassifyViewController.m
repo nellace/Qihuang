@@ -7,6 +7,9 @@
 //
 
 #import "ClassifyViewController.h"
+#import "VideoLiveViewController.h"
+#import "DianboViewController.h"
+#import "InfomationViewController.h"
 
 @interface ClassifyViewController ()
 
@@ -28,6 +31,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
+- (IBAction)VideoLive:(id)sender {
+    VideoLiveViewController * videoLiveVC = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
+    [self.navigationController pushViewController:videoLiveVC animated:YES];
+}
+- (IBAction)dianbo:(id)sender {
+    DianboViewController * dianboVC = [[DianboViewController alloc] initWithNibName:@"DianboViewController" bundle:nil];
+    [self.navigationController pushViewController:dianboVC animated:YES];
+}
+- (IBAction)Infomation:(id)sender {
+    InfomationViewController *infoVC = [[InfomationViewController alloc] initWithNibName:@"InfomationViewController" bundle:nil];
+    [self.navigationController pushViewController:infoVC animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

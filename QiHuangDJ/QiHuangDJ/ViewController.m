@@ -40,14 +40,33 @@
 }
 
 - (void)navUI {
-    //左侧按钮
-    
+    //左侧图片
+    UIImageView *imgLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 59, 27)];
+    [imgLogo setImage:[UIImage imageNamed:@"shouye_logo.png"]];
+    UIBarButtonItem *imgLeft = [[UIBarButtonItem alloc ] initWithCustomView:imgLogo];
+    self.navigationItem.leftBarButtonItem = imgLeft;
     //中部搜索条
+    UISearchBar *search = [[UISearchBar alloc] init];
     
+    UITextField *searchFiled ;
+    searchFiled = Nil;
+    searchFiled=  [[UITextField alloc] initWithFrame:CGRectMake(0, 0,search.frame.size.width, 44)];
+    searchFiled  = [search valueForKey:@"_searchField"];
+
+    searchFiled.textAlignment = NSTextAlignmentLeft;
+    if (!(searchFiled == nil)) {
+        [searchFiled setBorderStyle:UITextBorderStyleLine];
+        
+        UIImage *image = [UIImage imageNamed: @"nav_icon_sousuo.png"];
+        UIImageView *iView = [[UIImageView alloc] initWithImage:image];
+        searchFiled.leftView = iView;
+    }
+   
+    self.navigationItem.titleView = search;
     //右侧按钮
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 34, 21);
-    [btn setTitle:@"设置" forState:UIControlStateNormal];
+    btn.frame = CGRectMake(0, 0, 60, 40);
+    [btn setImage:[UIImage imageNamed:@"nav_btn_shezhi.png"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(fanhuiBtnMethond) forControlEvents:UIControlEventTouchUpInside];;
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] init];
     [leftBtn setCustomView:btn];

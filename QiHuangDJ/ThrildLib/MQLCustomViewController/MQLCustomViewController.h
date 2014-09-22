@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LeveyTabBarController.h"
+
 @interface MQLCustomViewController : UIViewController
 
 -(void)setCascTitle:(NSString*)title;
