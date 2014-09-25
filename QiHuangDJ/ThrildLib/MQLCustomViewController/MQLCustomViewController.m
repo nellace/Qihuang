@@ -32,23 +32,22 @@
     
     NSArray*titleArray=[title componentsSeparatedByString:@""];
     if (titleArray.count) {
-        UIView*vc=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 220, 44)];
-        vc.backgroundColor=[UIColor clearColor];
-        
-        UILabel *upLabel=[[UILabel alloc]initWithFrame:CGRectMake(-10, 10, 220, 20)];
+
+        UILabel *upLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.navigationItem.titleView.frame.size.width, 44)]; 
         upLabel.textColor=[UIColor colorWithRed:246.0f/255 green:249.0f/255 blue:242.0f/255 alpha:1.0];
         upLabel.font=[UIFont boldSystemFontOfSize:19];
         upLabel.backgroundColor=[UIColor clearColor];
         upLabel.textAlignment=NSTextAlignmentCenter;
-        [vc addSubview:upLabel];
+
         upLabel.text=[titleArray objectAtIndex:0];
-        self.navigationItem.titleView=vc;
+
+        self.navigationItem.titleView=upLabel;
     }
 }
 -(void) setFanhui
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 34, 21);
+    btn.frame = CGRectMake(0, 0, 60, 40);
     [btn setImage:[UIImage imageNamed:@"nav_btn_fanhui.png"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(fanhuiBtn) forControlEvents:UIControlEventTouchUpInside];;
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] init];
