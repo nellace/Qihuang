@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *entertainerScrollView;
 @property (nonatomic) CGFloat controllableWidth;
 @property (nonatomic) CGFloat controllableHeight;
+@property (nonatomic) NSUInteger entertainersCount;
 @end
 
 @implementation SuperStartViewController
@@ -55,21 +56,23 @@
     NSArray *entertainers = [self MakeSimulateEntertainersWithCapacity:3];
     const CGFloat iconSpacing = 5.0f;
     CGFloat contentWidth = 0.0f;
-    CGFloat maxHolderHeight = 0.0f;
+    //CGFloat maxHolderHeight = 0.0f;
     for (int i = 0; i < [entertainers count]; i++) {
         
         // Holder Scroll View
-        UIScrollView *holderScrollView = [[UIScrollView alloc] init];
+        //UIScrollView *holderScrollView = [[UIScrollView alloc] init];
         
         // Holder View
         CGFloat holderHeight = 0.0f;
-        UIView *holder = [[UIView alloc] init];
+        UIScrollView *holder = [[UIScrollView alloc] init];
         
         // Thumb View
         UIImageView *thumbView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.controllableWidth, 190)];
         [thumbView setBackgroundColor:[UIColor redColor]];
-        //[thumbView setImageWithURL:[NSURL URLWithString:[entertainers[i] thumbUrl]]];
         [thumbView setImage:[UIImage imageNamed:@"bunnytest"]];
+        //NSString *url = [entertainers[i] thumbUrl];
+        //NSLog(@"url: %@", url);
+        //[thumbView setImageWithURL:[NSURL URLWithString:url]];
         [thumbView setContentMode:UIViewContentModeScaleToFill];
         [holder addSubview:thumbView];
         holderHeight += thumbView.frame.size.height;
@@ -206,36 +209,58 @@
         holderHeight += contentDividingHeaderView.frame.size.height;
         
         // Cosy View
-        UIView *cosyView = [[UIView alloc] initWithFrame:CGRectMake(0, holderHeight, self.controllableHeight, 80)];
+        CGFloat disparity = self.controllableHeight - holderHeight;
+        disparity = disparity > 80 ? disparity : 80;
+        UIView *cosyView = [[UIView alloc] initWithFrame:CGRectMake(0, holderHeight, self.controllableHeight, disparity)];
         [cosyView setBackgroundColor:[KHLColor tubai]];
         [holder addSubview:cosyView];
         holderHeight += cosyView.frame.size.height;
         
+        // Holder Dividing View
+        UIView *leftHolderDividingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, BASIC_DIVIDER_HEIGHT, holderHeight)];
+        UIView *rightHolderDividingView = [[UIView alloc] initWithFrame:CGRectMake(self.controllableWidth - BASIC_DIVIDER_HEIGHT, 0, BASIC_DIVIDER_HEIGHT, holderHeight)];
+        [leftHolderDividingView setBackgroundColor:[KHLColor shiqing]];
+        [rightHolderDividingView setBackgroundColor:[KHLColor shiqing]];
+        [holder addSubview:leftHolderDividingView];
+        [holder addSubview:rightHolderDividingView];
+        
         // Calculate and resize holder..
         //  and add holder to scroll view..
-        [holder setBackgroundColor:[UIColor greenColor]];
-        [holder setFrame:CGRectMake(0, 0, self.controllableWidth, holderHeight)];
-        [holderScrollView setFrame:CGRectMake(i * self.controllableWidth, 0, self.controllableWidth, self.controllableHeight)];
-        [holderScrollView setContentSize:holder.frame.size];
-        [holderScrollView addSubview:holder];
+//        [holder setBackgroundColor:[UIColor greenColor]];
+//        [holder setFrame:CGRectMake(0, 0, self.controllableWidth, holderHeight)];
+//        [holderScrollView setFrame:CGRectMake(i * self.controllableWidth, 0, self.controllableWidth, self.controllableHeight)];
+//        [holderScrollView setContentSize:holder.frame.size];
+//        [holderScrollView addSubview:holder];
+        [holder setFrame:CGRectMake(i * self.controllableWidth, 0, self.controllableWidth, self.controllableHeight)];
+        [holder setContentSize:CGSizeMake(self.controllableWidth, holderHeight)];
         
 //        [holderScrollView setBackgroundColor:[UIColor brownColor]];
 //        [self.entertainerScrollView setBackgroundColor:[UIColor cyanColor]];
 //        [self.view setBackgroundColor:[UIColor redColor]];
         
-        [self.entertainerScrollView addSubview:holderScrollView];
+        //[holder setBounces:NO];
+        [self.entertainerScrollView addSubview:holder];
         
-        maxHolderHeight = maxHolderHeight < holderHeight ? holderHeight : maxHolderHeight;
+        //maxHolderHeight = maxHolderHeight < holderHeight ? holderHeight : maxHolderHeight;
         
         //NSLog(@"holder height:%.2f", holderHeight);
         //NSLog(@"thumb frame:%.2f/%.2f", thumbView.frame.size.width, thumbView.frame.size.height);
         //NSLog(@"ctt: %.2f/%.2f  scr: %.2f/%.2f  hol: %.2f/%.2f" ,holderScrollView.contentSize);
+        NSLog(@"=== HOLDER frame(%.0f/%.0f) content(%.0f/%.0f) at(%.0f/%.0f)", holder.frame.size.width, holder.frame.size.height, holder.contentSize.width, holder.contentSize.height, holder.frame.origin.x, holder.frame.origin.y);
     }
     
-    [self.entertainerScrollView setBackgroundColor:[UIColor whiteColor]];
+    [self.entertainerScrollView setBackgroundColor:[KHLColor tubai]];
     [self.entertainerScrollView setContentSize:CGSizeMake(self.controllableWidth * [entertainers count], self.controllableHeight)];
-    NSLog(@"==== CONTENT: %.2f ====", self.entertainerScrollView.contentSize.height);
+    [self.entertainerScrollView setBounces:NO];
+    
+    
+    self.entertainersCount = [entertainers count];
+    NSLog(@"=== SCROLLVIEW frame(%.0f/%.0f) content(%.0f/%.0f)",self.entertainerScrollView.frame.size.width, self.entertainerScrollView.frame.size.height, self.entertainerScrollView.contentSize.width, self.entertainerScrollView.contentSize.height);
 }
+
+//- (void)viewWillLayoutSubviews {
+//    [self.entertainerScrollView setContentSize:CGSizeMake(self.controllableWidth * self.entertainersCount, self.controllableHeight - 100)];
+//}
 
 - (NSArray *)MakeSimulateEntertainersWithCapacity: (NSUInteger)capacity
 {
