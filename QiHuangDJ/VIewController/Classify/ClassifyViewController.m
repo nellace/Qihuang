@@ -12,6 +12,7 @@
 #import "InfomationViewController.h"
 
 @interface ClassifyViewController ()
+@property (weak, nonatomic) IBOutlet UISearchBar *search;
 
 @end
 
@@ -22,6 +23,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        [self setFanhui];
     }
     return self;
 }
@@ -30,6 +33,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UISearchBar *se = [[SearchBarCustom alloc] init];
+    self.search = se;
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [self setCascTitle:self.title];
+}
+- (void)viewWillLayoutSubviews {
+
 }
 - (IBAction)VideoLive:(id)sender {
     VideoLiveViewController * videoLiveVC = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];

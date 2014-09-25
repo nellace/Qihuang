@@ -10,4 +10,5 @@
 
 @interface ClassifyViewController : MQLCustomViewController
 
+@property (nonatomic,strong) NSString *title;
 @end

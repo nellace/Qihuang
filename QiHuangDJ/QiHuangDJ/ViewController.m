@@ -12,6 +12,7 @@
 #import "SuperStartViewController.h"
 #import "LoginViewController.h"
 #import "PersonCenterViewController.h"
+
 @interface ViewController ()
 
 @end
@@ -45,7 +46,10 @@
     [imgLogo setImage:[UIImage imageNamed:@"shouye_logo.png"]];
     UIBarButtonItem *imgLeft = [[UIBarButtonItem alloc ] initWithCustomView:imgLogo];
     self.navigationItem.leftBarButtonItem = imgLeft;
-   
+    //中间导航
+    SearchBarCustom *search = [SearchBarCustom new];
+    [search customSearchBarUI:@"home"];
+    self.navigationItem.titleView = search;
     //右侧按钮
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 60, 40);
@@ -57,25 +61,6 @@
 }
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    //中部搜索条
-//    UISearchBar *search = [[UISearchBar alloc] init];
-//    
-//    UITextField *searchFiled ;
-//    searchFiled = Nil;
-//    searchFiled=  [[UITextField alloc] initWithFrame:CGRectMake(0, 0,search.frame.size.width, 44)];
-//    searchFiled  = [search valueForKey:@"_searchField"];
-//
-//    searchFiled.textAlignment = NSTextAlignmentLeft;
-//
-//    if (!(searchFiled == nil)) {
-//        [searchFiled setBorderStyle:UITextBorderStyleLine];
-//        
-//        UIImage *image = [UIImage imageNamed: @"nav_icon_sousuo.png"];
-//        UIImageView *iView = [[UIImageView alloc] initWithImage:image];
-//        searchFiled.leftView = iView;
-//    }
-//    
-//    self.navigationItem.titleView = search;
 }
 
 - (void)fanhuiBtnMethond {
@@ -83,17 +68,16 @@
         
         PersonCenterViewController * personCenterVC = [[PersonCenterViewController alloc] initWithNibName:@"PersonCenterViewController" bundle:nil];
         [self.navigationController pushViewController:personCenterVC animated:YES];
-
     } else {
         isLogin = YES;
         LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
         [self.navigationController pushViewController:loginVC animated:YES];
     }
 }
-
 - (IBAction)zhibo:(id)sender {
     VideoLiveViewController * videoLiveVC = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
     [self.navigationController pushViewController:videoLiveVC animated:YES];
+    NSLog(@"fjjjfjfjfjjfj");
 }
 
 - (IBAction)qihuangyiren:(id)sender {
@@ -101,12 +85,15 @@
     [self.navigationController pushViewController:superVC animated:YES];
 }
 - (IBAction)LOL:(id)sender {
+    classify.title = @"英雄联盟";
     [self.navigationController pushViewController:classify animated:YES];
 }
 - (IBAction)LSchuanshuo:(id)sender {
+        classify.title = @"炉石传说";
         [self.navigationController pushViewController:classify animated:YES];
 }
 - (IBAction)dota2:(id)sender {
+        classify.title = @"刀塔2";
         [self.navigationController pushViewController:classify animated:YES];
 }
 
