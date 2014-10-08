@@ -19,6 +19,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self setCascTitle:@"直播"];
+        [self setFanhui];
     }
     return self;
 }

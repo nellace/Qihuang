@@ -77,7 +77,6 @@
 - (IBAction)zhibo:(id)sender {
     VideoLiveViewController * videoLiveVC = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
     [self.navigationController pushViewController:videoLiveVC animated:YES];
-    NSLog(@"fjjjfjfjfjjfj");
 }
 
 - (IBAction)qihuangyiren:(id)sender {
