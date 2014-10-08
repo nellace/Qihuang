@@ -8,6 +8,8 @@
             <connections>
                 <outlet property="buttonHolder" destination="evP-Xb-7UQ" id="t5E-mW-nd5"/>
                 <outlet property="contentHolder" destination="mPY-6t-wCp" id="ezK-Sh-BtZ"/>
+                <outlet property="myCollectionButton" destination="KBM-Sm-fcb" id="Yci-By-cg4"/>
+                <outlet property="mySubscriptionButton" destination="kNu-Mb-ulp" id="gXz-tU-Jxl"/>
                 <outlet property="nicknameLabel" destination="LCF-fL-mxE" id="6De-al-2m8"/>
                 <outlet property="pageHolder" destination="muu-9I-T2S" id="xRy-a4-ZFy"/>
                 <outlet property="thumbHolder" destination="AIS-Zd-fKA" id="tbE-iB-YWI"/>
@@ -68,9 +70,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="160" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="我的收藏">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="pressMyCollection:" destination="-1" eventType="touchUpInside" id="pyq-f1-iWe"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNu-Mb-ulp">
                                     <rect key="frame" x="160" y="0.0" width="160" height="40"/>
@@ -79,8 +84,12 @@
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="pressMySubscription:" destination="-1" eventType="touchUpInside" id="rnz-76-VFg"/>
+                                    </connections>
                                 </button>
                             </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="kNu-Mb-ulp" secondAttribute="trailing" id="0e9-ab-W4L"/>
                                 <constraint firstItem="kNu-Mb-ulp" firstAttribute="leading" secondItem="KBM-Sm-fcb" secondAttribute="trailing" id="7PN-vf-qVP"/>
