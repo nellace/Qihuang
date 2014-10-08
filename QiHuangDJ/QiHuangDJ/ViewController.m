@@ -14,6 +14,9 @@
 #import "PersonCenterViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *headerScrollView;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *backdropImageViewCollection;
 
 @end
 
