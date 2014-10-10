@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 
+
+
 @interface LoginViewController ()
 
 @end
@@ -27,12 +29,28 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(onLoginSuccess)]) {
+//        [self.delegate onLoginSuccess];
+//    }
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)pressCancel:(UIButton *)sender
+{
+    [self.delegate onLoginFailed];
+    [self dismissViewControllerAnimated:TRUE completion:nil];
+}
+
+- (IBAction)pressCommit:(UIButton *)sender
+{
+    [self.delegate onLoginSuccess];
+    [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
 @end

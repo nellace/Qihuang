@@ -8,6 +8,13 @@
 
 #import "MQLCustomViewController.h"
 
+@protocol LoginDelegate <NSObject>
+-(void)onLoginSuccess;
+-(void)onLoginFailed;
+@end
+
 @interface LoginViewController : MQLCustomViewController
+
+@property(nonatomic, assign) id<LoginDelegate> delegate;
 
 @end
