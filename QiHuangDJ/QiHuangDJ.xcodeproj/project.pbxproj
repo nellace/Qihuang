@@ -152,6 +152,10 @@
 		A277717219E50D8B00683A70 /* zhibo_icon_zan_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A277711019E50D8B00683A70 /* zhibo_icon_zan_press@2x.png */; };
 		A277717319E50D8B00683A70 /* zhibo_jubao_duigou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A277711119E50D8B00683A70 /* zhibo_jubao_duigou@2x.png */; };
 		A277717419E50D8B00683A70 /* zhibo_pinglunhuifu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A277711219E50D8B00683A70 /* zhibo_pinglunhuifu@2x.png */; };
+		FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */; };
+		FC81ADFA19E638AA002D74EF /* KHLRecommendedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */; };
+		FC81ADFC19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC81ADFB19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib */; };
+		FC81ADFF19E68DA9002D74EF /* KHLEntertainerHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81ADFE19E68DA9002D74EF /* KHLEntertainerHolderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -341,6 +345,12 @@
 		A277711019E50D8B00683A70 /* zhibo_icon_zan_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhibo_icon_zan_press@2x.png"; sourceTree = "<group>"; };
 		A277711119E50D8B00683A70 /* zhibo_jubao_duigou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhibo_jubao_duigou@2x.png"; sourceTree = "<group>"; };
 		A277711219E50D8B00683A70 /* zhibo_pinglunhuifu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhibo_pinglunhuifu@2x.png"; sourceTree = "<group>"; };
+		FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLEntertainerHolderView.xib; sourceTree = "<group>"; };
+		FC81ADF819E638AA002D74EF /* KHLRecommendedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLRecommendedCollectionViewCell.h; sourceTree = "<group>"; };
+		FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLRecommendedCollectionViewCell.m; sourceTree = "<group>"; };
+		FC81ADFB19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLRecommendedCollectionViewCell.xib; sourceTree = "<group>"; };
+		FC81ADFD19E68DA9002D74EF /* KHLEntertainerHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLEntertainerHolderView.h; sourceTree = "<group>"; };
+		FC81ADFE19E68DA9002D74EF /* KHLEntertainerHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLEntertainerHolderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -426,6 +436,9 @@
 				3D121C4E19CAE4B80040870C /* SuperStartViewController.h */,
 				3D121C4F19CAE4B80040870C /* SuperStartViewController.m */,
 				3D121C5019CAE4B80040870C /* SuperStartViewController.xib */,
+				FC81ADFD19E68DA9002D74EF /* KHLEntertainerHolderView.h */,
+				FC81ADFE19E68DA9002D74EF /* KHLEntertainerHolderView.m */,
+				FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */,
 			);
 			path = superStart;
 			sourceTree = "<group>";
@@ -436,6 +449,9 @@
 				3D121C5419CAFADF0040870C /* PersonCenterViewController.h */,
 				3D121C5519CAFADF0040870C /* PersonCenterViewController.m */,
 				3D121C5619CAFADF0040870C /* PersonCenterViewController.xib */,
+				FC81ADF819E638AA002D74EF /* KHLRecommendedCollectionViewCell.h */,
+				FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */,
+				FC81ADFB19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib */,
 			);
 			path = PersonCenter;
 			sourceTree = "<group>";
@@ -941,6 +957,7 @@
 				A277714819E50D8B00683A70 /* shouye_icon1@2x.png in Resources */,
 				A277716519E50D8B00683A70 /* zhibo_caidan_icon_1@2x.png in Resources */,
 				A277713E19E50D8B00683A70 /* qihuangshouye_icon1@2x.png in Resources */,
+				FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */,
 				A277716119E50D8B00683A70 /* zhibo_btn_bg@2x.png in Resources */,
 				A277711919E50D8B00683A70 /* denglu_icon_weibo@2x.png in Resources */,
 				3D121C2919CAB47E0040870C /* ViewController.xib in Resources */,
@@ -965,6 +982,7 @@
 				A277715219E50D8B00683A70 /* sousuo_icon_faburen@2x.png in Resources */,
 				A277715D19E50D8B00683A70 /* fenxiang_icon3@2x.png in Resources */,
 				A277712F19E50D8B00683A70 /* nav_btn_baocun@2x.png in Resources */,
+				FC81ADFC19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib in Resources */,
 				A277714C19E50D8B00683A70 /* shouye_icon5@2x.png in Resources */,
 				A277716619E50D8B00683A70 /* zhibo_caidan_icon_1_press@2x.png in Resources */,
 				A277713519E50D8B00683A70 /* nav_line@2x.png in Resources */,
@@ -1026,6 +1044,7 @@
 				3D44752B19C972CE00D9B2B1 /* AppDelegate.m in Sources */,
 				3D121C2819CAB47E0040870C /* ViewController.m in Sources */,
 				3D121C3219CABCD10040870C /* ClassifyViewController.m in Sources */,
+				FC81ADFA19E638AA002D74EF /* KHLRecommendedCollectionViewCell.m in Sources */,
 				3D121C5119CAE4B80040870C /* SuperStartViewController.m in Sources */,
 				3D44757C19C984AC00D9B2B1 /* CustomNavViewController.m in Sources */,
 				3D44757619C984AC00D9B2B1 /* AFJSONRequestOperation.m in Sources */,
@@ -1033,6 +1052,7 @@
 				3D121C4B19CABD330040870C /* DianboViewController.m in Sources */,
 				3D4003E719D3BEC3006622E4 /* KHLColor.m in Sources */,
 				3D44757819C984AC00D9B2B1 /* AFPropertyListRequestOperation.m in Sources */,
+				FC81ADFF19E68DA9002D74EF /* KHLEntertainerHolderView.m in Sources */,
 				3D121C5719CAFADF0040870C /* PersonCenterViewController.m in Sources */,
 				3D491BB919D19324004D6DEF /* SearchBarCustom.m in Sources */,
 				3D44757719C984AC00D9B2B1 /* AFNetworkActivityIndicatorManager.m in Sources */,
