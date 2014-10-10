@@ -12,6 +12,7 @@
                 <outlet property="mySubscriptionButton" destination="kNu-Mb-ulp" id="gXz-tU-Jxl"/>
                 <outlet property="nicknameLabel" destination="LCF-fL-mxE" id="6De-al-2m8"/>
                 <outlet property="pageHolder" destination="muu-9I-T2S" id="xRy-a4-ZFy"/>
+                <outlet property="recommendedCollectionView" destination="iRA-N4-mLQ" id="uYp-pK-dJU"/>
                 <outlet property="thumbHolder" destination="AIS-Zd-fKA" id="tbE-iB-YWI"/>
                 <outlet property="thumbImageView" destination="BnL-6U-KVy" id="Umc-B6-mmF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -105,6 +106,23 @@
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mPY-6t-wCp">
                             <rect key="frame" x="0.0" y="240" width="320" height="264"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="iRA-N4-mLQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="5" id="gG7-bI-RsR">
+                                        <size key="itemSize" width="157" height="100"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <cells/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="Ljf-f6-EVd"/>
+                                        <outlet property="delegate" destination="-1" id="kJJ-hF-tZs"/>
+                                    </connections>
+                                </collectionView>
+                            </subviews>
                         </view>
                     </subviews>
                     <constraints>

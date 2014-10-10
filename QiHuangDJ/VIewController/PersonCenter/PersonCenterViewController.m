@@ -8,8 +8,10 @@
 
 #import "PersonCenterViewController.h"
 #import "KHLColor.h"
+#import "KHLRecommendedCollectionViewCell.h"
+#import "LoginViewController.h"
 
-@interface PersonCenterViewController ()
+@interface PersonCenterViewController () <LoginDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *pageHolder;
 @property (weak, nonatomic) IBOutlet UIView *thumbHolder;
 @property (weak, nonatomic) IBOutlet UIView *buttonHolder;
@@ -18,10 +20,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *myCollectionButton;
 @property (weak, nonatomic) IBOutlet UIButton *mySubscriptionButton;
+@property (weak, nonatomic) IBOutlet UICollectionView *recommendedCollectionView;
 @property (nonatomic, setter = setLogIn:, getter = isLogIn) BOOL bLogIn;
 @property (nonatomic) NSUInteger templateUsingState; // 1 for collection, 2 for subscription, 0 or else for unlogged..
 @property (nonatomic) CGFloat contentFrameHeight;
 @property (strong, nonatomic) UIView *buttonIndicatorView;
+@property (strong, nonatomic) NSArray *items;
 @end
 
 @implementation PersonCenterViewController
@@ -68,8 +72,17 @@
     [self.thumbImageView addGestureRecognizer:pressThumbImageViewGesture];
 }
 
+
+-(void)viewDidLoad {
+    [self.recommendedCollectionView registerClass:[KHLRecommendedCollectionViewCell class] forCellWithReuseIdentifier:@"KHLRecommendedCollectionViewCell"];
+
+}
+
 - (void)setLogIn:(BOOL)bLogIn
 {
+    [[NSUserDefaults standardUserDefaults] setBool:_bLogIn forKey:@"isLogin"];
+
+    [[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"];
     _bLogIn = bLogIn;
     if (bLogIn) {
 //        [self.myCollectionButton setEnabled:TRUE];
@@ -81,31 +94,22 @@
     }
 }
 
+- (NSArray *)items
+{
+    if (!_items) _items = [[NSArray alloc] init];
+    return _items;
+}
+
 - (void)viewDidLayoutSubviews
 {
     [self refreshButtonHolder];
     [self refreshThumbImageViewWithPersonalInfomation:nil];
-    [self refreshContentScrollViewWithData:@[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8"]];
+    [self refreshContentViewWithData:@[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8"]];
 }
 
+// Refresh my collections and subscriptions button..
 - (void)refreshButtonHolder
 {
-    
-//    switch (self.templateUsingState) {
-//        default:
-//        case 0:
-//            [self.buttonIndicatorView setHidden:TRUE];
-//            break;
-//            
-//        case 1:
-//            [self.buttonIndicatorView setHidden:FALSE];
-//            break;
-//            
-//        case 2:
-//            [self.buttonIndicatorView setFrame:CGRectMake(self.view.frame.size.width / 2, self.buttonHolder.frame.size.height - COMMON_ITEM_DIVIDER_HEIGHT, self.view.frame.size.width / 2, COMMON_ITEM_DIVIDER_HEIGHT)];
-//            [self.buttonIndicatorView setHidden:FALSE];
-//            break;
-//    }
     
     if (self.templateUsingState == 1) {
         [UIView animateWithDuration:0.5f animations:^(void) {
@@ -164,7 +168,7 @@
 {
     [self setLogIn:!self.isLogIn];
     [self refreshThumbImageViewWithPersonalInfomation:nil];
-    [self refreshContentScrollViewWithData:@[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8"]];
+    //[self refreshContentScrollViewWithData:@[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8"]];
 }
 
 - (IBAction)pressMyCollection:(UIButton *)sender
@@ -186,6 +190,15 @@
     [self refreshButtonHolder];
 }
 
+- (void)onLoginSuccess
+{
+    NSLog(@"onLoginSuccess Implementation");
+}
+
+-(void)onLoginFailed
+{
+    NSLog(@"onLoginFailed Implementation");
+}
 
 // Refresh content scroll view..
 - (void)refreshContentScrollViewWithData:(NSArray *)videoItems
@@ -363,11 +376,82 @@
     
     [self.pageHolder setContentSize:CGSizeMake(self.pageHolder.frame.size.width, self.thumbHolder.frame.size.height + self.buttonHolder.frame.size.height + self.contentHolder.frame.size.height)];
     [self.pageHolder setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    NSLog(@"PAGE frame(%.0f/%.0f) content(%.0f/%.0f)",
-//          self.pageHolder.frame.size.width,
-//          self.pageHolder.frame.size.height,
-//          self.pageHolder.contentSize.width,
-//          self.pageHolder.contentSize.height);
+}
+
+#pragma Recommended Collection View
+
+- (void)refreshContentViewWithData: (NSArray *)items
+{
+    [self.recommendedCollectionView setBackgroundColor:[UIColor clearColor]];
+    [self.contentHolder setBackgroundColor:[UIColor greenColor]];
+    [self.pageHolder setBackgroundColor:[UIColor brownColor]];
+    //NSLog(@"== START REQUESTING REFRESH %d", [self.items count]);
+    self.items = items;
+    [self.recommendedCollectionView setFrame:CGRectMake(self.recommendedCollectionView.frame.origin.x, self.recommendedCollectionView.frame.origin.y, self.recommendedCollectionView.frame.size.width, 600)];
+    [self.recommendedCollectionView setContentSize:CGSizeMake(self.recommendedCollectionView.frame.size.width, self.recommendedCollectionView.frame.size.height)];
+    [self.contentHolder setFrame:CGRectMake(self.contentHolder.frame.origin.x, self.contentHolder.frame.origin.y, self.contentHolder.frame.size.width, self.recommendedCollectionView.frame.size.height)];
+    [self.pageHolder setContentSize:CGSizeMake(self.pageHolder.frame.size.width, self.thumbHolder.frame.size.height + self.buttonHolder.frame.size.height + self.contentHolder.frame.size.height)];
+    [self.pageHolder setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.recommendedCollectionView registerClass:[KHLRecommendedCollectionViewCell class] forCellWithReuseIdentifier:@"KHLRecommendedCollectionViewCell"];
+    [self.recommendedCollectionView reloadData];
+    
+    NSLog(@"- PagH (%.0f,%.0f) [%.0f x %.0f] <%.0f x %.0f>", self.pageHolder.frame.origin.x, self.pageHolder.frame.origin.y, self.pageHolder.frame.size.width, self.pageHolder.frame.size.height, self.pageHolder.contentSize.width, self.pageHolder.contentSize.height);
+    NSLog(@"- - ConH (%.0f,%.0f) [%.0f x %.0f]", self.contentHolder.frame.origin.x, self.contentHolder.frame.origin.y, self.contentHolder.frame.size.width, self.contentHolder.frame.size.height);
+    NSLog(@"- - - RecH (%.0f,%.0f) [%.0f x %.0f] <%.0f x %.0f>", self.recommendedCollectionView.frame.origin.x, self.recommendedCollectionView.frame.origin.y, self.recommendedCollectionView.frame.size.width, self.recommendedCollectionView.frame.size.height, self.recommendedCollectionView.contentSize.width, self.recommendedCollectionView.contentSize.height);
+    
+    //NSLog(@"== END REQUESTING REFRESH %d", [self.items count]);
+    
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    //NSLog(@"== REQUESTING ROW COUNT: %d", [self.items count]);
+    return [self.items count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    KHLRecommendedCollectionViewCell *recommendedCollectionCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KHLRecommendedCollectionViewCell" forIndexPath:indexPath];
+    if (recommendedCollectionCell == nil) {
+        recommendedCollectionCell = [[[NSBundle mainBundle] loadNibNamed:@"KHLRecommendedCollectionViewCell" owner:self options:nil] lastObject];
+    }
+    
+    //NSLog(@"== REQUESTING CELL section: %d, row: %d", indexPath.section, indexPath.row);
+    
+    switch (indexPath.row % 3) {
+        case 0:
+            [recommendedCollectionCell.thumbImageView setImage:[UIImage imageNamed:@"mings-cavalry-anti-japanese-samurai"]];
+            break;
+            
+        case 1:
+            [recommendedCollectionCell.thumbImageView setImage:[UIImage imageNamed:@"mings-ships-sailing"]];
+            break;
+            
+        case 2:
+            [recommendedCollectionCell.thumbImageView setImage:[UIImage imageNamed:@"mings-student-on-journey"]];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return recommendedCollectionCell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    loginVC.delegate = self;
+    [self presentViewController:loginVC animated:YES completion:nil];
+    
+//    NSLog(@"RecH (%.0f,%.0f) [%.0f x %.0f] <%.0f x %.0f>", self.recommendedCollectionView.frame.origin.x, self.recommendedCollectionView.frame.origin.y, self.recommendedCollectionView.frame.size.width, self.recommendedCollectionView.frame.size.height, self.recommendedCollectionView.contentSize.width, self.recommendedCollectionView.contentSize.height);
+//    NSLog(@"ConH (%.0f,%.0f) [%.0f x %.0f]", self.contentHolder.frame.origin.x, self.contentHolder.frame.origin.y, self.contentHolder.frame.size.width, self.contentHolder.frame.size.height);
+//    NSLog(@"PagH (%.0f,%.0f) [%.0f x %.0f] <%.0f x %.0f>", self.pageHolder.frame.origin.x, self.pageHolder.frame.origin.y, self.pageHolder.frame.size.width, self.pageHolder.frame.size.height, self.pageHolder.contentSize.width, self.pageHolder.contentSize.height);
 }
 
 - (void)didReceiveMemoryWarning
