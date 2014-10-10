@@ -10,11 +10,14 @@
 #import "KHLColor.h"
 #import "KHLEntertainer.h"
 #import "AFNetworking.h"
+#import "KHLEntertainerHolderView.h"
 
 @interface SuperStartViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *entertainerScrollView;
 @property (nonatomic) CGFloat controllableWidth;
 @property (nonatomic) CGFloat controllableHeight;
+
+@property (nonatomic,weak) IBOutlet UILabel * label;
 @end
 
 @implementation SuperStartViewController
@@ -35,6 +38,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //KHLEntertainerHolderView *view = [[[NSBundle mainBundle]loadNibNamed:@"KHLEntertainerHolderView" owner:self options:nil] lastObject];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,7 +52,19 @@
 {
     [self setControllableWidth:self.entertainerScrollView.frame.size.width];
     [self setControllableHeight:self.entertainerScrollView.frame.size.height];
-    [self refreshScrollView];
+    //[self refreshScrollView];
+    [self refreshEntertainersScrollView];
+}
+
+- (void)refreshEntertainersScrollView
+{
+    NSArray *entertainers = [self MakeSimulateEntertainersWithCapacity:3];
+    for (int i = 0; i < [entertainers count]; i++) {
+        
+    }
+    
+    [self.entertainerScrollView setBackgroundColor:[UIColor whiteColor]];
+    [self.entertainerScrollView setContentSize:CGSizeMake(self.controllableWidth * [entertainers count], 0)];
 }
 
 - (void)refreshScrollView
@@ -57,6 +74,8 @@
     CGFloat contentWidth = 0.0f;
     CGFloat maxHolderHeight = 0.0f;
     for (int i = 0; i < [entertainers count]; i++) {
+        
+        //UIView * vi = [[NSBundle mainBundle] loadNibNamed:@"dddd" owner:self options:nil];
         
         // Holder Scroll View
         UIScrollView *holderScrollView = [[UIScrollView alloc] init];
@@ -69,19 +88,18 @@
         UIImageView *thumbView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.controllableWidth, 190)];
         [thumbView setBackgroundColor:[UIColor redColor]];
         //[thumbView setImageWithURL:[NSURL URLWithString:[entertainers[i] thumbUrl]]];
-        [thumbView setImage:[UIImage imageNamed:@"bunnytest"]];
         [thumbView setContentMode:UIViewContentModeScaleToFill];
         [holder addSubview:thumbView];
         holderHeight += thumbView.frame.size.height;
         
         // Thumb Spacing View
-        UIView *thumbSpacingView = [[UIView alloc] initWithFrame:CGRectMake(0, holderHeight, self.controllableHeight, 20)];
+        UIView *thumbSpacingView = [[UIView alloc] initWithFrame:CGRectMake(0, holderHeight, self.controllableWidth, 20)];
         [thumbSpacingView setBackgroundColor:[KHLColor tubai]];
         [holder addSubview:thumbSpacingView];
         holderHeight += thumbSpacingView.frame.size.height;
         
         // Content Dividing Header View
-        UIView *contentDividingHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, holderHeight, self.controllableHeight, BASIC_DIVIDER_HEIGHT)];
+        UIView *contentDividingHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, holderHeight, self.controllableWidth, BASIC_DIVIDER_HEIGHT)];
         [contentDividingHeaderView setBackgroundColor:[KHLColor shiqing]];
         [holder addSubview:contentDividingHeaderView];
         holderHeight += contentDividingHeaderView.frame.size.height;
@@ -216,7 +234,7 @@
         [holder setBackgroundColor:[UIColor greenColor]];
         [holder setFrame:CGRectMake(0, 0, self.controllableWidth, holderHeight)];
         [holderScrollView setFrame:CGRectMake(i * self.controllableWidth, 0, self.controllableWidth, self.controllableHeight)];
-        [holderScrollView setContentSize:holder.frame.size];
+        [holderScrollView setContentSize:CGSizeMake(0, holder.frame.size.height)];
         [holderScrollView addSubview:holder];
         
 //        [holderScrollView setBackgroundColor:[UIColor brownColor]];
@@ -233,7 +251,7 @@
     }
     
     [self.entertainerScrollView setBackgroundColor:[UIColor whiteColor]];
-    [self.entertainerScrollView setContentSize:CGSizeMake(self.controllableWidth * [entertainers count], self.controllableHeight)];
+    [self.entertainerScrollView setContentSize:CGSizeMake(self.controllableWidth * [entertainers count], 0)];
     NSLog(@"==== CONTENT: %.2f ====", self.entertainerScrollView.contentSize.height);
 }
 
