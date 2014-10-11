@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游戏直播页面" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OB0-hB-Faa">
-                    <rect key="frame" x="4" y="259" width="125" height="26"/>
+                    <rect key="frame" x="98" y="271" width="125" height="26"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="GgR-NL-xEP"/>
                         <constraint firstAttribute="height" constant="26" id="wMf-U8-Fnb"/>
@@ -29,10 +29,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="OB0-hB-Faa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="259" id="Jpe-BU-Lla"/>
-                <constraint firstItem="OB0-hB-Faa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="4" id="wlW-5i-674"/>
+                <constraint firstItem="OB0-hB-Faa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="271" id="Jpe-BU-Lla"/>
+                <constraint firstItem="OB0-hB-Faa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="98" id="wlW-5i-674"/>
             </constraints>
-            <point key="canvasLocation" x="667" y="243"/>
+            <point key="canvasLocation" x="580" y="235"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -156,14 +156,14 @@
                 <constraint firstItem="Kgi-RY-X8k" firstAttribute="height" secondItem="SlT-f8-ghG" secondAttribute="height" id="y0E-1s-Nlk"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="509" y="305"/>
+            <point key="canvasLocation" x="542" y="271"/>
         </view>
     </objects>
     <resources>
         <image name="dota_tiao1.png" width="320" height="30"/>
         <image name="dota_tiao2.png" width="320" height="30"/>
         <image name="dota_tiao3.png" width="320" height="30"/>
-        <image name="huanchong_shouye.png" width="320" height="81"/>
+        <image name="huanchong_shouye.png" width="640" height="162"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "ClassifyViewController.h"
-#import "VideoLiveViewController.h"
+#import "LiveListViewController.h"
 #import "SuperStartViewController.h"
 #import "LoginViewController.h"
 #import "PersonCenterViewController.h"
@@ -78,7 +78,7 @@
     }
 }
 - (IBAction)zhibo:(id)sender {
-    VideoLiveViewController * videoLiveVC = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
+    LiveListViewController * videoLiveVC = [[LiveListViewController alloc] initWithNibName:@"LiveListViewController" bundle:nil];
     [self.navigationController pushViewController:videoLiveVC animated:YES];
 }
 
