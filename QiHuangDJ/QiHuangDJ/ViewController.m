@@ -57,7 +57,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 60, 40);
     [btn setImage:[UIImage imageNamed:@"nav_btn_shezhi.png"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(fanhuiBtnMethond) forControlEvents:UIControlEventTouchUpInside];;
+    [btn addTarget:self action:@selector(settingBtnMethond) forControlEvents:UIControlEventTouchUpInside];;
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] init];
     [leftBtn setCustomView:btn];
     self.navigationItem.rightBarButtonItem = leftBtn;
@@ -66,16 +66,11 @@
     [super viewWillLayoutSubviews];
 }
 
-- (void)fanhuiBtnMethond {
-    if (isLogin) {
-        
-        PersonCenterViewController * personCenterVC = [[PersonCenterViewController alloc] initWithNibName:@"PersonCenterViewController" bundle:nil];
-        [self.navigationController pushViewController:personCenterVC animated:YES];
-    } else {
-        isLogin = YES;
-        LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        [self.navigationController pushViewController:loginVC animated:YES];
-    }
+- (void)settingBtnMethond {
+
+    PersonCenterViewController * personCenterVC = [[PersonCenterViewController alloc] initWithNibName:@"PersonCenterViewController" bundle:nil];
+    [self.navigationController pushViewController:personCenterVC animated:YES];
+    
 }
 - (IBAction)zhibo:(id)sender {
     LiveListViewController * videoLiveVC = [[LiveListViewController alloc] initWithNibName:@"LiveListViewController" bundle:nil];
