@@ -30,6 +30,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self.entertainerScrollView setBackgroundColor:[KHLColor tubai]];
     }
     return self;
 }
@@ -50,24 +51,33 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self setControllableWidth:self.entertainerScrollView.frame.size.width];
-    [self setControllableHeight:self.entertainerScrollView.frame.size.height];
+//    [self setControllableWidth:self.entertainerScrollView.frame.size.width];
+//    [self setControllableHeight:self.entertainerScrollView.frame.size.height];
+    //NSLog(@"+ view will appear");
     //[self refreshEntertainersScrollView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     //[self refreshEntertainersScrollView];
+    //NSLog(@"+ view did appear");
 }
 
 - (void)viewWillLayoutSubviews
 {
+    [self setControllableWidth:self.entertainerScrollView.frame.size.width];
+    [self setControllableHeight:self.entertainerScrollView.frame.size.height];
+    //NSLog(@"+ view will layout subviews");
     [self refreshEntertainersScrollView];
 }
 
 
 - (void)refreshEntertainersScrollView
 {
+    for (UIView *subview in [self.entertainerScrollView subviews]) {
+        [subview removeFromSuperview];
+    }
+    
     NSArray *entertainers = [self MakeSimulateEntertainersWithCapacity:3];
     for (int i = 0; i < [entertainers count]; i++) {
         KHLEntertainerHolderView * holder = [[[NSBundle mainBundle] loadNibNamed:@"KHLEntertainerHolderView" owner:self options:nil]lastObject];
@@ -84,7 +94,8 @@
 //        CGFloat expectedHeight = holder.experienceHolder.frame.origin.y + holder.experienceLabel.frame.size.height + 80;
 //        expectedHeight = expectedHeight > self.view.frame.size.height ? expectedHeight : self.view.frame.size.height;
 //        [holder.holderScrollView setContentSize:CGSizeMake(0, expectedHeight)];
-        
+//        UIEdgeInsets contentinset = UIEdgeInsetsMake(0, 0, self.entertainerScrollView.contentSize.height, 0);
+//        self.entertainerScrollView.contentInset = contentinset;
     }
     
     [self.entertainerScrollView setBackgroundColor:[UIColor whiteColor]];
@@ -310,7 +321,7 @@
                 entertainer.thumbUrl = @"http://imgsrc.baidu.com/baike/pic/item/bd7042604bfa568a8db10d8c.jpg";
                 entertainer.nickname = @"万户";
                 entertainer.programme = @"火箭飞天试验";
-                entertainer.experience = @"……同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方……";
+                entertainer.experience = @"……同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方…………同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方…………同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方…………同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方…………同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方……";
                 break;
                 
             default:
