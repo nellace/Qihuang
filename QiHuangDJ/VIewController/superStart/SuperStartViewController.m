@@ -16,11 +16,11 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *entertainerScrollView;
 @property (nonatomic) CGFloat controllableWidth;
 @property (nonatomic) CGFloat controllableHeight;
-
-@property (nonatomic,weak) IBOutlet UILabel * label;
 @end
 
-@implementation SuperStartViewController
+@implementation SuperStartViewController {
+    
+}
 
 #define BASIC_LINE_HEIGHT 35
 #define BASIC_DIVIDER_HEIGHT 1
@@ -30,6 +30,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self.entertainerScrollView setBackgroundColor:[KHLColor tubai]];
     }
     return self;
 }
@@ -50,23 +51,58 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+//    [self setControllableWidth:self.entertainerScrollView.frame.size.width];
+//    [self setControllableHeight:self.entertainerScrollView.frame.size.height];
+    //NSLog(@"+ view will appear");
+    //[self refreshEntertainersScrollView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    //[self refreshEntertainersScrollView];
+    //NSLog(@"+ view did appear");
+}
+
+- (void)viewWillLayoutSubviews
+{
     [self setControllableWidth:self.entertainerScrollView.frame.size.width];
     [self setControllableHeight:self.entertainerScrollView.frame.size.height];
-    //[self refreshScrollView];
+    //NSLog(@"+ view will layout subviews");
     [self refreshEntertainersScrollView];
 }
 
+
 - (void)refreshEntertainersScrollView
 {
+    for (UIView *subview in [self.entertainerScrollView subviews]) {
+        [subview removeFromSuperview];
+    }
+    
     NSArray *entertainers = [self MakeSimulateEntertainersWithCapacity:3];
     for (int i = 0; i < [entertainers count]; i++) {
+        KHLEntertainerHolderView * holder = [[[NSBundle mainBundle] loadNibNamed:@"KHLEntertainerHolderView" owner:self options:nil]lastObject];
+        [holder setFrame:CGRectMake(i * self.controllableWidth, 0, self.controllableWidth, self.controllableHeight)];
         
+        [holder loadData:entertainers[i] useWindowSize:self.view.frame.size];
+        
+        NSLog(@"- MainH (%.0f, %.0f) [%.0f x %.0f]", holder.frame.origin.x, holder.frame.origin.y, holder.frame.size.width, holder.frame.size.height);
+        NSLog(@"- - Holde (%.0f, %.0f) [%.0f x %.0f] <%.0f x %.0f>", holder.holderScrollView.frame.origin.x, holder.holderScrollView.frame.origin.y, holder.holderScrollView.frame.size.width, holder.holderScrollView.frame.size.height, holder.holderScrollView.contentSize.width, holder.holderScrollView.contentSize.height);
+        NSLog(@"- - - Label (%.0f, %.0f) [%.0f x %.0f]", holder.experienceLabel.frame.origin.x, holder.experienceLabel.frame.origin.y, holder.experienceLabel.frame.size.width, holder.experienceLabel.frame.size.height);
+        
+        [self.entertainerScrollView addSubview:holder];
+        
+//        CGFloat expectedHeight = holder.experienceHolder.frame.origin.y + holder.experienceLabel.frame.size.height + 80;
+//        expectedHeight = expectedHeight > self.view.frame.size.height ? expectedHeight : self.view.frame.size.height;
+//        [holder.holderScrollView setContentSize:CGSizeMake(0, expectedHeight)];
+//        UIEdgeInsets contentinset = UIEdgeInsetsMake(0, 0, self.entertainerScrollView.contentSize.height, 0);
+//        self.entertainerScrollView.contentInset = contentinset;
     }
     
     [self.entertainerScrollView setBackgroundColor:[UIColor whiteColor]];
     [self.entertainerScrollView setContentSize:CGSizeMake(self.controllableWidth * [entertainers count], 0)];
 }
 
+/*
 - (void)refreshScrollView
 {
     NSArray *entertainers = [self MakeSimulateEntertainersWithCapacity:3];
@@ -254,16 +290,43 @@
     [self.entertainerScrollView setContentSize:CGSizeMake(self.controllableWidth * [entertainers count], 0)];
     NSLog(@"==== CONTENT: %.2f ====", self.entertainerScrollView.contentSize.height);
 }
+ */
 
 - (NSArray *)MakeSimulateEntertainersWithCapacity: (NSUInteger)capacity
 {
     NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:capacity];
     for (int i = 0; i < capacity; i++) {
         KHLEntertainer *entertainer = [[KHLEntertainer alloc] initWithId:[NSString stringWithFormat:@"E%d", i+1]
-                                                 thumbUrl:@"http://d.hiphotos.baidu.com/baike/w%3D268%3Bg%3D0/sign=7ae1850eb01bb0518f24b42e0e41bd89/fcfaaf51f3deb48f5fc228f2f31f3a292df57877.jpg"
-                                                 nickname:[NSString stringWithFormat:@"万户%d代", i+1]
-                                                programme:@"火箭飞天尝试"
-                                               experience:@"约当15世纪之末，有一位中国明代的官吏叫万户，他在一把座椅的背后，装上47枚当时可能买到的最大火箭。他把自己捆绑在椅子的前边，两只手各拿一个大风筝。然后叫他的仆人同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方。——《Rockets and Jets》by Herbert S. Zim, 1945, America"];
+                                                 thumbUrl:@""
+                                                 nickname:@""
+                                                programme:@""
+                                               experience:@""];
+        switch (i % 3) {
+            case 0:
+                entertainer.thumbUrl = @"http://wd600.10yan.com/uploadfile/2012/0518/20120518105444247.jpg";
+                entertainer.nickname = @"徐振之";
+                entertainer.programme = @"徐霞客游记";
+                entertainer.experience = @"我药当大侠！";
+                break;
+                
+            case 1:
+                entertainer.thumbUrl = @"http://c.hiphotos.baidu.com/baike/w%3D268/sign=2dd016050a46f21fc9345955ce256b31/b3119313b07eca809f226119912397dda144832d.jpg";
+                entertainer.nickname = @"朱权";
+                entertainer.programme = @"飞瀑连珠";
+                entertainer.experience = @"宁子飞瀑，衡子遗音，益子韵磬，潞子中和。复养和，宣和，汉鸾，绕梁，号钟，列子，仲尼，此君，竹节，师旷诸式。";
+                break;
+                
+            case 2:
+                // test: 约当15世纪之末，有一位中国明代的官吏叫万户，他在一把座椅的背后，装上47枚当时可能买到的最大火箭。他把自己捆绑在椅子的前边，两只手各拿一个大风筝。然后叫他的仆人同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方。——《Rockets and Jets》by Herbert S. Zim, 1945, America
+                entertainer.thumbUrl = @"http://imgsrc.baidu.com/baike/pic/item/bd7042604bfa568a8db10d8c.jpg";
+                entertainer.nickname = @"万户";
+                entertainer.programme = @"火箭飞天试验";
+                entertainer.experience = @"……同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方…………同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方…………同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方…………同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方…………同时点燃47枚大火箭，其目的是想借火箭向前推进的力量，加上风筝上升的力量飞向前方……";
+                break;
+                
+            default:
+                break;
+        }
         [array addObject:entertainer];
     }
     
