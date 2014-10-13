@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
+                <outlet property="anchorView" destination="eUq-ZH-kh4" id="I2d-rC-haM"/>
                 <outlet property="headerScrollView" destination="SjN-OH-bcf" id="gT6-59-0J5"/>
                 <outlet property="mainScrollView" destination="89f-sG-F2m" id="iJq-bX-rCV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -22,42 +23,45 @@
             <rect key="frame" x="0.0" y="44" width="320" height="524"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUq-ZH-kh4">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUq-ZH-kh4" userLabel="Anchor View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89f-sG-F2m">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89f-sG-F2m" userLabel="Main Scroll View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIy-TT-MCX">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIy-TT-MCX" userLabel="Main Holder View">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="825"/>
                             <subviews>
-                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SjN-OH-bcf">
+                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SjN-OH-bcf" userLabel="Header Scroll View">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2YR-lX-jvN">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                        </imageView>
+                                    </subviews>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="zvl-MG-lhW"/>
                                     </constraints>
                                 </scrollView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-cavalry-anti-japanese-samurai" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-FT-pIw">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-cavalry-anti-japanese-samurai" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-FT-pIw" userLabel="Live Broadcast Image View">
                                     <rect key="frame" x="0.0" y="100" width="320" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="85" id="bFq-Hb-4Ix"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-ships-sailing" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-tj-caD">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-ships-sailing" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-tj-caD" userLabel="Keahoarl Entertainers Image View">
                                     <rect key="frame" x="0.0" y="185" width="320" height="85"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-student-on-journey" translatesAutoresizingMaskIntoConstraints="NO" id="ffO-jW-5Sv">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-student-on-journey" translatesAutoresizingMaskIntoConstraints="NO" id="ffO-jW-5Sv" userLabel="Hearthstone Image View">
                                     <rect key="frame" x="0.0" y="270" width="320" height="85"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-cavalry-anti-japanese-samurai" translatesAutoresizingMaskIntoConstraints="NO" id="DHn-6T-3Sh">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-cavalry-anti-japanese-samurai" translatesAutoresizingMaskIntoConstraints="NO" id="DHn-6T-3Sh" userLabel="L.O.L. Image View">
                                     <rect key="frame" x="0.0" y="355" width="320" height="85"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-ships-sailing" translatesAutoresizingMaskIntoConstraints="NO" id="Q68-jv-pSJ">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-ships-sailing" translatesAutoresizingMaskIntoConstraints="NO" id="Q68-jv-pSJ" userLabel="DotA Image View">
                                     <rect key="frame" x="0.0" y="440" width="320" height="85"/>
                                 </imageView>
-                                <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps">
+                                <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
                                     <rect key="frame" x="210" y="100" width="110" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="110" id="nus-qV-xwe"/>
@@ -69,7 +73,7 @@
                                         <action selector="zhibo:" destination="-1" eventType="touchUpInside" id="LI6-Ox-IGX"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK">
+                                <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK" userLabel="Keahoarl Entertainers Button">
                                     <rect key="frame" x="210" y="185" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon5.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,7 +82,7 @@
                                         <action selector="qihuangyiren:" destination="-1" eventType="touchUpInside" id="ZGm-gE-9bO"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w">
+                                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w" userLabel="Hearthstone Button">
                                     <rect key="frame" x="210" y="270" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon3.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,7 +91,7 @@
                                         <action selector="LSchuanshuo:" destination="-1" eventType="touchUpInside" id="t1C-oh-FEg"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM">
+                                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM" userLabel="L.O.L. Button">
                                     <rect key="frame" x="210" y="355" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon2.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -96,7 +100,7 @@
                                         <action selector="LOL:" destination="-1" eventType="touchUpInside" id="ggL-28-pLr"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns">
+                                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns" userLabel="DotA Button">
                                     <rect key="frame" x="210" y="440" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon4.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -106,7 +110,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="4WU-AD-xm3"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="6tw-uT-nnX"/>
@@ -160,7 +164,6 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="eUq-ZH-kh4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7sY-Qr-ZMf"/>
                 <constraint firstAttribute="trailing" secondItem="89f-sG-F2m" secondAttribute="trailing" id="Dd2-Af-Utb"/>

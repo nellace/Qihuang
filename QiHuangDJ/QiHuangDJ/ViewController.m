@@ -14,6 +14,7 @@
 #import "PersonCenterViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIView *anchorView;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *headerScrollView;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *backdropImageViewCollection;
@@ -33,6 +34,11 @@
         isLogin = NO;  //判断是否登录过
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
 }
 
 - (void)viewDidLoad
