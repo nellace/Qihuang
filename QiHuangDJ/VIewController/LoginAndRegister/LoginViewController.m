@@ -21,6 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
     }
     return self;
 }
@@ -52,5 +53,26 @@
     [self.delegate onLoginSuccess];
     [self dismissViewControllerAnimated:TRUE completion:nil];
 }
+
+- (IBAction)pressInterrelatedLoginWithQQ:(UIButton *)sender
+{
+    NSLog(@"Q泥煤呀");
+}
+
+- (IBAction)pressInterrelatedLoginWithWeibo:(UIButton *)sender
+{
+    NSLog(@"微个博呀");
+}
+
+- (IBAction)pressRegisterButton:(UIButton *)sender
+{
+    NSLog(@"点这里呀");
+}
+
+
+
+
+
+
 
 @end
