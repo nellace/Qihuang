@@ -11,16 +11,12 @@
 		3D121C2919CAB47E0040870C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C2719CAB47E0040870C /* ViewController.xib */; };
 		3D121C3219CABCD10040870C /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C3019CABCD10040870C /* ClassifyViewController.m */; };
 		3D121C3319CABCD10040870C /* ClassifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C3119CABCD10040870C /* ClassifyViewController.xib */; };
-		3D121C3719CABCEB0040870C /* VideoLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C3519CABCEB0040870C /* VideoLiveViewController.m */; };
-		3D121C3819CABCEB0040870C /* VideoLiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C3619CABCEB0040870C /* VideoLiveViewController.xib */; };
 		3D121C3C19CABD100040870C /* InfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C3A19CABD100040870C /* InfomationViewController.m */; };
 		3D121C3D19CABD100040870C /* InfomationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C3B19CABD100040870C /* InfomationViewController.xib */; };
 		3D121C4119CABD1B0040870C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C3F19CABD1B0040870C /* LoginViewController.m */; };
 		3D121C4219CABD1B0040870C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C4019CABD1B0040870C /* LoginViewController.xib */; };
 		3D121C4619CABD270040870C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C4419CABD270040870C /* RegisterViewController.m */; };
 		3D121C4719CABD270040870C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C4519CABD270040870C /* RegisterViewController.xib */; };
-		3D121C4B19CABD330040870C /* DianboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C4919CABD330040870C /* DianboViewController.m */; };
-		3D121C4C19CABD330040870C /* DianboViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C4A19CABD330040870C /* DianboViewController.xib */; };
 		3D121C5119CAE4B80040870C /* SuperStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C4F19CAE4B80040870C /* SuperStartViewController.m */; };
 		3D121C5219CAE4B80040870C /* SuperStartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C5019CAE4B80040870C /* SuperStartViewController.xib */; };
 		3D121C5719CAFADF0040870C /* PersonCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C5519CAFADF0040870C /* PersonCenterViewController.m */; };
@@ -54,8 +50,6 @@
 		3D44757D19C984AC00D9B2B1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44756E19C984AC00D9B2B1 /* MBProgressHUD.m */; };
 		3D44757E19C984AC00D9B2B1 /* MQLCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44757119C984AC00D9B2B1 /* MQLCustomViewController.m */; };
 		3D491BB919D19324004D6DEF /* SearchBarCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D491BB819D19324004D6DEF /* SearchBarCustom.m */; };
-		3D6D8DF019E77FF0000BEADA /* LiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D8DEE19E77FF0000BEADA /* LiveListViewController.m */; };
-		3D6D8DF119E77FF0000BEADA /* LiveListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6D8DEF19E77FF0000BEADA /* LiveListViewController.xib */; };
 		3D858D9F19E8D461005022BA /* denglu_btn_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D858D3119E8D460005022BA /* denglu_btn_login@2x.png */; };
 		3D858DA019E8D461005022BA /* denglu_btn_login_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D858D3219E8D460005022BA /* denglu_btn_login_press@2x.png */; };
 		3D858DA119E8D461005022BA /* denglu_btn_zidongdenglu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D858D3319E8D460005022BA /* denglu_btn_zidongdenglu@2x.png */; };
@@ -158,6 +152,18 @@
 		3D858E0219E8D461005022BA /* zhibo_icon_zan_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D858D9C19E8D461005022BA /* zhibo_icon_zan_press@2x.png */; };
 		3D858E0319E8D461005022BA /* zhibo_jubao_duigou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D858D9D19E8D461005022BA /* zhibo_jubao_duigou@2x.png */; };
 		3D858E0419E8D461005022BA /* zhibo_pinglunhuifu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D858D9E19E8D461005022BA /* zhibo_pinglunhuifu@2x.png */; };
+		3D858E1319E8DFD7005022BA /* DianboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E0819E8DFD7005022BA /* DianboViewController.m */; };
+		3D858E1419E8DFD7005022BA /* DianboViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E0919E8DFD7005022BA /* DianboViewController.xib */; };
+		3D858E1519E8DFD7005022BA /* VideoLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E0D19E8DFD7005022BA /* VideoLiveViewController.m */; };
+		3D858E1619E8DFD7005022BA /* VideoLiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E0E19E8DFD7005022BA /* VideoLiveViewController.xib */; };
+		3D858E1719E8DFD7005022BA /* LiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E1119E8DFD7005022BA /* LiveListViewController.m */; };
+		3D858E1819E8DFD7005022BA /* LiveListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E1219E8DFD7005022BA /* LiveListViewController.xib */; };
+		3D858E1D19E8E023005022BA /* DianboListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E1B19E8E023005022BA /* DianboListViewController.m */; };
+		3D858E1E19E8E023005022BA /* DianboListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E1C19E8E023005022BA /* DianboListViewController.xib */; };
+		3D858E2119EB9D4E005022BA /* SliderRightList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E2019EB9D4E005022BA /* SliderRightList.m */; };
+		3D858E2319EB9E6B005022BA /* SliderRightList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2219EB9E6B005022BA /* SliderRightList.xib */; };
+		3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */; };
+		3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */; };
 		FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */; };
 		FC81ADFA19E638AA002D74EF /* KHLRecommendedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */; };
 		FC81ADFC19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC81ADFB19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib */; };
@@ -181,9 +187,6 @@
 		3D121C2F19CABCD10040870C /* ClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassifyViewController.h; sourceTree = "<group>"; };
 		3D121C3019CABCD10040870C /* ClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassifyViewController.m; sourceTree = "<group>"; };
 		3D121C3119CABCD10040870C /* ClassifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassifyViewController.xib; sourceTree = "<group>"; };
-		3D121C3419CABCEB0040870C /* VideoLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLiveViewController.h; sourceTree = "<group>"; };
-		3D121C3519CABCEB0040870C /* VideoLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLiveViewController.m; sourceTree = "<group>"; };
-		3D121C3619CABCEB0040870C /* VideoLiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoLiveViewController.xib; sourceTree = "<group>"; };
 		3D121C3919CABD100040870C /* InfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfomationViewController.h; sourceTree = "<group>"; };
 		3D121C3A19CABD100040870C /* InfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomationViewController.m; sourceTree = "<group>"; };
 		3D121C3B19CABD100040870C /* InfomationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfomationViewController.xib; sourceTree = "<group>"; };
@@ -193,9 +196,6 @@
 		3D121C4319CABD270040870C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		3D121C4419CABD270040870C /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		3D121C4519CABD270040870C /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
-		3D121C4819CABD330040870C /* DianboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboViewController.h; sourceTree = "<group>"; };
-		3D121C4919CABD330040870C /* DianboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboViewController.m; sourceTree = "<group>"; };
-		3D121C4A19CABD330040870C /* DianboViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboViewController.xib; sourceTree = "<group>"; };
 		3D121C4E19CAE4B80040870C /* SuperStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperStartViewController.h; sourceTree = "<group>"; };
 		3D121C4F19CAE4B80040870C /* SuperStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperStartViewController.m; sourceTree = "<group>"; };
 		3D121C5019CAE4B80040870C /* SuperStartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuperStartViewController.xib; sourceTree = "<group>"; };
@@ -253,9 +253,6 @@
 		3D44757119C984AC00D9B2B1 /* MQLCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQLCustomViewController.m; sourceTree = "<group>"; };
 		3D491BB719D19324004D6DEF /* SearchBarCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarCustom.h; sourceTree = "<group>"; };
 		3D491BB819D19324004D6DEF /* SearchBarCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarCustom.m; sourceTree = "<group>"; };
-		3D6D8DED19E77FF0000BEADA /* LiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveListViewController.h; sourceTree = "<group>"; };
-		3D6D8DEE19E77FF0000BEADA /* LiveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveListViewController.m; sourceTree = "<group>"; };
-		3D6D8DEF19E77FF0000BEADA /* LiveListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveListViewController.xib; sourceTree = "<group>"; };
 		3D858D3119E8D460005022BA /* denglu_btn_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_login@2x.png"; sourceTree = "<group>"; };
 		3D858D3219E8D460005022BA /* denglu_btn_login_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_login_press@2x.png"; sourceTree = "<group>"; };
 		3D858D3319E8D460005022BA /* denglu_btn_zidongdenglu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_zidongdenglu@2x.png"; sourceTree = "<group>"; };
@@ -358,6 +355,24 @@
 		3D858D9C19E8D461005022BA /* zhibo_icon_zan_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhibo_icon_zan_press@2x.png"; sourceTree = "<group>"; };
 		3D858D9D19E8D461005022BA /* zhibo_jubao_duigou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhibo_jubao_duigou@2x.png"; sourceTree = "<group>"; };
 		3D858D9E19E8D461005022BA /* zhibo_pinglunhuifu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhibo_pinglunhuifu@2x.png"; sourceTree = "<group>"; };
+		3D858E0719E8DFD7005022BA /* DianboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboViewController.h; sourceTree = "<group>"; };
+		3D858E0819E8DFD7005022BA /* DianboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboViewController.m; sourceTree = "<group>"; };
+		3D858E0919E8DFD7005022BA /* DianboViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboViewController.xib; sourceTree = "<group>"; };
+		3D858E0C19E8DFD7005022BA /* VideoLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLiveViewController.h; sourceTree = "<group>"; };
+		3D858E0D19E8DFD7005022BA /* VideoLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLiveViewController.m; sourceTree = "<group>"; };
+		3D858E0E19E8DFD7005022BA /* VideoLiveViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoLiveViewController.xib; sourceTree = "<group>"; };
+		3D858E1019E8DFD7005022BA /* LiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveListViewController.h; sourceTree = "<group>"; };
+		3D858E1119E8DFD7005022BA /* LiveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveListViewController.m; sourceTree = "<group>"; };
+		3D858E1219E8DFD7005022BA /* LiveListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveListViewController.xib; sourceTree = "<group>"; };
+		3D858E1A19E8E023005022BA /* DianboListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboListViewController.h; sourceTree = "<group>"; };
+		3D858E1B19E8E023005022BA /* DianboListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboListViewController.m; sourceTree = "<group>"; };
+		3D858E1C19E8E023005022BA /* DianboListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboListViewController.xib; sourceTree = "<group>"; };
+		3D858E1F19EB9D4E005022BA /* SliderRightList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderRightList.h; sourceTree = "<group>"; };
+		3D858E2019EB9D4E005022BA /* SliderRightList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderRightList.m; sourceTree = "<group>"; };
+		3D858E2219EB9E6B005022BA /* SliderRightList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderRightList.xib; sourceTree = "<group>"; };
+		3D858E2419EBC221005022BA /* DianboListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboListCollectionViewCell.h; sourceTree = "<group>"; };
+		3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboListCollectionViewCell.m; sourceTree = "<group>"; };
+		3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboListCollectionViewCell.xib; sourceTree = "<group>"; };
 		FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLEntertainerHolderView.xib; sourceTree = "<group>"; };
 		FC81ADF819E638AA002D74EF /* KHLRecommendedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLRecommendedCollectionViewCell.h; sourceTree = "<group>"; };
 		FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLRecommendedCollectionViewCell.m; sourceTree = "<group>"; };
@@ -390,16 +405,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3D121C2A19CABC5B0040870C /* GameVideoLive */ = {
-			isa = PBXGroup;
-			children = (
-				3D121C3419CABCEB0040870C /* VideoLiveViewController.h */,
-				3D121C3519CABCEB0040870C /* VideoLiveViewController.m */,
-				3D121C3619CABCEB0040870C /* VideoLiveViewController.xib */,
-			);
-			path = GameVideoLive;
-			sourceTree = "<group>";
-		};
 		3D121C2B19CABC5B0040870C /* Information */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,16 +426,6 @@
 				3D121C4519CABD270040870C /* RegisterViewController.xib */,
 			);
 			path = LoginAndRegister;
-			sourceTree = "<group>";
-		};
-		3D121C2D19CABC5B0040870C /* VideoDianbo */ = {
-			isa = PBXGroup;
-			children = (
-				3D121C4819CABD330040870C /* DianboViewController.h */,
-				3D121C4919CABD330040870C /* DianboViewController.m */,
-				3D121C4A19CABD330040870C /* DianboViewController.xib */,
-			);
-			path = VideoDianbo;
 			sourceTree = "<group>";
 		};
 		3D121C2E19CABCBB0040870C /* Classify */ = {
@@ -582,14 +577,13 @@
 		3D44754D19C9738600D9B2B1 /* VIewController */ = {
 			isa = PBXGroup;
 			children = (
-				3D6D8DEC19E77FCC000BEADA /* LiveList */,
+				3D858E0519E8DFD7005022BA /* dianbo */,
+				3D858E0A19E8DFD7005022BA /* zhibo */,
 				3D121C5319CAFACC0040870C /* PersonCenter */,
 				3D121C4D19CAE4A60040870C /* superStart */,
 				3D121C2E19CABCBB0040870C /* Classify */,
-				3D121C2A19CABC5B0040870C /* GameVideoLive */,
 				3D121C2B19CABC5B0040870C /* Information */,
 				3D121C2C19CABC5B0040870C /* LoginAndRegister */,
-				3D121C2D19CABC5B0040870C /* VideoDianbo */,
 			);
 			path = VIewController;
 			sourceTree = SOURCE_ROOT;
@@ -656,16 +650,6 @@
 				3D491BB819D19324004D6DEF /* SearchBarCustom.m */,
 			);
 			path = customSearchBar;
-			sourceTree = "<group>";
-		};
-		3D6D8DEC19E77FCC000BEADA /* LiveList */ = {
-			isa = PBXGroup;
-			children = (
-				3D6D8DED19E77FF0000BEADA /* LiveListViewController.h */,
-				3D6D8DEE19E77FF0000BEADA /* LiveListViewController.m */,
-				3D6D8DEF19E77FF0000BEADA /* LiveListViewController.xib */,
-			);
-			path = LiveList;
 			sourceTree = "<group>";
 		};
 		3D858D2F19E8D460005022BA /* 切图 */ = {
@@ -850,6 +834,70 @@
 			path = zhibo;
 			sourceTree = "<group>";
 		};
+		3D858E0519E8DFD7005022BA /* dianbo */ = {
+			isa = PBXGroup;
+			children = (
+				3D858E1919E8DFF4005022BA /* dianbolist */,
+				3D858E0619E8DFD7005022BA /* VideoDianbo */,
+			);
+			path = dianbo;
+			sourceTree = "<group>";
+		};
+		3D858E0619E8DFD7005022BA /* VideoDianbo */ = {
+			isa = PBXGroup;
+			children = (
+				3D858E0719E8DFD7005022BA /* DianboViewController.h */,
+				3D858E0819E8DFD7005022BA /* DianboViewController.m */,
+				3D858E0919E8DFD7005022BA /* DianboViewController.xib */,
+			);
+			path = VideoDianbo;
+			sourceTree = "<group>";
+		};
+		3D858E0A19E8DFD7005022BA /* zhibo */ = {
+			isa = PBXGroup;
+			children = (
+				3D858E0B19E8DFD7005022BA /* GameVideoLive */,
+				3D858E0F19E8DFD7005022BA /* LiveList */,
+			);
+			path = zhibo;
+			sourceTree = "<group>";
+		};
+		3D858E0B19E8DFD7005022BA /* GameVideoLive */ = {
+			isa = PBXGroup;
+			children = (
+				3D858E0C19E8DFD7005022BA /* VideoLiveViewController.h */,
+				3D858E0D19E8DFD7005022BA /* VideoLiveViewController.m */,
+				3D858E0E19E8DFD7005022BA /* VideoLiveViewController.xib */,
+			);
+			path = GameVideoLive;
+			sourceTree = "<group>";
+		};
+		3D858E0F19E8DFD7005022BA /* LiveList */ = {
+			isa = PBXGroup;
+			children = (
+				3D858E1019E8DFD7005022BA /* LiveListViewController.h */,
+				3D858E1119E8DFD7005022BA /* LiveListViewController.m */,
+				3D858E1219E8DFD7005022BA /* LiveListViewController.xib */,
+			);
+			path = LiveList;
+			sourceTree = "<group>";
+		};
+		3D858E1919E8DFF4005022BA /* dianbolist */ = {
+			isa = PBXGroup;
+			children = (
+				3D858E1A19E8E023005022BA /* DianboListViewController.h */,
+				3D858E1B19E8E023005022BA /* DianboListViewController.m */,
+				3D858E1C19E8E023005022BA /* DianboListViewController.xib */,
+				3D858E1F19EB9D4E005022BA /* SliderRightList.h */,
+				3D858E2019EB9D4E005022BA /* SliderRightList.m */,
+				3D858E2219EB9E6B005022BA /* SliderRightList.xib */,
+				3D858E2419EBC221005022BA /* DianboListCollectionViewCell.h */,
+				3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */,
+				3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */,
+			);
+			path = dianbolist;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -931,6 +979,7 @@
 				3D858DB219E8D461005022BA /* gerenzhongxin_hongline@2x.png in Resources */,
 				3D858DE819E8D461005022BA /* fenxiang_icon1@2x.png in Resources */,
 				3D121C3319CABCD10040870C /* ClassifyViewController.xib in Resources */,
+				3D858E1819E8DFD7005022BA /* LiveListViewController.xib in Resources */,
 				3D858DEB19E8D461005022BA /* fenxiang_icon4@2x.png in Resources */,
 				3D858DA419E8D461005022BA /* denglu_icon_qq@2x.png in Resources */,
 				3D858DCA19E8D461005022BA /* qihuangyiren_line@2x.png in Resources */,
@@ -942,11 +991,9 @@
 				3D858DEC19E8D461005022BA /* icon_shoucang@2x.png in Resources */,
 				3D858DBA19E8D461005022BA /* zhibo_huanchongtu@2x.png in Resources */,
 				3D121C5819CAFADF0040870C /* PersonCenterViewController.xib in Resources */,
-				3D121C4C19CABD330040870C /* DianboViewController.xib in Resources */,
 				3D858DAB19E8D461005022BA /* celan_bg@2x.png in Resources */,
 				3D858DA219E8D461005022BA /* denglu_btn_zidongdenglu_press@2x.png in Resources */,
 				3D44752519C972CE00D9B2B1 /* InfoPlist.strings in Resources */,
-				3D6D8DF119E77FF0000BEADA /* LiveListViewController.xib in Resources */,
 				FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */,
 				3D858DAE19E8D461005022BA /* celan_line@2x.png in Resources */,
 				3D858DD219E8D461005022BA /* shouye_bg3@2x.png in Resources */,
@@ -955,6 +1002,7 @@
 				3D858DDB19E8D461005022BA /* shouye_lunbo@2x.png in Resources */,
 				3D121C2919CAB47E0040870C /* ViewController.xib in Resources */,
 				3D44752D19C972CE00D9B2B1 /* Images.xcassets in Resources */,
+				3D858E2319EB9E6B005022BA /* SliderRightList.xib in Resources */,
 				3D858DC319E8D461005022BA /* nav_press@2x.png in Resources */,
 				3D858DDD19E8D461005022BA /* shouye_sousuokuang@2x.png in Resources */,
 				3D858DAD19E8D461005022BA /* celan_dinngyue_press@2x.png in Resources */,
@@ -971,6 +1019,7 @@
 				3D858DB519E8D461005022BA /* gerenzhongxin_you_press@2x.png in Resources */,
 				3D858DF419E8D461005022BA /* zhibo_caidan_icon_1@2x.png in Resources */,
 				3D858DE519E8D461005022BA /* caidan_zhong_press@2x.png in Resources */,
+				3D858E1619E8DFD7005022BA /* VideoLiveViewController.xib in Resources */,
 				3D858DF819E8D461005022BA /* zhibo_caidan_icon_3@2x.png in Resources */,
 				3D858DD419E8D461005022BA /* shouye_bg5@2x.png in Resources */,
 				3D858DFC19E8D461005022BA /* zhibo_huifukuang@2x.png in Resources */,
@@ -987,6 +1036,7 @@
 				3D858E0419E8D461005022BA /* zhibo_pinglunhuifu@2x.png in Resources */,
 				3D858DD919E8D461005022BA /* shouye_icon5@2x.png in Resources */,
 				3D858E0219E8D461005022BA /* zhibo_icon_zan_press@2x.png in Resources */,
+				3D858E1E19E8E023005022BA /* DianboListViewController.xib in Resources */,
 				3D858DDC19E8D461005022BA /* shouye_lunbo_press@2x.png in Resources */,
 				3D121C4219CABD1B0040870C /* LoginViewController.xib in Resources */,
 				3D858DF019E8D461005022BA /* zhibo_btn_bg@2x.png in Resources */,
@@ -1018,6 +1068,7 @@
 				3D858DF319E8D461005022BA /* zhibo_btn_zan@2x.png in Resources */,
 				3D858DD319E8D461005022BA /* shouye_bg4@2x.png in Resources */,
 				3D858E0019E8D461005022BA /* zhibo_icon_jinggao@2x.png in Resources */,
+				3D858E1419E8DFD7005022BA /* DianboViewController.xib in Resources */,
 				3D858DC219E8D461005022BA /* nav_line@2x.png in Resources */,
 				3D858DBC19E8D461005022BA /* nav_btn_baocun@2x.png in Resources */,
 				3D858DF719E8D461005022BA /* zhibo_caidan_icon_2_press@2x.png in Resources */,
@@ -1028,7 +1079,6 @@
 				3D858DB719E8D461005022BA /* gerenzhongxin_zuo_press@2x.png in Resources */,
 				3D858DF219E8D461005022BA /* zhibo_btn_huifu@2x.png in Resources */,
 				3D858DA319E8D461005022BA /* denglu_icon_mima@2x.png in Resources */,
-				3D121C3819CABCEB0040870C /* VideoLiveViewController.xib in Resources */,
 				3D121C4719CABD270040870C /* RegisterViewController.xib in Resources */,
 				3D858DC719E8D461005022BA /* qihuangyiren_icon_jiemu@2x.png in Resources */,
 				3D858DB319E8D461005022BA /* gerenzhongxin_touxiang@2x.png in Resources */,
@@ -1040,6 +1090,7 @@
 				3D858DBD19E8D461005022BA /* nav_btn_baocun_press@2x.png in Resources */,
 				3D858DD119E8D461005022BA /* shouye_bg2@2x.png in Resources */,
 				3D858DC419E8D461005022BA /* nav_top@2x.png in Resources */,
+				3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */,
 				3D858DB419E8D461005022BA /* gerenzhongxin_you@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1059,15 +1110,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D858E2119EB9D4E005022BA /* SliderRightList.m in Sources */,
 				3D121C3C19CABD100040870C /* InfomationViewController.m in Sources */,
 				3D44757919C984AC00D9B2B1 /* AFURLConnectionOperation.m in Sources */,
 				3D44757B19C984AC00D9B2B1 /* UIImageView+AFNetworking.m in Sources */,
 				3D44757519C984AC00D9B2B1 /* AFImageRequestOperation.m in Sources */,
 				3D121C4619CABD270040870C /* RegisterViewController.m in Sources */,
 				3D121C4119CABD1B0040870C /* LoginViewController.m in Sources */,
+				3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */,
 				3D4003E819D3BEC3006622E4 /* KHLEntertainer.m in Sources */,
 				3D44757419C984AC00D9B2B1 /* AFHTTPRequestOperation.m in Sources */,
-				3D121C3719CABCEB0040870C /* VideoLiveViewController.m in Sources */,
 				3D44757319C984AC00D9B2B1 /* AFHTTPClient.m in Sources */,
 				3D44757A19C984AC00D9B2B1 /* AFXMLRequestOperation.m in Sources */,
 				3D44757219C984AC00D9B2B1 /* AFDownloadRequestOperation.m in Sources */,
@@ -1080,15 +1132,17 @@
 				FC81ADFA19E638AA002D74EF /* KHLRecommendedCollectionViewCell.m in Sources */,
 				3D121C5119CAE4B80040870C /* SuperStartViewController.m in Sources */,
 				3D44757C19C984AC00D9B2B1 /* CustomNavViewController.m in Sources */,
-				3D6D8DF019E77FF0000BEADA /* LiveListViewController.m in Sources */,
 				3D44757619C984AC00D9B2B1 /* AFJSONRequestOperation.m in Sources */,
+				3D858E1719E8DFD7005022BA /* LiveListViewController.m in Sources */,
 				3D44752719C972CE00D9B2B1 /* main.m in Sources */,
-				3D121C4B19CABD330040870C /* DianboViewController.m in Sources */,
 				3D4003E719D3BEC3006622E4 /* KHLColor.m in Sources */,
+				3D858E1319E8DFD7005022BA /* DianboViewController.m in Sources */,
 				3D44757819C984AC00D9B2B1 /* AFPropertyListRequestOperation.m in Sources */,
 				FC81ADFF19E68DA9002D74EF /* KHLEntertainerHolderView.m in Sources */,
 				3D121C5719CAFADF0040870C /* PersonCenterViewController.m in Sources */,
 				3D491BB919D19324004D6DEF /* SearchBarCustom.m in Sources */,
+				3D858E1D19E8E023005022BA /* DianboListViewController.m in Sources */,
+				3D858E1519E8DFD7005022BA /* VideoLiveViewController.m in Sources */,
 				3D44757719C984AC00D9B2B1 /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

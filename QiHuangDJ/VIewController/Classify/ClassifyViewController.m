@@ -8,9 +8,9 @@
 
 #import "ClassifyViewController.h"
 #import "VideoLiveViewController.h"
-#import "DianboViewController.h"
-#import "InfomationViewController.h"
 
+#import "InfomationViewController.h"
+#import "DianboListViewController.h"
 @interface ClassifyViewController ()
 @property (weak, nonatomic) IBOutlet UISearchBar *search;
 
@@ -47,7 +47,7 @@
     [self.navigationController pushViewController:videoLiveVC animated:YES];
 }
 - (IBAction)dianbo:(id)sender {
-    DianboViewController * dianboVC = [[DianboViewController alloc] initWithNibName:@"DianboViewController" bundle:nil];
+    DianboListViewController * dianboVC = [[DianboListViewController alloc] initWithNibName:@"DianboListViewController" bundle:nil];
     [self.navigationController pushViewController:dianboVC animated:YES];
 }
 - (IBAction)Infomation:(id)sender {

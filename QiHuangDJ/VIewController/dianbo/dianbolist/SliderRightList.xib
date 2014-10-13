@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SliderRightList">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VUU-qe-MKQ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="sDH-dd-zId"/>
+                        <outlet property="delegate" destination="-1" id="ZdY-Zc-bUw"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="VUU-qe-MKQ" secondAttribute="bottom" id="Msq-A0-qCU"/>
+                <constraint firstItem="VUU-qe-MKQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PgF-ws-LYy"/>
+                <constraint firstAttribute="centerY" secondItem="VUU-qe-MKQ" secondAttribute="centerY" id="bnb-Fx-Wne"/>
+                <constraint firstItem="VUU-qe-MKQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hZx-wf-73K"/>
+                <constraint firstAttribute="trailing" secondItem="VUU-qe-MKQ" secondAttribute="trailing" id="x0E-sT-1j8"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="248" y="292"/>
+        </view>
+    </objects>
+</document>
