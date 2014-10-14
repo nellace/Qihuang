@@ -402,7 +402,8 @@
 //    [self refreshContentScrollViewWithData:@[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8"]];
     LoginViewController *loginViewController = [[LoginViewController alloc] init];
     loginViewController.delegate = self;
-    [self presentViewController:loginViewController animated:YES completion:nil];
+//    [self presentViewController:loginViewController animated:YES completion:nil];
+    [self.navigationController pushViewController:loginViewController animated:YES];
 }
 
 - (IBAction)pressMyCollection:(UIButton *)sender
@@ -488,7 +489,9 @@
 {
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     loginVC.delegate = self;
-    [self presentViewController:loginVC animated:YES completion:nil];
+//    [self presentViewController:loginVC animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:loginVC animated:YES];
     
 //    NSLog(@"RecH (%.0f,%.0f) [%.0f x %.0f] <%.0f x %.0f>", self.recommendedCollectionView.frame.origin.x, self.recommendedCollectionView.frame.origin.y, self.recommendedCollectionView.frame.size.width, self.recommendedCollectionView.frame.size.height, self.recommendedCollectionView.contentSize.width, self.recommendedCollectionView.contentSize.height);
 //    NSLog(@"ConH (%.0f,%.0f) [%.0f x %.0f]", self.contentHolder.frame.origin.x, self.contentHolder.frame.origin.y, self.contentHolder.frame.size.width, self.contentHolder.frame.size.height);
