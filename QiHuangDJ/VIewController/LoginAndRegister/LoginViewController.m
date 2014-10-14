@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "RegisterViewController.h"
 
 
 @interface LoginViewController ()
@@ -29,6 +29,7 @@
     if (self) {
         // Custom initialization
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
+        [self.navigationController setTitle:@"登录"];
     }
     return self;
 }
@@ -111,6 +112,16 @@
     self.bAutoLogin = !self.bAutoLogin;
 }
 
+- (IBAction)pressForgotPasswordButton:(UIButton *)sender
+{
+    RegisterViewController *registerVC = [[RegisterViewController alloc] init];
+//    [self presentViewController:registerVC animated:YES completion:nil];
+    
+//    classify.title = @"注册";
+//    [self.navigationController pushViewController:classify animated:YES];
+    
+    [self.navigationController pushViewController:registerVC animated:YES];
+}
 
 
 

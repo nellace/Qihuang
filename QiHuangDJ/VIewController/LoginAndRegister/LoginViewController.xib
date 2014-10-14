@@ -16,17 +16,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="denglu_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="RyX-4E-0a9" userLabel="Keahoarl Logo Image View">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                     <constraints>
-                        <constraint firstAttribute="height" priority="999" constant="150" id="AuI-Nd-ndd"/>
+                        <constraint firstAttribute="height" priority="999" constant="100" id="AuI-Nd-ndd"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKb-fE-bxk" userLabel="Account Content View">
-                    <rect key="frame" x="20" y="150" width="280" height="125"/>
+                    <rect key="frame" x="20" y="100" width="280" height="125"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="denglu_kuangbg" translatesAutoresizingMaskIntoConstraints="NO" id="BYU-Tn-qzY" userLabel="Account Content Backdrop Image View">
                             <rect key="frame" x="0.0" y="0.0" width="280" height="125"/>
@@ -97,6 +97,9 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="pressForgotPasswordButton:" destination="-1" eventType="touchUpInside" id="BkL-yZ-ctx"/>
+                                    </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="denglu_icon_mima.png" translatesAutoresizingMaskIntoConstraints="NO" id="p2p-ll-OoI" userLabel="Password Icon">
                                     <rect key="frame" x="8" y="0.0" width="45" height="45"/>
@@ -155,11 +158,11 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxl-W2-qYC" userLabel="Interrelated Login Top Spacing View">
-                    <rect key="frame" x="20" y="338" width="280" height="48"/>
+                    <rect key="frame" x="20" y="288" width="280" height="41"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lFr-24-Que" userLabel="Interrelated Login Holder View">
-                    <rect key="frame" x="20" y="394" width="280" height="70"/>
+                    <rect key="frame" x="20" y="337" width="280" height="70"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBN-J1-chJ">
                             <rect key="frame" x="55" y="0.0" width="50" height="50"/>
@@ -242,11 +245,11 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2b-Ua-W1j" userLabel="Interrelated Login Bottom Spacing View">
-                    <rect key="frame" x="20" y="472" width="280" height="48"/>
+                    <rect key="frame" x="20" y="415" width="280" height="41"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0A1-wC-5XG" userLabel="Register Button">
-                    <rect key="frame" x="20" y="528" width="280" height="20"/>
+                    <rect key="frame" x="20" y="464" width="280" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="LQx-kx-gd5"/>
                     </constraints>
@@ -260,7 +263,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KKF-MT-P6Q">
-                    <rect key="frame" x="60" y="290" width="200" height="40"/>
+                    <rect key="frame" x="60" y="240" width="200" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="Mzy-Cc-cXL"/>
                         <constraint firstAttribute="height" constant="40" id="yzv-2o-aVT"/>
@@ -275,7 +278,7 @@
                         <action selector="pressCommit:" destination="-1" eventType="touchUpInside" id="vfR-yd-17B"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXe-4j-YWM">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXe-4j-YWM">
                     <rect key="frame" x="20" y="20" width="30" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="6sH-mh-b3i"/>
@@ -316,6 +319,8 @@
                 <constraint firstItem="fxl-W2-qYC" firstAttribute="top" secondItem="KKF-MT-P6Q" secondAttribute="bottom" constant="8" id="z6I-f6-FLI"/>
                 <constraint firstAttribute="trailing" secondItem="hKb-fE-bxk" secondAttribute="trailing" constant="20" id="zJb-lg-bxY"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
