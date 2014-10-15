@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SliderRightList : UIView <UITableViewDataSource,UITableViewDelegate>
+@interface SliderRightList : UIView
 
 @end

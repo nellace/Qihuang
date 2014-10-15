@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
+        <deployment version="1792" defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -28,7 +28,7 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao1.png" translatesAutoresizingMaskIntoConstraints="NO" id="hoH-00-aPX" userLabel="直播Img">
-                            <rect key="frame" x="0.0" y="121" width="320" height="50"/>
+                            <rect key="frame" x="0.0" y="141" width="320" height="30"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sK-3q-7Lj">
@@ -43,7 +43,7 @@
                     <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="hoH-00-aPX" secondAttribute="bottom" id="8lq-hc-BCq"/>
-                        <constraint firstItem="hoH-00-aPX" firstAttribute="top" relation="lessThanOrEqual" secondItem="Kgi-RY-X8k" secondAttribute="top" constant="121" id="F0q-E2-0Fd"/>
+                        <constraint firstItem="hoH-00-aPX" firstAttribute="top" relation="lessThanOrEqual" secondItem="Kgi-RY-X8k" secondAttribute="top" constant="141" id="F0q-E2-0Fd"/>
                         <constraint firstAttribute="bottom" secondItem="eMk-6W-zo2" secondAttribute="bottom" id="Gv4-j8-BH2"/>
                         <constraint firstAttribute="trailing" secondItem="eMk-6W-zo2" secondAttribute="trailing" id="Hfg-69-lby"/>
                         <constraint firstAttribute="trailing" secondItem="9sK-3q-7Lj" secondAttribute="trailing" constant="8" id="MCH-Ar-ufA"/>
@@ -124,7 +124,6 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="hKP-49-Ek8" firstAttribute="top" secondItem="SlT-f8-ghG" secondAttribute="top" id="CfE-Bo-h8n"/>
                         <constraint firstItem="W3Z-B1-xvf" firstAttribute="leading" secondItem="c64-re-rZQ" secondAttribute="trailing" constant="-316" id="E3G-qq-tFT"/>
@@ -164,14 +163,14 @@
                 <constraint firstItem="Kgi-RY-X8k" firstAttribute="height" secondItem="SlT-f8-ghG" secondAttribute="height" id="y0E-1s-Nlk"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
-            <point key="canvasLocation" x="542" y="271"/>
+            <point key="canvasLocation" x="51" y="351"/>
         </view>
     </objects>
     <resources>
         <image name="dota_tiao1.png" width="320" height="30"/>
         <image name="dota_tiao2.png" width="320" height="30"/>
         <image name="dota_tiao3.png" width="320" height="30"/>
-        <image name="huanchong_shouye.png" width="640" height="162"/>
+        <image name="huanchong_shouye.png" width="320" height="81"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

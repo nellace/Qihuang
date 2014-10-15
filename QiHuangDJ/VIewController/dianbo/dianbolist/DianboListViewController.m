@@ -9,6 +9,8 @@
 #import "DianboListViewController.h"
 #import "SliderRightList.h"
 #import "DianboListCollectionViewCell.h"
+#import "DianboViewController.h"
+
 @interface DianboListViewController () {
     SliderRightList *rightView;
 
@@ -19,6 +21,7 @@
 
 @implementation DianboListViewController {
     
+    __weak IBOutlet UISearchBar *mySearch;
 }
 
 - (void)viewDidLoad {
@@ -29,7 +32,7 @@
     [self rightViewUI];
     [self rightBtnItemUI];
     
-
+    [mySearch setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -68,14 +71,15 @@
             rightView.frame = CGRectMake(self.view.frame.size.width,-64, 283,self.view.frame.size.height+64);
             sender.selected = YES;
         }
-        
+
     } completion:^(BOOL finished) {
         
     }];
 }
 
+
 #pragma mark
-#pragma markUICollectionViewDataSource
+#pragma mark UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -96,6 +100,14 @@
         collectioncell = [[[NSBundle mainBundle] loadNibNamed:@"DianboListCollectionViewCell" owner:self options:nil]lastObject];
     }
     return collectioncell;
+}
+
+
+#pragma mark
+#pragma mark UICollectionDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    DianboViewController * dianboVC = [[DianboViewController alloc] initWithNibName:@"DianboViewController" bundle:nil];
+    [self.navigationController pushViewController:dianboVC animated:YES];
 }
 
 #pragma mark

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DianboListViewController">
             <connections>
                 <outlet property="collectionItem" destination="C1X-dp-tny" id="Fiu-tX-mvb"/>
+                <outlet property="mySearch" destination="Wz9-VO-Zkt" id="tjd-2X-eNW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,8 +17,78 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtI-ZY-ZW0" userLabel="btnBGView">
+                    <rect key="frame" x="0.0" y="44" width="320" height="41"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-Pv-rYX">
+                            <rect key="frame" x="108" y="0.0" width="109" height="41"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                            <state key="normal" title="最热视频" image="zhibo_caidan_icon_3.png" backgroundImage="caidan_you.png">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" title="最热视频" image="zhibo_caidan_icon_3_press.png" backgroundImage="caidan_you_press.png">
+                                <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRA-a9-ECx">
+                            <rect key="frame" x="212" y="0.0" width="108" height="41"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                            <state key="normal" title="最短时长" image="zhibo_caidan_icon_2.png" backgroundImage="caidan_you.png">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="zhibo_caidan_icon_2_press.png" backgroundImage="caidan_you_press.png">
+                                <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z6-3l-b7X">
+                            <rect key="frame" x="0.0" y="0.0" width="108" height="41"/>
+                            <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                            <state key="normal" title="最新视频" image="zhibo_caidan_icon_1.png" backgroundImage="caidan_you.png">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="zhibo_caidan_icon_1_press.png" backgroundImage="caidan_you_press.png">
+                                <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="top" id="0R6-hW-Tp1"/>
+                        <constraint firstItem="2z6-3l-b7X" firstAttribute="leading" secondItem="rtI-ZY-ZW0" secondAttribute="leading" id="2ME-MR-BDc"/>
+                        <constraint firstAttribute="bottom" secondItem="xgB-Pv-rYX" secondAttribute="bottom" id="7Ux-Cm-yL0"/>
+                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="height" secondItem="2z6-3l-b7X" secondAttribute="height" id="Bhh-Ux-gHw"/>
+                        <constraint firstAttribute="trailing" secondItem="gRA-a9-ECx" secondAttribute="trailing" id="HIJ-xo-1a6"/>
+                        <constraint firstItem="gRA-a9-ECx" firstAttribute="leading" secondItem="xgB-Pv-rYX" secondAttribute="trailing" constant="-5" id="JSY-a8-Sg5"/>
+                        <constraint firstItem="2z6-3l-b7X" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="top" id="LGG-zR-bRv"/>
+                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="leading" secondItem="2z6-3l-b7X" secondAttribute="trailing" id="MPc-Ku-rg9"/>
+                        <constraint firstAttribute="bottom" secondItem="2z6-3l-b7X" secondAttribute="bottom" id="NAM-m1-4NV"/>
+                        <constraint firstAttribute="bottom" secondItem="gRA-a9-ECx" secondAttribute="bottom" id="b3H-YL-XEJ"/>
+                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="width" secondItem="gRA-a9-ECx" secondAttribute="width" id="bh9-4W-Yhn"/>
+                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="height" secondItem="gRA-a9-ECx" secondAttribute="height" id="eEk-QF-KgM"/>
+                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="width" secondItem="2z6-3l-b7X" secondAttribute="width" id="nMn-B2-EEu"/>
+                        <constraint firstItem="gRA-a9-ECx" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="top" id="rIs-NQ-UOU"/>
+                    </constraints>
+                </view>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-VO-Zkt">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="C1X-dp-tny">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="85" width="320" height="483"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <inset key="scrollIndicatorInsets" minX="100" minY="100" maxX="100" maxY="100"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="5" id="wnU-aB-mrb">
@@ -34,13 +105,29 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="C1X-dp-tny" secondAttribute="bottom" id="SPb-m1-Pe4"/>
-                <constraint firstAttribute="trailing" secondItem="C1X-dp-tny" secondAttribute="trailing" id="ms2-jH-BBa"/>
-                <constraint firstItem="C1X-dp-tny" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="peV-Hq-San"/>
-                <constraint firstItem="C1X-dp-tny" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xbv-7d-L0P"/>
+                <constraint firstAttribute="bottom" secondItem="C1X-dp-tny" secondAttribute="bottom" id="05T-7s-OpA"/>
+                <constraint firstAttribute="trailing" secondItem="rtI-ZY-ZW0" secondAttribute="trailing" id="313-6e-yJ9"/>
+                <constraint firstItem="C1X-dp-tny" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DMG-RH-cvC"/>
+                <constraint firstAttribute="trailing" secondItem="C1X-dp-tny" secondAttribute="trailing" id="EaO-3t-NmU"/>
+                <constraint firstItem="Wz9-VO-Zkt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NvA-G8-p7C"/>
+                <constraint firstItem="rtI-ZY-ZW0" firstAttribute="top" secondItem="Wz9-VO-Zkt" secondAttribute="bottom" id="UE9-VH-DWo"/>
+                <constraint firstAttribute="trailing" secondItem="Wz9-VO-Zkt" secondAttribute="trailing" id="aYo-9e-juy"/>
+                <constraint firstItem="C1X-dp-tny" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="bottom" id="csT-P1-kv2"/>
+                <constraint firstItem="Wz9-VO-Zkt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hrb-g1-6sM"/>
+                <constraint firstItem="rtI-ZY-ZW0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mw7-lv-KYJ"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-262" y="87"/>
+            <point key="canvasLocation" x="-927" y="71"/>
         </view>
     </objects>
+    <resources>
+        <image name="caidan_you.png" width="106" height="41"/>
+        <image name="caidan_you_press.png" width="106" height="41"/>
+        <image name="zhibo_caidan_icon_1.png" width="15" height="15"/>
+        <image name="zhibo_caidan_icon_1_press.png" width="15" height="15"/>
+        <image name="zhibo_caidan_icon_2.png" width="15" height="15"/>
+        <image name="zhibo_caidan_icon_2_press.png" width="15" height="15"/>
+        <image name="zhibo_caidan_icon_3.png" width="15" height="15"/>
+        <image name="zhibo_caidan_icon_3_press.png" width="15" height="15"/>
+    </resources>
 </document>
