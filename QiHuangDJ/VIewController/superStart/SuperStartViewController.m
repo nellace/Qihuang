@@ -25,6 +25,10 @@
 #define BASIC_LINE_HEIGHT 35
 #define BASIC_DIVIDER_HEIGHT 1
 
+
+
+#pragma mark - VIEW CONTROLLER LIFECYCLE
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -55,6 +59,9 @@
 //    [self setControllableHeight:self.entertainerScrollView.frame.size.height];
     //NSLog(@"+ view will appear");
     //[self refreshEntertainersScrollView];
+    [self setControllableWidth:self.entertainerScrollView.frame.size.width];
+    [self setControllableHeight:self.entertainerScrollView.frame.size.height];
+    [self refreshEntertainersScrollView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -65,12 +72,14 @@
 
 - (void)viewWillLayoutSubviews
 {
-    [self setControllableWidth:self.entertainerScrollView.frame.size.width];
-    [self setControllableHeight:self.entertainerScrollView.frame.size.height];
-    //NSLog(@"+ view will layout subviews");
-    [self refreshEntertainersScrollView];
+//    [self setControllableWidth:self.entertainerScrollView.frame.size.width];
+//    [self setControllableHeight:self.entertainerScrollView.frame.size.height];
+//    [self refreshEntertainersScrollView];
 }
 
+
+
+#pragma mark - CUSTOM LAYOUT METHODES
 
 - (void)refreshEntertainersScrollView
 {
@@ -78,7 +87,7 @@
         [subview removeFromSuperview];
     }
     
-    NSArray *entertainers = [self MakeSimulateEntertainersWithCapacity:3];
+    NSArray *entertainers = [self MakeSimulateEntertainersWithCapacity:13];
     for (int i = 0; i < [entertainers count]; i++) {
         KHLEntertainerHolderView * holder = [[[NSBundle mainBundle] loadNibNamed:@"KHLEntertainerHolderView" owner:self options:nil]lastObject];
         [holder setFrame:CGRectMake(i * self.controllableWidth, 0, self.controllableWidth, self.controllableHeight)];
@@ -291,6 +300,10 @@
     NSLog(@"==== CONTENT: %.2f ====", self.entertainerScrollView.contentSize.height);
 }
  */
+
+
+
+#pragma mark - DEBUG METHODES
 
 - (NSArray *)MakeSimulateEntertainersWithCapacity: (NSUInteger)capacity
 {
