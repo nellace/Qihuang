@@ -52,7 +52,7 @@
 
 - (void)initialization
 {
-    NSLog(@"initialization");
+    // NSLog(@"initialization");
 }
 
 

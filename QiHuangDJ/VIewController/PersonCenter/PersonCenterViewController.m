@@ -39,15 +39,15 @@
 
 #define COMMON_ITEM_DIVIDER_HEIGHT (2.0f)
 
-#define RECOMMENDED_ITEM_PROPORTION (200.0f / 315.0f)
-#define RECOMMENDED_ITEM_SPACING (5.0f)
-#define RECOMMENDED_ITEM_TEXT_VIEW_PROPORTION (60.0f / 200.0f)
-
-#define SUBSCRIBED_ITEM_IMAGE_OCCUPANCY (235.0f / 640.0f)
-#define SUBSCRIBED_ITEM_PROPORTION (180.0f / 640.0f)
-#define SUBSCRIBED_ITEM_TEXT_PROPORTION (130.0f / 180.0f)
-#define SUBSCRIBED_ITEM_DIVIDER_HEIGHT (1.0f)
-#define SUBSCRIBED_ITEM_TEXT_PADDING (6.0f)
+//#define RECOMMENDED_ITEM_PROPORTION (200.0f / 315.0f)
+//#define RECOMMENDED_ITEM_SPACING (5.0f)
+//#define RECOMMENDED_ITEM_TEXT_VIEW_PROPORTION (60.0f / 200.0f)
+//
+//#define SUBSCRIBED_ITEM_IMAGE_OCCUPANCY (235.0f / 640.0f)
+//#define SUBSCRIBED_ITEM_PROPORTION (180.0f / 640.0f)
+//#define SUBSCRIBED_ITEM_TEXT_PROPORTION (130.0f / 180.0f)
+//#define SUBSCRIBED_ITEM_DIVIDER_HEIGHT (1.0f)
+//#define SUBSCRIBED_ITEM_TEXT_PADDING (6.0f)
 
 
 
@@ -129,6 +129,8 @@
         self.templateUsingState = 0;
     }
 }
+
+
 
 
 
@@ -483,10 +485,21 @@
 #pragma mark - TABLE VIEW PROTOCOL
 
 #define HEADER_VIEW_HEIGHT (240.0f)
+#define RECOMMENDED_INDICATOR_LABEL_HEIGHT (40.0f)
+#define RECOMMENDED_CELL_PROPORTION (105.0f / 320.0f)
+#define RECOMMENDED_LABEL_FONT_PROPORTION (10.0f / 320.0f)
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return HEADER_VIEW_HEIGHT;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.isLogIn && indexPath.row == 0)
+        return RECOMMENDED_INDICATOR_LABEL_HEIGHT;
+    
+    return self.view.frame.size.width * RECOMMENDED_CELL_PROPORTION;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -521,22 +534,51 @@
     
     // Recommended Template
     else {
+        
+        // Create first row recommended indicator label..
         if (indexPath.row == 0) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"KHLPICRecommendedLabelCell"];
             cell.backgroundColor = [KHLColor tubai];
+            [cell.imageView setImage:[UIImage imageNamed:@"gerenzhongxin_hongline.png"]];
             cell.textLabel.text = @"为我推荐";
             cell.textLabel.font = [UIFont systemFontOfSize:14];
             cell.selectionStyle = UITableViewCellAccessoryNone;
             return cell;
         }
         
-        cell = [tableView dequeueReusableCellWithIdentifier:@"KHLPICRecommendedCell"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"KHLPICRecommendedCell"];
+        // Create recommended cell if no reusable template available..
+        KHLPICRecommendedCell *recoCell = [self.tableView dequeueReusableCellWithIdentifier:@"KHLPICRecommendedCell"];
+        if (recoCell == nil) {
+            recoCell = [[[NSBundle mainBundle] loadNibNamed:@"KHLPICRecommendedCell" owner:self options:nil] firstObject];
         }
+        
+        // Configure recommended cell image..
+        if (indexPath.row % 3 == 0) {
+            [recoCell.leftImageView setImage:[UIImage imageNamed:@"mings-student-on-journey"]];
+            [recoCell.rightImageView setImage:[UIImage imageNamed:@"mings-ships-sailing"]];
+        } else if (indexPath.row % 3 == 2) {
+            [recoCell.leftImageView setImage:[UIImage imageNamed:@"mings-ships-sailing"]];
+            [recoCell.rightImageView setImage:[UIImage imageNamed:@"mings-cavalry-anti-japanese-samurai"]];
+        } else {
+            [recoCell.leftImageView setImage:[UIImage imageNamed:@"mings-cavalry-anti-japanese-samurai"]];
+            [recoCell.rightImageView setImage:[UIImage imageNamed:@"mings-student-on-journey"]];
+        }
+        
+        // Configure recommended cell label..
+        UIFont *labelFont = [UIFont systemFontOfSize:self.view.frame.size.width * RECOMMENDED_LABEL_FONT_PROPORTION];
+        [recoCell.leftLabel setFont:labelFont];
+        [recoCell.rightLabel setFont:labelFont];
+        
+        //NSLog(@"Backdrop at (%.0f, %.0f) - [%.0f x %.0f] - scr: %.0f", recoCell.leftBackdropView.frame.origin.x, recoCell.leftBackdropView.frame.origin.y, recoCell.leftBackdropView.frame.size.width, recoCell.leftBackdropView.frame.size.height, self.view.frame.size.width);
+        //[recoCell.leftLabel setBackgroundColor:[UIColor redColor]];
+        //[recoCell.leftLabel setFrame:CGRectMake(recoCell.leftBackdropView.frame.origin.x, recoCell.leftBackdropView.frame.origin.y, recoCell.leftBackdropView.frame.size.width, recoCell.leftBackdropView.frame.size.height)];
+        //[recoCell.leftLabel setFrame:recoCell.leftBackdropView.frame];
+        
+        // Asign recommended cell to return cell..
+        cell = recoCell;
     }
     
-    cell.selectionStyle = UITableViewCellAccessoryNone;
+    //cell.selectionStyle = UITableViewCellAccessoryNone;
     return cell;
 }
 
@@ -601,6 +643,9 @@
     [buttonDivider setBackgroundColor:[KHLColor shiqing]];
     [self.headerView.buttonHolder addSubview:buttonDivider];
     [self.headerView.buttonHolder addSubview:self.headerView.buttonIndicatorView];
+    
+//    self.tableView.separatorInset = UIEdgeInsetsMake(16, 0, 0, 0);
+//    self.tableView.separatorColor = [UIColor whiteColor];
 }
 
 - (void)refreshPhotoImageView
@@ -631,7 +676,7 @@
     [self.navigationController pushViewController:loginViewController animated:YES];
 }
 
-// Refresh my collections and subscriptions button..
+// Animate my collections and subscriptions button..
 - (void)refreshButtonHolder
 {
     if (self.templateUsingState == 1) {
