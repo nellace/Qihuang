@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "KHLPICHeaderView.h"
 #import "KHLPICRecommendedCell.h"
+#import "KHLPICVideoItemCell.h"
 
 @interface PersonCenterViewController () <LoginDelegate, KHLPICHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *pageHolder;
@@ -39,15 +40,15 @@
 
 #define COMMON_ITEM_DIVIDER_HEIGHT (2.0f)
 
-//#define RECOMMENDED_ITEM_PROPORTION (200.0f / 315.0f)
-//#define RECOMMENDED_ITEM_SPACING (5.0f)
-//#define RECOMMENDED_ITEM_TEXT_VIEW_PROPORTION (60.0f / 200.0f)
-//
-//#define SUBSCRIBED_ITEM_IMAGE_OCCUPANCY (235.0f / 640.0f)
-//#define SUBSCRIBED_ITEM_PROPORTION (180.0f / 640.0f)
-//#define SUBSCRIBED_ITEM_TEXT_PROPORTION (130.0f / 180.0f)
-//#define SUBSCRIBED_ITEM_DIVIDER_HEIGHT (1.0f)
-//#define SUBSCRIBED_ITEM_TEXT_PADDING (6.0f)
+#define RECOMMENDED_ITEM_PROPORTION (200.0f / 315.0f)
+#define RECOMMENDED_ITEM_SPACING (5.0f)
+#define RECOMMENDED_ITEM_TEXT_VIEW_PROPORTION (60.0f / 200.0f)
+
+#define SUBSCRIBED_ITEM_IMAGE_OCCUPANCY (235.0f / 640.0f)
+#define SUBSCRIBED_ITEM_PROPORTION (180.0f / 640.0f)
+#define SUBSCRIBED_ITEM_TEXT_PROPORTION (130.0f / 180.0f)
+#define SUBSCRIBED_ITEM_DIVIDER_HEIGHT (1.0f)
+#define SUBSCRIBED_ITEM_TEXT_PADDING (6.0f)
 
 
 
@@ -128,6 +129,7 @@
         //        [self.mySubscriptionButton setEnabled:FALSE];
         self.templateUsingState = 0;
     }
+    [self refreshTableView];
 }
 
 
@@ -409,7 +411,7 @@
 {
     NSLog(@"onLoginSuccess Implementation");
     [self setLogIn:TRUE];
-    [self refreshTableView];
+    //[self refreshTableView];
 //    [self refreshThumbImageViewWithPersonalInfomation:nil];
 //    //[self refreshContentScrollViewWithData:@[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8"]];
 }
@@ -418,7 +420,7 @@
 {
     NSLog(@"onLoginFailed Implementation");
     [self setLogIn:FALSE];
-    [self refreshTableView];
+    //[self refreshTableView];
 //    [self refreshThumbImageViewWithPersonalInfomation:nil];
 //    //[self refreshContentScrollViewWithData:@[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8"]];
 }
@@ -488,6 +490,10 @@
 #define RECOMMENDED_INDICATOR_LABEL_HEIGHT (40.0f)
 #define RECOMMENDED_CELL_PROPORTION (105.0f / 320.0f)
 #define RECOMMENDED_LABEL_FONT_PROPORTION (10.0f / 320.0f)
+#define VIDEO_CELL_PROPORTION (90.0f / 320.0f)
+#define VIDEO_THUMB_IMAGE_PROPORTION (120.0f / 90.0f)
+#define VIDEO_MAJOR_TEXT_FONT_PROPORTION (14.0f / 320.0f)
+#define VIDEO_MINOR_TEXT_FONT_PROPORTION (12.0f / 320.0f)
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -496,10 +502,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.isLogIn && indexPath.row == 0)
-        return RECOMMENDED_INDICATOR_LABEL_HEIGHT;
-    
-    return self.view.frame.size.width * RECOMMENDED_CELL_PROPORTION;
+    if (self.isLogIn) {
+        return self.view.frame.size.width * VIDEO_CELL_PROPORTION;
+    } else {
+        if (indexPath.row == 0) {
+            return RECOMMENDED_INDICATOR_LABEL_HEIGHT;
+        } else {
+            return self.view.frame.size.width * RECOMMENDED_CELL_PROPORTION;
+        }
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -526,10 +537,58 @@
     
     // Logged In Template
     if (self.isLogIn) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"KHLPICVideoItemCell"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"KHLPICVideoItemCell"];
+        
+        // Create video item cell if no reusable template available..
+        KHLPICVideoItemCell *viCell = [self.tableView dequeueReusableCellWithIdentifier:@"KHLPICVideoItemCell"];
+        if (viCell == nil) {
+            viCell = [[[NSBundle mainBundle] loadNibNamed:@"KHLPICVideoItemCell" owner:self options:nil] firstObject];
         }
+        
+        // Configure thumb image view..
+        if (indexPath.row % 3 == 0) {
+            [viCell.thumbImageView setImage:[UIImage imageNamed:@"mings-cavalry-anti-japanese-samurai"]];
+        } else if (indexPath.row % 3 == 1) {
+            [viCell.thumbImageView setImage:[UIImage imageNamed:@"mings-student-on-journey"]];
+        } else {
+            [viCell.thumbImageView setImage:[UIImage imageNamed:@"mings-ships-sailing"]];
+        }
+        
+        // Configure text attributes..
+        UIFont *majorFont = [UIFont systemFontOfSize:(self.view.frame.size.width * VIDEO_MAJOR_TEXT_FONT_PROPORTION)];
+        UIFont *minorFont = [UIFont systemFontOfSize:(self.view.frame.size.width * VIDEO_MINOR_TEXT_FONT_PROPORTION)];
+//        [viCell.titleTextView setFont:majorFont];
+        [viCell.browseCountingLabel setFont:minorFont];
+        [viCell.dateLabel setFont:minorFont];
+//        [viCell.titleTextView setText:@"上元点鬟招萼绿，王母挥袂别飞琼。繁音急节十二遍，跳珠撼玉何铿铮。翔鸾舞了却收翅，唳鹤曲终长引声。当时乍见惊心目，凝视谛听殊未足。一落人间八九年，耳冷不曾闻此曲。湓城但听山魈语，巴峡唯闻杜鹃哭。"];
+        [viCell.browseCountingLabel setText:@"浏览量：17"];
+        [viCell.dateLabel setText:@"1599-05-21"];
+        
+        // Configure title label..
+        CGFloat subscribedTextWidth = viCell.dateLabel.frame.size.width;
+        CGFloat subscribedTextHeight = viCell.frame.size.height - viCell.dateLabel.frame.size.height;
+        NSString *description = @"霓为衣兮风为马。";
+        if (indexPath.row % 3 == 0) description = @"绛罗朱袖起飞云，大武明华瞰雄州。";
+        if (indexPath.row % 3 == 1) description = @"上元点鬟招萼绿，王母挥袂别飞琼。繁音急节十二遍，跳珠撼玉何铿铮。翔鸾舞了却收翅，唳鹤曲终长引声。当时乍见惊心目，凝视谛听殊未足。一落人间八九年，耳冷不曾闻此曲。湓城但听山魈语，巴峡唯闻杜鹃哭。";
+        CGRect standardizedRect = [description boundingRectWithSize:CGSizeMake(subscribedTextWidth, MAXFLOAT)
+                                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                                         attributes:@{NSFontAttributeName:majorFont}
+                                                            context:nil];
+        [viCell.titleLabel setText:description];
+        [viCell.titleLabel setTextColor:[UIColor blackColor]];
+        [viCell.titleLabel setFont:majorFont];
+        if (standardizedRect.size.height > subscribedTextHeight) {
+            standardizedRect.size.height = 3 * [[NSString stringWithFormat:@"明"] boundingRectWithSize:CGSizeMake(subscribedTextWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:majorFont} context:nil].size.height;
+        }
+        standardizedRect.origin.y = SUBSCRIBED_ITEM_TEXT_PADDING;
+        standardizedRect.origin.x = viCell.titleLabel.frame.origin.x;
+        [viCell.titleLabel setFrame:standardizedRect];
+        [viCell.titleLabel setNumberOfLines:3];
+        [viCell.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
+        [viCell.titleLabel setTextAlignment:NSTextAlignmentNatural];
+        
+        
+        // Asign video item cell to return cell..
+        cell = viCell;
     }
     
     // Recommended Template
@@ -698,6 +757,12 @@
 
 - (void)refreshTableView
 {
+    if (self.isLogIn) {
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    } else {
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    }
+    
     [self.tableView reloadData];
 }
 
