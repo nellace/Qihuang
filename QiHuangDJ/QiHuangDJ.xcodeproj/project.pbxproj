@@ -155,6 +155,15 @@
 		3D44757C19C984AC00D9B2B1 /* CustomNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44756B19C984AC00D9B2B1 /* CustomNavViewController.m */; };
 		3D44757D19C984AC00D9B2B1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44756E19C984AC00D9B2B1 /* MBProgressHUD.m */; };
 		3D44757E19C984AC00D9B2B1 /* MQLCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44757119C984AC00D9B2B1 /* MQLCustomViewController.m */; };
+		3D450DEB19ECD3520045A064 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D450DEA19ECD3520045A064 /* CoreFoundation.framework */; };
+		3D450DED19ECD3660045A064 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D450DEC19ECD3660045A064 /* libicucore.dylib */; };
+		3D450DEF19ECD36F0045A064 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D450DEE19ECD36F0045A064 /* libz.dylib */; };
+		3D450DF119ECD3780045A064 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D450DF019ECD3780045A064 /* AdSupport.framework */; };
+		3D450DF319ECD3820045A064 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D450DF219ECD3820045A064 /* CoreTelephony.framework */; };
+		3D450DF519ECD3940045A064 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D450DF419ECD3940045A064 /* SystemConfiguration.framework */; };
+		3D450DF719ECD39E0045A064 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D450DF619ECD39E0045A064 /* ImageIO.framework */; };
+		3D450DF919ECD3A90045A064 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D450DF819ECD3A90045A064 /* MediaPlayer.framework */; };
+		3D450DFB19ECD3B30045A064 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D450DFA19ECD3B30045A064 /* AudioToolbox.framework */; };
 		3D491BB919D19324004D6DEF /* SearchBarCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D491BB819D19324004D6DEF /* SearchBarCustom.m */; };
 		3D858E1319E8DFD7005022BA /* DianboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E0819E8DFD7005022BA /* DianboViewController.m */; };
 		3D858E1419E8DFD7005022BA /* DianboViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E0919E8DFD7005022BA /* DianboViewController.xib */; };
@@ -168,6 +177,10 @@
 		3D858E2319EB9E6B005022BA /* SliderRightList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2219EB9E6B005022BA /* SliderRightList.xib */; };
 		3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */; };
 		3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */; };
+		3D87D6FF19EE35E700EA96A7 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D87D6FD19EE35E700EA96A7 /* NewsViewController.m */; };
+		3D87D70019EE35E700EA96A7 /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D87D6FE19EE35E700EA96A7 /* NewsViewController.xib */; };
+		3D87D70419EE3DAF00EA96A7 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D87D70219EE3DAF00EA96A7 /* NewsTableViewCell.m */; };
+		3D87D70519EE3DAF00EA96A7 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D87D70319EE3DAF00EA96A7 /* NewsTableViewCell.xib */; };
 		FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */; };
 		FC81ADFA19E638AA002D74EF /* KHLRecommendedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */; };
 		FC81ADFC19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC81ADFB19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib */; };
@@ -361,6 +374,15 @@
 		3D44756E19C984AC00D9B2B1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		3D44757019C984AC00D9B2B1 /* MQLCustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQLCustomViewController.h; sourceTree = "<group>"; };
 		3D44757119C984AC00D9B2B1 /* MQLCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQLCustomViewController.m; sourceTree = "<group>"; };
+		3D450DEA19ECD3520045A064 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		3D450DEC19ECD3660045A064 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3D450DEE19ECD36F0045A064 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3D450DF019ECD3780045A064 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3D450DF219ECD3820045A064 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3D450DF419ECD3940045A064 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3D450DF619ECD39E0045A064 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		3D450DF819ECD3A90045A064 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3D450DFA19ECD3B30045A064 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3D491BB719D19324004D6DEF /* SearchBarCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBarCustom.h; sourceTree = "<group>"; };
 		3D491BB819D19324004D6DEF /* SearchBarCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarCustom.m; sourceTree = "<group>"; };
 		3D858E0719E8DFD7005022BA /* DianboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboViewController.h; sourceTree = "<group>"; };
@@ -381,6 +403,12 @@
 		3D858E2419EBC221005022BA /* DianboListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboListCollectionViewCell.h; sourceTree = "<group>"; };
 		3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboListCollectionViewCell.m; sourceTree = "<group>"; };
 		3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboListCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D87D6FC19EE35E700EA96A7 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		3D87D6FD19EE35E700EA96A7 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		3D87D6FE19EE35E700EA96A7 /* NewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
+		3D87D70119EE3DAF00EA96A7 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
+		3D87D70219EE3DAF00EA96A7 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
+		3D87D70319EE3DAF00EA96A7 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLEntertainerHolderView.xib; sourceTree = "<group>"; };
 		FC81ADF819E638AA002D74EF /* KHLRecommendedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLRecommendedCollectionViewCell.h; sourceTree = "<group>"; };
 		FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLRecommendedCollectionViewCell.m; sourceTree = "<group>"; };
@@ -394,6 +422,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D450DFB19ECD3B30045A064 /* AudioToolbox.framework in Frameworks */,
+				3D450DF919ECD3A90045A064 /* MediaPlayer.framework in Frameworks */,
+				3D450DF719ECD39E0045A064 /* ImageIO.framework in Frameworks */,
+				3D450DF519ECD3940045A064 /* SystemConfiguration.framework in Frameworks */,
+				3D450DF319ECD3820045A064 /* CoreTelephony.framework in Frameworks */,
+				3D450DF119ECD3780045A064 /* AdSupport.framework in Frameworks */,
+				3D450DEF19ECD36F0045A064 /* libz.dylib in Frameworks */,
+				3D450DED19ECD3660045A064 /* libicucore.dylib in Frameworks */,
+				3D450DEB19ECD3520045A064 /* CoreFoundation.framework in Frameworks */,
 				3D44751D19C972CE00D9B2B1 /* CoreGraphics.framework in Frameworks */,
 				3D44751F19C972CE00D9B2B1 /* UIKit.framework in Frameworks */,
 				3D44751B19C972CE00D9B2B1 /* Foundation.framework in Frameworks */,
@@ -419,6 +456,12 @@
 				3D121C3919CABD100040870C /* InfomationViewController.h */,
 				3D121C3A19CABD100040870C /* InfomationViewController.m */,
 				3D121C3B19CABD100040870C /* InfomationViewController.xib */,
+				3D87D6FC19EE35E700EA96A7 /* NewsViewController.h */,
+				3D87D6FD19EE35E700EA96A7 /* NewsViewController.m */,
+				3D87D6FE19EE35E700EA96A7 /* NewsViewController.xib */,
+				3D87D70119EE3DAF00EA96A7 /* NewsTableViewCell.h */,
+				3D87D70219EE3DAF00EA96A7 /* NewsTableViewCell.m */,
+				3D87D70319EE3DAF00EA96A7 /* NewsTableViewCell.xib */,
 			);
 			path = Information;
 			sourceTree = "<group>";
@@ -680,6 +723,15 @@
 		3D44751919C972CE00D9B2B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D450DFA19ECD3B30045A064 /* AudioToolbox.framework */,
+				3D450DF819ECD3A90045A064 /* MediaPlayer.framework */,
+				3D450DF619ECD39E0045A064 /* ImageIO.framework */,
+				3D450DF419ECD3940045A064 /* SystemConfiguration.framework */,
+				3D450DF219ECD3820045A064 /* CoreTelephony.framework */,
+				3D450DF019ECD3780045A064 /* AdSupport.framework */,
+				3D450DEE19ECD36F0045A064 /* libz.dylib */,
+				3D450DEC19ECD3660045A064 /* libicucore.dylib */,
+				3D450DEA19ECD3520045A064 /* CoreFoundation.framework */,
 				3D44751A19C972CE00D9B2B1 /* Foundation.framework */,
 				3D44751C19C972CE00D9B2B1 /* CoreGraphics.framework */,
 				3D44751E19C972CE00D9B2B1 /* UIKit.framework */,
@@ -957,6 +1009,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
+					3D44751619C972CE00D9B2B1 = {
+						DevelopmentTeam = DL6GBFL7D3;
+					};
 					3D44753119C972CE00D9B2B1 = {
 						TestTargetID = 3D44751619C972CE00D9B2B1;
 					};
@@ -992,6 +1047,7 @@
 				3D36ADC219ECBD8E00DB1FFE /* denglu_name@2x.png in Resources */,
 				3D36AE0419ECBD8E00DB1FFE /* caidan_zuo_press@2x.png in Resources */,
 				3D36ADCB19ECBD8E00DB1FFE /* dota_tiao1@2x.png in Resources */,
+				3D87D70019EE35E700EA96A7 /* NewsViewController.xib in Resources */,
 				3D36ADCA19ECBD8E00DB1FFE /* celan_line@2x.png in Resources */,
 				3D36ADD519ECBD8E00DB1FFE /* huanchong_shouye@2x.png in Resources */,
 				3D858E1819E8DFD7005022BA /* LiveListViewController.xib in Resources */,
@@ -1043,6 +1099,7 @@
 				3D36ADC919ECBD8E00DB1FFE /* celan_dinngyue_press@2x.png in Resources */,
 				3D36ADE719ECBD8E00DB1FFE /* qihuangyiren_line@2x.png in Resources */,
 				3D36ADE519ECBD8E00DB1FFE /* qihuangyiren_icon_jingli@2x.png in Resources */,
+				3D87D70519EE3DAF00EA96A7 /* NewsTableViewCell.xib in Resources */,
 				3D858E2319EB9E6B005022BA /* SliderRightList.xib in Resources */,
 				3D36ADE419ECBD8E00DB1FFE /* qihuangyiren_icon_jiemu@2x.png in Resources */,
 				3D36AE1F19ECBD8E00DB1FFE /* zhibo_icon_zan_press@2x.png in Resources */,
@@ -1140,6 +1197,7 @@
 				3D44757A19C984AC00D9B2B1 /* AFXMLRequestOperation.m in Sources */,
 				3D44757219C984AC00D9B2B1 /* AFDownloadRequestOperation.m in Sources */,
 				3D44757D19C984AC00D9B2B1 /* MBProgressHUD.m in Sources */,
+				3D87D70419EE3DAF00EA96A7 /* NewsTableViewCell.m in Sources */,
 				3D4003EB19D407E2006622E4 /* classifyModel.m in Sources */,
 				3D44757E19C984AC00D9B2B1 /* MQLCustomViewController.m in Sources */,
 				3D44752B19C972CE00D9B2B1 /* AppDelegate.m in Sources */,
@@ -1153,6 +1211,7 @@
 				3D44752719C972CE00D9B2B1 /* main.m in Sources */,
 				3D4003E719D3BEC3006622E4 /* KHLColor.m in Sources */,
 				3D858E1319E8DFD7005022BA /* DianboViewController.m in Sources */,
+				3D87D6FF19EE35E700EA96A7 /* NewsViewController.m in Sources */,
 				3D44757819C984AC00D9B2B1 /* AFPropertyListRequestOperation.m in Sources */,
 				FC81ADFF19E68DA9002D74EF /* KHLEntertainerHolderView.m in Sources */,
 				3D121C5719CAFADF0040870C /* PersonCenterViewController.m in Sources */,
@@ -1276,10 +1335,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QiHuangDJ/QiHuangDJ-Prefix.pch";
 				INFOPLIST_FILE = "QiHuangDJ/QiHuangDJ-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/liuxiaolong/Documents/项目/七煌/乐视SDK/云视频SDK",
+					"$(PROJECT_DIR)/ThrildLib/iphoneos",
+					"$(PROJECT_DIR)/ThrildLib/iphonesimulator",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7s armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1289,10 +1358,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QiHuangDJ/QiHuangDJ-Prefix.pch";
 				INFOPLIST_FILE = "QiHuangDJ/QiHuangDJ-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/liuxiaolong/Documents/项目/七煌/乐视SDK/云视频SDK",
+					"$(PROJECT_DIR)/ThrildLib/iphoneos",
+					"$(PROJECT_DIR)/ThrildLib/iphonesimulator",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7s armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
