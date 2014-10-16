@@ -13,6 +13,7 @@
 #import "KHLPICHeaderView.h"
 #import "KHLPICRecommendedCell.h"
 #import "KHLPICVideoItemCell.h"
+#import "KHLPICSettingsViewController.h"
 
 @interface PersonCenterViewController () <LoginDelegate, KHLPICHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *pageHolder;
@@ -52,14 +53,16 @@
 
 
 
-#pragma mark VIEW CONTROLLER LIFECYCLE
+#pragma mark - VIEW CONTROLLER LIFECYCLE
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self setFanhui];
+        [self setCascTitle:@"个人中心"];
         [self setLogIn:FALSE];
+        [self setNavigationRightButton];
     } return self;
 }
 
@@ -114,7 +117,7 @@
 
 
 
-#pragma mark ATTRIBUTES GETTER AND SETTER
+#pragma mark - ATTRIBUTES GETTER AND SETTER
 
 - (void)setLogIn:(BOOL)bLogIn
 {
@@ -136,7 +139,28 @@
 
 
 
-#pragma mark LAYOUT CUSTOM METHODES
+#pragma mark - LAYOUT CUSTOM METHODES
+
+- (void)setNavigationRightButton
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun@2x.png"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun_press@2x.png"] forState:UIControlStateHighlighted];
+    [btn setTitle:@"" forState:UIControlStateNormal];
+    [btn setFrame:CGRectMake(0, 0, 42, 27)];
+    [btn setTitleColor:[KHLColor colorFromHexRGB:@"FE6024"] forState:UIControlStateNormal];
+    [btn.titleLabel setFont: [UIFont systemFontOfSize:14.0f]];
+    [btn addTarget:self action:@selector(pushToSettingsViewController) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *settingsBarButton = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    //[btn addTarget:self action:@selector(pushToSettingsViewController) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = settingsBarButton;
+}
+
+- (void)pushToSettingsViewController
+{
+    KHLPICSettingsViewController *settingsViewController = [[KHLPICSettingsViewController alloc] init];
+    [self.navigationController pushViewController:settingsViewController animated:TRUE];
+}
 
 
 
