@@ -8,7 +8,7 @@
 
 #import "ClassifyViewController.h"
 #import "VideoLiveViewController.h"
-#import "NewsViewController.h"
+//#import "NewsViewController.h"
 #import "InfomationViewController.h"
 #import "DianboListViewController.h"
 @interface ClassifyViewController ()
@@ -54,8 +54,8 @@
 - (IBAction)Infomation:(id)sender {
 //    InfomationViewController *infoVC = [[InfomationViewController alloc] initWithNibName:@"InfomationViewController" bundle:nil];
 //    [self.navigationController pushViewController:infoVC animated:YES];
-    NewsViewController * newList = [[NewsViewController alloc] initWithNibName:@"NewsViewController" bundle:nil];
-    [self.navigationController pushViewController:newList animated:YES];
+    //NewsViewController * newList = [[NewsViewController alloc] initWithNibName:@"NewsViewController" bundle:nil];
+    //[self.navigationController pushViewController:newList animated:YES];
 }
 
 
