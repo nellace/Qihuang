@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7E489185-A321-4121-B4AE-1CE22FF3FFBB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>QiHuangDJ</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>324046971BC4502C1FDB617459F2D3A42040BBC2</key>
+		<string>ssh://git.uniwiner.com/qihuangdianjing/qihuang_resource.git</string>
+		<key>C6991F31A4E286788E6948B7083504BEE323CD63</key>
+		<string>ssh://git.uniwiner.com/qihuangdianjing/qihuang_ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>QiHuangDJ/QiHuangDJ.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>324046971BC4502C1FDB617459F2D3A42040BBC2</key>
+		<string>../../../../qihuang_resource</string>
+		<key>C6991F31A4E286788E6948B7083504BEE323CD63</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://git.uniwiner.com/qihuangdianjing/qihuang_ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C6991F31A4E286788E6948B7083504BEE323CD63</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C6991F31A4E286788E6948B7083504BEE323CD63</string>
+			<key>IDESourceControlWCCName</key>
+			<string>qihuang_ios</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>324046971BC4502C1FDB617459F2D3A42040BBC2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>qihuang_resource</string>
+		</dict>
+	</array>
+</dict>
+</plist>
