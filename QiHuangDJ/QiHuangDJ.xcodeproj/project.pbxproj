@@ -63,6 +63,8 @@
 		3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */; };
 		3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */; };
 		FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */; };
+		FC5BD25019EFA6BF00D91A9C /* KHLPICSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */; };
+		FC5BD25119EFA6BF00D91A9C /* KHLPICSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */; };
 		FC7089F419ED0AE1002DF952 /* denglu_btn_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC70897F19ED0AE1002DF952 /* denglu_btn_login@2x.png */; };
 		FC7089F519ED0AE1002DF952 /* denglu_btn_login_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC70898019ED0AE1002DF952 /* denglu_btn_login_press@2x.png */; };
 		FC7089F619ED0AE1002DF952 /* denglu_btn_zidongdenglu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC70898119ED0AE1002DF952 /* denglu_btn_zidongdenglu@2x.png */; };
@@ -285,6 +287,9 @@
 		3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboListCollectionViewCell.m; sourceTree = "<group>"; };
 		3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboListCollectionViewCell.xib; sourceTree = "<group>"; };
 		FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLEntertainerHolderView.xib; sourceTree = "<group>"; };
+		FC5BD24D19EFA6BF00D91A9C /* KHLPICSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICSettingsViewController.h; sourceTree = "<group>"; };
+		FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICSettingsViewController.m; sourceTree = "<group>"; };
+		FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICSettingsViewController.xib; sourceTree = "<group>"; };
 		FC70897F19ED0AE1002DF952 /* denglu_btn_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_login@2x.png"; sourceTree = "<group>"; };
 		FC70898019ED0AE1002DF952 /* denglu_btn_login_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_login_press@2x.png"; sourceTree = "<group>"; };
 		FC70898119ED0AE1002DF952 /* denglu_btn_zidongdenglu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_zidongdenglu@2x.png"; sourceTree = "<group>"; };
@@ -498,6 +503,9 @@
 				FCED6BE719EE553F0009F8FF /* KHLPICVideoItemCell.h */,
 				FCED6BE819EE553F0009F8FF /* KHLPICVideoItemCell.m */,
 				FCED6BE919EE553F0009F8FF /* KHLPICVideoItemCell.xib */,
+				FC5BD24D19EFA6BF00D91A9C /* KHLPICSettingsViewController.h */,
+				FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */,
+				FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */,
 			);
 			path = PersonCenter;
 			sourceTree = "<group>";
@@ -1020,6 +1028,7 @@
 			files = (
 				FC708A5519ED0AE1002DF952 /* zhibo_caidan_icon_3_press@2x.png in Resources */,
 				FC708A4019ED0AE1002DF952 /* caidan_zhong@2x.png in Resources */,
+				FC5BD25119EFA6BF00D91A9C /* KHLPICSettingsViewController.xib in Resources */,
 				FC708A4819ED0AE1002DF952 /* icon_shoucang@2x.png in Resources */,
 				3D121C3319CABCD10040870C /* ClassifyViewController.xib in Resources */,
 				FC708A4919ED0AE1002DF952 /* icon_shoucang_press@2x.png in Resources */,
@@ -1173,6 +1182,7 @@
 				3D44757519C984AC00D9B2B1 /* AFImageRequestOperation.m in Sources */,
 				3D121C4619CABD270040870C /* RegisterViewController.m in Sources */,
 				3D121C4119CABD1B0040870C /* LoginViewController.m in Sources */,
+				FC5BD25019EFA6BF00D91A9C /* KHLPICSettingsViewController.m in Sources */,
 				3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */,
 				3D4003E819D3BEC3006622E4 /* KHLEntertainer.m in Sources */,
 				3D44757419C984AC00D9B2B1 /* AFHTTPRequestOperation.m in Sources */,
