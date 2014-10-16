@@ -8,6 +8,6 @@
 
 #import "MQLCustomViewController.h"
 
-@interface PersonCenterViewController : MQLCustomViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface PersonCenterViewController : MQLCustomViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end

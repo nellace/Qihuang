@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "RegisterViewController.h"
 
 
 @interface LoginViewController ()
@@ -27,8 +27,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setFanhui];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
+        [self.navigationController setTitle:@"登录"];
     }
     return self;
 }
@@ -82,13 +83,15 @@
 - (IBAction)pressCancel:(UIButton *)sender
 {
     [self.delegate onLoginFailed];
-    [self dismissViewControllerAnimated:TRUE completion:nil];
+    //[self dismissViewControllerAnimated:TRUE completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)pressCommit:(UIButton *)sender
 {
     [self.delegate onLoginSuccess];
-    [self dismissViewControllerAnimated:TRUE completion:nil];
+    //[self dismissViewControllerAnimated:TRUE completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)pressInterrelatedLoginWithQQ:(UIButton *)sender
@@ -103,7 +106,13 @@
 
 - (IBAction)pressRegisterButton:(UIButton *)sender
 {
-    NSLog(@"点这里呀");
+    RegisterViewController *registerVC = [[RegisterViewController alloc] init];
+    //    [self presentViewController:registerVC animated:YES completion:nil];
+    
+    //    classify.title = @"注册";
+    //    [self.navigationController pushViewController:classify animated:YES];
+    
+    [self.navigationController pushViewController:registerVC animated:YES];
 }
 
 - (IBAction)pressAutoLoginButton:(UIButton *)sender
@@ -111,6 +120,10 @@
     self.bAutoLogin = !self.bAutoLogin;
 }
 
+- (IBAction)pressForgotPasswordButton:(UIButton *)sender
+{
+    NSLog(@"忘密码呀");
+}
 
 
 

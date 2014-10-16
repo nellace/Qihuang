@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="KHLPICVideoItemCell" rowHeight="180" id="KGk-i7-Jjw" customClass="KHLPICVideoItemCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEd-Rb-VCv" userLabel="Text Holder View">
+                        <rect key="frame" x="120" y="0.0" width="200" height="90"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浏览量：1776" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NF-qK-mpM" userLabel="Browsed Counting Label">
+                                <rect key="frame" x="8" y="69" width="184" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6NF-qK-mpM" secondAttribute="height" multiplier="184:21" id="Es0-Ma-ZoN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1422-05-21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go8-Ex-XhY" userLabel="Date Label">
+                                <rect key="frame" x="8" y="69" width="184" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6o-dP-bgz">
+                                <rect key="frame" x="8" y="8" width="184" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="v6o-dP-bgz" firstAttribute="leading" secondItem="zEd-Rb-VCv" secondAttribute="leading" constant="8" id="4om-R2-juw"/>
+                            <constraint firstItem="6NF-qK-mpM" firstAttribute="height" secondItem="go8-Ex-XhY" secondAttribute="height" id="JjH-l7-7Fu"/>
+                            <constraint firstAttribute="trailing" secondItem="go8-Ex-XhY" secondAttribute="trailing" constant="8" id="MaU-7o-CHP"/>
+                            <constraint firstAttribute="trailing" secondItem="v6o-dP-bgz" secondAttribute="trailing" constant="8" id="Ohs-nV-hz1"/>
+                            <constraint firstItem="go8-Ex-XhY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="v6o-dP-bgz" secondAttribute="bottom" priority="999" id="Qwp-Gt-dFc"/>
+                            <constraint firstItem="6NF-qK-mpM" firstAttribute="leading" secondItem="zEd-Rb-VCv" secondAttribute="leading" constant="8" id="YMN-Vt-DvB"/>
+                            <constraint firstItem="v6o-dP-bgz" firstAttribute="top" secondItem="zEd-Rb-VCv" secondAttribute="top" constant="8" id="jAJ-Kt-bFH"/>
+                            <constraint firstAttribute="bottom" secondItem="6NF-qK-mpM" secondAttribute="bottom" id="nMi-z9-6ZE"/>
+                            <constraint firstAttribute="trailing" secondItem="6NF-qK-mpM" secondAttribute="trailing" constant="8" id="p7U-Hu-Aw2"/>
+                            <constraint firstAttribute="bottom" secondItem="go8-Ex-XhY" secondAttribute="bottom" id="r35-hc-AcC"/>
+                            <constraint firstItem="go8-Ex-XhY" firstAttribute="leading" secondItem="zEd-Rb-VCv" secondAttribute="leading" constant="8" id="yxU-l8-B2g"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-cavalry-anti-japanese-samurai" translatesAutoresizingMaskIntoConstraints="NO" id="3Lf-W8-GcH" userLabel="Thumb Image View">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="3Lf-W8-GcH" secondAttribute="height" multiplier="4:3" id="yGY-cd-ili"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="zEd-Rb-VCv" secondAttribute="bottom" constant="-8.5" id="1Ym-Q9-Qzs"/>
+                    <constraint firstItem="3Lf-W8-GcH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="89w-CV-7F5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zEd-Rb-VCv" secondAttribute="trailing" constant="-8" id="Hlc-Nk-fNa"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3Lf-W8-GcH" secondAttribute="bottom" constant="-8.5" id="abQ-AP-SYl"/>
+                    <constraint firstItem="zEd-Rb-VCv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="dkI-8T-a24"/>
+                    <constraint firstItem="zEd-Rb-VCv" firstAttribute="leading" secondItem="3Lf-W8-GcH" secondAttribute="trailing" id="qGe-Sv-oNz"/>
+                    <constraint firstItem="3Lf-W8-GcH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="yNI-AI-ibE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="browseCountingLabel" destination="6NF-qK-mpM" id="2vO-VV-eiA"/>
+                <outlet property="dateLabel" destination="go8-Ex-XhY" id="34B-Ug-7q5"/>
+                <outlet property="thumbImageView" destination="3Lf-W8-GcH" id="WbP-Vm-zbF"/>
+                <outlet property="titleLabel" destination="v6o-dP-bgz" id="Udl-P3-pmg"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="152"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="mings-cavalry-anti-japanese-samurai" width="599" height="434"/>
+    </resources>
+</document>

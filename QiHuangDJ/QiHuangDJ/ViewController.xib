@@ -3,6 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
@@ -40,13 +41,13 @@
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="100" id="zvl-MG-lhW"/>
+                                        <constraint firstAttribute="width" secondItem="SjN-OH-bcf" secondAttribute="height" multiplier="16:5" id="EQn-Bz-FdE"/>
                                     </constraints>
                                 </scrollView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-cavalry-anti-japanese-samurai" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-FT-pIw" userLabel="Live Broadcast Image View">
                                     <rect key="frame" x="0.0" y="100" width="320" height="85"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="85" id="bFq-Hb-4Ix"/>
+                                        <constraint firstAttribute="width" secondItem="Sjr-FT-pIw" secondAttribute="height" multiplier="64:17" id="ds0-Dy-qt3"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-ships-sailing" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-tj-caD" userLabel="Keahoarl Entertainers Image View">
@@ -64,7 +65,7 @@
                                 <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
                                     <rect key="frame" x="210" y="100" width="110" height="85"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="110" id="nus-qV-xwe"/>
+                                        <constraint firstAttribute="width" secondItem="yKI-Zs-yps" secondAttribute="height" multiplier="22:17" id="1a1-TM-O7A"/>
                                     </constraints>
                                     <state key="normal" backgroundImage="qihuangshouye_icon1.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -133,6 +134,7 @@
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="top" secondItem="ch3-tj-caD" secondAttribute="bottom" id="W6p-af-cJd"/>
                                 <constraint firstItem="ch3-tj-caD" firstAttribute="height" secondItem="x6d-LO-7XK" secondAttribute="height" id="Wn6-Q3-kCL"/>
                                 <constraint firstItem="uz6-g4-Gns" firstAttribute="height" secondItem="Q68-jv-pSJ" secondAttribute="height" id="YrL-Cm-gY0"/>
+                                <constraint firstAttribute="bottom" secondItem="Q68-jv-pSJ" secondAttribute="bottom" constant="300" id="Zi7-p5-nIT"/>
                                 <constraint firstItem="ch3-tj-caD" firstAttribute="trailing" secondItem="x6d-LO-7XK" secondAttribute="trailing" id="dKd-jR-eGy"/>
                                 <constraint firstItem="uz6-g4-Gns" firstAttribute="trailing" secondItem="Q68-jv-pSJ" secondAttribute="trailing" id="dNe-BH-dbE"/>
                                 <constraint firstItem="Q68-jv-pSJ" firstAttribute="top" secondItem="DHn-6T-3Sh" secondAttribute="bottom" id="gIF-EJ-Ho4"/>
@@ -142,7 +144,6 @@
                                 <constraint firstAttribute="trailing" secondItem="ch3-tj-caD" secondAttribute="trailing" id="jtU-Dh-uvx"/>
                                 <constraint firstItem="K6J-Kn-ueM" firstAttribute="trailing" secondItem="DHn-6T-3Sh" secondAttribute="trailing" id="oAb-Fp-n5K"/>
                                 <constraint firstItem="yKI-Zs-yps" firstAttribute="width" secondItem="x6d-LO-7XK" secondAttribute="width" id="pfE-pT-vLc"/>
-                                <constraint firstAttribute="height" constant="825" id="q7o-1H-Nd9"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="height" secondItem="DHn-6T-3Sh" secondAttribute="height" id="rtL-3F-g62"/>
                                 <constraint firstItem="Q68-jv-pSJ" firstAttribute="height" secondItem="DHn-6T-3Sh" secondAttribute="height" id="sJW-v2-KB3"/>
                                 <constraint firstAttribute="trailing" secondItem="Sjr-FT-pIw" secondAttribute="trailing" id="sd5-O8-crO"/>
@@ -160,7 +161,7 @@
                     <constraints>
                         <constraint firstItem="UIy-TT-MCX" firstAttribute="top" secondItem="89f-sG-F2m" secondAttribute="top" id="X42-CB-8gb"/>
                         <constraint firstAttribute="trailing" secondItem="UIy-TT-MCX" secondAttribute="trailing" id="YO7-b5-mVc"/>
-                        <constraint firstAttribute="bottom" secondItem="UIy-TT-MCX" secondAttribute="bottom" constant="-301" id="lj7-11-20B"/>
+                        <constraint firstAttribute="bottom" secondItem="UIy-TT-MCX" secondAttribute="bottom" constant="-300" id="lj7-11-20B"/>
                     </constraints>
                 </scrollView>
             </subviews>
