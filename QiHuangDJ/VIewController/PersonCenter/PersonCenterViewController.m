@@ -7,9 +7,9 @@
 //
 
 #import "PersonCenterViewController.h"
-#import "KHLColor.h"
-#import "KHLRecommendedCollectionViewCell.h"
 #import "LoginViewController.h"
+
+#import "KHLColor.h"
 #import "KHLPICHeaderView.h"
 #import "KHLPICRecommendedCell.h"
 #import "KHLPICVideoItemCell.h"
