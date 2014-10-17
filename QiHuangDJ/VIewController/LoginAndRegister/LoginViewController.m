@@ -27,9 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [self setFanhui];
-        [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
-        [self.navigationController setTitle:@"登录"];
+        // ..
     }
     return self;
 }
@@ -46,6 +44,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
+    [self setCascTitle:@"登录"];
+    [self setFanhui];
+    
     [self setAutoLogin:TRUE];
     [self.usernameTextField setBackgroundColor:[UIColor clearColor]];
     [self.passwordTextField setBackgroundColor:[UIColor clearColor]];
