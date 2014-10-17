@@ -157,19 +157,32 @@
                                                 <constraint firstAttribute="width" constant="20" id="Rn3-mJ-nDL"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeT-jg-UZD" userLabel="About Button">
+                                            <rect key="frame" x="0.0" y="0.5" width="320" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" backgroundImage="denglu_btn_login_press.png"/>
+                                            <state key="highlighted" backgroundImage="shezhi_line_press"/>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="0zb-QF-pVK" secondAttribute="trailing" id="9e1-Do-OAp"/>
                                         <constraint firstItem="0zb-QF-pVK" firstAttribute="leading" secondItem="gv6-7p-Sgk" secondAttribute="leading" id="C9k-HG-9wf"/>
+                                        <constraint firstAttribute="bottom" secondItem="WeT-jg-UZD" secondAttribute="bottom" id="Cha-NX-zXs"/>
                                         <constraint firstAttribute="trailing" secondItem="kax-Qc-bcv" secondAttribute="trailing" constant="8" id="FYG-gm-ceO"/>
                                         <constraint firstAttribute="bottom" secondItem="Hjb-CD-mFF" secondAttribute="bottom" id="Jzi-J6-boN"/>
+                                        <constraint firstAttribute="trailing" secondItem="WeT-jg-UZD" secondAttribute="trailing" id="MTZ-M9-fwM"/>
                                         <constraint firstItem="kax-Qc-bcv" firstAttribute="leading" secondItem="gv6-7p-Sgk" secondAttribute="leading" constant="8" id="PEh-bE-aES"/>
                                         <constraint firstItem="Hjb-CD-mFF" firstAttribute="top" secondItem="gv6-7p-Sgk" secondAttribute="top" id="Rag-10-oWH"/>
                                         <constraint firstAttribute="bottom" secondItem="0zb-QF-pVK" secondAttribute="bottom" id="SOu-lg-Fnm"/>
                                         <constraint firstItem="kax-Qc-bcv" firstAttribute="top" secondItem="gv6-7p-Sgk" secondAttribute="top" constant="8" id="baW-CU-42G"/>
+                                        <constraint firstItem="WeT-jg-UZD" firstAttribute="top" secondItem="gv6-7p-Sgk" secondAttribute="top" id="cTA-4t-8fF"/>
                                         <constraint firstAttribute="trailing" secondItem="Hjb-CD-mFF" secondAttribute="trailing" id="ewh-I3-pmp"/>
                                         <constraint firstAttribute="bottom" secondItem="kax-Qc-bcv" secondAttribute="bottom" constant="8" id="ppm-qc-FBW"/>
+                                        <constraint firstItem="WeT-jg-UZD" firstAttribute="leading" secondItem="gv6-7p-Sgk" secondAttribute="leading" id="sib-Jd-Hye"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRb-6V-vDE" userLabel="Contact Holder View">
@@ -194,13 +207,26 @@
                                                 <constraint firstAttribute="width" constant="20" id="m7w-JN-ARF"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyc-dZ-oWP" userLabel="Contact Button">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" backgroundImage="denglu_btn_login_press.png"/>
+                                            <state key="highlighted" backgroundImage="shezhi_line_press"/>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="eyc-dZ-oWP" firstAttribute="leading" secondItem="LRb-6V-vDE" secondAttribute="leading" id="7R1-ZV-pyY"/>
                                         <constraint firstItem="32i-lr-t18" firstAttribute="top" secondItem="LRb-6V-vDE" secondAttribute="top" id="EQ2-K0-ND7"/>
                                         <constraint firstAttribute="bottom" secondItem="32i-lr-t18" secondAttribute="bottom" id="MGI-Qt-Ofr"/>
                                         <constraint firstAttribute="trailing" secondItem="5Ew-qu-DaK" secondAttribute="trailing" constant="8" id="R2k-Ov-KCv"/>
+                                        <constraint firstAttribute="trailing" secondItem="eyc-dZ-oWP" secondAttribute="trailing" id="UER-Yt-yTJ"/>
                                         <constraint firstAttribute="trailing" secondItem="UU0-YH-a1t" secondAttribute="trailing" id="aVa-JW-FaE"/>
+                                        <constraint firstAttribute="bottom" secondItem="eyc-dZ-oWP" secondAttribute="bottom" id="aWi-At-S4q"/>
+                                        <constraint firstItem="eyc-dZ-oWP" firstAttribute="top" secondItem="LRb-6V-vDE" secondAttribute="top" id="eAy-xp-Q3H"/>
                                         <constraint firstItem="UU0-YH-a1t" firstAttribute="leading" secondItem="LRb-6V-vDE" secondAttribute="leading" id="iaR-Z7-CP0"/>
                                         <constraint firstAttribute="trailing" secondItem="32i-lr-t18" secondAttribute="trailing" id="ije-hf-JH0"/>
                                         <constraint firstAttribute="bottom" secondItem="UU0-YH-a1t" secondAttribute="bottom" id="j2f-y6-SDL"/>
@@ -281,5 +307,6 @@
     <resources>
         <image name="denglu_btn_login_press.png" width="211" height="47"/>
         <image name="nav_jiantou.png" width="6" height="11"/>
+        <image name="shezhi_line_press" width="320" height="41"/>
     </resources>
 </document>

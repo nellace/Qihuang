@@ -39,17 +39,16 @@
 
 @implementation PersonCenterViewController
 
-#define COMMON_ITEM_DIVIDER_HEIGHT (2.0f)
-
-#define RECOMMENDED_ITEM_PROPORTION (200.0f / 315.0f)
-#define RECOMMENDED_ITEM_SPACING (5.0f)
-#define RECOMMENDED_ITEM_TEXT_VIEW_PROPORTION (60.0f / 200.0f)
-
-#define SUBSCRIBED_ITEM_IMAGE_OCCUPANCY (235.0f / 640.0f)
-#define SUBSCRIBED_ITEM_PROPORTION (180.0f / 640.0f)
-#define SUBSCRIBED_ITEM_TEXT_PROPORTION (130.0f / 180.0f)
-#define SUBSCRIBED_ITEM_DIVIDER_HEIGHT (1.0f)
-#define SUBSCRIBED_ITEM_TEXT_PADDING (6.0f)
+//
+//#define RECOMMENDED_ITEM_PROPORTION (200.0f / 315.0f)
+//#define RECOMMENDED_ITEM_SPACING (5.0f)
+//#define RECOMMENDED_ITEM_TEXT_VIEW_PROPORTION (60.0f / 200.0f)
+//
+//#define SUBSCRIBED_ITEM_IMAGE_OCCUPANCY (235.0f / 640.0f)
+//#define SUBSCRIBED_ITEM_PROPORTION (180.0f / 640.0f)
+//#define SUBSCRIBED_ITEM_TEXT_PROPORTION (130.0f / 180.0f)
+//#define SUBSCRIBED_ITEM_DIVIDER_HEIGHT (1.0f)
+//#define SUBSCRIBED_ITEM_TEXT_PADDING (6.0f)
 
 
 
@@ -59,10 +58,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [self setFanhui];
-        [self setCascTitle:@"个人中心"];
+//        [self setFanhui];
+//        [self setCascTitle:@"个人中心"];
+//        [self setNavigationRightButton];
         [self setLogIn:FALSE];
-        [self setNavigationRightButton];
     } return self;
 }
 
@@ -87,6 +86,10 @@
 //    UITapGestureRecognizer *pressThumbImageViewGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressThumbImageView)];
 //    [self.thumbImageView setUserInteractionEnabled:TRUE];
 //    [self.thumbImageView addGestureRecognizer:pressThumbImageViewGesture];
+    
+    [self setNavigationRightButton];
+    [self setCascTitle:@"个人中心"];
+    [self setFanhui];
 }
 
 -(void)viewDidLoad {
@@ -143,15 +146,12 @@
 
 - (void)setNavigationRightButton
 {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun@2x.png"] forState:UIControlStateNormal];
-    [btn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun_press@2x.png"] forState:UIControlStateHighlighted];
-    [btn setTitle:@"" forState:UIControlStateNormal];
-    [btn setFrame:CGRectMake(0, 0, 42, 27)];
-    [btn setTitleColor:[KHLColor colorFromHexRGB:@"FE6024"] forState:UIControlStateNormal];
-    [btn.titleLabel setFont: [UIFont systemFontOfSize:14.0f]];
-    [btn addTarget:self action:@selector(pushToSettingsViewController) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *settingsBarButton = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [settingsButton setFrame:CGRectMake(0, 0, 60, 40)];
+    [settingsButton setImage:[UIImage imageNamed:@"nav_btn_shezhi.png"] forState:UIControlStateNormal];
+    [settingsButton addTarget:self action:@selector(pushToSettingsViewController)
+             forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *settingsBarButton = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
     //[btn addTarget:self action:@selector(pushToSettingsViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = settingsBarButton;
 }
@@ -510,6 +510,7 @@
 
 #pragma mark - TABLE VIEW PROTOCOL
 
+#define COMMON_ITEM_DIVIDER_HEIGHT (2.0f)
 #define HEADER_VIEW_HEIGHT (240.0f)
 #define RECOMMENDED_INDICATOR_LABEL_HEIGHT (40.0f)
 #define RECOMMENDED_CELL_PROPORTION (105.0f / 320.0f)
@@ -518,6 +519,7 @@
 #define VIDEO_THUMB_IMAGE_PROPORTION (120.0f / 90.0f)
 #define VIDEO_MAJOR_TEXT_FONT_PROPORTION (14.0f / 320.0f)
 #define VIDEO_MINOR_TEXT_FONT_PROPORTION (12.0f / 320.0f)
+#define VIDEO_CELL_TEXT_PADDING (6.0f)
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -603,7 +605,7 @@
         if (standardizedRect.size.height > subscribedTextHeight) {
             standardizedRect.size.height = 3 * [[NSString stringWithFormat:@"明"] boundingRectWithSize:CGSizeMake(subscribedTextWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:majorFont} context:nil].size.height;
         }
-        standardizedRect.origin.y = SUBSCRIBED_ITEM_TEXT_PADDING;
+        standardizedRect.origin.y = VIDEO_CELL_TEXT_PADDING;
         standardizedRect.origin.x = viCell.titleLabel.frame.origin.x;
         [viCell.titleLabel setFrame:standardizedRect];
         [viCell.titleLabel setNumberOfLines:3];

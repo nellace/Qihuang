@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MQLCustomViewController.h"
 
-@interface KHLPICSettingsViewController : UIViewController
+@interface KHLPICSettingsViewController : MQLCustomViewController
 
 @end
