@@ -138,7 +138,7 @@
                                         <constraint firstAttribute="height" constant="1" id="U6f-Wb-NTd"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfs-uD-BTf" userLabel="Test Button">
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfs-uD-BTf" userLabel="Test Button">
                                     <rect key="frame" x="263" y="173" width="46" height="30"/>
                                     <state key="normal" title="啦啦啦">
                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>

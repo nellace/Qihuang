@@ -59,6 +59,9 @@
 //    [self setControllableHeight:self.entertainerScrollView.frame.size.height];
     //NSLog(@"+ view will appear");
     //[self refreshEntertainersScrollView];
+    [self setCascTitle:@"七煌艺人"];
+    [self setFanhui];
+    
     [self setControllableWidth:self.entertainerScrollView.frame.size.width];
     [self setControllableHeight:self.entertainerScrollView.frame.size.height];
     [self refreshEntertainersScrollView];
@@ -94,9 +97,9 @@
         
         [holder loadData:entertainers[i] useWindowSize:self.view.frame.size];
         
-        NSLog(@"- MainH (%.0f, %.0f) [%.0f x %.0f]", holder.frame.origin.x, holder.frame.origin.y, holder.frame.size.width, holder.frame.size.height);
-        NSLog(@"- - Holde (%.0f, %.0f) [%.0f x %.0f] <%.0f x %.0f>", holder.holderScrollView.frame.origin.x, holder.holderScrollView.frame.origin.y, holder.holderScrollView.frame.size.width, holder.holderScrollView.frame.size.height, holder.holderScrollView.contentSize.width, holder.holderScrollView.contentSize.height);
-        NSLog(@"- - - Label (%.0f, %.0f) [%.0f x %.0f]", holder.experienceLabel.frame.origin.x, holder.experienceLabel.frame.origin.y, holder.experienceLabel.frame.size.width, holder.experienceLabel.frame.size.height);
+//        NSLog(@"- MainH (%.0f, %.0f) [%.0f x %.0f]", holder.frame.origin.x, holder.frame.origin.y, holder.frame.size.width, holder.frame.size.height);
+//        NSLog(@"- - Holde (%.0f, %.0f) [%.0f x %.0f] <%.0f x %.0f>", holder.holderScrollView.frame.origin.x, holder.holderScrollView.frame.origin.y, holder.holderScrollView.frame.size.width, holder.holderScrollView.frame.size.height, holder.holderScrollView.contentSize.width, holder.holderScrollView.contentSize.height);
+//        NSLog(@"- - - Label (%.0f, %.0f) [%.0f x %.0f]", holder.experienceLabel.frame.origin.x, holder.experienceLabel.frame.origin.y, holder.experienceLabel.frame.size.width, holder.experienceLabel.frame.size.height);
         
         [self.entertainerScrollView addSubview:holder];
         
