@@ -44,7 +44,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [self.navigationController setTitle:@"注册"];
+        [self setCascTitle:@"注册"];
         [self setFanhui];
     }
     return self;

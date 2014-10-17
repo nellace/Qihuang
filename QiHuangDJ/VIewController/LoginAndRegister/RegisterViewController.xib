@@ -241,7 +241,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="selected" backgroundImage="denglu_btn_login_press.png"/>
-                                            <state key="highlighted" backgroundImage="denglu_btn_login_press.png"/>
+                                            <state key="highlighted" backgroundImage="shezhi_line_press"/>
                                             <connections>
                                                 <action selector="pressGenderToggleButton:" destination="-1" eventType="touchUpInside" id="ohu-Za-kqT"/>
                                             </connections>
@@ -364,6 +364,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="IOj-8N-nlP" firstAttribute="top" secondItem="QHQ-90-gHl" secondAttribute="top" id="LTc-i9-Sgu"/>
                         <constraint firstAttribute="trailing" secondItem="IOj-8N-nlP" secondAttribute="trailing" id="a1h-xB-8QE"/>
@@ -372,7 +373,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="QHQ-90-gHl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0h9-Zm-cLY"/>
                 <constraint firstItem="QHQ-90-gHl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="100-qa-8Va"/>
@@ -392,6 +393,7 @@
         <image name="denglu_btn_login.png" width="211" height="47"/>
         <image name="denglu_btn_login_press.png" width="211" height="47"/>
         <image name="nav_jiantou.png" width="6" height="11"/>
+        <image name="shezhi_line_press" width="320" height="41"/>
         <image name="woyaozhuce_tiaokuan.png" width="200" height="15"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
