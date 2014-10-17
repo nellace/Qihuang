@@ -43,6 +43,9 @@
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E4f-lg-980" userLabel="MP Switch">
                                             <rect key="frame" x="263" y="7" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="toggleMessagePush:" destination="-1" eventType="valueChanged" id="BaE-vd-5eU"/>
+                                            </connections>
                                         </switch>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,18 +84,34 @@
                                             <color key="textColor" red="0.98039215690000003" green="0.37254901959999998" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3F-Dg-1XB" userLabel="Cache Button">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" backgroundImage="denglu_btn_login_press.png"/>
+                                            <state key="highlighted" backgroundImage="shezhi_line_press"/>
+                                            <connections>
+                                                <action selector="pressCacheCleanButton:" destination="-1" eventType="touchUpInside" id="gLB-Zk-yh9"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="41F-6K-YTN" firstAttribute="leading" secondItem="QtR-tl-St2" secondAttribute="leading" id="39g-8a-fCH"/>
                                         <constraint firstAttribute="bottom" secondItem="eOf-M7-3NP" secondAttribute="bottom" constant="8" id="783-tk-sc1"/>
+                                        <constraint firstAttribute="bottom" secondItem="k3F-Dg-1XB" secondAttribute="bottom" id="8KK-bS-Cyv"/>
                                         <constraint firstAttribute="bottom" secondItem="41F-6K-YTN" secondAttribute="bottom" id="AX5-lh-8BF"/>
                                         <constraint firstAttribute="bottom" secondItem="oGA-95-xT2" secondAttribute="bottom" constant="8" id="DGg-LF-d1F"/>
                                         <constraint firstAttribute="trailing" secondItem="41F-6K-YTN" secondAttribute="trailing" id="KLP-Je-jK5"/>
+                                        <constraint firstItem="k3F-Dg-1XB" firstAttribute="top" secondItem="QtR-tl-St2" secondAttribute="top" id="NPt-NU-bTY"/>
                                         <constraint firstItem="oGA-95-xT2" firstAttribute="leading" secondItem="QtR-tl-St2" secondAttribute="leading" constant="8" id="Wmb-Yv-pxa"/>
                                         <constraint firstAttribute="trailing" secondItem="oGA-95-xT2" secondAttribute="trailing" constant="8" id="dVo-ue-1xs"/>
+                                        <constraint firstAttribute="trailing" secondItem="k3F-Dg-1XB" secondAttribute="trailing" id="eDJ-jX-fur"/>
                                         <constraint firstAttribute="trailing" secondItem="eOf-M7-3NP" secondAttribute="trailing" constant="8" id="fIz-eM-b0P"/>
                                         <constraint firstItem="oGA-95-xT2" firstAttribute="top" secondItem="QtR-tl-St2" secondAttribute="top" constant="8" id="jOX-SG-MLJ"/>
+                                        <constraint firstItem="k3F-Dg-1XB" firstAttribute="leading" secondItem="QtR-tl-St2" secondAttribute="leading" id="p2X-gM-atc"/>
                                         <constraint firstItem="eOf-M7-3NP" firstAttribute="leading" secondItem="QtR-tl-St2" secondAttribute="leading" constant="8" id="pdC-Eo-zUO"/>
                                         <constraint firstItem="eOf-M7-3NP" firstAttribute="top" secondItem="QtR-tl-St2" secondAttribute="top" constant="8" id="tIe-hA-tOS"/>
                                     </constraints>
@@ -165,6 +184,9 @@
                                             </state>
                                             <state key="selected" backgroundImage="denglu_btn_login_press.png"/>
                                             <state key="highlighted" backgroundImage="shezhi_line_press"/>
+                                            <connections>
+                                                <action selector="pressAboutUsButton:" destination="-1" eventType="touchUpInside" id="uVV-HM-vTG"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -215,6 +237,9 @@
                                             </state>
                                             <state key="selected" backgroundImage="denglu_btn_login_press.png"/>
                                             <state key="highlighted" backgroundImage="shezhi_line_press"/>
+                                            <connections>
+                                                <action selector="pressContactUsButton:" destination="-1" eventType="touchUpInside" id="99f-Dq-lWC"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -242,6 +267,9 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="pressLogOutButton:" destination="-1" eventType="touchUpInside" id="jBV-46-Hkz"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>

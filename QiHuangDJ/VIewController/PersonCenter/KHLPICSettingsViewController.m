@@ -7,8 +7,11 @@
 //
 
 #import "KHLPICSettingsViewController.h"
+#import "KHLPICAboutUsViewController.h"
 
 @interface KHLPICSettingsViewController ()
+
+@property (nonatomic, getter=isMessagePushAllowed, setter=setMessagePushAllowed:) BOOL bMessagePushAllowed;
 
 @end
 
@@ -26,7 +29,36 @@
 
 
 
-#pragma mark - ???
+#pragma mark - USER INTERACTION METHODES
+
+// Toggle message push allowed..
+- (IBAction)toggleMessagePush:(UISwitch *)sender
+{
+    [self setMessagePushAllowed:sender.isOn];
+}
+
+// Clean memory cache..
+- (IBAction)pressCacheCleanButton:(UIButton *)sender
+{
+    
+}
+
+// Push to about keahoarl view controller..
+- (IBAction)pressAboutUsButton:(UIButton *)sender
+{
+    KHLPICAboutUsViewController *aboutUsViewController = [[KHLPICAboutUsViewController alloc] init];
+    [self.navigationController pushViewController:aboutUsViewController animated:TRUE];
+}
+
+- (IBAction)pressContactUsButton:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)pressLogOutButton:(UIButton *)sender
+{
+    [self dismissViewControllerAnimated:TRUE completion:nil];
+}
 
 
 @end
