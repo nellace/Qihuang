@@ -23,6 +23,12 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self setCascTitle:@"资讯详情"];
+    [self setFanhui];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

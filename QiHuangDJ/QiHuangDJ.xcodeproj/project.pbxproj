@@ -181,6 +181,10 @@
 		FC81ADFF19E68DA9002D74EF /* KHLEntertainerHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81ADFE19E68DA9002D74EF /* KHLEntertainerHolderView.m */; };
 		FC834C7A19F0BC40009E17FF /* KHLPICAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC834C7819F0BC40009E17FF /* KHLPICAboutUsViewController.m */; };
 		FC834C7B19F0BC40009E17FF /* KHLPICAboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC834C7919F0BC40009E17FF /* KHLPICAboutUsViewController.xib */; };
+		FC834C8919F0EEA5009E17FF /* KHLInformationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC834C8719F0EEA5009E17FF /* KHLInformationTableViewController.m */; };
+		FC834C8A19F0EEA5009E17FF /* KHLInformationTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC834C8819F0EEA5009E17FF /* KHLInformationTableViewController.xib */; };
+		FC834C8E19F0EEFF009E17FF /* KHLInformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC834C8C19F0EEFF009E17FF /* KHLInformationTableViewCell.m */; };
+		FC834C8F19F0EEFF009E17FF /* KHLInformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC834C8D19F0EEFF009E17FF /* KHLInformationTableViewCell.xib */; };
 		FCED6BEA19EE553F0009F8FF /* KHLPICVideoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCED6BE819EE553F0009F8FF /* KHLPICVideoItemCell.m */; };
 		FCED6BEB19EE553F0009F8FF /* KHLPICVideoItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCED6BE919EE553F0009F8FF /* KHLPICVideoItemCell.xib */; };
 /* End PBXBuildFile section */
@@ -410,6 +414,12 @@
 		FC834C7719F0BC40009E17FF /* KHLPICAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICAboutUsViewController.h; sourceTree = "<group>"; };
 		FC834C7819F0BC40009E17FF /* KHLPICAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICAboutUsViewController.m; sourceTree = "<group>"; };
 		FC834C7919F0BC40009E17FF /* KHLPICAboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICAboutUsViewController.xib; sourceTree = "<group>"; };
+		FC834C8619F0EEA5009E17FF /* KHLInformationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLInformationTableViewController.h; sourceTree = "<group>"; };
+		FC834C8719F0EEA5009E17FF /* KHLInformationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLInformationTableViewController.m; sourceTree = "<group>"; };
+		FC834C8819F0EEA5009E17FF /* KHLInformationTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLInformationTableViewController.xib; sourceTree = "<group>"; };
+		FC834C8B19F0EEFF009E17FF /* KHLInformationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLInformationTableViewCell.h; sourceTree = "<group>"; };
+		FC834C8C19F0EEFF009E17FF /* KHLInformationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLInformationTableViewCell.m; sourceTree = "<group>"; };
+		FC834C8D19F0EEFF009E17FF /* KHLInformationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLInformationTableViewCell.xib; sourceTree = "<group>"; };
 		FCED6BE719EE553F0009F8FF /* KHLPICVideoItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICVideoItemCell.h; sourceTree = "<group>"; };
 		FCED6BE819EE553F0009F8FF /* KHLPICVideoItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICVideoItemCell.m; sourceTree = "<group>"; };
 		FCED6BE919EE553F0009F8FF /* KHLPICVideoItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICVideoItemCell.xib; sourceTree = "<group>"; };
@@ -445,6 +455,12 @@
 				3D121C3919CABD100040870C /* InfomationViewController.h */,
 				3D121C3A19CABD100040870C /* InfomationViewController.m */,
 				3D121C3B19CABD100040870C /* InfomationViewController.xib */,
+				FC834C8619F0EEA5009E17FF /* KHLInformationTableViewController.h */,
+				FC834C8719F0EEA5009E17FF /* KHLInformationTableViewController.m */,
+				FC834C8819F0EEA5009E17FF /* KHLInformationTableViewController.xib */,
+				FC834C8B19F0EEFF009E17FF /* KHLInformationTableViewCell.h */,
+				FC834C8C19F0EEFF009E17FF /* KHLInformationTableViewCell.m */,
+				FC834C8D19F0EEFF009E17FF /* KHLInformationTableViewCell.xib */,
 			);
 			path = Information;
 			sourceTree = "<group>";
@@ -1076,6 +1092,7 @@
 				3D44752D19C972CE00D9B2B1 /* Images.xcassets in Resources */,
 				FC708A2A19ED0AE1002DF952 /* qihuangshouye_icon4@2x.png in Resources */,
 				FCED6BEB19EE553F0009F8FF /* KHLPICVideoItemCell.xib in Resources */,
+				FC834C8F19F0EEFF009E17FF /* KHLInformationTableViewCell.xib in Resources */,
 				3D858E2319EB9E6B005022BA /* SliderRightList.xib in Resources */,
 				FC708A1D19ED0AE1002DF952 /* nav_jiantou@2x.png in Resources */,
 				FC708A4A19ED0AE1002DF952 /* zhibo_bgtiao@2x.png in Resources */,
@@ -1088,6 +1105,7 @@
 				FC708A5F19ED0AE1002DF952 /* zhibo_jubao_duigou@2x.png in Resources */,
 				FC7089F819ED0AE1002DF952 /* denglu_icon_mima@2x.png in Resources */,
 				3D121C5219CAE4B80040870C /* SuperStartViewController.xib in Resources */,
+				FC834C8A19F0EEA5009E17FF /* KHLInformationTableViewController.xib in Resources */,
 				FC708A2E19ED0AE1002DF952 /* shouye_bg3@2x.png in Resources */,
 				FC7089FF19ED0AE1002DF952 /* denglu_zidongdenglu@2x.png in Resources */,
 				FC708A1919ED0AE1002DF952 /* nav_btn_fanhui@2x.png in Resources */,
@@ -1179,6 +1197,7 @@
 				3D121C3C19CABD100040870C /* InfomationViewController.m in Sources */,
 				3D44757919C984AC00D9B2B1 /* AFURLConnectionOperation.m in Sources */,
 				3D44757B19C984AC00D9B2B1 /* UIImageView+AFNetworking.m in Sources */,
+				FC834C8919F0EEA5009E17FF /* KHLInformationTableViewController.m in Sources */,
 				3D44757519C984AC00D9B2B1 /* AFImageRequestOperation.m in Sources */,
 				3D121C4619CABD270040870C /* RegisterViewController.m in Sources */,
 				3D121C4119CABD1B0040870C /* LoginViewController.m in Sources */,
@@ -1206,6 +1225,7 @@
 				3D44757819C984AC00D9B2B1 /* AFPropertyListRequestOperation.m in Sources */,
 				FC81ADFF19E68DA9002D74EF /* KHLEntertainerHolderView.m in Sources */,
 				3D121C5719CAFADF0040870C /* PersonCenterViewController.m in Sources */,
+				FC834C8E19F0EEFF009E17FF /* KHLInformationTableViewCell.m in Sources */,
 				3D491BB919D19324004D6DEF /* SearchBarCustom.m in Sources */,
 				FC708A6319ED1F8B002DF952 /* KHLPICHeaderView.m in Sources */,
 				FC834C7A19F0BC40009E17FF /* KHLPICAboutUsViewController.m in Sources */,

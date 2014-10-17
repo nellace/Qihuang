@@ -11,6 +11,8 @@
 //#import "NewsViewController.h"
 #import "InfomationViewController.h"
 #import "DianboListViewController.h"
+#import "KHLInformationTableViewController.h"
+
 @interface ClassifyViewController ()
 @property (weak, nonatomic) IBOutlet UISearchBar *search;
 
@@ -35,7 +37,7 @@
     // Do any additional setup after loading the view from its nib.
     UISearchBar *se = [[SearchBarCustom alloc] init];
     self.search = se;
-    NSLog(@"screen weidth %f",[UIScreen mainScreen].bounds.size.width);
+    //NSLog(@"screen weidth %f",[UIScreen mainScreen].bounds.size.width);
 }
 - (void)viewWillAppear:(BOOL)animated {
     [self setCascTitle:self.title];
@@ -56,6 +58,8 @@
 //    [self.navigationController pushViewController:infoVC animated:YES];
     //NewsViewController * newList = [[NewsViewController alloc] initWithNibName:@"NewsViewController" bundle:nil];
     //[self.navigationController pushViewController:newList animated:YES];
+    KHLInformationTableViewController *informationViewController = [[KHLInformationTableViewController alloc] init];
+    [self.navigationController pushViewController:informationViewController animated:TRUE];
 }
 
 
