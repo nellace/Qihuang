@@ -178,9 +178,9 @@
 		FC708A6519ED2092002DF952 /* KHLPICHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC708A6419ED2092002DF952 /* KHLPICHeaderView.xib */; };
 		FC708A7119ED4C3E002DF952 /* KHLPICRecommendedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC708A6F19ED4C3E002DF952 /* KHLPICRecommendedCell.m */; };
 		FC708A7219ED4C3E002DF952 /* KHLPICRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC708A7019ED4C3E002DF952 /* KHLPICRecommendedCell.xib */; };
-		FC81ADFA19E638AA002D74EF /* KHLRecommendedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */; };
-		FC81ADFC19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC81ADFB19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib */; };
 		FC81ADFF19E68DA9002D74EF /* KHLEntertainerHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC81ADFE19E68DA9002D74EF /* KHLEntertainerHolderView.m */; };
+		FC834C7A19F0BC40009E17FF /* KHLPICAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC834C7819F0BC40009E17FF /* KHLPICAboutUsViewController.m */; };
+		FC834C7B19F0BC40009E17FF /* KHLPICAboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC834C7919F0BC40009E17FF /* KHLPICAboutUsViewController.xib */; };
 		FCED6BEA19EE553F0009F8FF /* KHLPICVideoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCED6BE819EE553F0009F8FF /* KHLPICVideoItemCell.m */; };
 		FCED6BEB19EE553F0009F8FF /* KHLPICVideoItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCED6BE919EE553F0009F8FF /* KHLPICVideoItemCell.xib */; };
 /* End PBXBuildFile section */
@@ -405,11 +405,11 @@
 		FC708A6E19ED4C3E002DF952 /* KHLPICRecommendedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICRecommendedCell.h; sourceTree = "<group>"; };
 		FC708A6F19ED4C3E002DF952 /* KHLPICRecommendedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICRecommendedCell.m; sourceTree = "<group>"; };
 		FC708A7019ED4C3E002DF952 /* KHLPICRecommendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICRecommendedCell.xib; sourceTree = "<group>"; };
-		FC81ADF819E638AA002D74EF /* KHLRecommendedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLRecommendedCollectionViewCell.h; sourceTree = "<group>"; };
-		FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLRecommendedCollectionViewCell.m; sourceTree = "<group>"; };
-		FC81ADFB19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLRecommendedCollectionViewCell.xib; sourceTree = "<group>"; };
 		FC81ADFD19E68DA9002D74EF /* KHLEntertainerHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLEntertainerHolderView.h; sourceTree = "<group>"; };
 		FC81ADFE19E68DA9002D74EF /* KHLEntertainerHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLEntertainerHolderView.m; sourceTree = "<group>"; };
+		FC834C7719F0BC40009E17FF /* KHLPICAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICAboutUsViewController.h; sourceTree = "<group>"; };
+		FC834C7819F0BC40009E17FF /* KHLPICAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICAboutUsViewController.m; sourceTree = "<group>"; };
+		FC834C7919F0BC40009E17FF /* KHLPICAboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICAboutUsViewController.xib; sourceTree = "<group>"; };
 		FCED6BE719EE553F0009F8FF /* KHLPICVideoItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICVideoItemCell.h; sourceTree = "<group>"; };
 		FCED6BE819EE553F0009F8FF /* KHLPICVideoItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICVideoItemCell.m; sourceTree = "<group>"; };
 		FCED6BE919EE553F0009F8FF /* KHLPICVideoItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICVideoItemCell.xib; sourceTree = "<group>"; };
@@ -491,9 +491,6 @@
 				3D121C5419CAFADF0040870C /* PersonCenterViewController.h */,
 				3D121C5519CAFADF0040870C /* PersonCenterViewController.m */,
 				3D121C5619CAFADF0040870C /* PersonCenterViewController.xib */,
-				FC81ADF819E638AA002D74EF /* KHLRecommendedCollectionViewCell.h */,
-				FC81ADF919E638AA002D74EF /* KHLRecommendedCollectionViewCell.m */,
-				FC81ADFB19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib */,
 				FC708A6119ED1F8B002DF952 /* KHLPICHeaderView.h */,
 				FC708A6219ED1F8B002DF952 /* KHLPICHeaderView.m */,
 				FC708A6419ED2092002DF952 /* KHLPICHeaderView.xib */,
@@ -506,6 +503,9 @@
 				FC5BD24D19EFA6BF00D91A9C /* KHLPICSettingsViewController.h */,
 				FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */,
 				FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */,
+				FC834C7719F0BC40009E17FF /* KHLPICAboutUsViewController.h */,
+				FC834C7819F0BC40009E17FF /* KHLPICAboutUsViewController.m */,
+				FC834C7919F0BC40009E17FF /* KHLPICAboutUsViewController.xib */,
 			);
 			path = PersonCenter;
 			sourceTree = "<group>";
@@ -1133,6 +1133,7 @@
 				FC708A4419ED0AE1002DF952 /* fenxiang_icon1@2x.png in Resources */,
 				FC708A0D19ED0AE1002DF952 /* gerenzhongxin_touxiang@2x.png in Resources */,
 				FC708A3619ED0AE1002DF952 /* shouye_logo@2x.png in Resources */,
+				FC834C7B19F0BC40009E17FF /* KHLPICAboutUsViewController.xib in Resources */,
 				FC708A3219ED0AE1002DF952 /* shouye_icon2@2x.png in Resources */,
 				FC708A5B19ED0AE1002DF952 /* zhibo_icon_huifu@2x.png in Resources */,
 				FC708A3A19ED0AE1002DF952 /* nav_btn_quxiao@2x.png in Resources */,
@@ -1141,7 +1142,6 @@
 				FC708A4B19ED0AE1002DF952 /* zhibo_bgtiao_press@2x.png in Resources */,
 				FC7089F919ED0AE1002DF952 /* denglu_icon_qq@2x.png in Resources */,
 				FC708A3D19ED0AE1002DF952 /* sousuo_icon_shijian@2x.png in Resources */,
-				FC81ADFC19E638FA002D74EF /* KHLRecommendedCollectionViewCell.xib in Resources */,
 				FC708A4E19ED0AE1002DF952 /* zhibo_btn_huifu@2x.png in Resources */,
 				3D858E1419E8DFD7005022BA /* DianboViewController.xib in Resources */,
 				FC708A0819ED0AE1002DF952 /* celan_line@2x.png in Resources */,
@@ -1195,7 +1195,6 @@
 				3D44752B19C972CE00D9B2B1 /* AppDelegate.m in Sources */,
 				3D121C2819CAB47E0040870C /* ViewController.m in Sources */,
 				3D121C3219CABCD10040870C /* ClassifyViewController.m in Sources */,
-				FC81ADFA19E638AA002D74EF /* KHLRecommendedCollectionViewCell.m in Sources */,
 				FCED6BEA19EE553F0009F8FF /* KHLPICVideoItemCell.m in Sources */,
 				3D121C5119CAE4B80040870C /* SuperStartViewController.m in Sources */,
 				3D44757C19C984AC00D9B2B1 /* CustomNavViewController.m in Sources */,
@@ -1209,6 +1208,7 @@
 				3D121C5719CAFADF0040870C /* PersonCenterViewController.m in Sources */,
 				3D491BB919D19324004D6DEF /* SearchBarCustom.m in Sources */,
 				FC708A6319ED1F8B002DF952 /* KHLPICHeaderView.m in Sources */,
+				FC834C7A19F0BC40009E17FF /* KHLPICAboutUsViewController.m in Sources */,
 				3D858E1D19E8E023005022BA /* DianboListViewController.m in Sources */,
 				3D858E1519E8DFD7005022BA /* VideoLiveViewController.m in Sources */,
 				3D44757719C984AC00D9B2B1 /* AFNetworkActivityIndicatorManager.m in Sources */,
