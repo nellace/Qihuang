@@ -65,6 +65,8 @@
 		FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */; };
 		FC5BD25019EFA6BF00D91A9C /* KHLPICSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */; };
 		FC5BD25119EFA6BF00D91A9C /* KHLPICSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */; };
+		FC61088B19F4C2A60057BA0E /* KHLPICProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC61088919F4C2A60057BA0E /* KHLPICProfileViewController.m */; };
+		FC61088C19F4C2A60057BA0E /* KHLPICProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC61088A19F4C2A60057BA0E /* KHLPICProfileViewController.xib */; };
 		FC7089F419ED0AE1002DF952 /* denglu_btn_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC70897F19ED0AE1002DF952 /* denglu_btn_login@2x.png */; };
 		FC7089F519ED0AE1002DF952 /* denglu_btn_login_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC70898019ED0AE1002DF952 /* denglu_btn_login_press@2x.png */; };
 		FC7089F619ED0AE1002DF952 /* denglu_btn_zidongdenglu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC70898119ED0AE1002DF952 /* denglu_btn_zidongdenglu@2x.png */; };
@@ -294,6 +296,9 @@
 		FC5BD24D19EFA6BF00D91A9C /* KHLPICSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICSettingsViewController.h; sourceTree = "<group>"; };
 		FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICSettingsViewController.m; sourceTree = "<group>"; };
 		FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICSettingsViewController.xib; sourceTree = "<group>"; };
+		FC61088819F4C2A60057BA0E /* KHLPICProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICProfileViewController.h; sourceTree = "<group>"; };
+		FC61088919F4C2A60057BA0E /* KHLPICProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICProfileViewController.m; sourceTree = "<group>"; };
+		FC61088A19F4C2A60057BA0E /* KHLPICProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICProfileViewController.xib; sourceTree = "<group>"; };
 		FC70897F19ED0AE1002DF952 /* denglu_btn_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_login@2x.png"; sourceTree = "<group>"; };
 		FC70898019ED0AE1002DF952 /* denglu_btn_login_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_login_press@2x.png"; sourceTree = "<group>"; };
 		FC70898119ED0AE1002DF952 /* denglu_btn_zidongdenglu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_zidongdenglu@2x.png"; sourceTree = "<group>"; };
@@ -522,6 +527,9 @@
 				FC834C7719F0BC40009E17FF /* KHLPICAboutUsViewController.h */,
 				FC834C7819F0BC40009E17FF /* KHLPICAboutUsViewController.m */,
 				FC834C7919F0BC40009E17FF /* KHLPICAboutUsViewController.xib */,
+				FC61088819F4C2A60057BA0E /* KHLPICProfileViewController.h */,
+				FC61088919F4C2A60057BA0E /* KHLPICProfileViewController.m */,
+				FC61088A19F4C2A60057BA0E /* KHLPICProfileViewController.xib */,
 			);
 			path = PersonCenter;
 			sourceTree = "<group>";
@@ -1115,6 +1123,7 @@
 				FC708A3719ED0AE1002DF952 /* shouye_lunbo@2x.png in Resources */,
 				FC708A3919ED0AE1002DF952 /* shouye_sousuokuang@2x.png in Resources */,
 				FC708A1119ED0AE1002DF952 /* gerenzhongxin_zuo_press@2x.png in Resources */,
+				FC61088C19F4C2A60057BA0E /* KHLPICProfileViewController.xib in Resources */,
 				FC708A6019ED0AE1002DF952 /* zhibo_pinglunhuifu@2x.png in Resources */,
 				3D858E1619E8DFD7005022BA /* VideoLiveViewController.xib in Resources */,
 				FC708A3519ED0AE1002DF952 /* shouye_icon5@2x.png in Resources */,
@@ -1232,6 +1241,7 @@
 				3D858E1D19E8E023005022BA /* DianboListViewController.m in Sources */,
 				3D858E1519E8DFD7005022BA /* VideoLiveViewController.m in Sources */,
 				3D44757719C984AC00D9B2B1 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				FC61088B19F4C2A60057BA0E /* KHLPICProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
