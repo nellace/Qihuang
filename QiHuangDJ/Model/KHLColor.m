@@ -45,6 +45,12 @@
     return [KHLColor red:251 green:97 blue:49];
 }
 
+/** 小荼白 */
++ (UIColor *)xiaotubai
+{
+    return [KHLColor red:250 green:250 blue:250];
+}
+
 #pragma mark - 工具方法
 
 /*!
