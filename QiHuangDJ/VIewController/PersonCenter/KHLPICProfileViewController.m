@@ -9,6 +9,7 @@
 #import "KHLPICProfileViewController.h"
 
 @interface KHLPICProfileViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @end
 
@@ -20,6 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    [tapGestureRecognizer setCancelsTouchesInView:FALSE];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,12 +58,23 @@
 
 
 
+#pragma mark - CUSTOM METHODES
+
+- (void)hideKeyboard: (UITapGestureRecognizer *)tap
+{
+    [self.nameTextField resignFirstResponder];
+}
+
+
+
 #pragma mark - USER INTERACTION RESPONSE
 
 - (void)pressSaveButton
 {
     NSLog(@"保个存呀");
 }
+
+
 
 
 @end
