@@ -39,6 +39,12 @@
     return [KHLColor red:173 green:173 blue:173];
 }
 
+/** 橘黄 */
++ (UIColor *)juhuang
+{
+    return [KHLColor red:251 green:97 blue:49];
+}
+
 #pragma mark - 工具方法
 
 /*!

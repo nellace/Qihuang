@@ -12,5 +12,8 @@
 
 + (UIColor *)tubai;
 + (UIColor *)shiqing;
++ (UIColor *)juhuang;
+
 + (UIColor *)colorFromHexRGB:(NSString *)inColorString;
+
 @end
