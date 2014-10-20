@@ -7,6 +7,7 @@
 //
 
 #import "MQLCustomViewController.h"
+#import "KHLColor.h"
 
 @interface MQLCustomViewController ()
 
@@ -34,7 +35,8 @@
     if (titleArray.count) {
 
         UILabel *upLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.navigationItem.titleView.frame.size.width, 44)]; 
-        upLabel.textColor=[UIColor colorWithRed:246.0f/255 green:249.0f/255 blue:242.0f/255 alpha:1.0];
+        //upLabel.textColor=[UIColor colorWithRed:246.0f/255 green:249.0f/255 blue:242.0f/255 alpha:1.0];
+        upLabel.textColor = [KHLColor juhuang];
         upLabel.font=[UIFont boldSystemFontOfSize:19];
         upLabel.backgroundColor=[UIColor clearColor];
         upLabel.textAlignment=NSTextAlignmentCenter;
