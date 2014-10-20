@@ -9,10 +9,19 @@
 #import "InfomationViewController.h"
 
 @interface InfomationViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *attachLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+@property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
 @end
 
 @implementation InfomationViewController
+
+
+
+#pragma mark - VIEW CONTROLLER LIFECYCLE
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,13 +41,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
+
+
+#pragma mark - ???
+
+- (void)refreshData
+{
+    NSString *content = @"致身千乘卿相归把钓渔钩春昼五湖烟浪秋夜一天云月此外尽悠悠永弃人间事吾道付沧州";
+    NSString *finalContent = @"";
+    //NSUInteger i = 2 + arc4random()%5;
+    for (int i = 0; i < 5 + 3 * arc4random()%10; i++) {
+        finalContent = [NSString stringWithFormat:@"%@%@", finalContent, content];
+    }
+    
+    [self.bodyLabel setText:finalContent];
+}
+
+
 
 @end
