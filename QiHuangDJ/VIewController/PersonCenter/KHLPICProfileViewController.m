@@ -7,9 +7,20 @@
 //
 
 #import "KHLPICProfileViewController.h"
+#import "KHLColor.h"
 
-@interface KHLPICProfileViewController ()
+@interface KHLPICProfileViewController () <UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *locationTextField;
+@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
+// birthdate
+@property (weak, nonatomic) IBOutlet UITextField *blogTextField;
+@property (weak, nonatomic) IBOutlet UILabel *registerDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UITextField *qqTextField;
 
 @end
 
@@ -62,7 +73,11 @@
 
 - (void)hideKeyboard: (UITapGestureRecognizer *)tap
 {
+    [self.phoneTextField resignFirstResponder];
     [self.nameTextField resignFirstResponder];
+    [self.locationTextField resignFirstResponder];
+    [self.blogTextField resignFirstResponder];
+    [self.qqTextField resignFirstResponder];
 }
 
 
@@ -74,6 +89,47 @@
     NSLog(@"保个存呀");
 }
 
+- (IBAction)pressGenderToggleButton:(UIButton *)sender
+{
+    
+}
+
+
+
+#pragma mark - TEXT FIELD DELEGATE
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [textField setBackgroundColor:[KHLColor xiaotubai]];
+    return TRUE;
+}
+
+//- (void)textFieldDidBeginEditing:(UITextField *)textField
+//{
+//    CGRect frame = textField.frame;
+//    int offset = frame.origin.y + frame.size.height - (self.view.frame.size.height - 216);
+//    NSLog(@"offset: %d, 1: %.0f, 2: %.0f", offset, (frame.origin.y + frame.size.height), (self.view.frame.size.height - 216));
+//    NSTimeInterval animationDuration = 0.30f;
+//    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+//    [UIView setAnimationDuration:animationDuration];
+//    if (offset > 0) {
+//        NSLog(@"孤执行了！");
+//        self.view.frame = CGRectMake(0, -offset, self.view.frame.size.width, self.view.frame.size.height);
+//    }
+//    [UIView commitAnimations];
+//}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField setBackgroundColor:[UIColor clearColor]];
+//    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return TRUE;
+}
 
 
 
