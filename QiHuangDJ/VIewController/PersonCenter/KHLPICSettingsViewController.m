@@ -57,7 +57,9 @@
 
 - (IBAction)pressLogOutButton:(UIButton *)sender
 {
-    [self dismissViewControllerAnimated:TRUE completion:nil];
+    [self.delegate onLogoutSuccess];
+    //[self dismissViewControllerAnimated:TRUE completion:nil];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 

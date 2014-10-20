@@ -14,8 +14,9 @@
 #import "KHLPICRecommendedCell.h"
 #import "KHLPICVideoItemCell.h"
 #import "KHLPICSettingsViewController.h"
+#import "KHLPICProfileViewController.h"
 
-@interface PersonCenterViewController () <LoginDelegate, KHLPICHeaderViewDelegate>
+@interface PersonCenterViewController () <LoginDelegate, LogoutDelegate, KHLPICHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *pageHolder;
 @property (weak, nonatomic) IBOutlet UIView *thumbHolder;
 //@property (weak, nonatomic) IBOutlet UIView *buttonHolder;
@@ -135,6 +136,8 @@
         //        [self.mySubscriptionButton setEnabled:FALSE];
         self.templateUsingState = 0;
     }
+    
+    //NSLog(@"++ Refresh after setLogIn");
     [self refreshTableView];
 }
 
@@ -159,7 +162,14 @@
 - (void)pushToSettingsViewController
 {
     KHLPICSettingsViewController *settingsViewController = [[KHLPICSettingsViewController alloc] init];
+    settingsViewController.delegate = self;
     [self.navigationController pushViewController:settingsViewController animated:TRUE];
+}
+
+- (void)onLogoutSuccess
+{
+    NSLog(@"onLogoutSuccess Implementation");
+    [self setLogIn:FALSE];
 }
 
 
@@ -755,10 +765,18 @@
 
 - (void)pressPhotoImageView
 {
-    LoginViewController *loginViewController = [[LoginViewController alloc] init];
-    loginViewController.delegate = self;
-    [self setLogIn:FALSE];
-    [self.navigationController pushViewController:loginViewController animated:YES];
+    if ([self isLogIn]) {
+//        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+//        loginViewController.delegate = self;
+//        [self.navigationController pushViewController:loginViewController animated:YES];
+        KHLPICProfileViewController *profileViewController = [[KHLPICProfileViewController alloc] init];
+        [self.navigationController pushViewController:profileViewController animated:TRUE];
+        
+    } else {
+        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+        loginViewController.delegate = self;
+        [self.navigationController pushViewController:loginViewController animated:TRUE];
+    }
 }
 
 // Animate my collections and subscriptions button..

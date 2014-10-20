@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MQLCustomViewController.h"
 
+@protocol LogoutDelegate <NSObject>
+- (void)onLogoutSuccess;
+@end
+
 @interface KHLPICSettingsViewController : MQLCustomViewController
+
+@property (nonatomic, assign) id<LogoutDelegate> delegate;
 
 @end
