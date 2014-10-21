@@ -16,6 +16,7 @@
                 <outlet property="phoneTextField" destination="tPe-Aw-eJe" id="ykz-VX-Tdi"/>
                 <outlet property="qqTextField" destination="h8u-20-aRQ" id="Tue-ds-G3V"/>
                 <outlet property="registerDateLabel" destination="W4x-hd-ipQ" id="DBv-Wc-7HG"/>
+                <outlet property="scrollView" destination="uXS-l5-NR6" id="2XU-Ys-ON3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,7 +29,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="uXS-l5-NR6" userLabel="Main Scroll View">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uXS-l5-NR6" userLabel="Main Scroll View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jvg-2C-nCk" userLabel="Holder View">
@@ -636,7 +637,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="uXS-l5-NR6" secondAttribute="trailing" id="Dw1-sZ-29I"/>
                 <constraint firstItem="rpT-7y-P1g" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EIH-4A-5I0"/>

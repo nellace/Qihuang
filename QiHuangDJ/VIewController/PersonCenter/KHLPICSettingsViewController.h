@@ -16,5 +16,6 @@
 @interface KHLPICSettingsViewController : MQLCustomViewController
 
 @property (nonatomic, assign) id<LogoutDelegate> delegate;
+@property (nonatomic) BOOL displayLogoutButton;
 
 @end

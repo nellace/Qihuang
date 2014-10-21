@@ -12,6 +12,7 @@
 @interface KHLPICSettingsViewController ()
 
 @property (nonatomic, getter=isMessagePushAllowed, setter=setMessagePushAllowed:) BOOL bMessagePushAllowed;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 @end
 
@@ -25,6 +26,9 @@
 {
     [self setCascTitle:@"设置"];
     [self setFanhui];
+    if (![self displayLogoutButton]) {
+        [self.logoutButton setHidden:TRUE];
+    }
 }
 
 

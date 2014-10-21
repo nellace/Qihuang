@@ -163,6 +163,7 @@
 {
     KHLPICSettingsViewController *settingsViewController = [[KHLPICSettingsViewController alloc] init];
     settingsViewController.delegate = self;
+    settingsViewController.displayLogoutButton = [self isLogIn];
     [self.navigationController pushViewController:settingsViewController animated:TRUE];
 }
 
