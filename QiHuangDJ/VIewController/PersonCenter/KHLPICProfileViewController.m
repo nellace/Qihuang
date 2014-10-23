@@ -43,37 +43,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *tapToHideKeyboardRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-    [tapToHideKeyboardRecognizer addTarget:self action:@selector(hideBirthDatePicker:)];
-//    UITapGestureRecognizer *tapToHideDatePickerRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideBirthDatePicker:)];
-    [tapToHideKeyboardRecognizer setCancelsTouchesInView:FALSE];
-//    [tapToHideDatePickerRecognizer setCancelsTouchesInView:FALSE];
-    [self.view addGestureRecognizer:tapToHideKeyboardRecognizer];
-//    [self.view addGestureRecognizer:tapToHideDatePickerRecognizer];
+    // Configure background tap recognization to hide keyboard and date picker..
+    UITapGestureRecognizer *tapToHideRecognizer = [[UITapGestureRecognizer alloc] init];
+    [tapToHideRecognizer addTarget:self action:@selector(hideKeyboard:)];
+    [tapToHideRecognizer addTarget:self action:@selector(hideBirthDatePicker:)];
+    [tapToHideRecognizer setCancelsTouchesInView:FALSE];
+    [self.view addGestureRecognizer:tapToHideRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+    // Unregister keyboard notifications..
     [self unregisterNotification];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Draw navigation bar and attach items..
     [self setCascTitle:@"个人资料"];
     [self setFanhui];
     [self drawRightNavigationButton];
     
+    // Set initial keyboard height..
     [self setKeyHeight:253];
+    
+    // Register keyboard notifications..
     [self registerNotification];
+    
+    // Configure birthdate picker..
     [self.birthDatePickerHolderView setHidden:TRUE];
     [self.birthDatePicker setMaximumDate:[NSDate date]];
-    //[self.birthDatePickerHolderView setFrame:CGRectMake(self.birthDatePickerHolderView.frame.origin.x, self.view.frame.size.height + self.view.frame.origin.y, self.birthDatePickerHolderView.frame.size.width, self.birthDatePickerHolderView.frame.size.height)];
-    
-//    UIView *background = [self.view superview];
-//    if (![self.mainView isEqual:self.view]) {
-//        NSLog(@"yoooo");
-//        [self.mainView setBackgroundColor:[KHLColor tubai]];
-//    }
 }
 
 
@@ -165,7 +165,7 @@
 {
     NSLog(@"birthdate confirm");
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy年MM月d日"];
+    [formatter setDateFormat:@"yyyy年MM月dd日"];
     self.birthdate = self.birthDatePicker.date;
     
     self.birthDateLabel.text = [formatter stringFromDate:self.birthdate];
@@ -268,7 +268,6 @@
 
 - (void)registerNotification
 {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -276,7 +275,6 @@
 
 - (void)unregisterNotification
 {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -328,7 +326,6 @@
     
     if (self.keyHeight < height)
         self.keyHeight = height;
-//    NSLog(@"+ will change frame %.0f pre: %.0f", height, pre);
 }
 
 
