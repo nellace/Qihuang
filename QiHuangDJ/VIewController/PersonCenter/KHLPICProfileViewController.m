@@ -17,11 +17,17 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
 @property (weak, nonatomic) IBOutlet UILabel *genderLabel;
-// birthdate
 @property (weak, nonatomic) IBOutlet UITextField *blogTextField;
 @property (weak, nonatomic) IBOutlet UILabel *registerDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UITextField *qqTextField;
+@property (weak, nonatomic) IBOutlet UIView *birthDatePickerHolderView;
+@property (weak, nonatomic) IBOutlet UIDatePicker *birthDatePicker;
+@property (weak, nonatomic) IBOutlet UILabel *birthDateLabel;
+
+@property (nonatomic) NSInteger gender;
+@property (weak, nonatomic) NSDate *birthdate;
+@property (weak, nonatomic) NSDate *currentPickedDate;
 
 @property (nonatomic) CGFloat topOffset;
 @property (nonatomic) CGFloat keyHeight;
@@ -37,9 +43,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-    [tapGestureRecognizer setCancelsTouchesInView:FALSE];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    UITapGestureRecognizer *tapToHideKeyboardRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    [tapToHideKeyboardRecognizer addTarget:self action:@selector(hideBirthDatePicker:)];
+//    UITapGestureRecognizer *tapToHideDatePickerRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideBirthDatePicker:)];
+    [tapToHideKeyboardRecognizer setCancelsTouchesInView:FALSE];
+//    [tapToHideDatePickerRecognizer setCancelsTouchesInView:FALSE];
+    [self.view addGestureRecognizer:tapToHideKeyboardRecognizer];
+//    [self.view addGestureRecognizer:tapToHideDatePickerRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +65,9 @@
     
     [self setKeyHeight:253];
     [self registerNotification];
+    [self.birthDatePickerHolderView setHidden:TRUE];
+    [self.birthDatePicker setMaximumDate:[NSDate date]];
+    //[self.birthDatePickerHolderView setFrame:CGRectMake(self.birthDatePickerHolderView.frame.origin.x, self.view.frame.size.height + self.view.frame.origin.y, self.birthDatePickerHolderView.frame.size.width, self.birthDatePickerHolderView.frame.size.height)];
     
 //    UIView *background = [self.view superview];
 //    if (![self.mainView isEqual:self.view]) {
@@ -94,6 +107,15 @@
     [self.qqTextField resignFirstResponder];
 }
 
+- (void)hideBirthDatePicker: (UITapGestureRecognizer *)tap
+{
+    [self.birthDatePickerHolderView setHidden:TRUE];
+//    [UIView beginAnimations:@"HideBirthDatePicker" context:nil];
+//    [UIView setAnimationDuration:0.30f];
+//    [self.birthDatePickerHolderView setFrame:CGRectMake(self.birthDatePickerHolderView.frame.origin.x, self.view.frame.size.height + self.view.frame.origin.y, self.birthDatePickerHolderView.frame.size.width, self.birthDatePickerHolderView.frame.size.height)];
+//    [UIView commitAnimations];
+}
+
 
 
 #pragma mark - USER INTERACTION RESPONSE
@@ -108,12 +130,57 @@
     
 }
 
+- (IBAction)pressBirthdatePickButton:(UIButton *)sender
+{
+    // Test init date
+//    NSDateComponents *initComponents = [[NSDateComponents alloc] init];
+//    [initComponents setYear:1991];
+//    [initComponents setMonth:5];
+//    [initComponents setDay:21];
+//    [initComponents setHour:0];
+//    [initComponents setMinute:0];
+//    [initComponents setSecond:0];
+//    NSCalendar *initCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSDate *initDate = [initCalendar dateFromComponents:initComponents];
+    
+    if (![self.birthDatePickerHolderView isHidden]) {
+        [self.birthDatePickerHolderView setHidden:TRUE];
+    } else {
+        // Create date formatter and transform string into date..
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy年MM月dd日"];
+        NSDate *stringDate = [formatter dateFromString:self.birthDateLabel.text];
+        [self.birthDatePicker setDate:stringDate];
+        [self.birthDatePickerHolderView setHidden:FALSE];
+    }
+}
 
+- (IBAction)changeBirthDatePicker:(UIDatePicker *)sender
+{
+    self.currentPickedDate = sender.date;
+    NSLog(@"picked: %@", self.currentPickedDate);
+}
+
+- (IBAction)pressConfirmPickedBirthDate:(UIButton *)sender
+{
+    NSLog(@"birthdate confirm");
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年MM月d日"];
+    self.birthdate = self.birthDatePicker.date;
+    
+    self.birthDateLabel.text = [formatter stringFromDate:self.birthdate];
+}
+
+- (IBAction)pressCancelPickedBirthDate:(UIButton *)sender
+{
+    NSLog(@"birthdate cancel");
+}
 
 #pragma mark - TEXT FIELD DELEGATE
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    [self hideBirthDatePicker:nil];
     [textField setBackgroundColor:[KHLColor xiaotubai]];
     return TRUE;
 }
@@ -241,7 +308,7 @@
 
 - (void)keyboardWillHide: (NSNotification *)notification
 {
-    NSLog(@"+ will hide");
+//    NSLog(@"+ will hide");
 //    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
 //    [UIView setAnimationDuration:0.30f];
 //    self.view.frame = CGRectMake(0, self.topOffset, self.view.frame.size.width, self.view.frame.size.height);
@@ -261,7 +328,7 @@
     
     if (self.keyHeight < height)
         self.keyHeight = height;
-    NSLog(@"+ will change frame %.0f pre: %.0f", height, pre);
+//    NSLog(@"+ will change frame %.0f pre: %.0f", height, pre);
 }
 
 

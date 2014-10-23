@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KHLPICProfileViewController">
             <connections>
+                <outlet property="birthDateLabel" destination="kYV-3P-PSc" id="NQJ-WX-hWj"/>
+                <outlet property="birthDatePicker" destination="r5q-mb-z9Q" id="Zuq-Wg-oVs"/>
+                <outlet property="birthDatePickerHolderView" destination="eKM-rf-uqL" id="gpo-HS-eAt"/>
                 <outlet property="blogTextField" destination="C5b-HF-JQ2" id="2rX-iv-Ysb"/>
                 <outlet property="emailLabel" destination="Mv1-V5-aI7" id="WGr-kx-or1"/>
                 <outlet property="genderLabel" destination="MvF-qe-IQy" id="BUL-IU-agz"/>
@@ -180,7 +183,7 @@
                                                 <constraint firstAttribute="width" constant="20" id="fl6-Ng-dkT"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="测试样板羊羊羊" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LKk-uc-MMf" userLabel="Name Text Field">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="羊羊羊" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LKk-uc-MMf" userLabel="Name Text Field">
                                             <rect key="frame" x="98" y="8" width="202" height="29"/>
                                             <color key="textColor" red="0.98039215690000003" green="0.37254901959999998" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -296,7 +299,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y86-v5-hsG" userLabel="Gender Toggle Button">
-                                            <rect key="frame" x="0.0" y="0.5" width="320" height="44.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -351,17 +354,43 @@
                                                 <constraint firstAttribute="width" constant="20" id="WEU-Xb-2yx"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1991年05月21日" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYV-3P-PSc" userLabel="Nickname Indicating Label">
+                                            <rect key="frame" x="8" y="8" width="292" height="29"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.98039215690000003" green="0.37254901959999998" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Le2-t3-Ji1" userLabel="Birthdate Toggle Button">
+                                            <rect key="frame" x="0.0" y="0.5" width="320" height="44.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" backgroundImage="denglu_btn_login_press.png"/>
+                                            <state key="highlighted" backgroundImage="shezhi_line_press"/>
+                                            <connections>
+                                                <action selector="pressBirthdatePickButton:" destination="-1" eventType="touchUpInside" id="wJF-jy-NO2"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="pbk-rE-jIf" secondAttribute="trailing" id="0dV-1E-nBW"/>
                                         <constraint firstAttribute="bottom" secondItem="MHB-pG-klp" secondAttribute="bottom" id="45J-Eb-8a2"/>
                                         <constraint firstItem="RSy-Cp-jfL" firstAttribute="top" secondItem="MfZ-iH-NeI" secondAttribute="top" constant="8" id="B4s-c0-1RG"/>
+                                        <constraint firstItem="kYV-3P-PSc" firstAttribute="top" secondItem="MfZ-iH-NeI" secondAttribute="top" constant="8" id="HHu-OR-iYp"/>
                                         <constraint firstAttribute="trailing" secondItem="RSy-Cp-jfL" secondAttribute="trailing" constant="8" id="IFO-aB-P2h"/>
+                                        <constraint firstItem="kYV-3P-PSc" firstAttribute="leading" secondItem="MfZ-iH-NeI" secondAttribute="leading" constant="8" id="Kqc-Hj-UeF"/>
                                         <constraint firstItem="MHB-pG-klp" firstAttribute="top" secondItem="MfZ-iH-NeI" secondAttribute="top" id="OzO-aN-1ju"/>
+                                        <constraint firstItem="Le2-t3-Ji1" firstAttribute="top" secondItem="MfZ-iH-NeI" secondAttribute="top" id="U6o-JG-uCl"/>
+                                        <constraint firstAttribute="bottom" secondItem="Le2-t3-Ji1" secondAttribute="bottom" id="VEz-mx-Bl5"/>
+                                        <constraint firstAttribute="bottom" secondItem="kYV-3P-PSc" secondAttribute="bottom" constant="8" id="Vfc-Qs-TWr"/>
                                         <constraint firstAttribute="bottom" secondItem="pbk-rE-jIf" secondAttribute="bottom" id="Zei-dT-Enl"/>
                                         <constraint firstAttribute="trailing" secondItem="MHB-pG-klp" secondAttribute="trailing" id="ifk-oA-Ccq"/>
                                         <constraint firstItem="RSy-Cp-jfL" firstAttribute="leading" secondItem="MfZ-iH-NeI" secondAttribute="leading" constant="8" id="lVX-Am-tSm"/>
+                                        <constraint firstItem="Le2-t3-Ji1" firstAttribute="leading" secondItem="MfZ-iH-NeI" secondAttribute="leading" id="lfG-xo-MM5"/>
+                                        <constraint firstAttribute="trailing" secondItem="Le2-t3-Ji1" secondAttribute="trailing" id="neH-uj-7ZZ"/>
                                         <constraint firstItem="pbk-rE-jIf" firstAttribute="leading" secondItem="MfZ-iH-NeI" secondAttribute="leading" id="owl-eQ-T1f"/>
+                                        <constraint firstItem="MHB-pG-klp" firstAttribute="leading" secondItem="kYV-3P-PSc" secondAttribute="trailing" id="qj0-Z2-fd9"/>
                                         <constraint firstAttribute="bottom" secondItem="RSy-Cp-jfL" secondAttribute="bottom" constant="8" id="xtD-HT-wMY"/>
                                     </constraints>
                                 </view>
@@ -636,14 +665,81 @@
                         <constraint firstItem="Jvg-2C-nCk" firstAttribute="top" secondItem="uXS-l5-NR6" secondAttribute="top" id="ztG-xf-hne"/>
                     </constraints>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKM-rf-uqL" userLabel="Date Picker Holder View">
+                    <rect key="frame" x="0.0" y="309" width="320" height="195"/>
+                    <subviews>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5q-mb-z9Q" userLabel="Birthdate Picker">
+                            <rect key="frame" x="0.0" y="33" width="320" height="162"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="162" id="AaB-Nk-St3"/>
+                            </constraints>
+                            <date key="date" timeIntervalSinceReferenceDate="435724809.37937099">
+                                <!--2014-10-23 02:40:09 +0000-->
+                            </date>
+                            <date key="minimumDate" timeIntervalSinceReferenceDate="-3187240004">
+                                <!--1900-01-01 15:33:16 +0000-->
+                            </date>
+                            <locale key="locale" localeIdentifier="zh_CN"/>
+                            <connections>
+                                <action selector="changeBirthDatePicker:" destination="-1" eventType="valueChanged" id="Uke-eK-m4F"/>
+                            </connections>
+                        </datePicker>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="br7-vf-Qmc" userLabel="Cancel Picked Date Button">
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="33"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="e5s-vs-FD4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="取消">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="pressCancelPickedBirthDate:" destination="-1" eventType="touchUpInside" id="7Re-vX-Rtr"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9u-xG-c6H" userLabel="Confirm Picked Date Button">
+                            <rect key="frame" x="160" y="0.0" width="160" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="确定">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="pressConfirmPickedBirthDate:" destination="-1" eventType="touchUpInside" id="eCy-V4-EzK"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="br7-vf-Qmc" secondAttribute="trailing" constant="186" id="2Ua-Cb-cDz"/>
+                        <constraint firstItem="br7-vf-Qmc" firstAttribute="top" secondItem="eKM-rf-uqL" secondAttribute="top" id="7ZJ-BT-35U"/>
+                        <constraint firstItem="C9u-xG-c6H" firstAttribute="leading" secondItem="br7-vf-Qmc" secondAttribute="trailing" id="Bzw-EI-RdY"/>
+                        <constraint firstItem="C9u-xG-c6H" firstAttribute="height" secondItem="br7-vf-Qmc" secondAttribute="height" id="Pg8-0p-9md"/>
+                        <constraint firstAttribute="bottom" secondItem="r5q-mb-z9Q" secondAttribute="bottom" id="UbC-QO-t09"/>
+                        <constraint firstAttribute="trailing" secondItem="r5q-mb-z9Q" secondAttribute="trailing" id="Yw9-36-1V6"/>
+                        <constraint firstItem="r5q-mb-z9Q" firstAttribute="top" secondItem="C9u-xG-c6H" secondAttribute="bottom" id="fM9-SD-g17"/>
+                        <constraint firstItem="r5q-mb-z9Q" firstAttribute="leading" secondItem="eKM-rf-uqL" secondAttribute="leading" id="grL-mR-d4p"/>
+                        <constraint firstItem="br7-vf-Qmc" firstAttribute="leading" secondItem="eKM-rf-uqL" secondAttribute="leading" id="hYM-wF-1IN"/>
+                        <constraint firstItem="br7-vf-Qmc" firstAttribute="width" secondItem="C9u-xG-c6H" secondAttribute="width" id="hgy-e7-n3D"/>
+                        <constraint firstItem="r5q-mb-z9Q" firstAttribute="top" secondItem="br7-vf-Qmc" secondAttribute="bottom" id="rhN-EC-awc"/>
+                        <constraint firstAttribute="trailing" secondItem="C9u-xG-c6H" secondAttribute="trailing" id="xsh-zB-yK9"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="2Ua-Cb-cDz"/>
+                        </mask>
+                    </variation>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="eKM-rf-uqL" secondAttribute="bottom" id="C5V-mJ-i4j"/>
                 <constraint firstAttribute="trailing" secondItem="uXS-l5-NR6" secondAttribute="trailing" id="Dw1-sZ-29I"/>
                 <constraint firstItem="rpT-7y-P1g" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EIH-4A-5I0"/>
                 <constraint firstAttribute="trailing" secondItem="rpT-7y-P1g" secondAttribute="trailing" id="G0u-pu-yG7"/>
                 <constraint firstItem="rpT-7y-P1g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UY3-nh-pYZ"/>
                 <constraint firstItem="uXS-l5-NR6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YLM-KR-7wo"/>
+                <constraint firstAttribute="trailing" secondItem="eKM-rf-uqL" secondAttribute="trailing" id="guy-4S-P7A"/>
+                <constraint firstItem="eKM-rf-uqL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kQd-cn-rgN"/>
                 <constraint firstItem="Jvg-2C-nCk" firstAttribute="width" secondItem="rpT-7y-P1g" secondAttribute="width" id="luf-NU-Sbp"/>
                 <constraint firstItem="uXS-l5-NR6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ody-6T-tkU"/>
                 <constraint firstAttribute="bottom" secondItem="rpT-7y-P1g" secondAttribute="bottom" id="paK-Cd-oTm"/>
