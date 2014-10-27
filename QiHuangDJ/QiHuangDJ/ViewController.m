@@ -45,7 +45,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    classify = [[ClassifyViewController alloc] initWithNibName:@"ClassifyViewController" bundle:nil];
+    classify = [ClassifyViewController new];
     [self navUI];
 }
 

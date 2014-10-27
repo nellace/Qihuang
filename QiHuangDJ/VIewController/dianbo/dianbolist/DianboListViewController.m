@@ -13,7 +13,6 @@
 
 @interface DianboListViewController () {
     SliderRightList *rightView;
-
 }
 
 
@@ -21,9 +20,13 @@
 
 @implementation DianboListViewController {
     
+    IBOutletCollection(UIButton) NSArray *btnCollection;
     __weak IBOutlet UISearchBar *mySearch;
+    UIImageView * imgBG;  //用于键盘弹出时 触摸隐藏键盘的imageView
+    
 }
-
+#pragma mark
+#pragma mark Life cyle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -33,11 +36,19 @@
     [self rightBtnItemUI];
     
     [mySearch setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    //键盘出现通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHiden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 
     [self.collectionItem registerNib:[UINib nibWithNibName:@"DianboListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"QHidentifierDianboCollectionCell"];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 - (void)rightBtnItemUI {
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -54,7 +65,7 @@
 
 - (void)rightViewUI {
     rightView = [[[NSBundle mainBundle] loadNibNamed:@"SliderRightList" owner:self options:nil] lastObject];
-    rightView.frame = CGRectMake(600,-64, 120, self.view.frame.size.height);
+    rightView.frame = CGRectMake(6000,-64, 120, self.view.frame.size.height);
     [self.view addSubview:rightView];
 }
 
@@ -65,18 +76,80 @@
             self.view.frame = CGRectMake(0, 64, 320, self.view.frame.size.height);
             self.navigationController.navigationBar.frame = CGRectMake(self.view.frame.origin.x, 20, 320, 44);
             rightView.frame = CGRectMake(self.view.frame.size.width,-64, 283,self.view.frame.size.height+64);
+            NSLog(@"sender.selected == no");
         }else {
-            self.view.frame = CGRectMake(-248, 64, 320, self.view.frame.size.height);
-            self.navigationController.navigationBar.frame = CGRectMake(self.view.frame.origin.x, 20, 320, 44);
+            self.view.frame = CGRectMake(-(self.view.frame.size.width/6), 64, 320, self.view.frame.size.height);
+            self.navigationController.navigationBar.frame = CGRectMake(self.view.frame.origin.x, 20, self.view.frame.size.width, 44);
             rightView.frame = CGRectMake(self.view.frame.size.width,-64, 283,self.view.frame.size.height+64);
+            NSLog(@"view.x%f",self.view.frame.origin.x);
+            NSLog(@"nav.x %f",self.navigationController.navigationBar.frame.origin.x);
             sender.selected = YES;
+            NSLog(@"sender.selected == yes");
         }
 
     } completion:^(BOOL finished) {
         
     }];
 }
+#pragma mark
+#pragma mark KeyboardNotification
 
+- (void)keyboardShow :(NSNotification *)noti {
+    imgBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    imgBG.backgroundColor = [UIColor grayColor];
+    imgBG.userInteractionEnabled = YES;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHid)];
+    [imgBG addGestureRecognizer:tap];
+    imgBG.alpha = 0.4;
+    [self.view addSubview:imgBG];
+}
+
+- (void)keyboardHiden:(NSNotification *)noti {
+
+    [imgBG removeFromSuperview];
+}
+
+- (void)keyboardHid {
+    [mySearch resignFirstResponder];
+}
+#pragma mark
+#pragma mark UISearchDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+
+#pragma mark
+#pragma mark ButtonActionMethod
+- (IBAction)sectionBtn:(id)sender {
+
+    UIButton * btn = (UIButton *)sender;
+    NSInteger tagBtn = btn.tag;
+
+    for (UIButton * btn1 in btnCollection) {
+        if ([btn1 isEqual:btn]) {
+            btn.selected = YES;
+        }else {
+            btn1.selected = NO;
+        }
+    }
+    switch (tagBtn) {
+           
+        case 101:       //news
+            
+            break;
+            
+        case 102:       //hot
+            
+            break;
+        case 103:       //shortTime
+            
+            break;
+            
+        default:
+            break;
+    }
+}
 
 #pragma mark
 #pragma mark UICollectionViewDataSource

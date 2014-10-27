@@ -26,7 +26,7 @@
     if (self) {
         // Custom initialization
         
-        [self setFanhui];
+        
     }
     return self;
 }
@@ -38,6 +38,7 @@
     UISearchBar *se = [[SearchBarCustom alloc] init];
     self.search = se;
     //NSLog(@"screen weidth %f",[UIScreen mainScreen].bounds.size.width);
+    [self setFanhui];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [self setCascTitle:self.title];
@@ -54,14 +55,9 @@
     [self.navigationController pushViewController:dianboVC animated:YES];
 }
 - (IBAction)Infomation:(id)sender {
-//    InfomationViewController *infoVC = [[InfomationViewController alloc] initWithNibName:@"InfomationViewController" bundle:nil];
-//    [self.navigationController pushViewController:infoVC animated:YES];
-    //NewsViewController * newList = [[NewsViewController alloc] initWithNibName:@"NewsViewController" bundle:nil];
-    //[self.navigationController pushViewController:newList animated:YES];
     KHLInformationTableViewController *informationViewController = [[KHLInformationTableViewController alloc] init];
     [self.navigationController pushViewController:informationViewController animated:TRUE];
 }
-
 
 - (void)didReceiveMemoryWarning
 {

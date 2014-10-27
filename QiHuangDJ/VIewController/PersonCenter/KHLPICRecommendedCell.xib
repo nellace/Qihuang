@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -17,23 +16,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yef-c5-479" userLabel="Cell Holder View">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fig-tL-ECF" userLabel="Left Holder View">
-                                <rect key="frame" x="0.0" y="0.0" width="158" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="158" height="107"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fxG-FH-w6n" userLabel="Left Image View">
-                                        <rect key="frame" x="0.0" y="0.0" width="158" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="158" height="107"/>
                                     </imageView>
                                     <view alpha="0.69999999999999973" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="toj-mX-fE0" userLabel="Left Translucent White Backdrop View">
-                                        <rect key="frame" x="0.0" y="70" width="158" height="30"/>
+                                        <rect key="frame" x="0.0" y="77" width="158" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="toj-mX-fE0" secondAttribute="height" multiplier="79:15" id="iOO-T0-aIK"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="离绪悄微弦，永夜清霜透幕帘。明日回头江树远，怀贤。目断晴空雁字连。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4on-SN-QKt" userLabel="Left Label">
-                                        <rect key="frame" x="8" y="70" width="142" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="离绪悄微弦，永夜清霜透幕帘。明日回头江树远，怀贤。目断晴空雁字连。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="142" translatesAutoresizingMaskIntoConstraints="NO" id="4on-SN-QKt" userLabel="Left Label">
+                                        <rect key="frame" x="8" y="77" width="142" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="EUf-jH-hJO"/>
                                         </constraints>
@@ -69,20 +68,20 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8qD-iM-0fw" userLabel="Right Holder View">
-                                <rect key="frame" x="162" y="0.0" width="158" height="100"/>
+                                <rect key="frame" x="162" y="0.0" width="158" height="107"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4eu-8p-S3M" userLabel="Right Image View">
-                                        <rect key="frame" x="0.0" y="0.0" width="158" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="158" height="107"/>
                                     </imageView>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtS-8c-1jo" userLabel="Right Translucent White Backdrop View">
-                                        <rect key="frame" x="0.0" y="70" width="158" height="30"/>
+                                        <rect key="frame" x="0.0" y="77" width="158" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="JtS-8c-1jo" secondAttribute="height" multiplier="79:15" id="Ekr-jM-UsE"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="离绪悄微弦，永夜清霜透幕帘。明日回头江树远，怀贤。目断晴空雁字连。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zkf-Q2-O5E" userLabel="Right Label">
-                                        <rect key="frame" x="8" y="70" width="142" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="离绪悄微弦，永夜清霜透幕帘。明日回头江树远，怀贤。目断晴空雁字连。" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="142" translatesAutoresizingMaskIntoConstraints="NO" id="zkf-Q2-O5E" userLabel="Right Label">
+                                        <rect key="frame" x="8" y="77" width="142" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -124,7 +123,7 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="yef-c5-479" secondAttribute="bottom" constant="-3" id="1dh-U1-K8o"/>
+                    <constraint firstAttribute="bottom" secondItem="yef-c5-479" secondAttribute="bottom" constant="-3" id="1dh-U1-K8o"/>
                     <constraint firstItem="yef-c5-479" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="ICj-Jn-6nF"/>
                     <constraint firstItem="yef-c5-479" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="ZRZ-P4-8fx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="yef-c5-479" secondAttribute="trailing" constant="-8" id="pjj-ho-rGb"/>
@@ -138,7 +137,7 @@
                 <outlet property="rightImageView" destination="4eu-8p-S3M" id="SXh-vC-AUt"/>
                 <outlet property="rightLabel" destination="zkf-Q2-O5E" id="Qe0-dd-D8e"/>
             </connections>
-            <point key="canvasLocation" x="245" y="260.5"/>
+            <point key="canvasLocation" x="168" y="141.5"/>
         </tableViewCell>
     </objects>
 </document>

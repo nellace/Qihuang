@@ -37,13 +37,6 @@
     return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 1;
@@ -89,12 +82,31 @@
 
 - (void)dingyueBtnUI :(UITableViewCell *)cell{
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setFrame:CGRectMake(cell.contentView.frame.size.width - 80, (cell.frame.size.height - 20)/2, 40, 20)];
+    [btn setFrame:CGRectMake(cell.contentView.frame.size.width - 100, (cell.frame.size.height - 35)/2, 70, 35)];
     [btn setTitle:@"订阅" forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [btn setTitleColor:[KHLColor colorFromHexRGB:@"FE6024"]forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"zhibo_dingyue"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(dingyueBtnMethod:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btn];
+}
+
+- (void)dingyueBtnMethod:(UIButton *)sender {
+    
+    if (sender.selected) {
+        
+        sender.selected = NO;
+        [sender setTitle:@"取消订阅" forState:UIControlStateNormal];
+        return;
+        
+    }else{
+
+        sender.selected = YES;
+
+        [sender setTitle:@"订阅" forState:UIControlStateNormal];
+        return;
+    }
+    
 }
 
 #pragma marks
@@ -103,6 +115,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     VideoLiveViewController *video = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
     [self.navigationController pushViewController:video animated:YES];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 8;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 20;
 }
 
 /*
