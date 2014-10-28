@@ -78,8 +78,6 @@
 }
 
 
-
-
 # pragma mark USER INTERACTION RESPONSE
 
 - (IBAction)pressCancel:(UIButton *)sender
@@ -91,6 +89,29 @@
 
 - (IBAction)pressCommit:(UIButton *)sender
 {
+    if (self.usernameTextField.text.length ==0 ) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名不能为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    if (!(self.usernameTextField.text.length>3 && self.usernameTextField.text.length<9)) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名长度3-9个字符" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    if ( self.passwordTextField.text.length == 0) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"密码不能为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    if (!(self.passwordTextField.text.length>6 && self.passwordTextField.text.length<20)) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"密码长度6-20个字符" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
     [self.delegate onLoginSuccess];
     //[self dismissViewControllerAnimated:TRUE completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
