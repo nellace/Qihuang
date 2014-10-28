@@ -63,6 +63,8 @@
 		3D858E2319EB9E6B005022BA /* SliderRightList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2219EB9E6B005022BA /* SliderRightList.xib */; };
 		3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */; };
 		3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */; };
+		3DD9646419FFA934004C3AF1 /* DianboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9646319FFA934004C3AF1 /* DianboCell.m */; };
+		3DD9646619FFA944004C3AF1 /* DianboCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD9646519FFA944004C3AF1 /* DianboCell.xib */; };
 		FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */; };
 		FC5BD25019EFA6BF00D91A9C /* KHLPICSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */; };
 		FC5BD25119EFA6BF00D91A9C /* KHLPICSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */; };
@@ -296,6 +298,9 @@
 		3D858E2419EBC221005022BA /* DianboListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboListCollectionViewCell.h; sourceTree = "<group>"; };
 		3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboListCollectionViewCell.m; sourceTree = "<group>"; };
 		3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboListCollectionViewCell.xib; sourceTree = "<group>"; };
+		3DD9646219FFA934004C3AF1 /* DianboCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboCell.h; sourceTree = "<group>"; };
+		3DD9646319FFA934004C3AF1 /* DianboCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboCell.m; sourceTree = "<group>"; };
+		3DD9646519FFA944004C3AF1 /* DianboCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboCell.xib; sourceTree = "<group>"; };
 		FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLEntertainerHolderView.xib; sourceTree = "<group>"; };
 		FC5BD24D19EFA6BF00D91A9C /* KHLPICSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICSettingsViewController.h; sourceTree = "<group>"; };
 		FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICSettingsViewController.m; sourceTree = "<group>"; };
@@ -749,6 +754,9 @@
 				3D858E0719E8DFD7005022BA /* DianboViewController.h */,
 				3D858E0819E8DFD7005022BA /* DianboViewController.m */,
 				3D858E0919E8DFD7005022BA /* DianboViewController.xib */,
+				3DD9646219FFA934004C3AF1 /* DianboCell.h */,
+				3DD9646319FFA934004C3AF1 /* DianboCell.m */,
+				3DD9646519FFA944004C3AF1 /* DianboCell.xib */,
 			);
 			path = VideoDianbo;
 			sourceTree = "<group>";
@@ -1102,6 +1110,7 @@
 				FC708A3119ED0AE1002DF952 /* shouye_icon1@2x.png in Resources */,
 				FC7089FE19ED0AE1002DF952 /* denglu_name@2x.png in Resources */,
 				FC708A5719ED0AE1002DF952 /* zhibo_dingyue_press@2x.png in Resources */,
+				3DD9646619FFA944004C3AF1 /* DianboCell.xib in Resources */,
 				FC708A1E19ED0AE1002DF952 /* nav_line@2x.png in Resources */,
 				FC708A7219ED4C3E002DF952 /* KHLPICRecommendedCell.xib in Resources */,
 				FC708A4519ED0AE1002DF952 /* fenxiang_icon2@2x.png in Resources */,
@@ -1217,6 +1226,7 @@
 				3D858E2119EB9D4E005022BA /* SliderRightList.m in Sources */,
 				3D121C3C19CABD100040870C /* InfomationViewController.m in Sources */,
 				3D44757919C984AC00D9B2B1 /* AFURLConnectionOperation.m in Sources */,
+				3DD9646419FFA934004C3AF1 /* DianboCell.m in Sources */,
 				3D44757B19C984AC00D9B2B1 /* UIImageView+AFNetworking.m in Sources */,
 				FC834C8919F0EEA5009E17FF /* KHLInformationTableViewController.m in Sources */,
 				3D44757519C984AC00D9B2B1 /* AFImageRequestOperation.m in Sources */,

@@ -7,8 +7,7 @@
 //
 
 #import "DianboViewController.h"
-//#import "LTPlayerSDK.h"
-//#import <AVFoundation/AVFoundation.h>
+#import "DianboCell.h"
 @interface DianboViewController ()
 
 @end
@@ -23,29 +22,52 @@
         [self setCascTitle:@"点播"];
         [self setFanhui];
     }
-//    <LTPlayerDelegate>
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-//
-//    [LTPlayerSDK showWithUserUnique:@"0b3f52f107"
-//                        videoUnique:@"6b4a85f298"
-//                          videoName:@""
-//                          payerName:@""
-//                          checkCode:@""
-//                                 ap:YES
-//                   inViewController:self
-//                     playerDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+}
+
+
+# pragma mark UITableViewDataSouce
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    return @"评论区（231）";
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"KHLDianboCell";
+    DianboCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil]lastObject];
+    }
+    
+    return cell;
+}
+
+# pragma mark UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 110.0f;
 }
 
 @end
