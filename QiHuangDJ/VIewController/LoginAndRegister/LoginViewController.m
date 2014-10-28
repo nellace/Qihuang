@@ -171,6 +171,18 @@
         interface.email = [NSString stringWithFormat:@"%@", [result objectForKey:@"email"]];
         interface.qq = [NSString stringWithFormat:@"%@", [result objectForKey:@"qq"]];
         
+        [[NSUserDefaults standardUserDefaults] setObject:interface.uid forKey:@"KHLPIUID"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.token forKey:@"KHLPIToken"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.username forKey:@"KHLPIUsername"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.phone forKey:@"KHLPIPhoneNumber"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.name forKey:@"KHLPIName"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.gender forKey:@"KHLPIGender"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.birthday forKey:@"KHLPIBirthday"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.blog forKey:@"KHLPIBlog"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.regtime forKey:@"KHLPIRegisterTime"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.email forKey:@"KHLPIEmail"];
+        [[NSUserDefaults standardUserDefaults] setObject:interface.qq forKey:@"KHLPIQQ"];
+        
         [self.delegate onLoginSuccess];
         [self.navigationController popViewControllerAnimated:YES];
         
@@ -178,7 +190,6 @@
         //[[NSUserDefaults standardUserDefaults] setObject:login.phone forKey:@"mobile"];
         //从NSUserDefaults中取数据
         //[[NSUserDefaults standardUserDefaults] stringForKey:@"mobile"];
-        return;
     } else if ([[dict objectForKey:@"resultCode"] isEqualToString:@"2"]) {
         [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:@"登录失效，请重新登录。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     } else {
