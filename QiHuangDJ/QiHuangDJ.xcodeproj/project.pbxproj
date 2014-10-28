@@ -65,6 +65,7 @@
 		FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */; };
 		FC5BD25019EFA6BF00D91A9C /* KHLPICSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */; };
 		FC5BD25119EFA6BF00D91A9C /* KHLPICSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */; };
+		FC5E8AB819FF349F00925EBD /* KHLDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5E8AB719FF349F00925EBD /* KHLDataManager.m */; };
 		FC61088B19F4C2A60057BA0E /* KHLPICProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC61088919F4C2A60057BA0E /* KHLPICProfileViewController.m */; };
 		FC61088C19F4C2A60057BA0E /* KHLPICProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC61088A19F4C2A60057BA0E /* KHLPICProfileViewController.xib */; };
 		FC7089F419ED0AE1002DF952 /* denglu_btn_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FC70897F19ED0AE1002DF952 /* denglu_btn_login@2x.png */; };
@@ -296,6 +297,9 @@
 		FC5BD24D19EFA6BF00D91A9C /* KHLPICSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICSettingsViewController.h; sourceTree = "<group>"; };
 		FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICSettingsViewController.m; sourceTree = "<group>"; };
 		FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICSettingsViewController.xib; sourceTree = "<group>"; };
+		FC5E8AB519FF347300925EBD /* KHLUrls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KHLUrls.h; path = KHLDataManager/KHLUrls.h; sourceTree = SOURCE_ROOT; };
+		FC5E8AB619FF349F00925EBD /* KHLDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHLDataManager.h; path = KHLDataManager/KHLDataManager.h; sourceTree = SOURCE_ROOT; };
+		FC5E8AB719FF349F00925EBD /* KHLDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHLDataManager.m; path = KHLDataManager/KHLDataManager.m; sourceTree = SOURCE_ROOT; };
 		FC61088819F4C2A60057BA0E /* KHLPICProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICProfileViewController.h; sourceTree = "<group>"; };
 		FC61088919F4C2A60057BA0E /* KHLPICProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICProfileViewController.m; sourceTree = "<group>"; };
 		FC61088A19F4C2A60057BA0E /* KHLPICProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLPICProfileViewController.xib; sourceTree = "<group>"; };
@@ -615,6 +619,9 @@
 		3D44754919C9738600D9B2B1 /* DataManger */ = {
 			isa = PBXGroup;
 			children = (
+				FC5E8AB519FF347300925EBD /* KHLUrls.h */,
+				FC5E8AB619FF349F00925EBD /* KHLDataManager.h */,
+				FC5E8AB719FF349F00925EBD /* KHLDataManager.m */,
 			);
 			path = DataManger;
 			sourceTree = SOURCE_ROOT;
@@ -1212,6 +1219,7 @@
 				3D121C4119CABD1B0040870C /* LoginViewController.m in Sources */,
 				FC5BD25019EFA6BF00D91A9C /* KHLPICSettingsViewController.m in Sources */,
 				3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */,
+				FC5E8AB819FF349F00925EBD /* KHLDataManager.m in Sources */,
 				3D4003E819D3BEC3006622E4 /* KHLEntertainer.m in Sources */,
 				3D44757419C984AC00D9B2B1 /* AFHTTPRequestOperation.m in Sources */,
 				3D44757319C984AC00D9B2B1 /* AFHTTPClient.m in Sources */,
