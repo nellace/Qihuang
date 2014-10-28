@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -138,16 +138,6 @@
                                         <constraint firstAttribute="height" constant="1" id="U6f-Wb-NTd"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfs-uD-BTf" userLabel="Test Button">
-                                    <rect key="frame" x="263" y="173" width="46" height="30"/>
-                                    <state key="normal" title="啦啦啦">
-                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="pressLaLaLa:" destination="iN0-l3-epB" eventType="touchUpInside" id="jF7-dc-kZJ"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="eH2-Da-Jfv" firstAttribute="leading" secondItem="za6-Ed-vGE" secondAttribute="leading" id="3w5-gZ-fM8"/>

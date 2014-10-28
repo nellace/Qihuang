@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KHLEntertainer.h"
 
 @interface KHLEntertainerHolderView : UIView
 
@@ -19,6 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *holderScrollView;
 @property (weak, nonatomic) IBOutlet UIView *experienceHolder;
 
-- (void)loadData:(KHLEntertainer *)entertainer useWindowSize:(CGSize)size;
+- (void)loadData:(EntertainersListInterface *)entertainer useWindowSize:(CGSize)size;
 
 @end
