@@ -71,6 +71,9 @@
     
     // Set background image for base view..
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
+    
+    
+    
     //[self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
     
 //    [self.myCollectionButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
@@ -92,6 +95,7 @@
     [self setCascTitle:@"个人中心"];
     [self setFanhui];
 }
+
 
 -(void)viewDidLoad {
     //[self.recommendedCollectionView registerClass:[KHLRecommendedCollectionViewCell class] forCellWithReuseIdentifier:@"KHLRecommendedCollectionViewCell"];
@@ -446,6 +450,7 @@
 {
     NSLog(@"onLoginSuccess Implementation");
     [self setLogIn:TRUE];
+    
     //[self refreshTableView];
 //    [self refreshThumbImageViewWithPersonalInfomation:nil];
 //    //[self refreshContentScrollViewWithData:@[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8"]];

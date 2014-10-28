@@ -44,15 +44,23 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
     [self setCascTitle:@"登录"];
     [self setFanhui];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginMethod:) name:@"KHLNotiLogin" object:nil];
     
     [self setAutoLogin:TRUE];
     [self.usernameTextField setBackgroundColor:[UIColor clearColor]];
     [self.passwordTextField setBackgroundColor:[UIColor clearColor]];
     self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"用户名/邮箱" attributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"密码" attributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    //移除登录通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiLogin" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,7 +85,6 @@
     }
 }
 
-
 # pragma mark USER INTERACTION RESPONSE
 
 - (IBAction)pressCancel:(UIButton *)sender
@@ -95,7 +102,7 @@
         return;
     }
     
-    if (!(self.usernameTextField.text.length>3 && self.usernameTextField.text.length<9)) {
+    if (!(self.usernameTextField.text.length>=3 && self.usernameTextField.text.length<=9)) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名长度3-9个字符" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         return;
@@ -107,14 +114,46 @@
         return;
     }
     
-    if (!(self.passwordTextField.text.length>6 && self.passwordTextField.text.length<20)) {
+    if (!(self.passwordTextField.text.length>=6 && self.passwordTextField.text.length<=20)) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"密码长度6-20个字符" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         return;
     }
-    [self.delegate onLoginSuccess];
-    //[self dismissViewControllerAnimated:TRUE completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    [[KHLDataManager instance] loginHUDHolder:self.view loginName:self.usernameTextField.text password:self.passwordTextField.text];
+}
+
+- (void)loginMethod:(NSNotification *)aNotification {
+    NSDictionary * loginDic = aNotification.object;
+    if (loginDic == nil) {
+        NSLog(@"login failed  loginDic = nil");
+        return;
+    }
+    NSLog(@"loginDic %@  reason%@",loginDic,[loginDic objectForKey:@"reason"]);
+    if ([[loginDic objectForKey:@"resultCode"] isEqualToString:@"1"]) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"登录失败" message:[loginDic objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    if ([[loginDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        NSDictionary * dic = [loginDic objectForKey:@"result"];
+        
+        LoginVC * login = [LoginVC new];
+        login.phone = [NSString stringWithFormat:@"%@",[dic objectForKey:@"mobile"]] ;
+        
+        [self.delegate onLoginSuccess];
+        //[self dismissViewControllerAnimated:TRUE completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        //从NSUserDefaults中存数据
+        [[NSUserDefaults standardUserDefaults] setObject:login.phone forKey:@"mobile"];
+        //从NSUserDefaults中取数据
+        [[NSUserDefaults standardUserDefaults] stringForKey:@"mobile"];
+        return;
+    }
 }
 
 - (IBAction)pressInterrelatedLoginWithQQ:(UIButton *)sender

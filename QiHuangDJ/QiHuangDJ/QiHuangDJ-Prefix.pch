@@ -16,4 +16,6 @@
     #import "SearchBarCustom.h"
     #import "AFNetworking.h"
     #import "KHLColor.h"
+    #import "KHLDataManager.h"
+    #import "DataManagerModel.h"
 #endif

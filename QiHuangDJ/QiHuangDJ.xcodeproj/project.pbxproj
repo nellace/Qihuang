@@ -21,6 +21,7 @@
 		3D121C5219CAE4B80040870C /* SuperStartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C5019CAE4B80040870C /* SuperStartViewController.xib */; };
 		3D121C5719CAFADF0040870C /* PersonCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C5519CAFADF0040870C /* PersonCenterViewController.m */; };
 		3D121C5819CAFADF0040870C /* PersonCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C5619CAFADF0040870C /* PersonCenterViewController.xib */; };
+		3D39636319FF3B4B00F6C004 /* DataManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D39636219FF3B4B00F6C004 /* DataManagerModel.m */; };
 		3D4003E719D3BEC3006622E4 /* KHLColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4003E419D3BEC3006622E4 /* KHLColor.m */; };
 		3D4003E819D3BEC3006622E4 /* KHLEntertainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4003E619D3BEC3006622E4 /* KHLEntertainer.m */; };
 		3D4003EB19D407E2006622E4 /* classifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4003EA19D407E2006622E4 /* classifyModel.m */; };
@@ -224,6 +225,8 @@
 		3D121C5419CAFADF0040870C /* PersonCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterViewController.h; sourceTree = "<group>"; };
 		3D121C5519CAFADF0040870C /* PersonCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCenterViewController.m; sourceTree = "<group>"; };
 		3D121C5619CAFADF0040870C /* PersonCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCenterViewController.xib; sourceTree = "<group>"; };
+		3D39636119FF3B4B00F6C004 /* DataManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagerModel.h; sourceTree = "<group>"; };
+		3D39636219FF3B4B00F6C004 /* DataManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManagerModel.m; sourceTree = "<group>"; };
 		3D4003E319D3BEC3006622E4 /* KHLColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLColor.h; sourceTree = "<group>"; };
 		3D4003E419D3BEC3006622E4 /* KHLColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLColor.m; sourceTree = "<group>"; };
 		3D4003E519D3BEC3006622E4 /* KHLEntertainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLEntertainer.h; sourceTree = "<group>"; };
@@ -635,6 +638,8 @@
 				3D4003E619D3BEC3006622E4 /* KHLEntertainer.m */,
 				3D4003E919D407E2006622E4 /* classifyModel.h */,
 				3D4003EA19D407E2006622E4 /* classifyModel.m */,
+				3D39636119FF3B4B00F6C004 /* DataManagerModel.h */,
+				3D39636219FF3B4B00F6C004 /* DataManagerModel.m */,
 			);
 			path = Model;
 			sourceTree = SOURCE_ROOT;
@@ -1248,6 +1253,7 @@
 				FC834C7A19F0BC40009E17FF /* KHLPICAboutUsViewController.m in Sources */,
 				3D858E1D19E8E023005022BA /* DianboListViewController.m in Sources */,
 				3D858E1519E8DFD7005022BA /* VideoLiveViewController.m in Sources */,
+				3D39636319FF3B4B00F6C004 /* DataManagerModel.m in Sources */,
 				3D44757719C984AC00D9B2B1 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				FC61088B19F4C2A60057BA0E /* KHLPICProfileViewController.m in Sources */,
 			);
