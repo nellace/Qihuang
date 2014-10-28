@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+#import "KHLDataManager.h"
 
 @interface RegisterViewController ()
 
@@ -55,6 +56,18 @@
     [super viewDidLoad];
     [self setGender:GENDER_MALE];
     [self setLicenseAgreed:TRUE];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Register notification..
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerNotified:) name:@"KHLNotiRegistered" object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // Remove notification..
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiRegistered" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,7 +122,40 @@
 
 - (IBAction)pressConfirmRegistrationButton:(UIButton *)sender
 {
-    NSLog(@"press confirm registration button");
+    if ([[self.nicknameTextField text] isEqualToString:@""]
+        || [[self.passwordTextField text] isEqualToString:@""]
+        || [[self.confirmPasswordTextField text] isEqualToString:@""]
+        || [[self.emailTextField text] isEqualToString:@""]) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入完整的信息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    } else if (![[self.passwordTextField text] isEqualToString:[self.confirmPasswordTextField text]]) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"两次密码输入不一致" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    } else {
+        NSString *username = [self.nicknameTextField text];
+        NSString *password = [self.passwordTextField text];
+        NSString *gender = (self.gender == GENDER_MALE ? @"1" : @"2");
+        NSString *email = [self.emailTextField text];
+        [[KHLDataManager instance] registerHUDHolder:self.view username:username password:password gender:gender email:email];
+    }
+}
+
+
+
+#pragma mark - NOTIFICATION METHODES
+
+- (void)registerNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = [notification object];
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSLog(@"注册成功。uid=%@", [dict objectForKey:@"result"]);
+        [self.navigationController popViewControllerAnimated:TRUE];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台出错" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
 }
 
 
