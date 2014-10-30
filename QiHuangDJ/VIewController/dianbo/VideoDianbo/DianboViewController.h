@@ -8,6 +8,6 @@
 
 #import "MQLCustomViewController.h"
 
-@interface DianboViewController : MQLCustomViewController <UITableViewDataSource,UITableViewDelegate>
+@interface DianboViewController : MQLCustomViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
 @end

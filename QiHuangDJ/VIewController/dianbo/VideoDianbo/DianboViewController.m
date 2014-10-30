@@ -9,6 +9,10 @@
 #import "DianboViewController.h"
 #import "DianboCell.h"
 @interface DianboViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *shuruTextFiled;
+@property (weak, nonatomic) IBOutlet UIView *inputView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeight;
+
 
 @end
 
@@ -31,6 +35,13 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -60,7 +71,6 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil]lastObject];
     }
-    
     return cell;
 }
 
@@ -70,4 +80,59 @@
     return 110.0f;
 }
 
+# pragma mark Button Method
+- (IBAction)discussMehod:(id)sender {
+    [self.shuruTextFiled becomeFirstResponder];
+}
+- (IBAction)fabiaopinglunMethod:(id)sender {
+}
+
+# pragma mark textFiledCreateUI
+- (void)textFiledCreateUI {
+    
+}
+# pragma mark TextFiledDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
+- (void)changeKeyboardHeight:(NSNotification *)aNotification {
+    //获取到键盘frame 变化之前的frame
+    NSValue  *keyboardBeginBounds = [[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect beginRect = [keyboardBeginBounds CGRectValue];
+    
+    //获取到键盘frame变化之后的frame
+    NSValue *keyboardEndBounds = [[aNotification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect endRect = [keyboardEndBounds CGRectValue];
+    
+    CGFloat deltaY=endRect.origin.y-beginRect.origin.y;
+    //拿frame变化之后的origin.y-变化之前的origin.y，其差值(带正负号)就是我们self.view的y方向上的增量
+    
+
+
+    [CATransaction begin];
+    [UIView animateWithDuration:0.3f animations:^{
+        self.inputView.frame = CGRectMake(self.inputView.frame.origin.x
+                                          ,253-100, self.inputView.frame.size.width, self.inputView.frame.size.height);
+        self.keyboardHeight.constant = -deltaY;
+
+        [self.view updateConstraints];
+    
+    } completion:^(BOOL finished) {
+
+    }];
+
+    [CATransaction commit];
+}
+
+- (void)viewWillLayoutSubviews {
+
+}
 @end
