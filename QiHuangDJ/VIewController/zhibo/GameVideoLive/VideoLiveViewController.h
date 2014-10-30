@@ -8,6 +8,6 @@
 
 #import "MQLCustomViewController.h"
 
-@interface VideoLiveViewController : MQLCustomViewController
+@interface VideoLiveViewController : MQLCustomViewController 
 
 @end

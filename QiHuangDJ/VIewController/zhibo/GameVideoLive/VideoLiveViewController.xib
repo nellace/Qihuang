@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoLiveViewController">
             <connections>
-                <outlet property="mediaPlayBGView" destination="Hq5-jE-WaL" id="dDF-kw-ARJ"/>
+                <outlet property="inputTextFiled" destination="2jM-Av-2mH" id="1fU-VS-6sN"/>
+                <outlet property="inputViewWithTextFiled" destination="gO4-lr-obG" id="8HZ-6q-5mJ"/>
+                <outlet property="keyboardHeight" destination="oFj-TV-Y57" id="GTR-HW-NMW"/>
+                <outlet property="mediaPlayBGView" destination="ONK-L3-J2d" id="Vdi-8c-Y07"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,22 +20,182 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hq5-jE-WaL">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="469"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x9V-Fa-HaM" userLabel="pinglun Table View">
+                    <rect key="frame" x="0.0" y="209" width="320" height="359"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="nzN-vY-Qi1"/>
+                        <outlet property="delegate" destination="-1" id="hkt-5J-yfG"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gO4-lr-obG" userLabel="inputVIew">
+                    <rect key="frame" x="0.0" y="568" width="320" height="37"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="zhibo_jubao_duigou.png" translatesAutoresizingMaskIntoConstraints="NO" id="sBp-uw-Jl7">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="469"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="zhibo_huifukuang.png" translatesAutoresizingMaskIntoConstraints="NO" id="0nA-aV-7o9">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2jM-Av-2mH">
+                            <rect key="frame" x="8" y="6" width="258" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="mRf-LY-Hxz"/>
+                            </connections>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEL-6m-U1Q">
+                            <rect key="frame" x="269" y="7" width="46" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="评论">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEg-Nq-f2y" userLabel="infomation View">
+                    <rect key="frame" x="0.0" y="153" width="320" height="55"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="视频:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="34" translatesAutoresizingMaskIntoConstraints="NO" id="2CI-Bj-jbg">
+                            <rect key="frame" x="11" y="2" width="34" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="视频名称   视频名称   视频名称   视频名称   " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEg-5N-b3r">
+                            <rect key="frame" x="44" y="2" width="276" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="时间：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSx-V4-8tL">
+                            <rect key="frame" x="11" y="22" width="41" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="浏览量：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scr-0l-JOr">
+                            <rect key="frame" x="116" y="22" width="48" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2014-10-28" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdh-Nv-NfJ">
+                            <rect key="frame" x="43" y="22" width="65" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="854" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72P-zb-q7T">
+                            <rect key="frame" x="159" y="25" width="40" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="编辑：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8t-VT-75I">
+                            <rect key="frame" x="194" y="22" width="36" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="雅泰" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYq-Ei-n6L">
+                            <rect key="frame" x="228" y="22" width="48" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="rm4-Gz-l1F"/>
+                    </constraints>
+                </view>
+                <view alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Di-EP-X9g" userLabel="bottom bar View">
+                    <rect key="frame" x="0.0" y="531" width="320" height="37"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vg7-94-E7u">
+                            <rect key="frame" x="16" y="9" width="9" height="22"/>
+                            <state key="normal" image="zhibo_btn_fanhui.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="returnRootHomePage:" destination="-1" eventType="touchUpInside" id="w8Q-6a-CwI"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="232" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="YlA-hS-UeZ">
+                            <rect key="frame" x="262" y="11" width="56" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgT-dW-QTS">
+                            <rect key="frame" x="233" y="11" width="26" height="22"/>
+                            <state key="normal" image="zhibo_btn_zan.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="zhibo_icon_zan_press.png"/>
+                            <connections>
+                                <action selector="zanMethod:" destination="-1" eventType="touchUpInside" id="td1-Dd-sKT"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6z-RH-uzx" userLabel="discuss Btn">
+                            <rect key="frame" x="157" y="11" width="19" height="22"/>
+                            <state key="normal" image="zhibo_btn_huifu.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="pinglunMethondWithBottomBar:" destination="-1" eventType="touchUpInside" id="mwP-Fr-Xow"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="f0G-w0-BEv"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONK-L3-J2d" userLabel="media player View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ONK-L3-J2d" secondAttribute="height" multiplier="160:77" id="bf6-b6-KFF"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ONK-L3-J2d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1Xn-1L-ZFK"/>
+                <constraint firstAttribute="bottom" secondItem="0Di-EP-X9g" secondAttribute="bottom" id="AKg-sH-3I1"/>
+                <constraint firstAttribute="trailing" secondItem="kEg-Nq-f2y" secondAttribute="trailing" id="Fl0-wl-QDp"/>
+                <constraint firstItem="gO4-lr-obG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HFj-YY-hYm"/>
+                <constraint firstItem="x9V-Fa-HaM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JvD-Wx-hx8"/>
+                <constraint firstItem="x9V-Fa-HaM" firstAttribute="top" secondItem="kEg-Nq-f2y" secondAttribute="bottom" constant="1" id="KyP-4P-z6e"/>
+                <constraint firstAttribute="trailing" secondItem="x9V-Fa-HaM" secondAttribute="trailing" id="RSA-lS-nR3"/>
+                <constraint firstItem="gO4-lr-obG" firstAttribute="height" secondItem="0Di-EP-X9g" secondAttribute="height" id="TFm-9h-6Q0"/>
+                <constraint firstAttribute="trailing" secondItem="0Di-EP-X9g" secondAttribute="trailing" id="XF2-Mt-heh"/>
+                <constraint firstItem="kEg-Nq-f2y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YyO-cR-gVc"/>
+                <constraint firstItem="0Di-EP-X9g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZHJ-3j-z9M"/>
+                <constraint firstAttribute="bottom" secondItem="x9V-Fa-HaM" secondAttribute="bottom" id="Zai-hg-z5r"/>
+                <constraint firstItem="kEg-Nq-f2y" firstAttribute="top" secondItem="ONK-L3-J2d" secondAttribute="bottom" constant="-1" id="aao-nO-gNQ"/>
+                <constraint firstAttribute="trailing" secondItem="ONK-L3-J2d" secondAttribute="trailing" id="kPf-tS-C4R"/>
+                <constraint firstAttribute="trailing" secondItem="gO4-lr-obG" secondAttribute="trailing" id="l9Q-oD-CKE"/>
+                <constraint firstItem="gO4-lr-obG" firstAttribute="top" secondItem="x9V-Fa-HaM" secondAttribute="bottom" id="oFj-TV-Y57"/>
+                <constraint firstItem="0Di-EP-X9g" firstAttribute="top" secondItem="x9V-Fa-HaM" secondAttribute="bottom" constant="-37" id="p7c-zb-nMR"/>
+                <constraint firstItem="ONK-L3-J2d" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tKQ-fU-Tsv"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-891" y="203"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="p7c-zb-nMR"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="-1490" y="-102"/>
         </view>
     </objects>
     <resources>
-        <image name="zhibo_jubao_duigou.png" width="18" height="15"/>
+        <image name="zhibo_btn_fanhui.png" width="9" height="16"/>
+        <image name="zhibo_btn_huifu.png" width="19" height="17"/>
+        <image name="zhibo_btn_zan.png" width="17" height="15"/>
+        <image name="zhibo_huifukuang.png" width="320" height="40"/>
+        <image name="zhibo_icon_zan_press.png" width="16" height="14"/>
     </resources>
 </document>

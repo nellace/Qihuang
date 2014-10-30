@@ -115,8 +115,6 @@
     CGFloat deltaY=endRect.origin.y-beginRect.origin.y;
     //拿frame变化之后的origin.y-变化之前的origin.y，其差值(带正负号)就是我们self.view的y方向上的增量
     
-
-
     [CATransaction begin];
     [UIView animateWithDuration:0.3f animations:^{
         self.inputView.frame = CGRectMake(self.inputView.frame.origin.x
@@ -132,7 +130,4 @@
     [CATransaction commit];
 }
 
-- (void)viewWillLayoutSubviews {
-
-}
 @end
