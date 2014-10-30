@@ -48,6 +48,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+//        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"KHLPIUID"];
         self.uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
         self.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
         [self setDataRequestTag:TRUE];
@@ -125,7 +126,7 @@
         self.templateUsingState = 0;
     }
     
-    [self refreshTableView];
+    //[self refreshTableView];
 }
 
 - (NSMutableArray *)recommends
