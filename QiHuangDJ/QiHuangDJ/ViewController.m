@@ -32,6 +32,22 @@
     if (self) {
         // Custom initialization
         isLogin = NO;  //判断是否登录过
+        
+        BOOL autoLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"KHLAutoLogin"];
+        if (!autoLogin) {
+            NSLog(@"Not auto login, clear user defaults..");
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIUID"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIToken"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIUsername"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIPhoneNumber"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIName"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIGender"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIBirthday"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIBlog"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIRegisterTime"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIEmail"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIQQ"];
+        }
     }
     return self;
 }
