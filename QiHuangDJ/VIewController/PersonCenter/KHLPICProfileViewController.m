@@ -25,9 +25,18 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *birthDatePicker;
 @property (weak, nonatomic) IBOutlet UILabel *birthDateLabel;
 
-@property (nonatomic) NSInteger gender;
-@property (weak, nonatomic) NSDate *birthdate;
-@property (weak, nonatomic) NSDate *currentPickedDate;
+@property (nonatomic) NSString *nickname;
+@property (nonatomic) NSString *phone;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *location;
+@property (nonatomic) NSString *gender;
+@property (nonatomic) NSString *birthdate;
+@property (nonatomic) NSString *blog;
+@property (nonatomic) NSString *regtime;
+@property (nonatomic) NSString *email;
+@property (nonatomic) NSString *qq;
+
+@property (nonatomic) NSDate *currentPickedDate;
 
 @property (nonatomic) CGFloat topOffset;
 @property (nonatomic) CGFloat keyHeight;
@@ -35,6 +44,12 @@
 @end
 
 @implementation KHLPICProfileViewController
+
+#define BIRTHDAY_FORMAT @"yyyy-MM-dd"
+
+#define GENDER_MALE @"1"
+#define GENDER_FEMALE @"2"
+#define GENDER_UNSPECIFIED @"3"
 
 
 
@@ -53,9 +68,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
-    // Unregister keyboard notifications..
-    [self unregisterNotification];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -65,16 +77,94 @@
     [self setFanhui];
     [self drawRightNavigationButton];
     
+    // Load initial data..
+    [self loadPIDataToRefreshView];
+    
     // Set initial keyboard height..
     [self setKeyHeight:253];
     
-    // Register keyboard notifications..
+    // Register notification..
     [self registerNotification];
     
     // Configure birthdate picker..
     [self.birthDatePickerHolderView setHidden:TRUE];
     [self.birthDatePicker setMaximumDate:[NSDate date]];
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // Remove notification..
+    [self unregisterNotification];
+}
+
+
+
+#pragma mark - ATTRIBUTES GETTER AND SETTER
+
+@synthesize gender = _gender;
+@synthesize birthdate = _birthdate;
+
+- (void)setGender:(NSString *)gender
+{
+    if ([gender isEqualToString:GENDER_MALE]) {
+        [self.genderLabel setText:@"男"];
+    } else {
+        [self.genderLabel setText:@"女"];
+    }
+    
+    _gender = gender;
+}
+
+- (void)setBirthdate:(NSString *)birthdate
+{
+    if (!birthdate) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:BIRTHDAY_FORMAT];
+        _birthdate = [formatter stringFromDate:[NSDate date]];
+    } else _birthdate = birthdate;
+}
+
+- (NSString *)phone
+{
+    if (!_phone) _phone = @"";
+    return _phone;
+}
+
+- (NSString *)name
+{
+    if (!_name) _name = @"";
+    return _name;
+}
+- (NSString *)location
+{
+    if (!_location) _location = @"";
+    return _location;
+}
+
+- (NSString *)gender
+{
+    if (!_gender) _gender = @"";
+    return _gender;
+}
+
+- (NSString *)birthdate
+{
+    if (!_birthdate) _birthdate = @"";
+    return _birthdate;
+}
+
+- (NSString *)blog
+{
+    if (!_blog) _blog = @"";
+    return _blog;
+}
+
+- (NSString *)qq
+{
+    if (!_qq) _qq = @"";
+    return _qq;
+}
+
 
 
 
@@ -92,6 +182,28 @@
     [btn addTarget:self action:@selector(pressSaveButton) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightNavigationBarButton = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = rightNavigationBarButton;
+}
+
+- (void)loadPIDataToRefreshView
+{
+    [self setNickname:[[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUsername"]];
+    [self setPhone:[[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIPhoneNumber"]];
+    [self setName:[[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIName"]];
+    [self setGender:[[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIGender"]];
+    [self setBirthdate:[[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIBirthday"]];
+    [self setBlog:[[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIBlog"]];
+    [self setRegtime:[[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIRegisterTime"]];
+    [self setEmail:[[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIEmail"]];
+    [self setQq:[[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIQQ"]];
+    
+    [self.nicknameLabel setText:self.nickname];
+    [self.phoneTextField setText:self.phone];
+    [self.nameTextField setText:self.name];
+    [self.birthDateLabel setText:self.birthdate];
+    [self.blogTextField setText:self.blog];
+    [self.registerDateLabel setText:self.regtime];
+    [self.emailLabel setText:self.email];
+    [self.qqTextField setText:self.qq];
 }
 
 
@@ -122,12 +234,30 @@
 
 - (void)pressSaveButton
 {
-    NSLog(@"保个存呀");
+    self.nickname = self.nicknameLabel.text;
+    self.phone = self.phoneTextField.text;
+    self.name = self.nameTextField.text;
+    self.blog = self.blogTextField.text;
+    self.qq = self.qqTextField.text;
+    
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+//    NSLog(@"\nuid=%@\ntoken=%@\nnickname=%@\nphone=%@\nname=%@\nblog=%@\nqq=%@\nbirthday=%@\ngender=%@", uid, token, self.nickname, self.phone, self.name, self.blog, self.qq, self.birthdate, self.gender);
+    if ((!uid) || (!token)) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"token获取失败，请重新登录。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        return;
+    }
+    
+    [[KHLDataManager instance] modifyPersonalInformationHUDHolder:self.view uid:uid phone:self.phone name:self.name gender:self.gender birthday:self.birthdate blog:self.blog qq:self.qq token:token];
 }
 
 - (IBAction)pressGenderToggleButton:(UIButton *)sender
 {
-    
+    if ([self.gender isEqualToString:GENDER_MALE]) {
+        [self setGender:GENDER_FEMALE];
+    } else {
+        [self setGender:GENDER_MALE];
+    }
 }
 
 - (IBAction)pressBirthdatePickButton:(UIButton *)sender
@@ -148,8 +278,11 @@
     } else {
         // Create date formatter and transform string into date..
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy年MM月dd日"];
-        NSDate *stringDate = [formatter dateFromString:self.birthDateLabel.text];
+        [formatter setDateFormat:BIRTHDAY_FORMAT];
+        NSDate *stringDate = [formatter dateFromString:self.birthdate];
+        if (!stringDate) {
+            stringDate = [NSDate date];
+        }
         [self.birthDatePicker setDate:stringDate];
         [self.birthDatePickerHolderView setHidden:FALSE];
     }
@@ -158,22 +291,20 @@
 - (IBAction)changeBirthDatePicker:(UIDatePicker *)sender
 {
     self.currentPickedDate = sender.date;
-    NSLog(@"picked: %@", self.currentPickedDate);
 }
 
 - (IBAction)pressConfirmPickedBirthDate:(UIButton *)sender
 {
-    NSLog(@"birthdate confirm");
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy年MM月dd日"];
-    self.birthdate = self.birthDatePicker.date;
+    [formatter setDateFormat:BIRTHDAY_FORMAT];
+    self.birthdate = [formatter stringFromDate:self.birthDatePicker.date];
     
-    self.birthDateLabel.text = [formatter stringFromDate:self.birthdate];
+    self.birthDateLabel.text = self.birthdate;
 }
 
 - (IBAction)pressCancelPickedBirthDate:(UIButton *)sender
 {
-    NSLog(@"birthdate cancel");
+    
 }
 
 #pragma mark - TEXT FIELD DELEGATE
@@ -187,31 +318,12 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-//    CGRect frame = textField.frame;
-//    int offset = frame.origin.y + frame.size.height - (self.view.frame.size.height - 216);
-//    NSLog(@"offset: %d, 1: %.0f, 2: %.0f", offset, (frame.origin.y + frame.size.height), (self.view.frame.size.height - 216));
-//    NSTimeInterval animationDuration = 0.30f;
-//    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
-//    [UIView setAnimationDuration:animationDuration];
-//    if (offset > 0) {
-//        NSLog(@"孤执行了！");
-//        self.view.frame = CGRectMake(0, -offset, self.view.frame.size.width, self.view.frame.size.height);
-//    }
-//    [UIView commitAnimations];
-    
-//    for (UIView *v = textField, int i = 0; [v isEqual:self.view]; v = [v superview], i++) {
-//        NSLog(@"");
-//    }
-//    NSLog(@"self.view (%.0f, %.0f) [%.0f x %.0f]", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     self.topOffset = self.view.frame.origin.y;
-//    self.keyHeight = 250;
     
     UIView *v = textField;
     CGFloat offset = v.frame.size.height + v.frame.origin.y;
     for (int i = 0; ![v isEqual:self.view]; i++) {
         v = [v superview];
-        
-//        NSLog(@"No.%d, (frame.y = %.0f)", i, v.frame.origin.y);
         
         offset += v.frame.origin.y;
         if ([v isKindOfClass:[UIScrollView class]]) {
@@ -220,10 +332,8 @@
         }
     }
     offset -= self.topOffset;
-    NSLog(@" == final offset: %.0f", offset);
     CGFloat dis = self.view.frame.size.height - offset - self.keyHeight;
     if (dis < 0) {
-//        NSLog(@"孤执行了！");
         [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
         [UIView setAnimationDuration:0.50f];
         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + dis, self.view.frame.size.width, self.view.frame.size.height);
@@ -264,13 +374,19 @@
 
 
 
-#pragma mark - KEYBOARD NOTIFICATION
+#pragma mark - NOTIFICATION METHODES
 
 - (void)registerNotification
 {
+    // Keyboard notifications..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    // Custom data notification..
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(personalInformationModificationNotified:) name:@"KHLNotiPersonalInformationModify" object:nil];
+    
+    
 }
 
 - (void)unregisterNotification
@@ -278,6 +394,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiPersonalInformationModify" object:nil];
 }
 
 - (void)keyboardWillShow: (NSNotification *)notification
@@ -326,6 +443,32 @@
     
     if (self.keyHeight < height)
         self.keyHeight = height;
+}
+
+- (void)personalInformationModificationNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = [notification object];
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSLog(@"个人资料修改成功。");
+        [[NSUserDefaults standardUserDefaults] setObject:self.nickname forKey:@"KHLPIUsername"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.phone forKey:@"KHLPIPhoneNumber"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.name forKey:@"KHLPIName"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.gender forKey:@"KHLPIGender"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.birthdate forKey:@"KHLPIBirthday"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.blog forKey:@"KHLPIBlog"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.regtime forKey:@"KHLPIRegisterTime"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.email forKey:@"KHLPIEmail"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.qq forKey:@"KHLPIQQ"];
+        [self.navigationController popViewControllerAnimated:TRUE];
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
 }
 
 

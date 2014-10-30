@@ -61,8 +61,19 @@
 
 - (IBAction)pressLogOutButton:(UIButton *)sender
 {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIUID"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIToken"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIUsername"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIPhoneNumber"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIName"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIGender"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIBirthday"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIBlog"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIRegisterTime"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIEmail"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIQQ"];
+    
     [self.delegate onLogoutSuccess];
-    //[self dismissViewControllerAnimated:TRUE completion:nil];
     [self.navigationController popViewControllerAnimated:TRUE];
 }
 
