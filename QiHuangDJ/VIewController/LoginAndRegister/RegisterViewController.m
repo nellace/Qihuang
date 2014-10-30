@@ -154,7 +154,7 @@
         NSLog(@"注册成功。uid=%@", [dict objectForKey:@"result"]);
         [self.navigationController popViewControllerAnimated:TRUE];
     } else {
-        [[[UIAlertView alloc] initWithTitle:@"后台出错" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
 }
 

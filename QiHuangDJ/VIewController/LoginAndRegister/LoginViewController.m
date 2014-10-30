@@ -21,7 +21,7 @@
 
 
 
-#pragma mark VIEW CONTROLLER LIFECYCLE
+#pragma mark - VIEW CONTROLLER LIFECYCLE
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,11 +65,12 @@
 
 
 
-# pragma mark ATTRIBUTES GETTER AND SETTER
+# pragma mark - ATTRIBUTES GETTER AND SETTER
 
 - (void)setAutoLogin:(BOOL)bAutoLogin
 {
     _bAutoLogin = bAutoLogin;
+    [[NSUserDefaults standardUserDefaults] setBool:bAutoLogin forKey:@"KHLAutoLogin"];
     if (_bAutoLogin) {
         [self.autoLoginButton setImage:[UIImage imageNamed:@"denglu_zidongdenglu_press.png"]
                               forState:UIControlStateNormal];
@@ -79,12 +80,11 @@
     }
 }
 
-# pragma mark USER INTERACTION RESPONSE
+# pragma mark - USER INTERACTION RESPONSE
 
 - (IBAction)pressCancel:(UIButton *)sender
 {
     [self.delegate onLoginFailed];
-    //[self dismissViewControllerAnimated:TRUE completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -96,8 +96,8 @@
         return;
     }
     
-    if (!(self.usernameTextField.text.length >= 3 && self.usernameTextField.text.length <= 9)) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名长度3-9个字符" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    if (!(self.usernameTextField.text.length >= 3 && self.usernameTextField.text.length <= 21)) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"用户名长度3-21个字符" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         return;
     }
@@ -155,11 +155,9 @@
     
     if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"])
     {
-        //[[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-        
         NSDictionary *result = [dict objectForKey:@"result"];
         LoginInterface *interface = [[LoginInterface alloc] init];
-        interface.uid = [NSString stringWithFormat:@"%@", [result objectForKey:@"id"]];
+        interface.uid = [NSString stringWithFormat:@"%@", [result objectForKey:@"uid"]];
         interface.token = [NSString stringWithFormat:@"%@", [result objectForKey:@"token"]];
         interface.username = [NSString stringWithFormat:@"%@", [result objectForKey:@"username"]];
         interface.phone = [NSString stringWithFormat:@"%@", [result objectForKey:@"mobile"]];
@@ -183,17 +181,19 @@
         [[NSUserDefaults standardUserDefaults] setObject:interface.email forKey:@"KHLPIEmail"];
         [[NSUserDefaults standardUserDefaults] setObject:interface.qq forKey:@"KHLPIQQ"];
         
+        if ((!interface.uid) || (!interface.token)) {
+            [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:@"获取用户token失败。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
+        
         [self.delegate onLoginSuccess];
         [self.navigationController popViewControllerAnimated:YES];
         
-        //从NSUserDefaults中存数据
-        //[[NSUserDefaults standardUserDefaults] setObject:login.phone forKey:@"mobile"];
-        //从NSUserDefaults中取数据
-        //[[NSUserDefaults standardUserDefaults] stringForKey:@"mobile"];
     } else if ([[dict objectForKey:@"resultCode"] isEqualToString:@"2"]) {
         [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:@"登录失效，请重新登录。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        
     } else {
-        [[[UIAlertView alloc] initWithTitle:@"后台出错" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
 }
 
