@@ -13,11 +13,17 @@
 #import "LoginViewController.h"
 #import "PersonCenterViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *anchorView;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *headerScrollView;
+@property (weak, nonatomic) IBOutlet UIPageControl *headerPageControl;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *backdropImageViewCollection;
+
+@property (nonatomic, weak) NSTimer *timer;
+@property (nonatomic, strong) NSMutableArray *backdropImages;
+@property (nonatomic, strong) NSMutableArray *loopingImages;
+@property (nonatomic, strong) NSString *version;
 
 @end
 
@@ -26,13 +32,33 @@
     BOOL isLogin;
 }
 
+
+
+
+#pragma mark - DEFINITION AND ENUMERATION
+
+#define CAROUSEL_SCROLLING_SPEED 0.65f
+#define CAROUSEL_SCROLLING_DURATION 3.0f
+
+typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
+    KHLHomeBackdropTagLive = 0,
+    KHLHomeBackdropTagEntertainers = 1,
+    KHLHomeBackdropTagHearthStone = 2,
+    KHLHomeBackdropTagLOL = 3,
+    KHLHomeBackdropTagDotA = 4
+};
+
+
+
+#pragma mark - VIEW CONTROLLER LIFECYCLE
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         isLogin = NO;  //判断是否登录过
         
+        // If not auto login configured, remove user defaults..
         BOOL autoLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"KHLAutoLogin"];
         if (!autoLogin) {
             NSLog(@"Not auto login, clear user defaults..");
@@ -49,21 +75,62 @@
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIQQ"];
         }
     }
+    
     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Draw background image..
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"nav_bg@2x.png"]]];
+    
+    // Register notification..
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homepageImagesNotified:) name:@"KHLNotiHomepageImagesAcquired" object:nil];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // Remove notification..
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiHomepageImagesAcquired" object:nil];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     classify = [ClassifyViewController new];
     [self navUI];
+    
+    // Request homepage image data..
+    [[KHLDataManager instance] homepageImagesHUDHolder:self.view];
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+
+
+#pragma mark - ATTRIBUTES GETTER AND SETTER
+
+- (NSMutableArray *)loopingImages
+{
+    if (!_loopingImages)
+        _loopingImages = [[NSMutableArray alloc] init];
+    return _loopingImages;
+}
+
+- (NSMutableArray *)backdropImages
+{
+    if (!_backdropImages)
+        _backdropImages = [[NSMutableArray alloc] init];
+    return _backdropImages;
+}
+
+
+
+#pragma mark - CUSTOM LAYOUT METHODES
 
 - (void)navUI {
     //左侧图片
@@ -84,42 +151,233 @@
     [leftBtn setCustomView:btn];
     self.navigationItem.rightBarButtonItem = leftBtn;
 }
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-}
 
-- (void)settingBtnMethond {
-
+- (void)settingBtnMethond
+{
     PersonCenterViewController * personCenterVC = [[PersonCenterViewController alloc] initWithNibName:@"PersonCenterViewController" bundle:nil];
     [self.navigationController pushViewController:personCenterVC animated:YES];
-    
 }
+
+- (void)configureCarousel: (UIScrollView *)carousel
+                indicator: (UIPageControl *)indicator
+        withLoopingThings: (NSMutableArray *)loopings
+{
+    // Configure page controller..
+    indicator.numberOfPages = [loopings count];
+    
+    // Calculate frame..
+    CGFloat width = carousel.frame.size.width;
+    CGFloat height = carousel.frame.size.height;
+    CGFloat y = 0;
+    
+    // Create images..
+    for (int i = 0; i < [loopings count]; i++) {
+        UIImageView *imageView = [[UIImageView alloc] init];
+        CGFloat x = i * width;
+        imageView.frame = CGRectMake(x, y, width, height);
+        // using testing image..
+        imageView.image = [UIImage imageNamed:@"mings-ships-sailing"];
+//        HomepageImagesInterface *looping = [loopings objectAtIndex:i];
+//        [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageUrl]];
+        carousel.showsHorizontalScrollIndicator = NO;
+        [carousel addSubview:imageView];
+    }
+    
+    // Configure scrolling content..
+    [carousel setContentSize:CGSizeMake([loopings count] * width, 0)];
+    
+    // Enable paging..
+    [carousel setPagingEnabled:TRUE];
+    
+    // Configure listener for scroll view..
+    [carousel setDelegate:self];
+    
+    // Start timer..
+    [self openTimer:self.timer duration:CAROUSEL_SCROLLING_DURATION];
+}
+
+- (void)nextImage
+{
+    [self nextImageCarousel:self.headerScrollView indicator:self.headerPageControl withLoopingThings:self.loopingImages inSpeed:CAROUSEL_SCROLLING_SPEED];
+}
+
+- (void)nextImageCarousel: (UIScrollView *)carousel
+                indicator: (UIPageControl *)indicator
+        withLoopingThings: (NSMutableArray *)loopings
+                  inSpeed: (NSTimeInterval)speed
+{
+    NSInteger page = indicator.currentPage;
+    if (page == loopings.count - 1) {
+        page = 0;
+    } else {
+        page++;
+    }
+    
+    // Scroll carousel..
+    CGFloat x = page * carousel.frame.size.width;
+    [UIView beginAnimations:@"MoveContentOffset" context:nil];
+    [UIView setAnimationDuration:speed];
+    carousel.contentOffset = CGPointMake(x, 0);
+    [UIView commitAnimations];
+}
+
+
+
+#pragma mark - USER INTERACTION RESPONSE
+
 - (IBAction)zhibo:(id)sender {
     LiveListViewController * videoLiveVC = [[LiveListViewController alloc] initWithNibName:@"LiveListViewController" bundle:nil];
     [self.navigationController pushViewController:videoLiveVC animated:YES];
 }
 
-- (IBAction)qihuangyiren:(id)sender {
+- (IBAction)qihuangyiren:(id)sender
+{
     SuperStartViewController * superVC = [[SuperStartViewController alloc] initWithNibName:@"SuperStartViewController" bundle:nil];
     [self.navigationController pushViewController:superVC animated:YES];
 }
-- (IBAction)LOL:(id)sender {
+
+- (IBAction)LOL:(id)sender
+{
     classify.title = @"英雄联盟";
     [self.navigationController pushViewController:classify animated:YES];
 }
-- (IBAction)LSchuanshuo:(id)sender {
+
+- (IBAction)LSchuanshuo:(id)sender
+{
         classify.title = @"炉石传说";
         [self.navigationController pushViewController:classify animated:YES];
 }
-- (IBAction)dota2:(id)sender {
+
+- (IBAction)dota2:(id)sender
+{
         classify.title = @"刀塔2";
         [self.navigationController pushViewController:classify animated:YES];
 }
 
-- (void)didReceiveMemoryWarning
+
+
+#pragma mark - NOTIFICATION METHODES
+
+- (void)homepageImagesNotified: (NSNotification *)notification
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Base layer..
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        // Result layer..
+        NSDictionary *result = [dict objectForKey:@"result"];
+        if (!result) {
+            NSLog(@"妈蛋，result里没东西。");
+            return;
+        }
+        
+        // Acquire version..
+        self.version = [NSString stringWithFormat:@"%@", [result objectForKey:@"version"]];
+        
+        // Looping images layer..
+        NSDictionary *loopings = [result objectForKey:@"lunboimg"];
+        if (loopings && loopings.count > 0) {
+            [self.loopingImages removeAllObjects];
+            for (NSDictionary *looping in loopings) {
+                HomepageImagesInterface *interface = [[HomepageImagesInterface alloc] init];
+                interface.version = [NSString stringWithFormat:@"%@", [result objectForKey:@"version"]];
+                interface.loopingImageName = [NSString stringWithFormat:@"%@", [looping objectForKey:@"image"]];
+                interface.loopingImageUrl = [NSString stringWithFormat:@"%@", [looping objectForKey:@"url"]];
+                [self.loopingImages addObject:interface];
+            }
+            
+            // Draw looping images to view..
+            [self configureCarousel:self.headerScrollView indicator:self.headerPageControl withLoopingThings:self.loopingImages];
+            
+        } else {
+            NSLog(@"没有接受到任何轮播图！");
+        }
+        
+        // Backdrop images layer..
+        NSDictionary *backdrops = [result objectForKey:@"homebgimg"];
+        if (backdrops && backdrops.count >= self.backdropImageViewCollection.count) {
+            [self.backdropImages removeAllObjects];
+            for (NSDictionary *backdrop in backdrops) {
+                HomepageImagesInterface *interface = [[HomepageImagesInterface alloc] init];
+                interface.version = [NSString stringWithFormat:@"%@", [result objectForKey:@"version"]];
+                interface.backdropImageName = [NSString stringWithFormat:@"%@", [backdrop objectForKey:@"name"]];
+                interface.backdropImageUrl = [NSString stringWithFormat:@"%@", [backdrop objectForKey:@"image"]];
+                interface.backdropImageCategory = [NSString stringWithFormat:@"%@", [backdrop objectForKey:@"cate_id"]];
+                [self.backdropImages addObject:interface];
+            }
+            
+            // Draw backdrop images to view..
+            for (int i = 0; i < self.backdropImageViewCollection.count; i++) {
+                [self.backdropImageViewCollection[i] setImageWithURL:[NSURL URLWithString:[self.backdropImages[i] backdropImageUrl]]];
+            }
+            
+        } else if (backdrops.count < self.backdropImageViewCollection.count) {
+            NSLog(@"背景图数量不足！");
+        } else {
+            NSLog(@"没有接受到背景图！");
+        }
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台出错"
+                                    message:[dict objectForKey:@"reason"]
+                                   delegate:self
+                          cancelButtonTitle:@"确定"
+                          otherButtonTitles:nil, nil] show];    }
 }
+
+
+
+#pragma mark - SCROLL VIEW DELEGATE
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat carouselWidth = scrollView.frame.size.width;
+    CGFloat x = scrollView.contentOffset.x;
+    int page = (x + carouselWidth / 2) / carouselWidth;
+    self.headerPageControl.currentPage = page;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self closeTimer:self.timer];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self openTimer:self.timer duration:CAROUSEL_SCROLLING_DURATION];
+}
+
+
+
+#pragma mark - HEADER CAROUSEL TIMER METHODES
+
+- (void)openTimer: (NSTimer *)timer duration: (NSTimeInterval)duration
+{
+    if (!self.timer) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:duration target:self selector:@selector(nextImage) userInfo:nil repeats:TRUE];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    }
+}
+
+- (void)closeTimer: (NSTimer *)timer
+{
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+}
+
+
+
+
+
+
+
+
 
 @end
