@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="anchorView" destination="eUq-ZH-kh4" id="I2d-rC-haM"/>
+                <outlet property="headerPageControl" destination="1zx-ig-2YG" id="ebA-ud-kvw"/>
                 <outlet property="headerScrollView" destination="SjN-OH-bcf" id="gT6-59-0J5"/>
                 <outlet property="mainScrollView" destination="89f-sG-F2m" id="iJq-bX-rCV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -44,6 +45,9 @@
                                         <constraint firstAttribute="width" secondItem="SjN-OH-bcf" secondAttribute="height" multiplier="16:5" id="EQn-Bz-FdE"/>
                                     </constraints>
                                 </scrollView>
+                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1zx-ig-2YG" userLabel="Header Page Controll">
+                                    <rect key="frame" x="20" y="63" width="280" height="37"/>
+                                </pageControl>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-cavalry-anti-japanese-samurai" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-FT-pIw" userLabel="Live Broadcast Image View">
                                     <rect key="frame" x="0.0" y="100" width="320" height="85"/>
                                     <constraints>
@@ -114,11 +118,14 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="4WU-AD-xm3"/>
+                                <constraint firstItem="1zx-ig-2YG" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" constant="20" symbolic="YES" id="4Wa-gn-yWa"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="6tw-uT-nnX"/>
                                 <constraint firstAttribute="trailing" secondItem="Q68-jv-pSJ" secondAttribute="trailing" id="7f4-Xb-lh3"/>
                                 <constraint firstAttribute="trailing" secondItem="SjN-OH-bcf" secondAttribute="trailing" id="8dQ-cq-IXE"/>
                                 <constraint firstItem="K6J-Kn-ueM" firstAttribute="centerY" secondItem="DHn-6T-3Sh" secondAttribute="centerY" id="C3h-yt-7fd"/>
+                                <constraint firstAttribute="trailing" secondItem="1zx-ig-2YG" secondAttribute="trailing" constant="20" symbolic="YES" id="DDs-d6-cuj"/>
                                 <constraint firstItem="K6J-Kn-ueM" firstAttribute="height" secondItem="DHn-6T-3Sh" secondAttribute="height" id="E2e-EM-ifp"/>
+                                <constraint firstItem="1zx-ig-2YG" firstAttribute="bottom" secondItem="SjN-OH-bcf" secondAttribute="bottom" id="Eds-y0-opm"/>
                                 <constraint firstItem="Sjr-FT-pIw" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="FIT-9b-khK"/>
                                 <constraint firstItem="ch3-tj-caD" firstAttribute="centerY" secondItem="x6d-LO-7XK" secondAttribute="centerY" id="I06-GQ-BEb"/>
                                 <constraint firstItem="K6J-Kn-ueM" firstAttribute="width" secondItem="8VV-Ro-o7w" secondAttribute="width" id="IQz-YJ-WRT"/>
