@@ -16,6 +16,29 @@
 #import "KHLPICSettingsViewController.h"
 #import "KHLPICProfileViewController.h"
 
+#pragma mark - DEFINATION AND ENUMERATION
+
+#define COMMON_ITEM_DIVIDER_HEIGHT (2.0f)
+#define HEADER_VIEW_HEIGHT (240.0f)
+#define RECOMMENDED_INDICATOR_LABEL_HEIGHT (40.0f)
+#define RECOMMENDED_CELL_PROPORTION (105.0f / 320.0f)
+#define RECOMMENDED_LABEL_FONT_PROPORTION (11.0f / 320.0f)
+#define VIDEO_CELL_PROPORTION (90.0f / 320.0f)
+#define VIDEO_THUMB_IMAGE_PROPORTION (120.0f / 90.0f)
+#define VIDEO_MAJOR_TEXT_FONT_PROPORTION (14.0f / 320.0f)
+#define VIDEO_MINOR_TEXT_FONT_PROPORTION (12.0f / 320.0f)
+#define VIDEO_CELL_TEXT_PADDING (6.0f)
+
+typedef NS_ENUM(NSUInteger, KHLPICListState) {
+    KHLPICListStateRecommend = 0,
+    KHLPICListStateSubscription = 1,
+    KHLPICListStateCollection = 2
+};
+
+
+
+#pragma mark - PROPERTIES AND IMPLEMENTATIONS
+
 @interface PersonCenterViewController () <LoginDelegate, LogoutDelegate, KHLPICHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *pageHolder;
 @property (weak, nonatomic) IBOutlet UIView *thumbHolder;
@@ -23,16 +46,18 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, setter = setLogIn:, getter = isLogIn) BOOL bLogIn;
-@property (nonatomic) NSUInteger templateUsingState; // 1 for collection, 2 for subscription, 0 or else for unlogged..
+//@property (nonatomic) NSUInteger templateUsingState; // 1 for collection, 2 for subscription, 0 or else for unlogged..
 @property (nonatomic) CGFloat contentFrameHeight;
 @property (nonatomic, strong) NSString *currentPage;
 @property (nonatomic, strong) NSString *allPages;
 @property (nonatomic, strong) NSMutableArray *recommends;
+@property (nonatomic, strong) NSMutableArray *subscriptions;
+@property (nonatomic, strong) NSMutableArray *collections;
 @property (nonatomic, strong) NSString *uid;
 @property (nonatomic, strong) NSString *token;
-//@property (nonatomic) NSInteger counter;
 
 @property (nonatomic, getter = needRequestData) BOOL dataRequestTag;
+@property (nonatomic) KHLPICListState state;
 
 @property (nonatomic, strong) KHLPICHeaderView *headerView;
 
@@ -42,13 +67,18 @@
 
 
 
+
+
+
+
+
 #pragma mark - VIEW CONTROLLER LIFECYCLE
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-//        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"KHLPIUID"];
+        self.state = KHLPICListStateCollection;
         self.uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
         self.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
         [self setDataRequestTag:TRUE];
@@ -73,12 +103,16 @@
     
     // Register notification..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recommendListNotified:) name:@"KHLNotiRecommendListAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subscriptionListNotified:) name:@"KHLNotiSubscriptionListAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(collectionListNotified:) name:@"KHLNotiCollectionListAcquired" object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     // Remove notification..
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiRecommendListAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiSubscriptionListAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiCollectionListAcquired" object:nil];
 }
 
 - (void)viewDidLayoutSubviews
@@ -98,7 +132,8 @@
         
         // Post data request..
         if (self.isLogIn) {
-            [[KHLDataManager instance] subscriptionListHUDHolder:self.view uid:self.uid token:self.token];
+            //[[KHLDataManager instance] subscriptionListHUDHolder:self.view uid:self.uid token:self.token];
+            [self performSelector:@selector(onPressMyCollectionButton) withObject:nil];
             
         } else {
             [[KHLDataManager instance] recommendListHUDHolder:self.view];
@@ -121,9 +156,10 @@
 {
     _bLogIn = bLogIn;
     if (bLogIn) {
-        
+        if (self.state == KHLPICListStateRecommend)
+            self.state = KHLPICListStateCollection;
     } else {
-        self.templateUsingState = 0;
+        self.state = KHLPICListStateRecommend;
     }
     
     //[self refreshTableView];
@@ -133,6 +169,18 @@
 {
     if (!_recommends) _recommends = [[NSMutableArray alloc] init];
     return _recommends;
+}
+
+- (NSMutableArray *)subscriptions
+{
+    if (!_subscriptions) _subscriptions = [[NSMutableArray alloc] init];
+    return _subscriptions;
+}
+
+- (NSMutableArray *)collections
+{
+    if (!_collections) _collections = [[NSMutableArray alloc] init];
+    return _collections;
 }
 
 
@@ -149,7 +197,6 @@
     [settingsButton addTarget:self action:@selector(pushToSettingsViewController)
              forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *settingsBarButton = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
-    //[btn addTarget:self action:@selector(pushToSettingsViewController) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = settingsBarButton;
 }
 
@@ -161,13 +208,7 @@
     [self.navigationController pushViewController:settingsViewController animated:TRUE];
 }
 
-- (void)onLogoutSuccess
-{
-    NSLog(@"onLogoutSuccess Implementation");
-//    [self setDataRequestTag:FALSE];
-    [self setLogIn:FALSE];
-    [[KHLDataManager instance] recommendListHUDHolder:self.view];
-}
+
 
 # pragma mark - LOGIN VIEW CONTROLLER DELEGATE
 
@@ -176,7 +217,7 @@
     NSLog(@"onLoginSuccess Implementation");
 //    [self setDataRequestTag:FALSE];
     [self setLogIn:TRUE];
-    [[KHLDataManager instance] subscriptionListHUDHolder:self.view uid:self.uid token:self.token];
+    [self performSelector:@selector(onPressMyCollectionButton) withObject:nil];
 }
 
 -(void)onLoginFailed
@@ -184,18 +225,17 @@
     [self setLogIn:FALSE];
 }
 
-#pragma mark - TABLE VIEW PROTOCOL
+- (void)onLogoutSuccess
+{
+    NSLog(@"onLogoutSuccess Implementation");
+//    [self setDataRequestTag:FALSE];
+    [self setLogIn:FALSE];
+    [[KHLDataManager instance] recommendListHUDHolder:self.view];
+}
 
-#define COMMON_ITEM_DIVIDER_HEIGHT (2.0f)
-#define HEADER_VIEW_HEIGHT (240.0f)
-#define RECOMMENDED_INDICATOR_LABEL_HEIGHT (40.0f)
-#define RECOMMENDED_CELL_PROPORTION (105.0f / 320.0f)
-#define RECOMMENDED_LABEL_FONT_PROPORTION (11.0f / 320.0f)
-#define VIDEO_CELL_PROPORTION (90.0f / 320.0f)
-#define VIDEO_THUMB_IMAGE_PROPORTION (120.0f / 90.0f)
-#define VIDEO_MAJOR_TEXT_FONT_PROPORTION (14.0f / 320.0f)
-#define VIDEO_MINOR_TEXT_FONT_PROPORTION (12.0f / 320.0f)
-#define VIDEO_CELL_TEXT_PADDING (6.0f)
+
+
+#pragma mark - TABLE VIEW PROTOCOL
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -231,10 +271,17 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (!self.isLogIn) {
-        NSLog(@"size: %lu, line: %lu", [self.recommends count], [self.recommends count] / 2 + ([self.recommends count] % 2 == 0 ? 0 : 1) + 1);
         return [self.recommends count] / 2 + ([self.recommends count] % 2 == 0 ? 0 : 1) + 1;
+    } else if (self.state == KHLPICListStateSubscription) {
+        return self.subscriptions.count;
+    } else if (self.state == KHLPICListStateCollection) {
+        return self.collections.count;
+    } else {
+        NSLog(@"will never appear..");
+        return 8;
     }
-    return 8;
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -250,29 +297,47 @@
             viCell = [[[NSBundle mainBundle] loadNibNamed:@"KHLPICVideoItemCell" owner:self options:nil] firstObject];
         }
         
-        // Configure thumb image view..
-        if (indexPath.row % 3 == 0) {
-            [viCell.thumbImageView setImage:[UIImage imageNamed:@"mings-cavalry-anti-japanese-samurai"]];
-        } else if (indexPath.row % 3 == 1) {
-            [viCell.thumbImageView setImage:[UIImage imageNamed:@"mings-student-on-journey"]];
-        } else {
-            [viCell.thumbImageView setImage:[UIImage imageNamed:@"mings-ships-sailing"]];
-        }
-        
         // Configure text attributes..
         UIFont *majorFont = [UIFont systemFontOfSize:(self.view.frame.size.width * VIDEO_MAJOR_TEXT_FONT_PROPORTION)];
         UIFont *minorFont = [UIFont systemFontOfSize:(self.view.frame.size.width * VIDEO_MINOR_TEXT_FONT_PROPORTION)];
         [viCell.browseCountingLabel setFont:minorFont];
         [viCell.dateLabel setFont:minorFont];
-        [viCell.browseCountingLabel setText:@"浏览量：17"];
-        [viCell.dateLabel setText:@"1599-05-21"];
         
         // Configure title label..
         CGFloat subscribedTextWidth = viCell.dateLabel.frame.size.width;
         CGFloat subscribedTextHeight = viCell.frame.size.height - viCell.dateLabel.frame.size.height;
-        NSString *description = @"霓为衣兮风为马。";
-        if (indexPath.row % 3 == 0) description = @"绛罗朱袖起飞云，大武明华瞰雄州。";
-        if (indexPath.row % 3 == 1) description = @"上元点鬟招萼绿，王母挥袂别飞琼。繁音急节十二遍，跳珠撼玉何铿铮。翔鸾舞了却收翅，唳鹤曲终长引声。当时乍见惊心目，凝视谛听殊未足。一落人间八九年，耳冷不曾闻此曲。湓城但听山魈语，巴峡唯闻杜鹃哭。";
+        NSString *description = @"";
+        
+        if (self.state == KHLPICListStateSubscription) {
+            SubscriptionListInterface *interface = (indexPath.row < self.subscriptions.count ?
+                                                    self.subscriptions[indexPath.row] : nil);
+            
+            // Configure thumb image view..
+            [viCell.thumbImageView setImageWithURL:[NSURL URLWithString:interface.imageUrl]];
+            
+            // Configure title label..
+            description = interface.title;
+            
+            // Configure attached information text..
+            [viCell.browseCountingLabel setText:[NSString stringWithFormat:@"浏览量：%@", interface.count]];
+            [viCell.dateLabel setText:[NSString stringWithFormat:@"%@", interface.time]];
+            
+        } else {
+            CollectionListInterface *interface = (indexPath.row < self.collections.count ?
+                                                  self.collections[indexPath.row] : nil);
+            
+            // Configure thumb image view..
+            [viCell.thumbImageView setImageWithURL:[NSURL URLWithString:interface.imageUrl]];
+            
+            // Configure title label..
+            description = interface.title;
+            
+            // Configure attached information text..
+            [viCell.browseCountingLabel setText:[NSString stringWithFormat:@"浏览量：%@", interface.count]];
+            [viCell.dateLabel setText:[NSString stringWithFormat:@"%@", interface.time]];
+        }
+        
+        // Calculate description text..
         CGRect standardizedRect = [description boundingRectWithSize:CGSizeMake(subscribedTextWidth, MAXFLOAT)
                                                             options:NSStringDrawingUsesLineFragmentOrigin
                                                          attributes:@{NSFontAttributeName:majorFont}
@@ -289,7 +354,6 @@
         [viCell.titleLabel setNumberOfLines:3];
         [viCell.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [viCell.titleLabel setTextAlignment:NSTextAlignmentNatural];
-        
         
         // Asign video item cell to return cell..
         cell = viCell;
@@ -328,19 +392,6 @@
         }
         
         // Configure recommended cell image..
-//        if (indexPath.row % 3 == 0) {
-//            [recoCell.leftImageView setImage:[UIImage imageNamed:@"mings-student-on-journey"]];
-//            [recoCell.rightImageView setImage:[UIImage imageNamed:@"mings-ships-sailing"]];
-//        } else if (indexPath.row % 3 == 2) {
-//            [recoCell.leftImageView setImage:[UIImage imageNamed:@"mings-ships-sailing"]];
-//            [recoCell.rightImageView setImage:[UIImage imageNamed:@"mings-cavalry-anti-japanese-samurai"]];
-//        } else {
-//            [recoCell.leftImageView setImage:[UIImage imageNamed:@"mings-cavalry-anti-japanese-samurai"]];
-//            [recoCell.rightImageView setImage:[UIImage imageNamed:@"mings-student-on-journey"]];
-//        }
-        
-        NSLog(@"row: %lu height: %.f", indexPath.row, recoCell.frame.size.height);
-        
         if (l) {
             [recoCell.leftImageView setImageWithURL:[NSURL URLWithString:l.imageUrl]];
             [recoCell.leftLabel setText:l.title];
@@ -373,21 +424,35 @@
 - (void)onPressMyCollectionButton
 {
     NSLog(@"pressMyCollection");
+    if (self.state == KHLPICListStateRecommend) {
+        NSLog(@"to log in view controller");
+        return;
+    }
     
-    self.templateUsingState = 1;
+    self.state = KHLPICListStateCollection;
     [self.headerView.myCollectionButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [self.headerView.mySubscriptionButton setTitleColor:[KHLColor shiqing] forState:UIControlStateNormal];
     [self refreshButtonHolder];
+    self.uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    self.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    [[KHLDataManager instance] collectionListHUDHolder:self.view uid:self.uid token:self.token];
 }
 
 - (void)onPressMySubscriptionButton
 {
     NSLog(@"pressMySubscription");
+    if (self.state == KHLPICListStateRecommend) {
+        NSLog(@"to log in view controller");
+        return;
+    }
     
-    self.templateUsingState = 2;
+    self.state = KHLPICListStateSubscription;
     [self.headerView.myCollectionButton setTitleColor:[KHLColor shiqing] forState:UIControlStateNormal];
     [self.headerView.mySubscriptionButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [self refreshButtonHolder];
+    self.uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    self.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    [[KHLDataManager instance] subscriptionListHUDHolder:self.view uid:self.uid token:self.token];
 }
 
 
@@ -413,11 +478,18 @@
     self.headerView.nicknameLabel.text = @"";
     
     // Configure buttons and indicator..
-    [self.headerView.myCollectionButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    [self.headerView.mySubscriptionButton setTitleColor:[KHLColor shiqing] forState:UIControlStateNormal];
+    CGFloat indicator_x = 0;
+    if (self.state == KHLPICListStateSubscription) {
+        [self.headerView.myCollectionButton setTitleColor:[KHLColor shiqing] forState:UIControlStateNormal];
+        [self.headerView.mySubscriptionButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        indicator_x = self.view.frame.size.width / 2;
+    } else {
+        [self.headerView.myCollectionButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        [self.headerView.mySubscriptionButton setTitleColor:[KHLColor shiqing] forState:UIControlStateNormal];
+    }
     self.headerView.buttonIndicatorView = [[UIView alloc] init];
     [self.headerView.buttonIndicatorView setBackgroundColor:[UIColor orangeColor]];
-    [self.headerView.buttonIndicatorView setFrame:CGRectMake(0, self.headerView.buttonHolder.frame.size.height - COMMON_ITEM_DIVIDER_HEIGHT, self.view.frame.size.width / 2, COMMON_ITEM_DIVIDER_HEIGHT)];
+    [self.headerView.buttonIndicatorView setFrame:CGRectMake(indicator_x, self.headerView.buttonHolder.frame.size.height - COMMON_ITEM_DIVIDER_HEIGHT, self.view.frame.size.width / 2, COMMON_ITEM_DIVIDER_HEIGHT)];
     UIView *buttonDivider = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerView.buttonHolder.frame.size.height - COMMON_ITEM_DIVIDER_HEIGHT, self.view.frame.size.width, COMMON_ITEM_DIVIDER_HEIGHT)];
     [buttonDivider setBackgroundColor:[KHLColor shiqing]];
     [self.headerView.buttonHolder addSubview:buttonDivider];
@@ -465,7 +537,7 @@
 // Animate my collections and subscriptions button..
 - (void)refreshButtonHolder
 {
-    if (self.templateUsingState == 1) {
+    if (self.state == KHLPICListStateCollection) {
         [UIView animateWithDuration:0.5f animations:^(void) {
             [self.headerView.buttonIndicatorView setFrame:CGRectMake(0, self.headerView.buttonHolder.frame.size.height - COMMON_ITEM_DIVIDER_HEIGHT, self.view.frame.size.width / 2, COMMON_ITEM_DIVIDER_HEIGHT)];
         } completion:^(BOOL finished) {
@@ -473,7 +545,7 @@
         }];
     }
     
-    else if (self.templateUsingState == 2) {
+    else if (self.state == KHLPICListStateSubscription) {
         [UIView animateWithDuration:0.5f animations:^(void) {
             [self.headerView.buttonIndicatorView setFrame:CGRectMake(self.view.frame.size.width / 2, self.headerView.buttonHolder.frame.size.height - COMMON_ITEM_DIVIDER_HEIGHT, self.view.frame.size.width / 2, COMMON_ITEM_DIVIDER_HEIGHT)];
         } completion:^(BOOL finished) {
@@ -533,6 +605,138 @@
             interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"type"]];
             [self.recommends addObject:interface];
             // NSLog(@"add %@", interface.title);
+        }
+        
+        // Refresh list layout after data received..
+        [self refreshTableView];
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+}
+
+- (void)subscriptionListNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        NSDictionary *result = [dict objectForKey:@"result"];
+        if ((!result) || (result.count == 0)) {
+            NSLog(@"妈蛋，result里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
+        
+        [self.subscriptions removeAllObjects];
+        self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+        self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+        NSLog(@"data arr=%@",[result objectForKey:@"data"]);
+        if ([[NSString stringWithFormat:@"%@", [result objectForKey:@"data"]] isEqualToString:@""])
+            ; else
+        for (NSDictionary *data in [result objectForKey:@"data"]) {
+            SubscriptionListInterface *interface = [[SubscriptionListInterface alloc] init];
+            interface.page = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+            interface.size = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+            interface.identity = [NSString stringWithFormat:@"%@", [data objectForKey:@"info_id"]];
+            interface.category = [NSString stringWithFormat:@"%@", [data objectForKey:@"cate_id"]];
+            interface.title = [NSString stringWithFormat:@"%@", [data objectForKey:@"title"]];
+            interface.imageUrl = [NSString stringWithFormat:@"%@", [data objectForKey:@"image"]];
+            interface.content = [NSString stringWithFormat:@"%@", [data objectForKey:@"content"]];
+            interface.count = [NSString stringWithFormat:@"%@", [data objectForKey:@"count"]];
+            interface.publisher = [NSString stringWithFormat:@"%@", [data objectForKey:@"nickname"]];
+            interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
+            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"type"]];
+            [self.subscriptions addObject:interface];
+            
+            NSLog(@"add %@", interface.title);
+        }
+        
+        // TEST
+        for (int i = 0; i < 3; i++) {
+            SubscriptionListInterface *interface = [[SubscriptionListInterface alloc] init];
+            interface.page = @"1";
+            interface.size = @"1";
+            interface.identity = @"1";
+            interface.category = @"1";
+            interface.title = @"北越雪谱";
+            interface.imageUrl = @"http://img3.douban.com/lpic/s1745705.jpg";
+            interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
+            interface.count = @"1776";
+            interface.publisher = @"牧之";
+            interface.time = @"1500-01-01";
+            interface.type = @"article";
+            [self.subscriptions addObject:interface];
+        }
+        
+        // Refresh list layout after data received..
+        [self refreshTableView];
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+}
+
+- (void)collectionListNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        NSDictionary *result = [dict objectForKey:@"result"];
+        if ((!result) || (result.count == 0)) {
+            NSLog(@"妈蛋，result里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
+        
+        [self.collections removeAllObjects];
+        self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+        self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+        NSLog(@"data arr=%@",[result objectForKey:@"data"]);
+        if ([[NSString stringWithFormat:@"%@", [result objectForKey:@"data"]] isEqualToString:@""])
+            ; else
+                for (NSDictionary *data in [result objectForKey:@"data"]) {
+                    CollectionListInterface *interface = [[CollectionListInterface alloc] init];
+                    interface.page = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+                    interface.size = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+                    interface.identity = [NSString stringWithFormat:@"%@", [data objectForKey:@"info_id"]];
+                    interface.category = [NSString stringWithFormat:@"%@", [data objectForKey:@"cate_id"]];
+                    interface.title = [NSString stringWithFormat:@"%@", [data objectForKey:@"title"]];
+                    interface.imageUrl = [NSString stringWithFormat:@"%@", [data objectForKey:@"image"]];
+                    interface.content = [NSString stringWithFormat:@"%@", [data objectForKey:@"content"]];
+                    interface.count = [NSString stringWithFormat:@"%@", [data objectForKey:@"count"]];
+                    interface.publisher = [NSString stringWithFormat:@"%@", [data objectForKey:@"nickname"]];
+                    interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
+                    interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"type"]];
+                    [self.subscriptions addObject:interface];
+                    
+                    NSLog(@"add %@", interface.title);
+                }
+        
+        // TEST
+        for (int i = 0; i < 7; i++) {
+            CollectionListInterface *interface = [[CollectionListInterface alloc] init];
+            interface.page = @"1";
+            interface.size = @"1";
+            interface.identity = @"1";
+            interface.category = @"1";
+            interface.title = @"舜水先生文集";
+            interface.imageUrl = @"http://gd1.alicdn.com/imgextra/i1/1914798654/T2GF4EX5NXXXXXXXXX-1914798654.jpg";
+            interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
+            interface.count = @"5210";
+            interface.publisher = @"舜水";
+            interface.time = @"1692-05-21";
+            interface.type = @"article";
+            [self.collections addObject:interface];
         }
         
         // Refresh list layout after data received..
