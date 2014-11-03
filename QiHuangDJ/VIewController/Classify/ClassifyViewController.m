@@ -56,6 +56,7 @@
 }
 - (IBAction)Infomation:(id)sender {
     KHLInformationTableViewController *informationViewController = [[KHLInformationTableViewController alloc] init];
+    informationViewController.category = self.category;
     [self.navigationController pushViewController:informationViewController animated:TRUE];
 }
 
