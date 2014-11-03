@@ -232,6 +232,39 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     [UIView commitAnimations];
 }
 
+- (void)drawBackdropImages
+{
+    // Draw backdrop images to view..
+    for (int i = 0; i < self.backdropImageViewCollection.count; i++) {
+        HomepageImagesInterface *backdrop = self.backdropImages[i];
+        if (backdrop && backdrop.backdropImageUrl && ![backdrop.backdropImageUrl isEqualToString:@""]) {
+            [self.backdropImageViewCollection[i] setImageWithURL:[NSURL URLWithString:[self.backdropImages[i] backdropImageUrl]]];
+        } else {
+            [self.backdropImageViewCollection[i] setImage:[UIImage imageNamed:@"huanchong_shouye.png"]];
+        }
+    }
+}
+
+- (void)saveCategoryIdentities
+{
+    // Avoid bastard objects that cant respond to function 'backdropImageCategory'..
+    for (int i = 0; i < self.backdropImages.count; i++) {
+        if (![[self.backdropImages objectAtIndex:i] respondsToSelector:@selector(backdropImageCategory)]) {
+            NSLog(@"Function category unresponded at backdrop images list index: %d", i);
+            return;
+        } else {
+            NSLog(@"Category: %@ Name: %@", [self.backdropImages[i] backdropImageCategory], [self.backdropImages[i] backdropImageName]);
+        }
+    }
+    
+    // Add category identities to user defaults..
+    [[NSUserDefaults standardUserDefaults] setObject:[self.backdropImages[0] backdropImageCategory] forKey:@"KHLCategoryLive"];
+    [[NSUserDefaults standardUserDefaults] setObject:[self.backdropImages[1] backdropImageCategory] forKey:@"KHLCategoryEntertainers"];
+    [[NSUserDefaults standardUserDefaults] setObject:[self.backdropImages[2] backdropImageCategory] forKey:@"KHLCategoryHearthStone"];
+    [[NSUserDefaults standardUserDefaults] setObject:[self.backdropImages[3] backdropImageCategory] forKey:@"KHLCategoryLOL"];
+    [[NSUserDefaults standardUserDefaults] setObject:[self.backdropImages[4] backdropImageCategory] forKey:@"KHLCategoryDota"];
+}
+
 
 
 #pragma mark - USER INTERACTION RESPONSE
@@ -250,19 +283,22 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 - (IBAction)LOL:(id)sender
 {
     classify.title = @"英雄联盟";
+    classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryLOL"];
     [self.navigationController pushViewController:classify animated:YES];
 }
 
 - (IBAction)LSchuanshuo:(id)sender
 {
-        classify.title = @"炉石传说";
-        [self.navigationController pushViewController:classify animated:YES];
+    classify.title = @"炉石传说";
+    classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryHearthStone"];
+    [self.navigationController pushViewController:classify animated:YES];
 }
 
 - (IBAction)dota2:(id)sender
 {
-        classify.title = @"刀塔2";
-        [self.navigationController pushViewController:classify animated:YES];
+    classify.title = @"刀塔2";
+    classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryDota"];
+    [self.navigationController pushViewController:classify animated:YES];
 }
 
 
@@ -323,14 +359,10 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             }
             
             // Draw backdrop images to view..
-            for (int i = 0; i < self.backdropImageViewCollection.count; i++) {
-                HomepageImagesInterface *backdrop = self.backdropImages[i];
-                if (backdrop && backdrop.backdropImageUrl && ![backdrop.backdropImageUrl isEqualToString:@""]) {
-                    [self.backdropImageViewCollection[i] setImageWithURL:[NSURL URLWithString:[self.backdropImages[i] backdropImageUrl]]];
-                } else {
-                    [self.backdropImageViewCollection[i] setImage:[UIImage imageNamed:@"huanchong_shouye.png"]];
-                }
-            }
+            [self drawBackdropImages];
+            
+            // Save category identities..
+            [self saveCategoryIdentities];
             
         } else if (backdrops.count < self.backdropImageViewCollection.count) {
             NSLog(@"背景图数量不足！");
