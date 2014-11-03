@@ -10,4 +10,6 @@
 
 @interface KHLInformationTableViewController : MQLCustomViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) NSString *category;
+
 @end
