@@ -170,15 +170,28 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     CGFloat height = carousel.frame.size.height;
     CGFloat y = 0;
     
+    // Avoid empty head..
+    if (loopings.count == 0) {
+        HomepageImagesInterface *avoider = [[HomepageImagesInterface alloc] init];
+        avoider.loopingImageUrl = @"";
+        [loopings addObject:avoider];
+    }
+    
     // Create images..
-    for (int i = 0; i < [loopings count]; i++) {
+    for (int i = 0; i < loopings.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
         CGFloat x = i * width;
         imageView.frame = CGRectMake(x, y, width, height);
         // using testing image..
-        imageView.image = [UIImage imageNamed:@"mings-ships-sailing"];
-//        HomepageImagesInterface *looping = [loopings objectAtIndex:i];
-//        [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageUrl]];
+        HomepageImagesInterface *looping = [loopings objectAtIndex:i];
+        if (looping.loopingImageUrl && ![looping.loopingImageUrl isEqualToString:@""]) {
+            NSLog(@"pass: %@", looping.loopingImageUrl);
+            [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageUrl]];
+        } else {
+            NSLog(@"default: %@", looping.loopingImageUrl);
+            [imageView setImage:[UIImage imageNamed:@"huanchong_shouyeguanggao@2x.png"]];
+        }
+        
         carousel.showsHorizontalScrollIndicator = NO;
         [carousel addSubview:imageView];
     }
@@ -313,7 +326,12 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             
             // Draw backdrop images to view..
             for (int i = 0; i < self.backdropImageViewCollection.count; i++) {
-                [self.backdropImageViewCollection[i] setImageWithURL:[NSURL URLWithString:[self.backdropImages[i] backdropImageUrl]]];
+                HomepageImagesInterface *backdrop = self.backdropImages[i];
+                if (backdrop && backdrop.backdropImageUrl && ![backdrop.backdropImageUrl isEqualToString:@""]) {
+                    [self.backdropImageViewCollection[i] setImageWithURL:[NSURL URLWithString:[self.backdropImages[i] backdropImageUrl]]];
+                } else {
+                    [self.backdropImageViewCollection[i] setImage:[UIImage imageNamed:@"huanchong_shouye.png"]];
+                }
             }
             
         } else if (backdrops.count < self.backdropImageViewCollection.count) {

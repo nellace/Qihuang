@@ -48,22 +48,22 @@
                                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1zx-ig-2YG" userLabel="Header Page Controll">
                                     <rect key="frame" x="20" y="63" width="280" height="37"/>
                                 </pageControl>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-cavalry-anti-japanese-samurai" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-FT-pIw" userLabel="Live Broadcast Image View">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-FT-pIw" userLabel="Live Broadcast Image View">
                                     <rect key="frame" x="0.0" y="100" width="320" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Sjr-FT-pIw" secondAttribute="height" multiplier="64:17" id="ds0-Dy-qt3"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-ships-sailing" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-tj-caD" userLabel="Keahoarl Entertainers Image View">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-tj-caD" userLabel="Keahoarl Entertainers Image View">
                                     <rect key="frame" x="0.0" y="185" width="320" height="85"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-student-on-journey" translatesAutoresizingMaskIntoConstraints="NO" id="ffO-jW-5Sv" userLabel="Hearthstone Image View">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="ffO-jW-5Sv" userLabel="Hearthstone Image View">
                                     <rect key="frame" x="0.0" y="270" width="320" height="85"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-cavalry-anti-japanese-samurai" translatesAutoresizingMaskIntoConstraints="NO" id="DHn-6T-3Sh" userLabel="L.O.L. Image View">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="DHn-6T-3Sh" userLabel="L.O.L. Image View">
                                     <rect key="frame" x="0.0" y="355" width="320" height="85"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-ships-sailing" translatesAutoresizingMaskIntoConstraints="NO" id="Q68-jv-pSJ" userLabel="DotA Image View">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q68-jv-pSJ" userLabel="DotA Image View">
                                     <rect key="frame" x="0.0" y="440" width="320" height="85"/>
                                 </imageView>
                                 <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
@@ -189,9 +189,7 @@
         </view>
     </objects>
     <resources>
-        <image name="mings-cavalry-anti-japanese-samurai" width="599" height="434"/>
-        <image name="mings-ships-sailing" width="368" height="250"/>
-        <image name="mings-student-on-journey" width="504" height="367"/>
+        <image name="huanchong_shouye.png" width="320" height="81"/>
         <image name="qihuangshouye_icon1.png" width="111" height="81"/>
         <image name="qihuangshouye_icon2.png" width="111" height="81"/>
         <image name="qihuangshouye_icon3.png" width="111" height="81"/>
