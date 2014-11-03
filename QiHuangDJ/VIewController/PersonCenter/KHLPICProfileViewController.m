@@ -339,6 +339,15 @@
         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + dis, self.view.frame.size.width, self.view.frame.size.height);
         [UIView commitAnimations];
     }
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(abc:) name:UIKeyboardDidShowNotification object:nil];
+//    
+//    [CATransaction begin];
+//    UIView animateWithDuration:0.3f animations:^{
+//        self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + dis, self.view.frame.size.width, self.view.frame.size.height);
+//    } completion:^(BOOL finished) {
+//        ;
+//    }
 }
 
 //- (void)textFieldDidEndEditing:(UITextField *)textField
