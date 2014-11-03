@@ -262,6 +262,7 @@
 @property (nonatomic, strong) NSString *identity;  // info_id
 @property (nonatomic, strong) NSString *category;  // cate_id
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *imageUrl;  // image
 @property (nonatomic, strong) NSString *brief;     // content 资讯简介
 @property (nonatomic, strong) NSString *count;
 @property (nonatomic, strong) NSString *publisher; // 发布人名称
