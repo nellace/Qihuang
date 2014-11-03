@@ -10,10 +10,10 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "DianboCell.h"
 @interface VideoLiveViewController () <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate> {
-
     __weak IBOutlet UITextField *inputTextFiled;
-
+    __weak IBOutlet UILabel *liveTtitle;
     __weak IBOutlet NSLayoutConstraint *keyboardHeight;
+    __weak IBOutlet UITableView *mainTableView;
     __weak IBOutlet UIView *inputViewWithTextFiled;
 }
 
@@ -22,12 +22,12 @@
 @implementation VideoLiveViewController {
     
     BOOL isHiddenStatusBar; //判断是不是隐藏statusBar
-    MPMoviePlayerViewController *moviePlayerViewController;
     __weak IBOutlet UIView *mediaPlayBGView; //viwe来承载播放器  用于适配
+    MPMoviePlayerViewController *moviePlayerViewController;
     CGRect mediaPleayViewFrame;
-    UIView *gongjutiaoView;  //全屏工具条
     UIButton * fullScreenBtn; //全屏按钮
-    BOOL isHiddenForGongjutiao; //工具条是否隐藏
+    LiveDetailInterface * liveDetailInterface;
+    NSMutableArray * listForTableView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +37,7 @@
         // Custom initialization
         [self setCascTitle:@"直播"];
         [self setFanhui];
+        listForTableView = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"1",@"2", nil];
     }
     return self;
 }
@@ -50,12 +51,60 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [self registerNotification];
+    [self requestNetworkData];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+- (void)viewDidAppear:(BOOL)animated {
+    
+
 }
+- (void)viewDidDisappear:(BOOL)animated {
+    [self removeNotification];
+}
+- (void)registerNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(liveDetailMethodWithNotification:) name:@"KHLNotiLiveDetailAcquired" object:nil];
+}
+
+- (void)removeNotification {
+     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiLiveDetailAcquired" object:nil];
+}
+
+# pragma mark
+# pragma mark NETWORKING REQUEST
+
+- (void)requestNetworkData {
+    NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    if (!([uidStr isEqualToString:@""] && [tokenStr isEqualToString:@""] && [self.liveInfoID isEqualToString:@""])) {
+        [[KHLDataManager instance] liveDetailHUDHolder:self.view identity:self.liveInfoID uid:uidStr token:tokenStr];
+    }else {
+        NSLog(@"请求数据的参数为空");
+    }
+}
+
+- (void)liveDetailMethodWithNotification:(NSNotification *)aNotification {
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"live detail failed");
+        return;
+    }
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSDictionary * dic = [aDic objectForKey:@"result"];
+        liveDetailInterface = [LiveDetailInterface new];
+        liveDetailInterface.identity = [NSString stringWithFormat:@"%@",[dic objectForKey:@"info_id"]];
+        liveDetailInterface.category = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cate_id"]];
+        liveDetailInterface.url = [NSString stringWithFormat:@"%@",[dic objectForKey:@"url"]];
+        liveDetailInterface.title = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
+        
+        liveTtitle.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
+        //从网络获取到url 然后播放
+//        [moviePlayerViewController.moviePlayer setContentURL:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
+    }
+}
+
 # pragma mark
 # pragma mark  添加播放器 设置播放器横屏
 
@@ -65,15 +114,15 @@
     moviePlayerViewController.view.frame = mediaPlayBGView.bounds;
     mediaPleayViewFrame = moviePlayerViewController.view.frame;
     moviePlayerViewController.moviePlayer.controlStyle = MPMovieControlStyleNone;
-    //给播放器添加单击手势
 
     [mediaPlayBGView addSubview:moviePlayerViewController.view];
     
+     //给播放器添加单击手势
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMediaPlayerMethod)];
     tap.delegate = self;
     [moviePlayerViewController.view addGestureRecognizer:tap];
-    
-    //控制view添加到播放器view上
+    moviePlayerViewController.moviePlayer.shouldAutoplay = YES;
+    //全屏按钮添加到播放器view上
     [moviePlayerViewController.view addSubview:[self fullScreenViewUI]];
 }
 
@@ -84,24 +133,19 @@
     return YES;
 }
 - (void)tapMediaPlayerMethod {
-    [self isHiddenWithGongjutiao:NO];
+
 }
 
 - (UIView *)fullScreenViewUI {
     
-    gongjutiaoView = [[UIView alloc] initWithFrame:CGRectMake(0, mediaPlayBGView.frame.origin.y - gongjutiaoView.frame.size.height, mediaPlayBGView.bounds.size.width, 40)];
-    gongjutiaoView.frame = CGRectMake(0, mediaPlayBGView.frame.size.height - gongjutiaoView.frame.size.height, mediaPlayBGView.bounds.size.width, 40);
-    gongjutiaoView.backgroundColor = [UIColor grayColor];
-    
-    
     fullScreenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    fullScreenBtn.frame = CGRectMake(gongjutiaoView.frame.size.width - fullScreenBtn.frame.size.width,0,40, gongjutiaoView.frame.size.height);
+    fullScreenBtn.frame = CGRectMake(mediaPlayBGView.frame.size.width - fullScreenBtn.frame.size.width,mediaPlayBGView.frame.size.height - 20,20, 20);
     fullScreenBtn.frame =CGRectMake(mediaPlayBGView.frame.size.width - fullScreenBtn.frame.size.width,
-                                    0, 40, 40);
-    [fullScreenBtn setTitle:@"全屏" forState:UIControlStateNormal];
-    [fullScreenBtn setBackgroundColor:[UIColor redColor]];
+                                    (mediaPlayBGView.frame.size.height - 20), 20, 20);
+    [fullScreenBtn setBackgroundImage:[UIImage imageNamed:@"zhibo_icon_fangda"] forState:UIControlStateNormal];
+    [fullScreenBtn setBackgroundImage:[UIImage imageNamed:@"zhibo_icon_suoxiao"] forState:UIControlStateSelected];
     [fullScreenBtn addTarget:self action:@selector(fuScreenMethod:) forControlEvents:UIControlEventTouchUpInside];
-    [gongjutiaoView addSubview:fullScreenBtn];
+//    [gongjutiaoView addSubview:fullScreenBtn];
     return fullScreenBtn;
 }
 
@@ -127,18 +171,18 @@
 
 - (void)fuScreenMethod:(UIButton *)sender{
     if (sender.selected) {
+        
         //全屏转半屏
         [CATransaction begin];
-        [UIView animateWithDuration:0.3f animations:^{
+        [UIView animateWithDuration:0.5f animations:^{
             
             CGAffineTransform transform = CGAffineTransformMakeRotation(-M_PI_4);
             [mediaPlayBGView setTransform:transform];
             mediaPlayBGView.transform = CGAffineTransformIdentity;
             mediaPlayBGView.frame = mediaPleayViewFrame;
             
-            gongjutiaoView.frame = CGRectMake(0, mediaPlayBGView.frame.size.height - gongjutiaoView.frame.size.height, mediaPlayBGView.bounds.size.width, 40);
-            fullScreenBtn.frame =CGRectMake(gongjutiaoView.frame.size.width - fullScreenBtn.frame.size.width,
-                                            0, 40, 40);
+            fullScreenBtn.frame =CGRectMake(mediaPlayBGView.frame.size.width - fullScreenBtn.frame.size.width,
+                                            (mediaPlayBGView.frame.size.height - 20), 20, 20);
         } completion:^(BOOL finished) {
             [self showStatusBar];
             self.navigationController.navigationBarHidden = NO;
@@ -147,44 +191,28 @@
         sender.selected = NO;
     } else {
         self.navigationController.navigationBarHidden = YES;
+
         [self hideStatusBar];
         [CATransaction begin];
         //半屏转全屏
-        [UIView animateWithDuration:1.0f animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI_2);
             [mediaPlayBGView setTransform:transform];
             
              mediaPlayBGView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-            gongjutiaoView.frame = CGRectMake(0, mediaPlayBGView.frame.size.width - 40, mediaPlayBGView.frame.size.height, 40);
-            fullScreenBtn.frame =CGRectMake(gongjutiaoView.frame.size.width - fullScreenBtn.frame.size.width,
-                                            0, 40, gongjutiaoView.frame.size.height);
-            [self isHiddenWithGongjutiao:NO];
+
+            fullScreenBtn.frame =CGRectMake(mediaPlayBGView.frame.size.height - 20,
+                                            mediaPlayBGView.frame.size.width - 20, 20, 20);
+
+
         } completion:^(BOOL finished) {
-            [self isHiddenWithGongjutiao:YES];
 
         }];
         [CATransaction commit];
         sender.selected = YES;
     }
 }
-//工具条隐藏方法
-- (void)isHiddenWithGongjutiao:(BOOL)yesOrNo {
-    gongjutiaoView.hidden = yesOrNo;
-    if (!yesOrNo) {
-        [NSTimer scheduledTimerWithTimeInterval:4.0f target:self selector:@selector(hiddenGongju) userInfo:nil repeats:NO];
-    }
-}
 
-- (void)hiddenGongju {
- 
-    [UIView animateWithDuration:2.0f animations:^{
-        gongjutiaoView.alpha = 1.0f;
-        gongjutiaoView.alpha = 0.0f;
-    } completion:^(BOOL finished) {
-        gongjutiaoView.alpha = 1.0f;
-        gongjutiaoView.hidden = YES;
-    }];
-}
 
 #pragma mark
 # pragma mark KEYBOARD HEIGHT CHANGE
@@ -202,10 +230,11 @@
     
     [CATransaction begin];
     [UIView animateWithDuration:0.3f animations:^{
-        inputViewWithTextFiled.frame = CGRectMake(inputViewWithTextFiled.frame.origin.x
-                                          ,inputViewWithTextFiled.frame.size.height + deltaY, inputViewWithTextFiled.frame.size.width, inputViewWithTextFiled.frame.size.height);
-        keyboardHeight.constant = (deltaY + inputViewWithTextFiled.frame.size.height - 80);
-        NSLog(@"keyboard %f",keyboardHeight.constant);
+
+//        inputViewWithTextFiled.frame = CGRectMake(inputViewWithTextFiled.frame.origin.x
+//                                          ,100, inputViewWithTextFiled.frame.size.width, inputViewWithTextFiled.frame.size.height);
+        keyboardHeight.constant = -(deltaY - 10);
+        inputViewWithTextFiled.hidden = NO;
         
         [self.view updateConstraints];
         
@@ -225,7 +254,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return listForTableView.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -238,6 +267,9 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil]lastObject];
     }
+    
+    NSString * str = listForTableView[indexPath.row];
+
     return cell;
 }
 
@@ -245,6 +277,11 @@
 # pragma mark BUTTON ACTION METHOD
 - (IBAction)pinglunMethondWithBottomBar:(id)sender {
     [inputTextFiled becomeFirstResponder];
+}
+- (IBAction)actionForpinglunMehod:(id)sender {
+    [listForTableView insertObject:@"10月31日下午，习近平出席全军政治工作会议并发表重要讲话。他强调，革命的政治工作是革命军队的生命线。在长期实践中，我军政治工作形成了一整套优良传统，" atIndex:0];
+    [mainTableView reloadData];
+    [inputTextFiled resignFirstResponder];
 }
 - (IBAction)returnRootHomePage:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];

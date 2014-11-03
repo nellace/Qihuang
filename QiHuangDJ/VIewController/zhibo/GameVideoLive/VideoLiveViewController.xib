@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -10,7 +9,9 @@
             <connections>
                 <outlet property="inputTextFiled" destination="2jM-Av-2mH" id="1fU-VS-6sN"/>
                 <outlet property="inputViewWithTextFiled" destination="gO4-lr-obG" id="8HZ-6q-5mJ"/>
-                <outlet property="keyboardHeight" destination="oFj-TV-Y57" id="GTR-HW-NMW"/>
+                <outlet property="keyboardHeight" destination="W2y-uA-gJb" id="K4y-uW-iVi"/>
+                <outlet property="liveTtitle" destination="FEg-5N-b3r" id="auk-AH-dTe"/>
+                <outlet property="mainTableView" destination="x9V-Fa-HaM" id="EPE-pa-Ina"/>
                 <outlet property="mediaPlayBGView" destination="ONK-L3-J2d" id="Vdi-8c-Y07"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,15 +22,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x9V-Fa-HaM" userLabel="pinglun Table View">
-                    <rect key="frame" x="0.0" y="209" width="320" height="359"/>
+                    <rect key="frame" x="0.0" y="177" width="320" height="391"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="nzN-vY-Qi1"/>
                         <outlet property="delegate" destination="-1" id="hkt-5J-yfG"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gO4-lr-obG" userLabel="inputVIew">
-                    <rect key="frame" x="0.0" y="568" width="320" height="37"/>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gO4-lr-obG" userLabel="inputVIew">
+                    <rect key="frame" x="0.0" y="575" width="320" height="37"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="zhibo_huifukuang.png" translatesAutoresizingMaskIntoConstraints="NO" id="0nA-aV-7o9">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -49,12 +50,18 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="actionForpinglunMehod:" destination="-1" eventType="touchUpInside" id="e6y-NV-CBZ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="nnt-Xu-AWp"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEg-Nq-f2y" userLabel="infomation View">
-                    <rect key="frame" x="0.0" y="153" width="320" height="55"/>
+                    <rect key="frame" x="0.0" y="153" width="320" height="23"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="视频:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="34" translatesAutoresizingMaskIntoConstraints="NO" id="2CI-Bj-jbg">
                             <rect key="frame" x="11" y="2" width="34" height="21"/>
@@ -68,46 +75,10 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="时间：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSx-V4-8tL">
-                            <rect key="frame" x="11" y="22" width="41" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="浏览量：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scr-0l-JOr">
-                            <rect key="frame" x="116" y="22" width="48" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2014-10-28" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdh-Nv-NfJ">
-                            <rect key="frame" x="43" y="22" width="65" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="854" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72P-zb-q7T">
-                            <rect key="frame" x="159" y="25" width="40" height="15"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="编辑：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8t-VT-75I">
-                            <rect key="frame" x="194" y="22" width="36" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="雅泰" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYq-Ei-n6L">
-                            <rect key="frame" x="228" y="22" width="48" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="55" id="rm4-Gz-l1F"/>
+                        <constraint firstAttribute="height" constant="23" id="rm4-Gz-l1F"/>
                     </constraints>
                 </view>
                 <view alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Di-EP-X9g" userLabel="bottom bar View">
@@ -170,7 +141,7 @@
                 <constraint firstItem="x9V-Fa-HaM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JvD-Wx-hx8"/>
                 <constraint firstItem="x9V-Fa-HaM" firstAttribute="top" secondItem="kEg-Nq-f2y" secondAttribute="bottom" constant="1" id="KyP-4P-z6e"/>
                 <constraint firstAttribute="trailing" secondItem="x9V-Fa-HaM" secondAttribute="trailing" id="RSA-lS-nR3"/>
-                <constraint firstItem="gO4-lr-obG" firstAttribute="height" secondItem="0Di-EP-X9g" secondAttribute="height" id="TFm-9h-6Q0"/>
+                <constraint firstAttribute="bottom" secondItem="gO4-lr-obG" secondAttribute="bottom" constant="-44" id="W2y-uA-gJb"/>
                 <constraint firstAttribute="trailing" secondItem="0Di-EP-X9g" secondAttribute="trailing" id="XF2-Mt-heh"/>
                 <constraint firstItem="kEg-Nq-f2y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YyO-cR-gVc"/>
                 <constraint firstItem="0Di-EP-X9g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZHJ-3j-z9M"/>
@@ -178,23 +149,16 @@
                 <constraint firstItem="kEg-Nq-f2y" firstAttribute="top" secondItem="ONK-L3-J2d" secondAttribute="bottom" constant="-1" id="aao-nO-gNQ"/>
                 <constraint firstAttribute="trailing" secondItem="ONK-L3-J2d" secondAttribute="trailing" id="kPf-tS-C4R"/>
                 <constraint firstAttribute="trailing" secondItem="gO4-lr-obG" secondAttribute="trailing" id="l9Q-oD-CKE"/>
-                <constraint firstItem="gO4-lr-obG" firstAttribute="top" secondItem="x9V-Fa-HaM" secondAttribute="bottom" id="oFj-TV-Y57"/>
-                <constraint firstItem="0Di-EP-X9g" firstAttribute="top" secondItem="x9V-Fa-HaM" secondAttribute="bottom" constant="-37" id="p7c-zb-nMR"/>
                 <constraint firstItem="ONK-L3-J2d" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tKQ-fU-Tsv"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="p7c-zb-nMR"/>
-                </mask>
-            </variation>
-            <point key="canvasLocation" x="-1490" y="-102"/>
+            <point key="canvasLocation" x="-1557" y="-245"/>
         </view>
     </objects>
     <resources>
         <image name="zhibo_btn_fanhui.png" width="9" height="16"/>
         <image name="zhibo_btn_huifu.png" width="19" height="17"/>
-        <image name="zhibo_btn_zan.png" width="17" height="15"/>
+        <image name="zhibo_btn_zan.png" width="19" height="17"/>
         <image name="zhibo_huifukuang.png" width="320" height="40"/>
         <image name="zhibo_icon_zan_press.png" width="16" height="14"/>
     </resources>
