@@ -168,14 +168,14 @@
                         <constraint firstAttribute="trailing" secondItem="YfL-Ef-NXx" secondAttribute="trailing" id="v1P-zD-fmG"/>
                     </constraints>
                 </scrollView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5U-Vi-3sS" userLabel="Left Divider View">
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5U-Vi-3sS" userLabel="Left Divider View">
                     <rect key="frame" x="0.0" y="0.0" width="1" height="568"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="ZP4-wX-BIZ"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kN-Jg-o9I" userLabel="Right Divider View">
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kN-Jg-o9I" userLabel="Right Divider View">
                     <rect key="frame" x="319" y="0.0" width="1" height="568"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>

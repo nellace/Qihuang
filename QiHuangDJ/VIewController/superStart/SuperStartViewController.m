@@ -11,11 +11,13 @@
 #import "AFNetworking.h"
 #import "KHLEntertainerHolderView.h"
 
-@interface SuperStartViewController ()
+@interface SuperStartViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *entertainerScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *pageLabel;
 @property (nonatomic) CGFloat controllableWidth;
 @property (nonatomic) CGFloat controllableHeight;
 @property (nonatomic, strong) NSMutableArray *entertainers;
+@property (nonatomic) NSInteger page;
 @end
 
 @implementation SuperStartViewController {
@@ -84,6 +86,12 @@
 
 - (void)refreshEntertainersScrollView
 {
+    // TEST
+    //[self.entertainers addObject:[[self MakeSimulateEntertainersWithCapacity:1] firstObject]];
+    
+    // Set initial page label..
+    self.pageLabel.text = [NSString stringWithFormat:@"1 / %lu", self.entertainers.count];
+    
     for (UIView *subview in [self.entertainerScrollView subviews]) {
         [subview removeFromSuperview];
     }
@@ -99,6 +107,22 @@
     
     [self.entertainerScrollView setBackgroundColor:[UIColor whiteColor]];
     [self.entertainerScrollView setContentSize:CGSizeMake(self.controllableWidth * [self.entertainers count], 0)];
+}
+
+
+
+#pragma mark - SCROLL VIEW DELEGATE
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat carouselWidth = scrollView.frame.size.width;
+    CGFloat x = scrollView.contentOffset.x;
+    NSInteger page = (x + carouselWidth / 2) / carouselWidth + 1;
+    if (page != self.page) {
+        self.page = page;
+        self.pageLabel.text = [NSString stringWithFormat:@"%lu / %lu", self.page, self.entertainers.count];
+        //NSLog(@"page: %lu", self.page);
+    }
 }
 
 
@@ -124,8 +148,19 @@
             [self.entertainers addObject:interface];
         }
         
+        // Avoid empty list..
+        if (self.entertainers.count == 0) {
+            EntertainersListInterface *avoider = [[EntertainersListInterface alloc] init];
+            avoider.imageUrl = @"";
+            avoider.nickname = @"";
+            avoider.programme = @"";
+            avoider.experience = @"";
+            [self.entertainers addObject:avoider];
+        }
+        
         // Refresh list layout after data received..
         [self refreshEntertainersScrollView];
+        
     } else {
         [[[UIAlertView alloc] initWithTitle:@"后台出错" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
@@ -145,7 +180,7 @@
                 entertainer.imageUrl = @"http://wd600.10yan.com/uploadfile/2012/0518/20120518105444247.jpg";
                 entertainer.nickname = @"徐振之";
                 entertainer.programme = @"徐霞客游记";
-                entertainer.experience = @"我药当大侠！";
+                entertainer.experience = @"我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！我药当大侠！";
                 break;
                 
             case 1:
