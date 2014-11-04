@@ -200,7 +200,7 @@
             interface.count = [NSString stringWithFormat:@"%@", [data objectForKey:@"count"]];
             interface.publisher = [NSString stringWithFormat:@"%@", [data objectForKey:@"nickname"]];
             interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
-            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"type"]];
+            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
             [self.informations addObject:interface];
             
             NSLog(@"export: %@", interface.brief);
