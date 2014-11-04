@@ -65,11 +65,13 @@
 - (void)registerNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(liveDetailMethodWithNotification:) name:@"KHLNotiLiveDetailAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commentListMehod:) name:@"KHLUrlcommentlist" object:nil];
 }
 
 - (void)removeNotification {
      [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiLiveDetailAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlcommentlist" object:nil];
 }
 
 # pragma mark
@@ -103,6 +105,10 @@
         //从网络获取到url 然后播放
 //        [moviePlayerViewController.moviePlayer setContentURL:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
     }
+}
+//获取评论列表的通知方法
+- (void)commentListMehod:(NSNotification *)aNotification {
+    
 }
 
 # pragma mark

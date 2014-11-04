@@ -864,5 +864,45 @@
             targetType: (NSString *)targetType;
 
 
+#pragma mark - (2.23) 评论列表
+
+/*
+ 类型：
+    GET
+ 
+ 参数：
+     uid      用户ID
+     zhiboid   直播ID
+ 
+ 返回：
+     "resultCode": "0",
+     "reason": "success",
+         "result": {
+             "count": "4",
+             "page": "1",
+             "size": "1",
+             "data": [
+                 {
+                 "comment_id": "80",
+                 "uname": "feihuanghou",
+                 "uimage": "",
+                 "content": "我是肥皇后DC 不要抽我",
+                 "good": "1",
+                 "bad": "0",
+                 "time": "1397477213",
+                 "model": "comment"
+                 }
+             ]
+         }
+     }
+ 
+ 使用：
+ KHLUrlBase
+ KHLUrlcommentlist
+ */
+
+- (void)commentlistHUDHolder :(UIView *)holder
+                          uid:(NSString *)uid
+                      zhiboid:(NSString *)zhiboid;
 
 @end

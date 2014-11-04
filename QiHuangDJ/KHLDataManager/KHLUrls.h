@@ -80,4 +80,7 @@
 #pragma mark - ?.? （2.10）评论
 #define KHLUrlCommentReply @"app_pinglun.php"//?uid=%@&info_id=%@&content=%@&token=%@&model=%@"
 
+#pragma mark - (2.23) 评论列表
+#define KHLUrlcommentlist @"app_commentlist.php?uid=%@&zhiboid=%@"
+
 #endif

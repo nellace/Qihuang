@@ -792,4 +792,35 @@
      }];
 }
 
+- (void)commentlistHUDHolder :(UIView *)holder
+                          uid:(NSString *)uid
+                      zhiboid:(NSString *)zhiboid {
+    // Start progress HUD..
+    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
+    
+    NSString *ustr = [NSString stringWithFormat:KHLUrlcommentlist,uid,zhiboid];
+    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"search ustr=%@", ustr);
+    
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
+    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         NSLog(@"search succ=\n%@", json);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlcommentlist" object:json];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"search fail=\n%@", error);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlcommentlist" object:nil];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     }];
+
+}
+
 @end
