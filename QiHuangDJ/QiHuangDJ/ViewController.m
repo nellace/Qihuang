@@ -12,8 +12,9 @@
 #import "SuperStartViewController.h"
 #import "LoginViewController.h"
 #import "PersonCenterViewController.h"
+#import "KHLSearchResultViewController.h"
 
-@interface ViewController () <UIScrollViewDelegate>
+@interface ViewController () <UIScrollViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UIView *anchorView;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *headerScrollView;
@@ -86,13 +87,14 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     
     // Register notification..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homepageImagesNotified:) name:@"KHLNotiHomepageImagesAcquired" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchResultNotified:) name:@"KHLNotiSearchResult" object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     // Remove notification..
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiHomepageImagesAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiSearchResult" object:nil];
 }
 
 - (void)viewDidLoad
@@ -140,7 +142,9 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     self.navigationItem.leftBarButtonItem = imgLeft;
     //中间导航
     SearchBarCustom *search = [SearchBarCustom new];
+    [search setBackgroundColor:[UIColor whiteColor]];
     [search customSearchBarUI:@"home"];
+    search.delegate = self;
     self.navigationItem.titleView = search;
     //右侧按钮
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -378,6 +382,73 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
                           otherButtonTitles:nil, nil] show];    }
 }
 
+- (void)searchResultNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        NSDictionary *result = [dict objectForKey:@"result"];
+        if (!result) {
+            NSLog(@"妈蛋，result里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
+        
+        NSMutableArray *videos = [[NSMutableArray alloc] init];
+        NSMutableArray *informations = [[NSMutableArray alloc] init];
+        
+//        [self.informations removeAllObjects];
+//        self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+//        self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+        NSLog(@"data arr=%@",[result objectForKey:@"data"]);
+        for (NSDictionary *data in [result objectForKey:@"data"]) {
+            SearchInterface *interface = [[SearchInterface alloc] init];
+            interface.page = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+            interface.size = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+            interface.identity = [NSString stringWithFormat:@"%@", [data objectForKey:@"info_id"]];
+            interface.category = [NSString stringWithFormat:@"%@", [data objectForKey:@"cate_id"]];
+            interface.title = [NSString stringWithFormat:@"%@", [data objectForKey:@"title"]];
+            interface.imageUrl = [NSString stringWithFormat:@"%@", [data objectForKey:@"image"]];
+            interface.brief = [NSString stringWithFormat:@"%@", [data objectForKey:@"content"]];
+            interface.count = [NSString stringWithFormat:@"%@", [data objectForKey:@"count"]];
+            interface.publisher = [NSString stringWithFormat:@"%@", [data objectForKey:@"nickname"]];
+            interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
+            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
+            [videos addObject:interface];
+            [informations addObject:interface];
+        }
+//
+//        // TEST
+//        for (int i = 0; i < 8; i++) {
+//            InformationListInterface *interface = [[InformationListInterface alloc] init];
+//            interface.identity = @"1";
+//            interface.category = self.category;
+//            interface.title = @"大风！大风！大风！";
+//            interface.imageUrl = @"";
+//            interface.brief = @"上元点鬟招萼绿，王母挥袂别飞琼。繁音急节十二遍，跳珠撼玉何铿铮。翔鸾舞了却收翅，唳鹤曲终长引声。当时乍见惊心目，凝视谛听殊未足。一落人间八九年，耳冷不曾闻此曲。湓城但听山魈语，巴峡唯闻杜鹃哭。";
+//            interface.count = @"1776";
+//            interface.publisher = @"赢扶苏";
+//            interface.time = @"1368-10-01";
+//            interface.type = self.type;
+//            [self.informations addObject:interface];
+//        }
+//        
+        // Push to search result view controller..
+        KHLSearchResultViewController *searchResultViewController = [[KHLSearchResultViewController alloc] init];
+        searchResultViewController.videos = [videos copy];
+        searchResultViewController.informations = [informations copy];
+        [self.navigationController pushViewController:searchResultViewController animated:TRUE];
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+}
+
 
 
 #pragma mark - SCROLL VIEW DELEGATE
@@ -398,6 +469,18 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     [self openTimer:self.timer duration:CAROUSEL_SCROLLING_DURATION];
+}
+
+
+
+#pragma mark - SEARCH BAR DELEGATE
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    NSString *keyword = searchBar.text;
+    NSLog(@"using keyword: %@", keyword);
+    [[KHLDataManager instance] searchHUDHolder:self.view keyword:keyword];
 }
 
 
