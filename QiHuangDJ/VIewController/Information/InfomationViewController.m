@@ -9,15 +9,35 @@
 #import "InfomationViewController.h"
 
 @interface InfomationViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attachLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 
+@property (nonatomic, getter=needsPrestrain, setter=setNeedsPrestrain:) BOOL prestrainTag;
+@property (nonatomic, strong) InformationDetailInterface *detail;
+
 @end
 
 @implementation InfomationViewController
+
+
+
+#pragma mark - ATTRIBUTES GETTER AND SETTER
+
+- (SearchInterface *)prestrain
+{
+    if (!_prestrain) _prestrain = [[SearchInterface alloc] init];
+    return _prestrain;
+}
+
+- (InformationDetailInterface *)detail
+{
+    if (!_detail) _detail = [[InformationDetailInterface alloc] init];
+    return _detail;
+}
 
 
 
@@ -27,32 +47,68 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setCascTitle:@"资讯详情"];
+        [self setFanhui];
+        [self setNeedsPrestrain:TRUE];
     }
+    
     return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self setCascTitle:@"资讯详情"];
-    [self setFanhui];
+    if ([self needsPrestrain]) {
+        [self loadPrestrainData];
+        [self setNeedsPrestrain:FALSE];
+    }
+    
+    // Register notifications..
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(informationDetailNotified:) name:@"KHLNotiInformationDetailAcquired" object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // Remove notifications..
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiInformationDetailAcquired" object:nil];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self refreshData];
+    // Request data..
+    [[KHLDataManager instance] informationDetailHUDHolder:self.view identity:self.prestrain.identity type:self.prestrain.identity];
 }
 
-- (void)didReceiveMemoryWarning
+
+
+#pragma mark - CUSTOM LAYOUT METHODES
+
+- (void)loadPrestrainData
 {
-    [super didReceiveMemoryWarning];
+    self.titleLabel.text = self.prestrain.title;
+    self.bodyLabel.text = self.prestrain.brief;
 }
 
-
-
-#pragma mark - ???
+- (void)loadDetailData
+{
+    self.titleLabel.text = [NSString stringWithFormat:@"%@", self.detail.title];
+    self.attachLabel.text = [NSString stringWithFormat:@"来源：%@ 时间：%@ 浏览量：%@ 编辑：%@", self.detail.source, self.detail.time, self.detail.count, self.detail.publisher];
+    self.bodyLabel.text = [NSString stringWithFormat:@"%@", self.detail.content];
+    
+    NSLog(@"image urls? %@", self.detail.imageUrls);
+    
+    if (self.detail.imageUrls && [self.detail.imageUrls isKindOfClass:[NSArray class]] && [self.detail.imageUrls firstObject] && [[self.detail.imageUrls firstObject] isKindOfClass:[NSString class]]) {
+        //[self.photoImageView setImageWithURL:[NSURL URLWithString:[self.detail.imageUrls objectAtIndex:0]]];
+        BOOL loaded = FALSE;
+        for (id item in self.detail.imageUrls) {
+            NSLog(@"what is this: %@", item);
+            loaded = false;
+        }
+    } else {
+        [self.photoImageView setImage:[UIImage imageNamed:@"zhibo_huanchongtu@2x.png"]];
+    }
+}
 
 - (void)refreshData
 {
@@ -65,6 +121,53 @@
     
     [self.bodyLabel setText:finalContent];
 }
+
+
+
+#pragma mark - NOTIFICATION METHODES
+
+- (void)informationDetailNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        NSDictionary *result = [dict objectForKey:@"result"];
+        if (!result || ![result respondsToSelector:@selector(objectForKey:)]) {
+            NSLog(@"妈蛋，result里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
+        
+        self.detail.identity = [NSString stringWithFormat:@"%@", [result objectForKey:@"info_id"]];
+        self.detail.category = [NSString stringWithFormat:@"%@", [result objectForKey:@"cate_id"]];
+        self.detail.title = [NSString stringWithFormat:@"%@", [result objectForKey:@"title"]];
+        self.detail.source = [NSString stringWithFormat:@"%@", [result objectForKey:@"source"]];
+        self.detail.imageUrls = [result objectForKey:@"imagelist"];
+        self.detail.count = [NSString stringWithFormat:@"%@", [result objectForKey:@"count"]];
+        self.detail.publisher = [NSString stringWithFormat:@"%@", [result objectForKey:@"nickname"]];
+        self.detail.content = [NSString stringWithFormat:@"%@", [result objectForKey:@"content"]];
+        self.detail.time = [NSString stringWithFormat:@"%@", [result objectForKey:@"time"]];
+        
+        // Refresh with received detail..
+        [self loadDetailData];
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+}
+
+
+
+
+
+
+
+
 
 
 

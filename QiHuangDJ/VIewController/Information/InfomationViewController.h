@@ -10,4 +10,6 @@
 
 @interface InfomationViewController : MQLCustomViewController
 
+@property (nonatomic, strong) SearchInterface *prestrain;
+
 @end
