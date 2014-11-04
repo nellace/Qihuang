@@ -282,7 +282,7 @@
 @property (nonatomic, strong) NSString *category;  // cate_id
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *source;
-@property (nonatomic, strong) NSString *imageUrls; // imagelist
+@property (nonatomic, strong) NSArray *imageUrls; // imagelist
 @property (nonatomic, strong) NSString *count;
 @property (nonatomic, strong) NSString *publisher; // nickname
 @property (nonatomic, strong) NSString *content;
