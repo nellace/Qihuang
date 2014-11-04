@@ -51,6 +51,12 @@
     return [KHLColor red:250 green:250 blue:250];
 }
 
+/** 青灰 */
++ (UIColor *)qinghui
+{
+    return [KHLColor red:222 green:222 blue:222];
+}
+
 #pragma mark - 工具方法
 
 /*!
