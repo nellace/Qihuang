@@ -8,8 +8,9 @@
 
 #import "KHLColor.h"
 #import "KHLSearchResultViewController.h"
-#import "KHLInformationTableViewCell.h"
 #import "KHLSearchResultSubViewController.h"
+#import "KHLInformationTableViewCell.h"
+#import "InfomationViewController.h"
 
 #pragma mark - DEFINATIONS AND ENUMERATIONS
 
@@ -205,7 +206,18 @@ typedef NS_ENUM(NSInteger, KHLSearchResultType) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Acquire instance..
+    SearchInterface *information;
+    if (indexPath.section == KHLSearchResultTypeVideos) {
+        information = [self.videos objectAtIndex:indexPath.row];
+    } else if (indexPath.section == KHLSearchResultTypeInformations) {
+        information = [self.informations objectAtIndex:indexPath.row];
+    }
+    
     // Push to detail view controller..
+    InfomationViewController *detailViewController = [[InfomationViewController alloc] init];
+    [detailViewController setPrestrain:information];
+    [self.navigationController pushViewController:detailViewController animated:TRUE];
     [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
 }
 
