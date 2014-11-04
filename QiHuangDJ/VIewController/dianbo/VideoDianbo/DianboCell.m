@@ -10,4 +10,14 @@
 
 @implementation DianboCell
 
+- (void)rowHeight:(NSString *)content {
+
+    UIFont *tfont = [UIFont systemFontOfSize:14.0];
+    NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:tfont,NSFontAttributeName,nil];
+    ////////   ios 7
+    CGSize sizeText = [content boundingRectWithSize:CGSizeMake(320, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
+
+
+}
+
 @end

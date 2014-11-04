@@ -139,6 +139,7 @@
 @property (nonatomic, strong) NSString *name;      // zhibolist->name
 @property (nonatomic, strong) NSString *time;      // zhibolist->time
 
+
 // yugaolist?
 
 @end

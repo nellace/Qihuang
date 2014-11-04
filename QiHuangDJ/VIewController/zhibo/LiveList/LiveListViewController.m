@@ -12,13 +12,33 @@
 
 @end
 
-@implementation LiveListViewController
+@implementation LiveListViewController {
+    NSMutableArray * yugaoListArray;
+    NSMutableArray *zhiboListArray;
+    LiveListInterface *liveListinterface;
+    __weak IBOutlet UITableView *mainTableView;
+}
+
+# pragma mark
+# pragma mark LIFE CYCLE
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    yugaoListArray = [NSMutableArray new];
+    zhiboListArray = [NSMutableArray new];
+    
     [self navBuildUI];
+    [self networkingRequestWithLiveList];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self registerNotification];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [self removeNotification];
 }
 
 - (void)navBuildUI {
@@ -30,13 +50,58 @@
     // Dispose of any resources that can be recreated.
 }
 
+# pragma mark 
+# pragma mark NETWORKING REQUEST
+
+- (void)networkingRequestWithLiveList {
+    [[KHLDataManager  instance] liveListHUDHolder:self.view type:@""];
+}
+//KHLNotiLiveListAcquired
+- (void)registerNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(liveListNotification:) name:@"KHLNotiLiveListAcquired" object:nil];
+}
+
+- (void)removeNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiLiveListAcquired" object:nil];
+}
+
+- (void)liveListNotification:(NSNotification *)aNotification {
+    NSDictionary * aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"live list request failed");
+        return;
+    }
+//获得直播列表
+    NSArray * zhiboarray = [[aDic objectForKey:@"result"] objectForKey:@"zhibolist"];
+    for (NSDictionary * dic in zhiboarray) {
+        liveListinterface = [LiveListInterface new];
+        liveListinterface.category = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cate_id"]];
+        liveListinterface.identity = [NSString stringWithFormat:@"%@",[dic objectForKey:@"info_id"]];
+        liveListinterface.imageUrl = [NSString stringWithFormat:@"%@",[dic objectForKey:@"image"]];
+        liveListinterface.time = [NSString stringWithFormat:@"%@",[dic objectForKey:@"time"]];
+        liveListinterface.name = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
+        [zhiboListArray addObject:liveListinterface];
+    }
+    
+// 获取预告列表
+    NSArray * yugaoarray =[[aDic objectForKey:@"result"] objectForKey:@"yugaolist"];
+    for (NSDictionary * dic in yugaoarray) {
+        liveListinterface = [LiveListInterface new];
+        liveListinterface.category = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cate_id"]];
+        liveListinterface.identity = [NSString stringWithFormat:@"%@",[dic objectForKey:@"info_id"]];
+        liveListinterface.imageUrl = [NSString stringWithFormat:@"%@",[dic objectForKey:@"image"]];
+        liveListinterface.time = [NSString stringWithFormat:@"%@",[dic objectForKey:@"time"]];
+        liveListinterface.name = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
+        [yugaoListArray addObject:liveListinterface];
+    }
+    [mainTableView reloadData];
+}
 #pragma mark
 #pragma mark UITableViewDataSource
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 1;
@@ -70,11 +135,28 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifierStr];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifierStr];
-        [self dingyueBtnUI:cell];
+//        [self dingyueBtnUI:cell];
     }
+    
+    if (indexPath.section == 0) {
+        liveListinterface = zhiboListArray[indexPath.row];
+        if ([liveListinterface.imageUrl isEqualToString:@""]) {
+             cell.imageView.image = [UIImage imageNamed:@"zhibo_huanchongtu"];
+        }else {
+            [cell.imageView setImageWithURL:[NSURL URLWithString:liveListinterface.imageUrl]];
+        }
+        cell.textLabel.text = liveListinterface.name;
+    }else {
+        liveListinterface = yugaoListArray[indexPath.row];
+        [cell.imageView setImageWithURL:[NSURL URLWithString:liveListinterface.imageUrl]];
+        
+        cell.textLabel.text = liveListinterface.name;
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.imageView.image = [UIImage imageNamed:@"zhibo_huanchongtu"];
-    cell.textLabel.text = @"一起风暴吧";
+//    cell.imageView.image = [UIImage imageNamed:@"zhibo_huanchongtu"];
+//    cell.textLabel.text = @"一起风暴吧";
     
     cell.selectedBackgroundView.backgroundColor = [UIColor blackColor];
     return cell;
@@ -113,12 +195,27 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    VideoLiveViewController *video = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
+    
+    if (indexPath.section == 0) {
+        liveListinterface = zhiboListArray [indexPath.row];
+        
+    }else {
+        liveListinterface = yugaoListArray [indexPath.row];
+    }
+    
+   VideoLiveViewController *video = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
+    video.liveInfoID = liveListinterface.identity;
     [self.navigationController pushViewController:video animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    NSInteger lines = 0;
+    if (section == 0) {
+        lines = zhiboListArray.count;
+    }else {
+        lines = yugaoListArray.count;
+    }
+    return lines;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

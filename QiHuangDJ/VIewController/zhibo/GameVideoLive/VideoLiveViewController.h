@@ -8,6 +8,8 @@
 
 #import "MQLCustomViewController.h"
 
-@interface VideoLiveViewController : MQLCustomViewController 
+@interface VideoLiveViewController : MQLCustomViewController
+
+@property(nonatomic,strong) NSString *liveInfoID;
 
 @end

@@ -10,4 +10,10 @@
 
 @interface DianboCell : UITableViewCell
 
+
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imgeWithIcon;
+@property (weak, nonatomic) IBOutlet UIButton *jubaoMedhod;
+@property (weak, nonatomic) IBOutlet UIButton *huifuMehod;
+
 @end
