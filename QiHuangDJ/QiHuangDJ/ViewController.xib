@@ -171,6 +171,15 @@
                         <constraint firstAttribute="bottom" secondItem="UIy-TT-MCX" secondAttribute="bottom" constant="-300" id="lj7-11-20B"/>
                     </constraints>
                 </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwY-nF-WP2">
+                    <rect key="frame" x="20" y="90" width="160" height="46"/>
+                    <state key="normal" image="gamesphere">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="pressGamesphereButton:" destination="-1" eventType="touchUpInside" id="7sr-b2-eCr"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="eUq-ZH-kh4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7sY-Qr-ZMf"/>
@@ -186,10 +195,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="143" y="205"/>
+            <point key="canvasLocation" x="19" y="165"/>
         </view>
     </objects>
     <resources>
+        <image name="gamesphere" width="640" height="194"/>
         <image name="huanchong_shouye.png" width="320" height="81"/>
         <image name="qihuangshouye_icon1.png" width="111" height="81"/>
         <image name="qihuangshouye_icon2.png" width="111" height="81"/>

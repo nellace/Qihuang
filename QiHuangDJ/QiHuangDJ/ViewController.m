@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "PersonCenterViewController.h"
 #import "KHLSearchResultViewController.h"
+#import "KHLGamesphereViewController.h"
 
 @interface ViewController () <UIScrollViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UIView *anchorView;
@@ -304,6 +305,13 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryDota"];
     [self.navigationController pushViewController:classify animated:YES];
 }
+
+- (IBAction)pressGamesphereButton:(UIButton *)sender
+{
+    KHLGamesphereViewController *gamesphereViewController = [[KHLGamesphereViewController alloc] init];
+    [self.navigationController pushViewController:gamesphereViewController animated:TRUE];
+}
+
 
 
 
