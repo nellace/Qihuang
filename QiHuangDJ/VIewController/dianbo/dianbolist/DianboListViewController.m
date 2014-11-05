@@ -222,16 +222,29 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    
+    UICollectionViewCell *cell;
     static NSString *identifier = @"QHidentifierDianboCollectionCell";
-    DianboListCollectionViewCell * collectioncell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-
-    if (collectioncell == nil) {
-        collectioncell = [[[NSBundle mainBundle] loadNibNamed:@"DianboListCollectionViewCell" owner:self options:nil]lastObject];
+    DianboListCollectionViewCell * vodCell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    if (vodCell == nil) {
+        vodCell = [[[NSBundle mainBundle] loadNibNamed:@"DianboListCollectionViewCell" owner:self options:nil]lastObject];
     }
     
-    return collectioncell;
+    // Acquire instance..
+    VODListInterface *vod = [self.vods objectAtIndex:indexPath.row];
+    
+    // Configure image view..
+    if (vod.imageUrl && ![vod.imageUrl isEqualToString:@""]) {
+        [vodCell.backdropImageView setImageWithURL:[NSURL URLWithString:vod.imageUrl]];
+    } else {
+        [vodCell.backdropImageView setImage:[UIImage imageNamed:@"zhibo_huanchongtu@2x.png"]];
+    }
+    
+    // Configure label..
+    vodCell.titleLabel.text = vod.title ? vod.title : @"（无标题）";
+    
+    // Asign VOD cell..
+    cell = vodCell;
+    return cell;
 }
 
 

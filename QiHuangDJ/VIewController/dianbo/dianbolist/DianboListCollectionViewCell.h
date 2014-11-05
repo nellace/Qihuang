@@ -10,4 +10,8 @@
 
 @interface DianboListCollectionViewCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *backdropImageView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+
 @end

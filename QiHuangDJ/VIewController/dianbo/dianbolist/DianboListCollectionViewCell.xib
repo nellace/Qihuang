@@ -35,6 +35,10 @@
                 <constraint firstItem="xgf-xa-s4L" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vrB-7T-Kfn"/>
             </constraints>
             <size key="customSize" width="237" height="93"/>
+            <connections>
+                <outlet property="backdropImageView" destination="xgf-xa-s4L" id="buG-ei-n2x"/>
+                <outlet property="titleLabel" destination="Jci-HS-fh0" id="b8B-oh-kHF"/>
+            </connections>
             <point key="canvasLocation" x="-869.5" y="-2.5"/>
         </collectionViewCell>
     </objects>
