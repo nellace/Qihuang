@@ -75,12 +75,16 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="badCountLabel" destination="Al7-Ye-Qg5" id="O6o-FS-lm1"/>
                 <outlet property="contentLabel" destination="LPD-ZD-Rse" id="Lkq-rs-g1f"/>
+                <outlet property="goodCountLabel" destination="nVP-7p-Nfp" id="VCR-9t-C4H"/>
                 <outlet property="huifuMehod" destination="hzs-7N-SNC" id="0FL-d8-M0U"/>
                 <outlet property="imgeWithIcon" destination="J8c-Rz-xos" id="h5Z-3b-IgI"/>
                 <outlet property="jubaoMedhod" destination="JpN-Rm-FDd" id="TM9-1Y-iPL"/>
+                <outlet property="timeLabel" destination="Ta5-Le-gEx" id="obF-pY-0A8"/>
+                <outlet property="titleLabel" destination="rwk-SJ-L8s" id="O9x-1r-ubz"/>
             </connections>
-            <point key="canvasLocation" x="-307" y="208"/>
+            <point key="canvasLocation" x="-384" y="89"/>
         </tableViewCell>
     </objects>
     <resources>

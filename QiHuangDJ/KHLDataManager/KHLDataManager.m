@@ -793,28 +793,32 @@
 }
 
 - (void)commentlistHUDHolder :(UIView *)holder
-                          uid:(NSString *)uid
+                          model:(NSString *)model
                       zhiboid:(NSString *)zhiboid {
     // Start progress HUD..
     [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
     
-    NSString *ustr = [NSString stringWithFormat:KHLUrlcommentlist,uid,zhiboid];
+    NSString *ustr = [NSString stringWithFormat:KHLUrlcommentlist];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"search ustr=%@", ustr);
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
+                           model, @"model",
+                           zhiboid, @"info_id",
+                           nil];
+    NSLog(@"reply url=%@ param=%@", ustr, param);
     
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSError *error;
          NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"search succ=\n%@", json);
+         NSLog(@"commentlist succ=\n%@", json);
          [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlcommentlist" object:json];
          
          // Stop progress HUD..
          [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
-         NSLog(@"search fail=\n%@", error);
+         NSLog(@"commentlist fail=\n%@", error);
          [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlcommentlist" object:nil];
          
          // Stop progress HUD..

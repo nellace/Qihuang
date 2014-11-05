@@ -871,7 +871,7 @@
     GET
  
  参数：
-     uid      用户ID
+     model      article
      zhiboid   直播ID
  
  返回：
@@ -902,7 +902,7 @@
  */
 
 - (void)commentlistHUDHolder :(UIView *)holder
-                          uid:(NSString *)uid
+                          model:(NSString *)model
                       zhiboid:(NSString *)zhiboid;
 
 @end

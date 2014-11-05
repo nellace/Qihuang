@@ -9,6 +9,7 @@
 #import "VideoLiveViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "DianboCell.h"
+#import "LoginViewController.h"
 @interface VideoLiveViewController () <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate> {
     __weak IBOutlet UITextField *inputTextFiled;
     __weak IBOutlet UILabel *liveTtitle;
@@ -28,6 +29,7 @@
     UIButton * fullScreenBtn; //全屏按钮
     LiveDetailInterface * liveDetailInterface;
     NSMutableArray * listForTableView;
+    NSString *otherUserName; //被回复人的用户名
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,7 +39,7 @@
         // Custom initialization
         [self setCascTitle:@"直播"];
         [self setFanhui];
-        listForTableView = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"1",@"2", nil];
+        listForTableView = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -64,18 +66,24 @@
 }
 - (void)registerNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+//    直播详情
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(liveDetailMethodWithNotification:) name:@"KHLNotiLiveDetailAcquired" object:nil];
+//    评论列表
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commentListMehod:) name:@"KHLUrlcommentlist" object:nil];
+    //评论
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(replyMethod:) name:@"KHLNotiReplied" object:nil];
 }
 
 - (void)removeNotification {
      [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiLiveDetailAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlcommentlist" object:nil];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiReplied" object:nil];
 }
 
 # pragma mark
-# pragma mark NETWORKING REQUEST
+# pragma mark NETWORKING REQUEST METHOD
 
 - (void)requestNetworkData {
     NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
@@ -85,6 +93,8 @@
     }else {
         NSLog(@"请求数据的参数为空");
     }
+    [[KHLDataManager instance] commentlistHUDHolder:self.view model:@"live" zhiboid:self.liveInfoID];
+//    4063
 }
 
 - (void)liveDetailMethodWithNotification:(NSNotification *)aNotification {
@@ -108,9 +118,54 @@
 }
 //获取评论列表的通知方法
 - (void)commentListMehod:(NSNotification *)aNotification {
-    
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"commentList failed"); return;
+    }
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSDictionary * dic = [aDic objectForKey:@"result"];
+        NSArray * arr = [dic objectForKey:@"data"];
+        for (NSDictionary *dataDic in arr) {
+            CommentListInterface *commentlist = [CommentListInterface new];
+            commentlist.username = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"uname"]];
+            commentlist.poster   = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"comment_id"]];
+            commentlist.portraitImageUrl = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"uimage"]];
+            commentlist.content  = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"content"]];
+            commentlist.countBad = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"bad"]];
+            commentlist.countGood= [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"good"]];
+            commentlist.time     = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"time"]];
+            [listForTableView addObject:commentlist];
+        }
+        [mainTableView reloadData];
+    }
 }
 
+- (void)replyMethod:(NSNotification *)aNotification {
+    NSDictionary * aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"reply failed");
+        return;
+    }
+    
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUsername"];
+        
+        NSString *replyTitle = [NSString stringWithFormat:@"%@回复%@",username,otherUserName];
+        
+        CommentListInterface * commentlist = [CommentListInterface new];
+        commentlist.content = inputTextFiled.text;
+        commentlist.username = replyTitle;
+        commentlist.time = @"1234";
+        commentlist.countBad = @"0";
+        commentlist.countGood = @"0";
+        
+        [listForTableView insertObject:commentlist atIndex:0];
+        [mainTableView reloadData];
+        [inputTextFiled resignFirstResponder];
+        inputTextFiled.text = @"";
+        otherUserName = @"";
+    }
+}
 # pragma mark
 # pragma mark  添加播放器 设置播放器横屏
 
@@ -237,10 +292,8 @@
     [CATransaction begin];
     [UIView animateWithDuration:0.3f animations:^{
 
-//        inputViewWithTextFiled.frame = CGRectMake(inputViewWithTextFiled.frame.origin.x
-//                                          ,100, inputViewWithTextFiled.frame.size.width, inputViewWithTextFiled.frame.size.height);
-        keyboardHeight.constant = -(deltaY - 10);
-        inputViewWithTextFiled.hidden = NO;
+        keyboardHeight.constant = -deltaY;
+
         
         [self.view updateConstraints];
         
@@ -254,6 +307,9 @@
 
 #pragma mark
 #pragma mark UITableViewDataSource
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"评论区（231）";
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -272,22 +328,58 @@
     DianboCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil]lastObject];
+        [cell.huifuMehod addTarget:self action:@selector(pinglunMethondWithBottomBar:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    NSString * str = listForTableView[indexPath.row];
-
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //行号给tag
+    cell.huifuMehod.tag = indexPath.row;
+    
+    CommentListInterface * commentlist = listForTableView[indexPath.row];
+    cell.contentLabel.text = commentlist.content;
+    cell.goodCountLabel.text = commentlist.countGood;
+    cell.badCountLabel.text = commentlist.countBad;
+//    [cell.imgeWithIcon setImageWithURL:[NSURL URLWithString:commentlist.portraitImageUrl]];
+    cell.timeLabel.text = [self returnTheTimelabel:commentlist.time];
+    cell.titleLabel.text = commentlist.username;
     return cell;
 }
 
 # pragma mark 
 # pragma mark BUTTON ACTION METHOD
 - (IBAction)pinglunMethondWithBottomBar:(id)sender {
-    [inputTextFiled becomeFirstResponder];
+
+    NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    if (!(uidStr == nil || tokenStr == nil)) {
+        UIButton * btn = (UIButton * )sender;
+        inputTextFiled.tag =btn.tag;
+        [inputTextFiled becomeFirstResponder];
+    } else {
+        LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
 }
 - (IBAction)actionForpinglunMehod:(id)sender {
-    [listForTableView insertObject:@"10月31日下午，习近平出席全军政治工作会议并发表重要讲话。他强调，革命的政治工作是革命军队的生命线。在长期实践中，我军政治工作形成了一整套优良传统，" atIndex:0];
-    [mainTableView reloadData];
-    [inputTextFiled resignFirstResponder];
+    if ([inputTextFiled.text isEqualToString:@""]) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }else {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+       
+        //取出点击行的相关信息
+       
+        NSString * comment_id;
+        
+        if (inputTextFiled.tag == 101) {
+            comment_id = self.liveInfoID;
+        }else {
+             CommentListInterface * commentlist = listForTableView[inputTextFiled.tag];
+            otherUserName = commentlist.username;
+            comment_id = commentlist.poster;
+        }
+        [[KHLDataManager instance] replyHUDHolder:self.view uid:uidStr target:comment_id content:inputTextFiled.text token:tokenStr targetType:@"live"];
+    }
 }
 - (IBAction)returnRootHomePage:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -295,10 +387,67 @@
 - (IBAction)zanMethod:(id)sender {
 }
 
-# pragma mark
-# pragma mark UITEXTFILED DELEGATE
+- (void)huifuMehod:(UIButton *)sender {
+    [inputTextFiled becomeFirstResponder];
+}
+
+# pragma mark - UITEXTFILED DELEGATE
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
+# pragma mark
+# pragma mark 计算时间方法
+-(NSString*)returnTheTimelabel:(NSString*)theTime
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate * d = [dateFormatter dateFromString:theTime];
+    
+    NSDate *now = [[NSDate alloc]init];
+
+    
+    NSTimeInterval late = [now timeIntervalSinceDate:d];
+    NSString *returnStr ;
+    if(late<3600)
+    {
+        if ((int)(late/60) == 0 )
+        {
+            returnStr = @"刚刚";
+        }else
+        {
+            returnStr = [NSString stringWithFormat:@"%i分前",(int)(late/60)];
+        }
+    }
+    else if(late>=3600&&late<3600*24) {
+        returnStr = [NSString stringWithFormat:@"%i小时前",(int)(late/3600)];
+    }
+    else if(late>=3600*24&&late<3600*48)
+    {
+        returnStr = [NSString stringWithFormat:@"昨天"];
+    }
+    else
+    {
+        //NSDateFormatter *dateFormatter1 =[[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy"];
+        NSString *returnYear = [dateFormatter stringFromDate:d];
+        NSString *nowReturnYear = [dateFormatter stringFromDate:now];
+        //        NSLog(@"%@~~~~ %@",returnYear,nowReturnYear);
+        
+        if([returnYear isEqualToString:nowReturnYear])
+        {
+            [dateFormatter setDateFormat:@"MM-dd"];
+            
+            returnStr = [dateFormatter stringFromDate:d];
+        }
+        else
+        {
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            
+            returnStr = [dateFormatter stringFromDate:d];
+        }
+    }
+    return returnStr;
+}
+
 @end
