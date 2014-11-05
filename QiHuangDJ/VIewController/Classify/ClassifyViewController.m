@@ -20,6 +20,10 @@
 
 @implementation ClassifyViewController
 
+
+
+#pragma mark - VIEW CONTROLLER LIFECYCLE
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,36 +38,38 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     UISearchBar *se = [[SearchBarCustom alloc] init];
     self.search = se;
-    //NSLog(@"screen weidth %f",[UIScreen mainScreen].bounds.size.width);
     [self setFanhui];
 }
-- (void)viewWillAppear:(BOOL)animated {
+
+- (void)viewWillAppear:(BOOL)animated
+{
     [self setCascTitle:self.title];
 }
-- (void)viewWillLayoutSubviews {
 
-}
-- (IBAction)VideoLive:(id)sender {
+
+
+#pragma mark - USER INTERACTION RESPONSE
+
+- (IBAction)VideoLive:(id)sender
+{
     VideoLiveViewController * videoLiveVC = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
     [self.navigationController pushViewController:videoLiveVC animated:YES];
 }
-- (IBAction)dianbo:(id)sender {
+
+- (IBAction)dianbo:(id)sender
+{
     DianboListViewController * dianboVC = [[DianboListViewController alloc] initWithNibName:@"DianboListViewController" bundle:nil];
+    dianboVC.category = self.category;
     [self.navigationController pushViewController:dianboVC animated:YES];
 }
-- (IBAction)Infomation:(id)sender {
+
+- (IBAction)Infomation:(id)sender
+{
     KHLInformationTableViewController *informationViewController = [[KHLInformationTableViewController alloc] init];
     informationViewController.category = self.category;
     [self.navigationController pushViewController:informationViewController animated:TRUE];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
