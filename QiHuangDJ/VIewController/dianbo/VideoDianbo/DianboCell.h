@@ -15,5 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgeWithIcon;
 @property (weak, nonatomic) IBOutlet UIButton *jubaoMedhod;
 @property (weak, nonatomic) IBOutlet UIButton *huifuMehod;
-
+@property (weak, nonatomic) IBOutlet UILabel *goodCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *badCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end
