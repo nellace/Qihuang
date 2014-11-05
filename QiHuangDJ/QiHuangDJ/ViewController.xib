@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -65,7 +66,7 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q68-jv-pSJ" userLabel="DotA Image View">
                                     <rect key="frame" x="0.0" y="440" width="320" height="85"/>
                                 </imageView>
-                                <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
+                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
                                     <rect key="frame" x="210" y="100" width="110" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="yKI-Zs-yps" secondAttribute="height" multiplier="22:17" id="1a1-TM-O7A"/>
@@ -77,7 +78,7 @@
                                         <action selector="zhibo:" destination="-1" eventType="touchUpInside" id="LI6-Ox-IGX"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.89999999999999991" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK" userLabel="Keahoarl Entertainers Button">
+                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK" userLabel="Keahoarl Entertainers Button">
                                     <rect key="frame" x="210" y="185" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon5.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,7 +87,7 @@
                                         <action selector="qihuangyiren:" destination="-1" eventType="touchUpInside" id="ZGm-gE-9bO"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w" userLabel="Hearthstone Button">
+                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w" userLabel="Hearthstone Button">
                                     <rect key="frame" x="210" y="270" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon3.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,7 +96,7 @@
                                         <action selector="LSchuanshuo:" destination="-1" eventType="touchUpInside" id="t1C-oh-FEg"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM" userLabel="L.O.L. Button">
+                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM" userLabel="L.O.L. Button">
                                     <rect key="frame" x="210" y="355" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon2.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,7 +105,7 @@
                                         <action selector="LOL:" destination="-1" eventType="touchUpInside" id="ggL-28-pLr"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns" userLabel="DotA Button">
+                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns" userLabel="DotA Button">
                                     <rect key="frame" x="210" y="440" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon4.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
