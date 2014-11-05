@@ -15,6 +15,11 @@
     SliderRightList *rightView;
 }
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *vods;
+@property (nonatomic, strong) NSString *currentPage;
+@property (nonatomic, strong) NSString *allPages;
+@property (nonatomic, getter=needsRequest, setter=setNeedsRequest:) BOOL dataRequestTag;
 
 @end
 
@@ -25,8 +30,32 @@
     UIImageView * imgBG;  //用于键盘弹出时 触摸隐藏键盘的imageView
     
 }
-#pragma mark
-#pragma mark Life cyle
+
+
+
+#pragma mark - ATTRIBUTES GETTER AND SETTER
+
+- (NSMutableArray *)vods
+{
+    if (!_vods) _vods = [[NSMutableArray alloc] init];
+    return _vods;
+}
+
+
+
+
+#pragma mark - VIEW CONTROLLER LIFE CYCLE
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self setNeedsRequest:TRUE];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -39,17 +68,35 @@
     //键盘出现通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHiden:) name:UIKeyboardWillHideNotification object:nil];
+    
+    // Request data..
+    if ([self needsRequest]) {
+        [[KHLDataManager instance] VODListHUDHolder:self.view type:@"live" category:self.category page:@""];
+        [self setNeedsRequest:FALSE];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 
     [self.collectionItem registerNib:[UINib nibWithNibName:@"DianboListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"QHidentifierDianboCollectionCell"];
+    
+    // Register notification..
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoOnDemandListNotified:) name:@"KHLNotiVODListAcquired" object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
+    
+    // Remove notifications..
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiVODListAcquired" object:nil];
 }
+
+
+
+
+#pragma mark - CUSTOM LAYOUT METHODES
+
 - (void)rightBtnItemUI {
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun@2x.png"] forState:UIControlStateNormal];
@@ -91,8 +138,11 @@
         
     }];
 }
-#pragma mark
-#pragma mark KeyboardNotification
+
+
+
+
+#pragma mark - KeyboardNotification
 
 - (void)keyboardShow :(NSNotification *)noti {
     imgBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -112,15 +162,21 @@
 - (void)keyboardHid {
     [mySearch resignFirstResponder];
 }
-#pragma mark
-#pragma mark UISearchDelegate
+
+
+
+
+#pragma mark - UISearchDelegate
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
 }
 
-#pragma mark
-#pragma mark ButtonActionMethod
+
+
+
+#pragma mark - ButtonActionMethod
+
 - (IBAction)sectionBtn:(id)sender {
 
     UIButton * btn = (UIButton *)sender;
@@ -151,8 +207,9 @@
     }
 }
 
-#pragma mark
-#pragma mark UICollectionViewDataSource
+
+
+#pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -160,10 +217,11 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return self.vods.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
 
     
     static NSString *identifier = @"QHidentifierDianboCollectionCell";
@@ -172,19 +230,24 @@
     if (collectioncell == nil) {
         collectioncell = [[[NSBundle mainBundle] loadNibNamed:@"DianboListCollectionViewCell" owner:self options:nil]lastObject];
     }
+    
     return collectioncell;
 }
 
 
-#pragma mark
-#pragma mark UICollectionDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    DianboViewController * dianboVC = [[DianboViewController alloc] initWithNibName:@"DianboViewController" bundle:nil];
+#pragma mark - UICollectionDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:TRUE];
+    DianboViewController *dianboVC = [[DianboViewController alloc] initWithNibName:@"DianboViewController" bundle:nil];
     [self.navigationController pushViewController:dianboVC animated:YES];
 }
 
-#pragma mark
-#pragma mark UITableViewDataSource
+
+
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -197,7 +260,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     tableView.tableFooterView = [UIView new];
-    static NSString *identifier =@"QHSliderRightList";
+    static NSString *identifier = @"QHSliderRightList";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
@@ -206,10 +269,80 @@
     return cell;
 }
 
-#pragma mark
-#pragma mark UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
 }
+
+
+
+#pragma mark - NOTIFICATION METHODES
+
+- (void)videoOnDemandListNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        NSDictionary *result = [dict objectForKey:@"result"];
+        if (!result) {
+            NSLog(@"妈蛋，result里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
+        
+        [self.vods removeAllObjects];
+        self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+        self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+//        NSLog(@"data arr=%@",[result objectForKey:@"data"]);
+        for (NSDictionary *data in [result objectForKey:@"data"]) {
+            VODListInterface *interface = [[VODListInterface alloc] init];
+            interface.page = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+            interface.size = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+            interface.identity = [NSString stringWithFormat:@"%@", [data objectForKey:@"info_id"]];
+            interface.title = [NSString stringWithFormat:@"%@", [data objectForKey:@"title"]];
+            interface.imageUrl = [NSString stringWithFormat:@"%@", [data objectForKey:@"image"]];
+            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
+            [self.vods addObject:interface];
+            
+            NSLog(@"export: %@", interface.title);
+        }
+        
+//        // TEST
+//        for (int i = 0; i < 8; i++) {
+//            InformationListInterface *interface = [[InformationListInterface alloc] init];
+//            interface.identity = @"1";
+//            interface.category = self.category;
+//            interface.title = @"大风！大风！大风！";
+//            interface.imageUrl = @"";
+//            interface.brief = @"上元点鬟招萼绿，王母挥袂别飞琼。繁音急节十二遍，跳珠撼玉何铿铮。翔鸾舞了却收翅，唳鹤曲终长引声。当时乍见惊心目，凝视谛听殊未足。一落人间八九年，耳冷不曾闻此曲。湓城但听山魈语，巴峡唯闻杜鹃哭。";
+//            interface.count = @"1776";
+//            interface.publisher = @"赢扶苏";
+//            interface.time = @"1368-10-01";
+//            interface.type = self.type;
+//            [self.informations addObject:interface];
+//        }
+        
+        // Refresh list layout after data received..
+        [self.collectionView reloadData];
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+}
+
+
+
+
+
+
 @end
