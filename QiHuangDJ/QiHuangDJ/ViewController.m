@@ -188,8 +188,8 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
         imageView.frame = CGRectMake(x, y, width, height);
         // using testing image..
         HomepageImagesInterface *looping = [loopings objectAtIndex:i];
-        if (looping.loopingImageUrl && ![looping.loopingImageUrl isEqualToString:@""]) {
-            [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageUrl]];
+        if (looping.loopingImageName && ![looping.loopingImageName isEqualToString:@""]) {
+            [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageName]];
         } else {
             [imageView setImage:[UIImage imageNamed:@"huanchong_shouyeguanggao@2x.png"]];
         }
