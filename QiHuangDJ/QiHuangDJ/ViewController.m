@@ -189,8 +189,8 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
         imageView.frame = CGRectMake(x, y, width, height);
         // using testing image..
         HomepageImagesInterface *looping = [loopings objectAtIndex:i];
-        if (looping.loopingImageName && ![looping.loopingImageName isEqualToString:@""]) {
-            [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageName]];
+        if (looping.loopingImageUrl && ![looping.loopingImageUrl isEqualToString:@""]) {
+            [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageUrl]];
         } else {
             [imageView setImage:[UIImage imageNamed:@"huanchong_shouyeguanggao@2x.png"]];
         }
@@ -246,9 +246,21 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             [self.backdropImageViewCollection[i] setImageWithURL:[NSURL URLWithString:[self.backdropImages[i] backdropImageUrl]]];
         } else {
             [self.backdropImageViewCollection[i] setImage:[UIImage imageNamed:@"huanchong_shouye.png"]];
+
         }
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(abc)];
+        [self.backdropImageViewCollection[i] addGestureRecognizer:tap];
     }
+    
+    // Add tap gesture..
+
 }
+- (void)abc
+{
+    //url
+}
+
 
 - (void)saveCategoryIdentities
 {
@@ -345,8 +357,9 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             for (NSDictionary *looping in loopings) {
                 HomepageImagesInterface *interface = [[HomepageImagesInterface alloc] init];
                 interface.version = [NSString stringWithFormat:@"%@", [result objectForKey:@"version"]];
-                interface.loopingImageName = [NSString stringWithFormat:@"%@", [looping objectForKey:@"image"]];
-                interface.loopingImageUrl = [NSString stringWithFormat:@"%@", [looping objectForKey:@"url"]];
+                interface.loopingImageUrl = [NSString stringWithFormat:@"%@", [looping objectForKey:@"image"]];
+                interface.loopingIdentity = [NSString stringWithFormat:@"%@", [looping objectForKey:@"info_id"]];
+                interface.loopingType = [NSString stringWithFormat:@"%@", [looping objectForKey:@"model"]];
                 [self.loopingImages addObject:interface];
             }
             
