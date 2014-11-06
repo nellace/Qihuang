@@ -118,8 +118,10 @@
 
 @property (nonatomic, strong) NSString *version;
 
-@property (nonatomic, strong) NSString *loopingImageName;      // lunboimg->image
-@property (nonatomic, strong) NSString *loopingImageUrl;       // lunboimg->url
+// @property (nonatomic, strong) NSString *loopingImageName;      // lunboimg->image
+@property (nonatomic, strong) NSString *loopingImageUrl;       // lunboimg->image
+@property (nonatomic, strong) NSString *loopingType;           // lunboimg->model
+@property (nonatomic, strong) NSString *loopingIdentity;       // lunboimg->info_id
 
 @property (nonatomic, strong) NSString *backdropImageName;     // homebgimg->name
 @property (nonatomic, strong) NSString *backdropImageUrl;      // homebgimg->image
