@@ -32,7 +32,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIy-TT-MCX" userLabel="Main Holder View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="825"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="922"/>
                             <subviews>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SjN-OH-bcf" userLabel="Header Scroll View">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -49,25 +49,25 @@
                                     <rect key="frame" x="20" y="63" width="280" height="37"/>
                                 </pageControl>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-FT-pIw" userLabel="Live Broadcast Image View">
-                                    <rect key="frame" x="0.0" y="100" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="197" width="320" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Sjr-FT-pIw" secondAttribute="height" multiplier="64:17" id="ds0-Dy-qt3"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-tj-caD" userLabel="Keahoarl Entertainers Image View">
-                                    <rect key="frame" x="0.0" y="185" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="282" width="320" height="85"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="ffO-jW-5Sv" userLabel="Hearthstone Image View">
-                                    <rect key="frame" x="0.0" y="270" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="367" width="320" height="85"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="DHn-6T-3Sh" userLabel="L.O.L. Image View">
-                                    <rect key="frame" x="0.0" y="355" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="452" width="320" height="85"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q68-jv-pSJ" userLabel="DotA Image View">
-                                    <rect key="frame" x="0.0" y="440" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="537" width="320" height="85"/>
                                 </imageView>
                                 <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
-                                    <rect key="frame" x="210" y="100" width="110" height="85"/>
+                                    <rect key="frame" x="210" y="197" width="110" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="yKI-Zs-yps" secondAttribute="height" multiplier="22:17" id="1a1-TM-O7A"/>
                                     </constraints>
@@ -79,7 +79,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK" userLabel="Keahoarl Entertainers Button">
-                                    <rect key="frame" x="210" y="185" width="110" height="85"/>
+                                    <rect key="frame" x="210" y="282" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon5.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -88,7 +88,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w" userLabel="Hearthstone Button">
-                                    <rect key="frame" x="210" y="270" width="110" height="85"/>
+                                    <rect key="frame" x="210" y="367" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon3.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -97,7 +97,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM" userLabel="L.O.L. Button">
-                                    <rect key="frame" x="210" y="355" width="110" height="85"/>
+                                    <rect key="frame" x="210" y="452" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon2.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -106,7 +106,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns" userLabel="DotA Button">
-                                    <rect key="frame" x="210" y="440" width="110" height="85"/>
+                                    <rect key="frame" x="210" y="537" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon4.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -114,9 +114,22 @@
                                         <action selector="dota2:" destination="-1" eventType="touchUpInside" id="BBL-Kx-KEo"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwY-nF-WP2" userLabel="Gamesphere Button">
+                                    <rect key="frame" x="0.0" y="100" width="320" height="97"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="FwY-nF-WP2" secondAttribute="height" multiplier="320:97" id="jDB-TC-izy"/>
+                                    </constraints>
+                                    <state key="normal" image="gamesphere">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="pressGamesphereButton:" destination="-1" eventType="touchUpInside" id="7sr-b2-eCr"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="FwY-nF-WP2" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="1c5-ke-SRx"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="4WU-AD-xm3"/>
                                 <constraint firstItem="1zx-ig-2YG" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" constant="20" symbolic="YES" id="4Wa-gn-yWa"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="6tw-uT-nnX"/>
@@ -131,7 +144,6 @@
                                 <constraint firstItem="K6J-Kn-ueM" firstAttribute="width" secondItem="8VV-Ro-o7w" secondAttribute="width" id="IQz-YJ-WRT"/>
                                 <constraint firstItem="8VV-Ro-o7w" firstAttribute="centerY" secondItem="ffO-jW-5Sv" secondAttribute="centerY" id="IaZ-OK-wNL"/>
                                 <constraint firstItem="uz6-g4-Gns" firstAttribute="centerY" secondItem="Q68-jv-pSJ" secondAttribute="centerY" id="J4V-fQ-Trn"/>
-                                <constraint firstItem="Sjr-FT-pIw" firstAttribute="top" secondItem="SjN-OH-bcf" secondAttribute="bottom" id="JM9-xE-lGe"/>
                                 <constraint firstItem="yKI-Zs-yps" firstAttribute="height" secondItem="Sjr-FT-pIw" secondAttribute="height" id="JkC-dY-BMB"/>
                                 <constraint firstItem="ch3-tj-caD" firstAttribute="top" secondItem="Sjr-FT-pIw" secondAttribute="bottom" id="KhC-tL-Hbh"/>
                                 <constraint firstAttribute="trailing" secondItem="ffO-jW-5Sv" secondAttribute="trailing" id="N0M-bd-EHb"/>
@@ -141,7 +153,9 @@
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="top" secondItem="ch3-tj-caD" secondAttribute="bottom" id="W6p-af-cJd"/>
                                 <constraint firstItem="ch3-tj-caD" firstAttribute="height" secondItem="x6d-LO-7XK" secondAttribute="height" id="Wn6-Q3-kCL"/>
                                 <constraint firstItem="uz6-g4-Gns" firstAttribute="height" secondItem="Q68-jv-pSJ" secondAttribute="height" id="YrL-Cm-gY0"/>
+                                <constraint firstItem="Sjr-FT-pIw" firstAttribute="top" secondItem="FwY-nF-WP2" secondAttribute="bottom" id="Z9t-GB-qxR"/>
                                 <constraint firstAttribute="bottom" secondItem="Q68-jv-pSJ" secondAttribute="bottom" constant="300" id="Zi7-p5-nIT"/>
+                                <constraint firstAttribute="trailing" secondItem="FwY-nF-WP2" secondAttribute="trailing" id="bV2-wx-7wn"/>
                                 <constraint firstItem="ch3-tj-caD" firstAttribute="trailing" secondItem="x6d-LO-7XK" secondAttribute="trailing" id="dKd-jR-eGy"/>
                                 <constraint firstItem="uz6-g4-Gns" firstAttribute="trailing" secondItem="Q68-jv-pSJ" secondAttribute="trailing" id="dNe-BH-dbE"/>
                                 <constraint firstItem="Q68-jv-pSJ" firstAttribute="top" secondItem="DHn-6T-3Sh" secondAttribute="bottom" id="gIF-EJ-Ho4"/>
@@ -149,6 +163,7 @@
                                 <constraint firstItem="SjN-OH-bcf" firstAttribute="top" secondItem="UIy-TT-MCX" secondAttribute="top" id="i2K-z2-p4S"/>
                                 <constraint firstItem="Sjr-FT-pIw" firstAttribute="height" secondItem="ch3-tj-caD" secondAttribute="height" id="jgc-CE-PRq"/>
                                 <constraint firstAttribute="trailing" secondItem="ch3-tj-caD" secondAttribute="trailing" id="jtU-Dh-uvx"/>
+                                <constraint firstItem="FwY-nF-WP2" firstAttribute="top" secondItem="SjN-OH-bcf" secondAttribute="bottom" id="m3N-1F-Ivz"/>
                                 <constraint firstItem="K6J-Kn-ueM" firstAttribute="trailing" secondItem="DHn-6T-3Sh" secondAttribute="trailing" id="oAb-Fp-n5K"/>
                                 <constraint firstItem="yKI-Zs-yps" firstAttribute="width" secondItem="x6d-LO-7XK" secondAttribute="width" id="pfE-pT-vLc"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="height" secondItem="DHn-6T-3Sh" secondAttribute="height" id="rtL-3F-g62"/>
@@ -186,10 +201,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="143" y="205"/>
+            <point key="canvasLocation" x="19" y="165"/>
         </view>
     </objects>
     <resources>
+        <image name="gamesphere" width="640" height="194"/>
         <image name="huanchong_shouye.png" width="320" height="81"/>
         <image name="qihuangshouye_icon1.png" width="111" height="81"/>
         <image name="qihuangshouye_icon2.png" width="111" height="81"/>
