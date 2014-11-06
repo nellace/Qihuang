@@ -16,6 +16,10 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhibo_huanchongtu.png" translatesAutoresizingMaskIntoConstraints="NO" id="xgf-xa-s4L" userLabel="bgImage">
                         <rect key="frame" x="0.0" y="0.0" width="157" height="100"/>
                     </imageView>
+                    <view alpha="0.74999999999999978" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9k5-42-fp5">
+                        <rect key="frame" x="0.0" y="57" width="157" height="43"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="视频名称视频名称视频名称视频名称" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="141" translatesAutoresizingMaskIntoConstraints="NO" id="Jci-HS-fh0" userLabel="titleLabel">
                         <rect key="frame" x="0.0" y="57" width="157" height="43"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -25,8 +29,12 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="9k5-42-fp5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="12q-fx-GmU"/>
+                <constraint firstItem="Jci-HS-fh0" firstAttribute="top" secondItem="9k5-42-fp5" secondAttribute="top" id="3Os-1d-VqO"/>
                 <constraint firstItem="xgf-xa-s4L" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DJ9-Yn-c7Q"/>
+                <constraint firstAttribute="trailing" secondItem="9k5-42-fp5" secondAttribute="trailing" id="GCf-UK-POC"/>
                 <constraint firstItem="Jci-HS-fh0" firstAttribute="bottom" secondItem="xgf-xa-s4L" secondAttribute="bottom" id="Pki-dM-rzj"/>
+                <constraint firstAttribute="bottom" secondItem="9k5-42-fp5" secondAttribute="bottom" id="Pvr-2F-Vw3"/>
                 <constraint firstItem="Jci-HS-fh0" firstAttribute="centerX" secondItem="xgf-xa-s4L" secondAttribute="centerX" id="T6Q-32-HBV"/>
                 <constraint firstAttribute="trailing" secondItem="xgf-xa-s4L" secondAttribute="trailing" id="TxA-Rn-RJl"/>
                 <constraint firstAttribute="bottom" secondItem="xgf-xa-s4L" secondAttribute="bottom" id="boJ-ix-2cc"/>
@@ -39,7 +47,7 @@
                 <outlet property="backdropImageView" destination="xgf-xa-s4L" id="buG-ei-n2x"/>
                 <outlet property="titleLabel" destination="Jci-HS-fh0" id="b8B-oh-kHF"/>
             </connections>
-            <point key="canvasLocation" x="-869.5" y="-2.5"/>
+            <point key="canvasLocation" x="-869.5" y="-3"/>
         </collectionViewCell>
     </objects>
     <resources>
