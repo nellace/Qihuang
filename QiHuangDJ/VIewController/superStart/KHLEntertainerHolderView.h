@@ -12,11 +12,15 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *programmeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *experienceLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *programmeLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *experienceLabel;
 @property (weak, nonatomic) IBOutlet UIView *holderView;
 @property (weak, nonatomic) IBOutlet UIScrollView *holderScrollView;
 @property (weak, nonatomic) IBOutlet UIView *experienceHolder;
+
+@property (weak, nonatomic) IBOutlet UIWebView *programmeWebView;
+@property (weak, nonatomic) IBOutlet UIWebView *experienceWebView;
+
 
 - (void)loadData:(EntertainersListInterface *)entertainer useWindowSize:(CGSize)size;
 
