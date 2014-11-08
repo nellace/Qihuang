@@ -49,7 +49,7 @@
                                     <color key="textColor" red="0.60204081632653061" green="0.60204081632653061" blue="0.60204081632653061" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mings-ships-sailing" translatesAutoresizingMaskIntoConstraints="NO" id="RdP-RT-CfE" userLabel="Photo Image View">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhibo_huanchongtu.png" translatesAutoresizingMaskIntoConstraints="NO" id="RdP-RT-CfE" userLabel="Photo Image View">
                                     <rect key="frame" x="8" y="56" width="304" height="147"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="RdP-RT-CfE" secondAttribute="height" multiplier="310:150" id="ngY-0R-gDr"/>
@@ -146,7 +146,7 @@
         </view>
     </objects>
     <resources>
-        <image name="mings-ships-sailing" width="368" height="250"/>
+        <image name="zhibo_huanchongtu.png" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

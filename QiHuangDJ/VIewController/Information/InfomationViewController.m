@@ -77,7 +77,8 @@
     [super viewDidLoad];
     
     // Request data..
-    [[KHLDataManager instance] informationDetailHUDHolder:self.view identity:self.prestrain.identity type:self.prestrain.identity];
+//    [[KHLDataManager instance] informationDetailHUDHolder:self.view identity:self.prestrain.identity type:self.prestrain.category];
+    [[KHLDataManager instance] informationDetailHUDHolder:self.view identity:self.prestrain.identity type:@"article"];
 }
 
 
@@ -92,11 +93,18 @@
 
 - (void)loadDetailData
 {
-    self.titleLabel.text = [NSString stringWithFormat:@"%@", self.detail.title];
-    self.attachLabel.text = [NSString stringWithFormat:@"来源：%@ 时间：%@ 浏览量：%@ 编辑：%@", self.detail.source, self.detail.time, self.detail.count, self.detail.publisher];
-    self.bodyLabel.text = [NSString stringWithFormat:@"%@", self.detail.content];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSDate *date = [dateFormatter dateFromString:self.detail.time];
+//    NSLog(@"time? %@, date? %@", self.detail.time, date);
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSString *dateString = [dateFormatter stringFromDate:date];
+    NSString *dateString = [self.detail.time length] > 10 ? [self.detail.time substringToIndex:10] : @"";
     
-    NSLog(@"image urls? %@", self.detail.imageUrls);
+    self.titleLabel.text = [NSString stringWithFormat:@"%@", self.detail.title];
+    self.attachLabel.text = [NSString stringWithFormat:@"来源：%@ 时间：%@ 浏览量：%@ 编辑：%@", self.detail.source, dateString, self.detail.count, self.detail.publisher];
+    self.bodyLabel.text = [NSString stringWithFormat:@"%@", self.detail.content];
+    self.commentLabel.text = @"";
     
     if (self.detail.imageUrls && [self.detail.imageUrls isKindOfClass:[NSArray class]] && [self.detail.imageUrls firstObject] && [[self.detail.imageUrls firstObject] isKindOfClass:[NSString class]]) {
         //[self.photoImageView setImageWithURL:[NSURL URLWithString:[self.detail.imageUrls objectAtIndex:0]]];
@@ -136,11 +144,20 @@
     
     if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         
-        NSDictionary *result = [dict objectForKey:@"result"];
-        if (!result || ![result respondsToSelector:@selector(objectForKey:)]) {
-            NSLog(@"妈蛋，result里没东西。");
-            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//        NSInteger c = [[dict objectForKey:@"result"] count];
+        NSArray *results = [dict objectForKey:@"result"];
+        NSDictionary *result = nil;
+        if (!results || results.count == 0) {
+            NSLog(@"妈蛋，results里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"results为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             return;
+        } else {
+            result = [results firstObject];
+            if (!result) {
+                NSLog(@"妈蛋，result里没东西。");
+                [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                return;
+            }
         }
         
         self.detail.identity = [NSString stringWithFormat:@"%@", [result objectForKey:@"info_id"]];
