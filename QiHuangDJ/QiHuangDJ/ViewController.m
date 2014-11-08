@@ -14,6 +14,8 @@
 #import "PersonCenterViewController.h"
 #import "KHLSearchResultViewController.h"
 #import "KHLGamesphereViewController.h"
+#import "InfomationViewController.h"
+#import "DianboViewController.h"
 
 @interface ViewController () <UIScrollViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UIView *anchorView;
@@ -195,6 +197,10 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             [imageView setImage:[UIImage imageNamed:@"huanchong_shouyeguanggao@2x.png"]];
         }
         
+        UITapGestureRecognizer *tapLoopingRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressLoopingImageView)];
+        [imageView setUserInteractionEnabled:TRUE];
+        [imageView addGestureRecognizer:tapLoopingRecognizer];
+        
         carousel.showsHorizontalScrollIndicator = NO;
         [carousel addSubview:imageView];
     }
@@ -248,19 +254,8 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             [self.backdropImageViewCollection[i] setImage:[UIImage imageNamed:@"huanchong_shouye.png"]];
 
         }
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(abc)];
-        [self.backdropImageViewCollection[i] addGestureRecognizer:tap];
     }
-    
-    // Add tap gesture..
-
 }
-- (void)abc
-{
-    //url
-}
-
 
 - (void)saveCategoryIdentities
 {
@@ -322,6 +317,29 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 {
     KHLGamesphereViewController *gamesphereViewController = [[KHLGamesphereViewController alloc] init];
     [self.navigationController pushViewController:gamesphereViewController animated:TRUE];
+}
+
+- (void)pressLoopingImageView
+{
+    NSInteger index = self.headerPageControl.currentPage;
+    if (-1 < index < self.loopingImages.count) {
+        HomepageImagesInterface *looping = [self.loopingImages objectAtIndex:index];
+        if ([@"article" isEqualToString:looping.loopingType]) {
+            InfomationViewController *detailViewController = [[InfomationViewController alloc] init];
+            SearchInterface *prestrain = [[SearchInterface alloc] init];
+            [prestrain setIdentity:looping.loopingIdentity];
+            [prestrain setCategory:looping.loopingType];
+            [prestrain setImageUrl:looping.loopingImageUrl];
+            [detailViewController setPrestrain:prestrain];
+            [self.navigationController pushViewController:detailViewController animated:TRUE];
+        } else if ([@"live" isEqualToString:looping.loopingType]) {
+            // goto live
+            DianboViewController *vodViewController = [[DianboViewController alloc] init];
+            [self.navigationController pushViewController:vodViewController animated:TRUE];
+        } else {
+            // 你点到奇怪的东西了……
+        }
+    }
 }
 
 
@@ -426,7 +444,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 //        [self.informations removeAllObjects];
 //        self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
 //        self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
-        NSLog(@"data arr=%@",[result objectForKey:@"data"]);
+//        NSLog(@"data arr=%@",[result objectForKey:@"data"]);
         for (NSDictionary *data in [result objectForKey:@"data"]) {
             SearchInterface *interface = [[SearchInterface alloc] init];
             interface.page = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
@@ -440,8 +458,12 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             interface.publisher = [NSString stringWithFormat:@"%@", [data objectForKey:@"nickname"]];
             interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
             interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
-            [videos addObject:interface];
-            [informations addObject:interface];
+            
+            if ([@"video" isEqualToString:interface.type]) {
+                [videos addObject:interface];
+            } else if ([@"article" isEqualToString:interface.type]) {
+                [informations addObject:interface];
+            }
         }
 //
 //        // TEST
