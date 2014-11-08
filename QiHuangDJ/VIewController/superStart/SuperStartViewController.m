@@ -90,7 +90,7 @@
     //[self.entertainers addObject:[[self MakeSimulateEntertainersWithCapacity:1] firstObject]];
     
     // Set initial page label..
-    self.pageLabel.text = [NSString stringWithFormat:@"1 / %lu", self.entertainers.count];
+    self.pageLabel.text = [NSString stringWithFormat:@"1 / %i", self.entertainers.count];
     
     for (UIView *subview in [self.entertainerScrollView subviews]) {
         [subview removeFromSuperview];
@@ -120,7 +120,7 @@
     NSInteger page = (x + carouselWidth / 2) / carouselWidth + 1;
     if (page != self.page) {
         self.page = page;
-        self.pageLabel.text = [NSString stringWithFormat:@"%lu / %lu", self.page, self.entertainers.count];
+        self.pageLabel.text = [NSString stringWithFormat:@"%i / %i", self.page, self.entertainers.count];
         //NSLog(@"page: %lu", self.page);
     }
 }
