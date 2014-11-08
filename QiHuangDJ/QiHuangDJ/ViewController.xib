@@ -28,7 +28,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUq-ZH-kh4" userLabel="Anchor View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="715"/>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89f-sG-F2m" userLabel="Main Scroll View">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89f-sG-F2m" userLabel="Main Scroll View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="715"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIy-TT-MCX" userLabel="Main Holder View">
