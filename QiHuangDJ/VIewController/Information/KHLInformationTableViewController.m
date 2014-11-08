@@ -158,9 +158,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    InfomationViewController *infoViewController = [[InfomationViewController alloc] init];
-    [self.navigationController pushViewController:infoViewController animated:TRUE];
+    InformationListInterface *information = indexPath.row < self.informations.count ? [self.informations objectAtIndex:indexPath.row] : [[InformationListInterface alloc] init];
+    SearchInterface *prestrain = [[SearchInterface alloc] init];
+    [prestrain setIdentity:information.identity];
+    [prestrain setCategory:information.category];
+    [prestrain setTitle:information.category];
+    [prestrain setCount:information.count];
+    [prestrain setBrief:information.brief];
+    [prestrain setTime:information.time];
+    [prestrain setImageUrl:information.imageUrl];
     [self.tableView deselectRowAtIndexPath:indexPath animated:TRUE];
+    
+    InfomationViewController *infoViewController = [[InfomationViewController alloc] init];
+    [infoViewController setPrestrain:prestrain];
+    [self.navigationController pushViewController:infoViewController animated:TRUE];
 }
 
 
@@ -203,23 +214,23 @@
             interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
             [self.informations addObject:interface];
             
-            NSLog(@"export: %@", interface.brief);
+            NSLog(@"export: %@ brief: %@", interface.identity, interface.brief);
         }
         
-        // TEST
-        for (int i = 0; i < 8; i++) {
-            InformationListInterface *interface = [[InformationListInterface alloc] init];
-            interface.identity = @"1";
-            interface.category = self.category;
-            interface.title = @"大风！大风！大风！";
-            interface.imageUrl = @"";
-            interface.brief = @"上元点鬟招萼绿，王母挥袂别飞琼。繁音急节十二遍，跳珠撼玉何铿铮。翔鸾舞了却收翅，唳鹤曲终长引声。当时乍见惊心目，凝视谛听殊未足。一落人间八九年，耳冷不曾闻此曲。湓城但听山魈语，巴峡唯闻杜鹃哭。";
-            interface.count = @"1776";
-            interface.publisher = @"赢扶苏";
-            interface.time = @"1368-10-01";
-            interface.type = self.type;
-            [self.informations addObject:interface];
-        }
+//        // TEST
+//        for (int i = 0; i < 8; i++) {
+//            InformationListInterface *interface = [[InformationListInterface alloc] init];
+//            interface.identity = @"1";
+//            interface.category = self.category;
+//            interface.title = @"大风！大风！大风！";
+//            interface.imageUrl = @"";
+//            interface.brief = @"上元点鬟招萼绿，王母挥袂别飞琼。繁音急节十二遍，跳珠撼玉何铿铮。翔鸾舞了却收翅，唳鹤曲终长引声。当时乍见惊心目，凝视谛听殊未足。一落人间八九年，耳冷不曾闻此曲。湓城但听山魈语，巴峡唯闻杜鹃哭。";
+//            interface.count = @"1776";
+//            interface.publisher = @"赢扶苏";
+//            interface.time = @"1368-10-01";
+//            interface.type = self.type;
+//            [self.informations addObject:interface];
+//        }
         
         // Refresh list layout after data received..
         [self.tableView reloadData];
