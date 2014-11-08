@@ -30,6 +30,8 @@
     LiveDetailInterface * liveDetailInterface;
     NSMutableArray * listForTableView;
     NSString *otherUserName; //被回复人的用户名
+    
+    UIViewController *listViewController ;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,11 +52,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self addVideoViewController];
+    [self registerNotification];
+     [self requestNetworkData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self registerNotification];
-    [self requestNetworkData];
+    
+   
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -93,6 +97,7 @@
     }else {
         NSLog(@"请求数据的参数为空");
     }
+    //获取评论列表
     [[KHLDataManager instance] commentlistHUDHolder:self.view model:@"live" zhiboid:self.liveInfoID];
 //    4063
 }
@@ -206,7 +211,6 @@
     [fullScreenBtn setBackgroundImage:[UIImage imageNamed:@"zhibo_icon_fangda"] forState:UIControlStateNormal];
     [fullScreenBtn setBackgroundImage:[UIImage imageNamed:@"zhibo_icon_suoxiao"] forState:UIControlStateSelected];
     [fullScreenBtn addTarget:self action:@selector(fuScreenMethod:) forControlEvents:UIControlEventTouchUpInside];
-//    [gongjutiaoView addSubview:fullScreenBtn];
     return fullScreenBtn;
 }
 
@@ -264,8 +268,6 @@
 
             fullScreenBtn.frame =CGRectMake(mediaPlayBGView.frame.size.height - 20,
                                             mediaPlayBGView.frame.size.width - 20, 20, 20);
-
-
         } completion:^(BOOL finished) {
 
         }];
@@ -294,7 +296,6 @@
 
         keyboardHeight.constant = -deltaY;
 
-        
         [self.view updateConstraints];
         
     } completion:^(BOOL finished) {
@@ -355,10 +356,14 @@
         UIButton * btn = (UIButton * )sender;
         inputTextFiled.tag =btn.tag;
         [inputTextFiled becomeFirstResponder];
+
     } else {
         LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+
         [self.navigationController pushViewController:loginVC animated:YES];
     }
+    
+
 }
 - (IBAction)actionForpinglunMehod:(id)sender {
     if ([inputTextFiled.text isEqualToString:@""]) {

@@ -181,6 +181,8 @@
         [[NSUserDefaults standardUserDefaults] setObject:interface.email forKey:@"KHLPIEmail"];
         [[NSUserDefaults standardUserDefaults] setObject:interface.qq forKey:@"KHLPIQQ"];
         
+
+        
         if ((!interface.uid) || (!interface.token)) {
             [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:@"获取用户token失败。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             return;
