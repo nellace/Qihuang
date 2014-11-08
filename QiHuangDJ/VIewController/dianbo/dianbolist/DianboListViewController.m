@@ -11,6 +11,20 @@
 #import "DianboListCollectionViewCell.h"
 #import "DianboViewController.h"
 
+
+
+#pragma mark - DEFINATION AND ENUMERATION
+
+typedef NS_ENUM(NSInteger, KHLVODFilter) {
+    KHLVODFilterLatest = 1,
+    KHLVODFilterHotest = 2,
+    KHLVODFilterShortest = 3
+};
+
+
+
+#pragma mark - INTERFACE AND IMPLEMENTATION
+
 @interface DianboListViewController () {
     SliderRightList *rightView;
 }
@@ -20,6 +34,7 @@
 @property (nonatomic, strong) NSString *currentPage;
 @property (nonatomic, strong) NSString *allPages;
 @property (nonatomic, getter=needsRequest, setter=setNeedsRequest:) BOOL dataRequestTag;
+@property (nonatomic) KHLVODFilter filter;
 
 @end
 
@@ -41,6 +56,14 @@
     return _vods;
 }
 
+- (void)setFilter:(KHLVODFilter)filter
+{
+    _filter = filter;
+    if (![self needsRequest]) {
+        [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%lu", self.filter] category:self.category page:@"" search:@""];
+    }
+}
+
 
 
 
@@ -51,6 +74,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self setNeedsRequest:TRUE];
+        [self setFilter:KHLVODFilterLatest];
     }
     
     return self;
@@ -71,7 +95,7 @@
     
     // Request data..
     if ([self needsRequest]) {
-        [[KHLDataManager instance] VODListHUDHolder:self.view type:@"live" category:self.category page:@""];
+        [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%lu", self.filter] category:self.category page:@"" search:@""];
         [self setNeedsRequest:FALSE];
     }
 }
@@ -192,14 +216,14 @@
     switch (tagBtn) {
            
         case 101:       //news
-            
+            [self setFilter:KHLVODFilterLatest];
             break;
             
         case 102:       //hot
-            
+            [self setFilter:KHLVODFilterHotest];
             break;
         case 103:       //shortTime
-            
+            [self setFilter:KHLVODFilterShortest];
             break;
             
         default:
