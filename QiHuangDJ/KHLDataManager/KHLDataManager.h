@@ -428,11 +428,12 @@
  
  参数：
      type     类型
-     1 最新视频
-     2 最热视屏
-     3 最短时长（暂无）
+                 1 最新视频
+                 2 最热视屏
+                 3 最短时长（暂无）
      cate_id  分类ID
      p        当前页码（默认为1）
+     keyword  搜索关键字
  
  返回：
      {
@@ -462,7 +463,8 @@
 - (void)VODListHUDHolder: (UIView *)holder
                     type: (NSString *)type
                 category: (NSString *)category
-                    page: (NSString *)page;
+                    page: (NSString *)page
+                  search:(NSString *)keyword;
 
 
 
