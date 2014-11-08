@@ -8,14 +8,15 @@
 
 #import "InfomationViewController.h"
 
-@interface InfomationViewController ()
+@interface InfomationViewController () <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attachLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewHeight;
+@property (weak, nonatomic) IBOutlet UIWebView *webViewLaytou;
 @property (nonatomic, getter=needsPrestrain, setter=setNeedsPrestrain:) BOOL prestrainTag;
 @property (nonatomic, strong) InformationDetailInterface *detail;
 
@@ -61,9 +62,20 @@
         [self loadPrestrainData];
         [self setNeedsPrestrain:FALSE];
     }
-    
+
     // Register notifications..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(informationDetailNotified:) name:@"KHLNotiInformationDetailAcquired" object:nil];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    CGRect frame = webView.frame;
+    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
+    frame.size = fittingSize;
+    webView.frame = frame;
+    
+    self.webViewHeight.constant = webView.frame.size.height;
+    
+    NSLog(@"webview.frame%@",NSStringFromCGRect(webView.frame));
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -103,7 +115,9 @@
     
     self.titleLabel.text = [NSString stringWithFormat:@"%@", self.detail.title];
     self.attachLabel.text = [NSString stringWithFormat:@"来源：%@ 时间：%@ 浏览量：%@ 编辑：%@", self.detail.source, dateString, self.detail.count, self.detail.publisher];
-    self.bodyLabel.text = [NSString stringWithFormat:@"%@", self.detail.content];
+//    self.bodyLabel.text = [NSString stringWithFormat:@"%@", self.detail.content];
+//    NSLog(@"content%@",self.detail.content);
+    [self.webViewLaytou loadHTMLString:self.detail.content baseURL:nil];
     self.commentLabel.text = @"";
     
     if (self.detail.imageUrls && [self.detail.imageUrls isKindOfClass:[NSArray class]] && [self.detail.imageUrls firstObject] && [[self.detail.imageUrls firstObject] isKindOfClass:[NSString class]]) {
