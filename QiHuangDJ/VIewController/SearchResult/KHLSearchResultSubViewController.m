@@ -9,6 +9,7 @@
 #import "KHLSearchResultSubViewController.h"
 #import "KHLInformationTableViewCell.h"
 #import "InfomationViewController.h"
+#import "DianboViewController.h"
 
 
 
@@ -122,12 +123,22 @@
 {
     // Acquire instance..
     SearchInterface *information = [self.datasource objectAtIndex:indexPath.row];
+    UIViewController *detailViewController = nil;
+    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
+    
+    // Configure prestrain and target view controller..
+    if ([@"video" isEqualToString:information.type]) {
+        detailViewController = [[DianboViewController alloc] init];
+    } else if ([@"article" isEqualToString:information.type]) {
+        detailViewController = [[InfomationViewController alloc] init];
+        [(InfomationViewController *)detailViewController setPrestrain:information];
+    } else {
+        // 看来是搜到什么奇怪的东西了……
+        return;
+    }
     
     // Push to detail view controller..
-    InfomationViewController *detailViewController = [[InfomationViewController alloc] init];
-    [detailViewController setPrestrain:information];
     [self.navigationController pushViewController:detailViewController animated:TRUE];
-    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
 }
 
 
