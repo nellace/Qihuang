@@ -11,6 +11,7 @@
 #import "KHLSearchResultSubViewController.h"
 #import "KHLInformationTableViewCell.h"
 #import "InfomationViewController.h"
+#import "DianboViewController.h"
 
 #pragma mark - DEFINATIONS AND ENUMERATIONS
 
@@ -208,17 +209,25 @@ typedef NS_ENUM(NSInteger, KHLSearchResultType) {
 {
     // Acquire instance..
     SearchInterface *information;
+    UIViewController *detailViewController = nil;
+    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
+    
+    // Configure prestrain and target view controller..
     if (indexPath.section == KHLSearchResultTypeVideos) {
         information = [self.videos objectAtIndex:indexPath.row];
+        detailViewController = [[DianboViewController alloc] init];
+        // Add prestrain..
     } else if (indexPath.section == KHLSearchResultTypeInformations) {
         information = [self.informations objectAtIndex:indexPath.row];
+        detailViewController = [[InfomationViewController alloc] init];
+        [(InfomationViewController *)detailViewController setPrestrain:information];
+    } else {
+        // 总觉得点到什么奇怪的地方了……
+        return;
     }
     
     // Push to detail view controller..
-    InfomationViewController *detailViewController = [[InfomationViewController alloc] init];
-    [detailViewController setPrestrain:information];
     [self.navigationController pushViewController:detailViewController animated:TRUE];
-    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
 }
 
 

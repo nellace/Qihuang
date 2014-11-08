@@ -45,7 +45,7 @@
 #define KHLUrlLiveDetailAcquire @"app_zhibo.php"//?info_id=%@&uid=%@&token=%@"
 
 #pragma mark - 7.1 （2.14）获取点播列表
-#define KHLUrlVODListAcquire @"app_dianbolist.php?model=%@&cate_id=%@&p=%@"
+#define KHLUrlVODListAcquire @"app_dianbolist.php?type=%@&cate_id=%@&p=%@&search=%@"
 
 #pragma mark - 7.2 （2.15）获取点播详情（获取评论？）
 #define KHLUrlVODDetailAcquire @"app_dianbo.php?info_id=%@&model=%@"

@@ -370,11 +370,12 @@
                     type:(NSString *)type
                 category:(NSString *)category
                     page:(NSString *)page
+                  search:(NSString *)keyword
 {
     // Start progress HUD..
     [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
     
-    NSString *ustr = [NSString stringWithFormat:KHLUrlVODListAcquire, type, category, page];
+    NSString *ustr = [NSString stringWithFormat:KHLUrlVODListAcquire, type, category, page, keyword];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(@"vodlist ustr=%@", ustr);
     
