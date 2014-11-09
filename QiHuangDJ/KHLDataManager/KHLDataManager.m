@@ -793,6 +793,7 @@
      }];
 }
 
+#pragma mark - 2.23
 - (void)commentlistHUDHolder :(UIView *)holder
                           model:(NSString *)model
                       zhiboid:(NSString *)zhiboid {
@@ -826,6 +827,40 @@
          [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
      }];
 
+}
+
+#pragma mark - (2.25) 点播分类列表
+- (void)categoryListHUDHolder:(UIView *)holder uid:(NSString *)uid token:(NSString *)token
+{
+    // Start progress HUD..
+    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
+    
+    NSString *ustr = [NSString stringWithFormat:KHLUrlCategoryListAcquire];
+    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
+                           uid, @"uid",
+                           token, @"token",
+                           nil];
+    NSLog(@"catelist url=%@ param=%@", ustr, param);
+    
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
+    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         NSLog(@"catelist succ=\n%@", json);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiCategoryListAcquired" object:json];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"catelist fail=\n%@", error);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiCategoryListAcquired" object:nil];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     }];
 }
 
 @end

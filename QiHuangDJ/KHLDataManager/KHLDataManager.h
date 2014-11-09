@@ -867,7 +867,6 @@
 
 
 #pragma mark - (2.23) 评论列表
-
 /*
  类型：
     GET
@@ -899,12 +898,47 @@
      }
  
  使用：
- KHLUrlBase
- KHLUrlcommentlist
+     KHLUrlBase
+     KHLUrlcommentlist
  */
 
 - (void)commentlistHUDHolder :(UIView *)holder
                           model:(NSString *)model
                       zhiboid:(NSString *)zhiboid;
+
+#pragma mark - (2.25) 点播分类列表
+/*
+ 
+ 类型：
+     POST
+ 
+ 参数：
+     uid      用户ID
+     token    用户token
+ 
+ 返回：
+     {
+         "resultCode": "0",
+         "reason": "success",
+         "result": 
+         [
+             {
+                 "cate_id": "75",
+                 "title": "七煌原创",
+                 "subscribe": "0"
+             }
+         ]
+     }
+ 
+ 使用：
+     KHLUrlBase
+     KHLUrlCategoryListAcquire
+ 
+ */
+- (void)categoryListHUDHolder: (UIView *)holder
+                          uid: (NSString *)uid
+                        token: (NSString *)token;
+
+
 
 @end
