@@ -13,7 +13,7 @@
 #import "DianboListViewController.h"
 #import "KHLInformationTableViewController.h"
 
-@interface ClassifyViewController ()
+@interface ClassifyViewController () <UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *search;
 
 @end
@@ -48,8 +48,6 @@
     [self setCascTitle:self.title];
 }
 
-
-
 #pragma mark - USER INTERACTION RESPONSE
 
 - (IBAction)VideoLive:(id)sender
@@ -71,5 +69,16 @@
     informationViewController.category = self.category;
     [self.navigationController pushViewController:informationViewController animated:TRUE];
 }
+#pragma mark - UISEARCHBAR DELEGATE
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
 @end

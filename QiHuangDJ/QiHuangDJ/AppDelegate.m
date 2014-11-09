@@ -9,12 +9,15 @@
 #import "AppDelegate.h"
 #import "CustomNavViewController.h"
 #import "ViewController.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController * vc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     CustomNavViewController * navCustom = [[CustomNavViewController alloc] initWithRootViewController:vc];

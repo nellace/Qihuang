@@ -145,7 +145,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     self.navigationItem.leftBarButtonItem = imgLeft;
     //中间导航
     SearchBarCustom *search = [SearchBarCustom new];
-    [search setBackgroundColor:[UIColor whiteColor]];
+//    [search setBackgroundColor:[UIColor whiteColor]];
     [search customSearchBarUI:@"home"];
     search.delegate = self;
     self.navigationItem.titleView = search;

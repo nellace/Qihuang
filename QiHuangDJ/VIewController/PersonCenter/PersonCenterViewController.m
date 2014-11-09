@@ -395,13 +395,13 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
         if (l) {
             [recoCell.leftImageView setImageWithURL:[NSURL URLWithString:l.imageUrl]];
             [recoCell.leftLabel setText:l.title];
-            NSLog(@"left -       (%lu) %@", counter - 2, l.title);
+            NSLog(@"left -       (%d) %@", counter - 2, l.title);
         }
         
         if (r) {
             [recoCell.rightImageView setImageWithURL:[NSURL URLWithString:r.imageUrl]];
             [recoCell.rightLabel setText:r.title];
-            NSLog(@"     - right (%lu) %@", counter - 1, r.title);
+            NSLog(@"     - right (%d) %@", counter - 1, r.title);
         }
         
         // Configure recommended cell label..

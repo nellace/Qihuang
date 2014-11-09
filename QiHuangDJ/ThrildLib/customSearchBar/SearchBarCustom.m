@@ -14,7 +14,7 @@
     //自定义搜索条左侧放大镜
     [self setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     //自定义搜索条输入框背景图片
-    [self setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg.png"] forState:UIControlStateNormal];
+    [self setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchWithHomepage"] forState:UIControlStateNormal];
 
     if ([searchBarstyle isEqualToString:@"home"]) {
         //纯净模式
