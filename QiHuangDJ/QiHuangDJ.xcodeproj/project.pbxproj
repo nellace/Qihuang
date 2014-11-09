@@ -70,6 +70,8 @@
 		FC2FA76C1A08B8AC006290BE /* KHLSearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2FA76A1A08B8AC006290BE /* KHLSearchResultViewController.xib */; };
 		FC2FA7701A08F0E8006290BE /* KHLSearchResultSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2FA76E1A08F0E8006290BE /* KHLSearchResultSubViewController.m */; };
 		FC2FA7711A08F0E8006290BE /* KHLSearchResultSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2FA76F1A08F0E8006290BE /* KHLSearchResultSubViewController.xib */; };
+		FC3FD84E1A0F3327001E7562 /* KHLCategorySliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3FD84C1A0F3327001E7562 /* KHLCategorySliderTableViewCell.m */; };
+		FC3FD84F1A0F3327001E7562 /* KHLCategorySliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC3FD84D1A0F3327001E7562 /* KHLCategorySliderTableViewCell.xib */; };
 		FC511E6B1A0A526000518265 /* KHLGamesphereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC511E691A0A526000518265 /* KHLGamesphereViewController.m */; };
 		FC511E6C1A0A526000518265 /* KHLGamesphereViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC511E6A1A0A526000518265 /* KHLGamesphereViewController.xib */; };
 		FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */; };
@@ -321,6 +323,9 @@
 		FC2FA76D1A08F0E8006290BE /* KHLSearchResultSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHLSearchResultSubViewController.h; path = SearchResult/KHLSearchResultSubViewController.h; sourceTree = "<group>"; };
 		FC2FA76E1A08F0E8006290BE /* KHLSearchResultSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHLSearchResultSubViewController.m; path = SearchResult/KHLSearchResultSubViewController.m; sourceTree = "<group>"; };
 		FC2FA76F1A08F0E8006290BE /* KHLSearchResultSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KHLSearchResultSubViewController.xib; path = SearchResult/KHLSearchResultSubViewController.xib; sourceTree = "<group>"; };
+		FC3FD84B1A0F3327001E7562 /* KHLCategorySliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLCategorySliderTableViewCell.h; sourceTree = "<group>"; };
+		FC3FD84C1A0F3327001E7562 /* KHLCategorySliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLCategorySliderTableViewCell.m; sourceTree = "<group>"; };
+		FC3FD84D1A0F3327001E7562 /* KHLCategorySliderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLCategorySliderTableViewCell.xib; sourceTree = "<group>"; };
 		FC511E681A0A526000518265 /* KHLGamesphereViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHLGamesphereViewController.h; path = GamesphereWebView/KHLGamesphereViewController.h; sourceTree = "<group>"; };
 		FC511E691A0A526000518265 /* KHLGamesphereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHLGamesphereViewController.m; path = GamesphereWebView/KHLGamesphereViewController.m; sourceTree = "<group>"; };
 		FC511E6A1A0A526000518265 /* KHLGamesphereViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KHLGamesphereViewController.xib; path = GamesphereWebView/KHLGamesphereViewController.xib; sourceTree = "<group>"; };
@@ -835,6 +840,9 @@
 				3D858E2419EBC221005022BA /* DianboListCollectionViewCell.h */,
 				3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */,
 				3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */,
+				FC3FD84B1A0F3327001E7562 /* KHLCategorySliderTableViewCell.h */,
+				FC3FD84C1A0F3327001E7562 /* KHLCategorySliderTableViewCell.m */,
+				FC3FD84D1A0F3327001E7562 /* KHLCategorySliderTableViewCell.xib */,
 			);
 			path = dianbolist;
 			sourceTree = "<group>";
@@ -1194,6 +1202,7 @@
 				FCFDCB621A0731FA007F3F2E /* icon_shoucang@2x.png in Resources */,
 				FCFDCB771A0731FA007F3F2E /* zhibo_icon_fangda@2x.png in Resources */,
 				FCFDCB301A0731FA007F3F2E /* nav_bg@2x.png in Resources */,
+				FC3FD84F1A0F3327001E7562 /* KHLCategorySliderTableViewCell.xib in Resources */,
 				FC2FA7711A08F0E8006290BE /* KHLSearchResultSubViewController.xib in Resources */,
 				FCFDCB501A0731FA007F3F2E /* shouye_logo@2x.png in Resources */,
 				FCFDCB121A0731FA007F3F2E /* denglu_icon_weibo@2x.png in Resources */,
@@ -1337,6 +1346,7 @@
 				3D858E1D19E8E023005022BA /* DianboListViewController.m in Sources */,
 				3D858E1519E8DFD7005022BA /* VideoLiveViewController.m in Sources */,
 				3D39636319FF3B4B00F6C004 /* DataManagerModel.m in Sources */,
+				FC3FD84E1A0F3327001E7562 /* KHLCategorySliderTableViewCell.m in Sources */,
 				FC511E6B1A0A526000518265 /* KHLGamesphereViewController.m in Sources */,
 				3D44757719C984AC00D9B2B1 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				FC61088B19F4C2A60057BA0E /* KHLPICProfileViewController.m in Sources */,
