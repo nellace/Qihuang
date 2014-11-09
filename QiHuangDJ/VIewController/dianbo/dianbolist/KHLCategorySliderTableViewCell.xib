@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KHLCategorySliderTableViewCell" id="KGk-i7-Jjw" customClass="KHLCategorySliderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tzelann_logout" translatesAutoresizingMaskIntoConstraints="NO" id="XXc-tL-QmZ" userLabel="Category Image View">
+                        <rect key="frame" x="8" y="8" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="XXc-tL-QmZ" secondAttribute="height" multiplier="1:1" id="OeA-Oj-8x5"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="溪云初起日沉阁" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKs-Gc-QEA" userLabel="Category Label">
+                        <rect key="frame" x="44" y="8" width="200" height="28"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHO-7k-as4" userLabel="Category Subscribe Button">
+                        <rect key="frame" x="252" y="8" width="60" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="tsH-Y6-fKR"/>
+                        </constraints>
+                        <state key="normal" image="celan_dinngyue_press.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="XXc-tL-QmZ" secondAttribute="bottom" id="NjB-cC-wq9"/>
+                    <constraint firstItem="eHO-7k-as4" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="P0t-PO-gC7"/>
+                    <constraint firstItem="NKs-Gc-QEA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="36" id="QRM-cT-Z9n"/>
+                    <constraint firstItem="XXc-tL-QmZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="SLh-r8-vPT"/>
+                    <constraint firstItem="XXc-tL-QmZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="XWk-rg-NTh"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NKs-Gc-QEA" secondAttribute="bottom" id="d0X-J6-hS7"/>
+                    <constraint firstItem="eHO-7k-as4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="d5p-aA-4MZ"/>
+                    <constraint firstItem="NKs-Gc-QEA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="g5e-Vx-40O"/>
+                    <constraint firstItem="eHO-7k-as4" firstAttribute="leading" secondItem="NKs-Gc-QEA" secondAttribute="trailing" constant="8" symbolic="YES" id="orZ-Yk-gyS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="eHO-7k-as4" secondAttribute="trailing" id="sGp-Rb-nzi"/>
+                    <constraint firstItem="NKs-Gc-QEA" firstAttribute="leading" secondItem="XXc-tL-QmZ" secondAttribute="trailing" constant="8" symbolic="YES" id="vwy-P3-pUO"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="QRM-cT-Z9n"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="categoryImageView" destination="XXc-tL-QmZ" id="i0e-gb-LTv"/>
+                <outlet property="categoryLabel" destination="NKs-Gc-QEA" id="S20-0V-8Dd"/>
+                <outlet property="categorySubscribeButton" destination="eHO-7k-as4" id="OpX-qP-Fzx"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="153"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="celan_dinngyue_press.png" width="40" height="20"/>
+        <image name="tzelann_logout" width="336" height="335"/>
+    </resources>
+</document>

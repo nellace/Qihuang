@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SliderRightList : UIView
+@interface SliderRightList : UIView // <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView1;
+
+//@property (nonatomic, strong) NSMutableArray *categories;
 
 @end

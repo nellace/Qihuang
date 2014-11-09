@@ -7,33 +7,71 @@
 //
 
 #import "SliderRightList.h"
+#import "KHLCategorySliderTableViewCell.h"
 
-@implementation SliderRightList 
+
+@interface SliderRightList()
+
+@end
+
+@implementation SliderRightList
 
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+#pragma mark - ATTRIBUTES GETTER AND SETTER
+
+//- (NSMutableArray *)categories
+//{
+//    if (!_categories) _categories = [[NSMutableArray alloc] init];
+//    return _categories;
+//}
+
+
+
+//#pragma mark - TABLE VIEW DELEGATE
+//
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
 //    return 1;
 //}
 //
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return 3;
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return self.categories.count;
 //}
 //
-//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString *identifier =@"QHSliderRightList";
-//    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // Create view instance..
+//    UITableViewCell *cell = nil;
+//    KHLCategorySliderTableViewCell *cCell = [tableView dequeueReusableCellWithIdentifier:@"KHLCategorySliderTableViewCell"];
+//    if (!cCell) {
+//        cCell = [[[NSBundle mainBundle] loadNibNamed:@"KHLCategorySliderTableViewCell" owner:self options:nil] firstObject];
 //    }
-//    cell.textLabel.text = @"视频分类";
+//    
+//    // Acquire data instance..
+//    CategoryListInterface *instance = [self.categories objectAtIndex:indexPath.row];
+//    
+//    // Configure image and title..
+//    if (instance) {
+//        
+//    }
+//    
+//    // Asign category slider cell..
+//    cell = cCell;
 //    return cell;
 //}
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

@@ -8,7 +8,7 @@
 
 #import "MQLCustomViewController.h"
 
-@interface DianboListViewController : MQLCustomViewController <UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UISearchBarDelegate>
+@interface DianboListViewController : MQLCustomViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionItem;
 

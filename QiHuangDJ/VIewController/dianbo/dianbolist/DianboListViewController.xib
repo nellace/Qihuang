@@ -9,11 +9,12 @@
             <connections>
                 <outlet property="collectionItem" destination="C1X-dp-tny" id="Fiu-tX-mvb"/>
                 <outlet property="collectionView" destination="C1X-dp-tny" id="M06-FY-N3V"/>
+                <outlet property="holder" destination="qeP-sO-6GV" id="6vZ-Gd-T5i"/>
                 <outlet property="mySearch" destination="Wz9-VO-Zkt" id="tjd-2X-eNW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="btnCollection" destination="2z6-3l-b7X" id="PkA-5y-LPs"/>
-                <outletCollection property="btnCollection" destination="xgB-Pv-rYX" id="oWp-fD-KHM"/>
                 <outletCollection property="btnCollection" destination="gRA-a9-ECx" id="caJ-TW-nWK"/>
+                <outletCollection property="btnCollection" destination="xgB-Pv-rYX" id="oWp-fD-KHM"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,121 +22,123 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtI-ZY-ZW0" userLabel="btnBGView">
-                    <rect key="frame" x="0.0" y="44" width="320" height="41"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qeP-sO-6GV" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
-                        <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-Pv-rYX">
-                            <rect key="frame" x="108" y="0.0" width="109" height="41"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                            <state key="normal" title="最热视频" image="zhibo_caidan_icon_3.png" backgroundImage="caidan_you.png">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" title="最热视频" image="zhibo_caidan_icon_3_press.png" backgroundImage="caidan_you_press.png">
-                                <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <state key="highlighted" image="zhibo_caidan_icon_3_press.png" backgroundImage="caidan_you_press.png">
-                                <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </state>
+                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-VO-Zkt">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="WBt-6K-WWG"/>
+                            </constraints>
+                            <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <action selector="sectionBtn:" destination="-1" eventType="touchUpInside" id="1mA-cT-cym"/>
+                                <outlet property="delegate" destination="-1" id="FPA-rk-I5j"/>
                             </connections>
-                        </button>
-                        <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRA-a9-ECx">
-                            <rect key="frame" x="212" y="0.0" width="108" height="41"/>
+                        </searchBar>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtI-ZY-ZW0" userLabel="btnBGView">
+                            <rect key="frame" x="0.0" y="44" width="320" height="41"/>
+                            <subviews>
+                                <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z6-3l-b7X">
+                                    <rect key="frame" x="0.0" y="0.0" width="108" height="41"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                    <state key="normal" title="最新视频" image="zhibo_caidan_icon_1.png" backgroundImage="caidan_you.png">
+                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="zhibo_caidan_icon_1_press.png" backgroundImage="caidan_you_press.png">
+                                        <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="highlighted" image="zhibo_caidan_icon_1_press.png" backgroundImage="caidan_you.png">
+                                        <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="sectionBtn:" destination="-1" eventType="touchUpInside" id="dBB-5b-avt"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-Pv-rYX">
+                                    <rect key="frame" x="108" y="0.0" width="109" height="41"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                    <state key="normal" title="最热视频" image="zhibo_caidan_icon_3.png" backgroundImage="caidan_you.png">
+                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" title="最热视频" image="zhibo_caidan_icon_3_press.png" backgroundImage="caidan_you_press.png">
+                                        <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="highlighted" image="zhibo_caidan_icon_3_press.png" backgroundImage="caidan_you_press.png">
+                                        <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="sectionBtn:" destination="-1" eventType="touchUpInside" id="1mA-cT-cym"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="103" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRA-a9-ECx">
+                                    <rect key="frame" x="212" y="0.0" width="108" height="41"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                    <state key="normal" title="最短时长" image="zhibo_caidan_icon_2.png" backgroundImage="caidan_you.png">
+                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" image="zhibo_caidan_icon_2_press.png" backgroundImage="caidan_you_press.png">
+                                        <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="highlighted" image="zhibo_caidan_icon_2_press.png" backgroundImage="caidan_you.png">
+                                        <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="sectionBtn:" destination="-1" eventType="touchUpInside" id="4DO-4j-Mmz"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                            <state key="normal" title="最短时长" image="zhibo_caidan_icon_2.png" backgroundImage="caidan_you.png">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="zhibo_caidan_icon_2_press.png" backgroundImage="caidan_you_press.png">
-                                <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <state key="highlighted" image="zhibo_caidan_icon_2_press.png" backgroundImage="caidan_you.png">
-                                <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="41" id="Tjq-Ps-6H5"/>
+                            </constraints>
+                        </view>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="C1X-dp-tny">
+                            <rect key="frame" x="0.0" y="85" width="320" height="483"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <inset key="scrollIndicatorInsets" minX="100" minY="100" maxX="100" maxY="100"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="5" id="wnU-aB-mrb">
+                                <size key="itemSize" width="157" height="100"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
                             <connections>
-                                <action selector="sectionBtn:" destination="-1" eventType="touchUpInside" id="4DO-4j-Mmz"/>
+                                <outlet property="dataSource" destination="-1" id="2le-eI-XAo"/>
+                                <outlet property="delegate" destination="-1" id="a3g-cc-4sV"/>
                             </connections>
-                        </button>
-                        <button opaque="NO" tag="101" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z6-3l-b7X">
-                            <rect key="frame" x="0.0" y="0.0" width="108" height="41"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                            <state key="normal" title="最新视频" image="zhibo_caidan_icon_1.png" backgroundImage="caidan_you.png">
-                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="zhibo_caidan_icon_1_press.png" backgroundImage="caidan_you_press.png">
-                                <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <state key="highlighted" image="zhibo_caidan_icon_1_press.png" backgroundImage="caidan_you.png">
-                                <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="sectionBtn:" destination="-1" eventType="touchUpInside" id="dBB-5b-avt"/>
-                            </connections>
-                        </button>
+                        </collectionView>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="top" id="0R6-hW-Tp1"/>
-                        <constraint firstItem="2z6-3l-b7X" firstAttribute="leading" secondItem="rtI-ZY-ZW0" secondAttribute="leading" id="2ME-MR-BDc"/>
-                        <constraint firstAttribute="bottom" secondItem="xgB-Pv-rYX" secondAttribute="bottom" id="7Ux-Cm-yL0"/>
-                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="height" secondItem="2z6-3l-b7X" secondAttribute="height" id="Bhh-Ux-gHw"/>
-                        <constraint firstAttribute="trailing" secondItem="gRA-a9-ECx" secondAttribute="trailing" id="HIJ-xo-1a6"/>
-                        <constraint firstItem="gRA-a9-ECx" firstAttribute="leading" secondItem="xgB-Pv-rYX" secondAttribute="trailing" constant="-5" id="JSY-a8-Sg5"/>
-                        <constraint firstItem="2z6-3l-b7X" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="top" id="LGG-zR-bRv"/>
-                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="leading" secondItem="2z6-3l-b7X" secondAttribute="trailing" id="MPc-Ku-rg9"/>
-                        <constraint firstAttribute="bottom" secondItem="2z6-3l-b7X" secondAttribute="bottom" id="NAM-m1-4NV"/>
-                        <constraint firstAttribute="bottom" secondItem="gRA-a9-ECx" secondAttribute="bottom" id="b3H-YL-XEJ"/>
-                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="width" secondItem="gRA-a9-ECx" secondAttribute="width" constant="1" id="bh9-4W-Yhn"/>
-                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="height" secondItem="gRA-a9-ECx" secondAttribute="height" id="eEk-QF-KgM"/>
-                        <constraint firstItem="xgB-Pv-rYX" firstAttribute="width" secondItem="2z6-3l-b7X" secondAttribute="width" constant="1" id="nMn-B2-EEu"/>
-                        <constraint firstItem="gRA-a9-ECx" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="top" id="rIs-NQ-UOU"/>
+                        <constraint firstItem="C1X-dp-tny" firstAttribute="leading" secondItem="qeP-sO-6GV" secondAttribute="leading" id="5wQ-kD-mHE"/>
+                        <constraint firstItem="rtI-ZY-ZW0" firstAttribute="leading" secondItem="qeP-sO-6GV" secondAttribute="leading" id="A01-pc-rrc"/>
+                        <constraint firstAttribute="trailing" secondItem="rtI-ZY-ZW0" secondAttribute="trailing" id="FbN-dr-NXS"/>
+                        <constraint firstItem="rtI-ZY-ZW0" firstAttribute="top" secondItem="Wz9-VO-Zkt" secondAttribute="bottom" id="Fe6-YB-ltm"/>
+                        <constraint firstItem="Wz9-VO-Zkt" firstAttribute="top" secondItem="qeP-sO-6GV" secondAttribute="top" id="GmC-qG-QuX"/>
+                        <constraint firstItem="C1X-dp-tny" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="bottom" id="Nc5-dE-GUp"/>
+                        <constraint firstItem="Wz9-VO-Zkt" firstAttribute="leading" secondItem="qeP-sO-6GV" secondAttribute="leading" id="dXc-Z8-qk2"/>
+                        <constraint firstAttribute="trailing" secondItem="Wz9-VO-Zkt" secondAttribute="trailing" id="gQm-Xk-rcU"/>
+                        <constraint firstAttribute="bottom" secondItem="C1X-dp-tny" secondAttribute="bottom" id="sqS-GJ-SSc"/>
+                        <constraint firstAttribute="trailing" secondItem="C1X-dp-tny" secondAttribute="trailing" id="vLl-SG-n6l"/>
                     </constraints>
                 </view>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Wz9-VO-Zkt">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="FPA-rk-I5j"/>
-                    </connections>
-                </searchBar>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="C1X-dp-tny">
-                    <rect key="frame" x="0.0" y="85" width="320" height="483"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <inset key="scrollIndicatorInsets" minX="100" minY="100" maxX="100" maxY="100"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="5" id="wnU-aB-mrb">
-                        <size key="itemSize" width="157" height="100"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="2le-eI-XAo"/>
-                        <outlet property="delegate" destination="-1" id="a3g-cc-4sV"/>
-                    </connections>
-                </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="C1X-dp-tny" secondAttribute="bottom" id="05T-7s-OpA"/>
-                <constraint firstAttribute="trailing" secondItem="rtI-ZY-ZW0" secondAttribute="trailing" id="313-6e-yJ9"/>
-                <constraint firstItem="C1X-dp-tny" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DMG-RH-cvC"/>
-                <constraint firstAttribute="trailing" secondItem="C1X-dp-tny" secondAttribute="trailing" id="EaO-3t-NmU"/>
-                <constraint firstItem="Wz9-VO-Zkt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NvA-G8-p7C"/>
-                <constraint firstItem="rtI-ZY-ZW0" firstAttribute="top" secondItem="Wz9-VO-Zkt" secondAttribute="bottom" id="UE9-VH-DWo"/>
-                <constraint firstAttribute="trailing" secondItem="Wz9-VO-Zkt" secondAttribute="trailing" id="aYo-9e-juy"/>
-                <constraint firstItem="C1X-dp-tny" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="bottom" id="csT-P1-kv2"/>
-                <constraint firstItem="Wz9-VO-Zkt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hrb-g1-6sM"/>
-                <constraint firstItem="rtI-ZY-ZW0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mw7-lv-KYJ"/>
+                <constraint firstAttribute="bottom" secondItem="qeP-sO-6GV" secondAttribute="bottom" id="1TG-DE-3bJ"/>
+                <constraint firstItem="qeP-sO-6GV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Ga-ma-8vb"/>
+                <constraint firstAttribute="trailing" secondItem="qeP-sO-6GV" secondAttribute="trailing" id="Cjm-a8-mKA"/>
+                <constraint firstItem="qeP-sO-6GV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="faG-f2-Pjn"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="-727" y="168"/>

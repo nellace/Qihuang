@@ -7,13 +7,16 @@
 //
 
 #import "DianboListViewController.h"
-#import "SliderRightList.h"
+//#import "SliderRightList.h"
 #import "DianboListCollectionViewCell.h"
 #import "DianboViewController.h"
+#import "KHLCategorySliderTableViewCell.h"
 
 
 
 #pragma mark - DEFINATION AND ENUMERATION
+
+#define SLIDER_WIDTH (250.0f)
 
 typedef NS_ENUM(NSInteger, KHLVODFilter) {
     KHLVODFilterLatest = 1,
@@ -26,15 +29,18 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 #pragma mark - INTERFACE AND IMPLEMENTATION
 
 @interface DianboListViewController () {
-    SliderRightList *rightView;
+    UITableView *rightView;
 }
 
+@property (weak, nonatomic) IBOutlet UIView *holder;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *vods;
 @property (nonatomic, strong) NSString *currentPage;
 @property (nonatomic, strong) NSString *allPages;
 @property (nonatomic, getter=needsRequest, setter=setNeedsRequest:) BOOL dataRequestTag;
 @property (nonatomic) KHLVODFilter filter;
+
+@property (nonatomic, strong) NSMutableArray *categories;
 
 @end
 
@@ -54,6 +60,12 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 {
     if (!_vods) _vods = [[NSMutableArray alloc] init];
     return _vods;
+}
+
+- (NSMutableArray *)categories
+{
+    if (!_categories) _categories = [[NSMutableArray alloc] init];
+    return _categories;
 }
 
 - (void)setFilter:(KHLVODFilter)filter
@@ -82,6 +94,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
     [self setCascTitle:@"视频"];
     [self setFanhui];
@@ -89,11 +102,20 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     [self rightBtnItemUI];
     
     [mySearch setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    
     //键盘出现通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHiden:) name:UIKeyboardWillHideNotification object:nil];
     
     // Request data..
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    if (uid && token) {
+        [[KHLDataManager instance] categoryListHUDHolder:self.view uid:uid token:token];
+    } else {
+        
+    }
+    
     if ([self needsRequest]) {
         [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%lu", self.filter] category:self.category page:@"" search:@""];
         [self setNeedsRequest:FALSE];
@@ -105,6 +127,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     [self.collectionItem registerNib:[UINib nibWithNibName:@"DianboListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"QHidentifierDianboCollectionCell"];
     
     // Register notification..
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categoryListNotified:) name:@"KHLNotiCategoryListAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoOnDemandListNotified:) name:@"KHLNotiVODListAcquired" object:nil];
 }
 
@@ -113,6 +136,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     // Remove notifications..
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiCategoryListAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiVODListAcquired" object:nil];
 }
 
@@ -135,31 +159,38 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 }
 
 - (void)rightViewUI {
-    rightView = [[[NSBundle mainBundle] loadNibNamed:@"SliderRightList" owner:self options:nil] lastObject];
-    rightView.frame = CGRectMake(6000,-64, 120, self.view.frame.size.height);
+//    rightView = [[[NSBundle mainBundle] loadNibNamed:@"SliderRightList" owner:self options:nil] lastObject];
+    rightView = [[UITableView alloc] init];
+//    rightView.frame = CGRectMake(320 - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height + 64);
+    rightView.frame = CGRectMake(320 - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height + 64);
+    rightView.delegate = self;
+    rightView.dataSource = self;
+    [rightView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"celan_bg@2x.png"]]];
+//    [rightView setUserInteractionEnabled:TRUE];
+//    [rightView.tableView setUserInteractionEnabled:TRUE];
+//    rightView.tableView1.scrollEnabled = YES;
+//    [self.view insertSubview:rightView atIndex:0];
     [self.view addSubview:rightView];
+    [self.view insertSubview:rightView belowSubview:self.holder];
 }
 
-- (void)feileiBtnMethond:(UIButton *)sender {
+- (void)feileiBtnMethond:(UIButton *)sender
+{
     [UIView animateWithDuration:0.3f animations:^{
         if (sender.selected) {
             sender.selected = NO;
-            self.view.frame = CGRectMake(0, 64, 320, self.view.frame.size.height);
-            self.navigationController.navigationBar.frame = CGRectMake(self.view.frame.origin.x, 20, 320, 44);
-            rightView.frame = CGRectMake(self.view.frame.size.width,-64, 283,self.view.frame.size.height+64);
-            NSLog(@"sender.selected == no");
+            self.holder.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, 320, 44);
+//            rightView.frame = CGRectMake(320 - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height + 64);
         }else {
-            self.view.frame = CGRectMake(-(self.view.frame.size.width/6), 64, 320, self.view.frame.size.height);
-            self.navigationController.navigationBar.frame = CGRectMake(self.view.frame.origin.x, 20, self.view.frame.size.width, 44);
-            rightView.frame = CGRectMake(self.view.frame.size.width,-64, 283,self.view.frame.size.height+64);
-            NSLog(@"view.x%f",self.view.frame.origin.x);
-            NSLog(@"nav.x %f",self.navigationController.navigationBar.frame.origin.x);
+            self.holder.frame = CGRectMake(-SLIDER_WIDTH, 0, 320, self.view.frame.size.height);
+            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.view.frame.size.width, 44);
+//            rightView.frame = CGRectMake(320, -64, SLIDER_WIDTH, self.view.frame.size.height + 64);
             sender.selected = YES;
-            NSLog(@"sender.selected == yes");
         }
 
     } completion:^(BOOL finished) {
-        
+        [self.view setNeedsDisplay];
     }];
 }
 
@@ -284,37 +315,109 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 
 
-#pragma mark - UITableViewDataSource
+//#pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return 3;
+//}
+//
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    tableView.tableFooterView = [UIView new];
+//    static NSString *identifier = @"QHSliderRightList";
+//    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//    }
+//    cell.textLabel.text = @"视频分类";
+//    return cell;
+//}
+
+
+
+
+//#pragma mark - UITableViewDelegate
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//}
+
+
+
+#pragma mark - TABLE VIEW DELEGATE
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.categories.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    tableView.tableFooterView = [UIView new];
-    static NSString *identifier = @"QHSliderRightList";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Create view instance..
+    UITableViewCell *cell = nil;
+    KHLCategorySliderTableViewCell *cCell = [tableView dequeueReusableCellWithIdentifier:@"KHLCategorySliderTableViewCell"];
+    if (!cCell) {
+        cCell = [[[NSBundle mainBundle] loadNibNamed:@"KHLCategorySliderTableViewCell" owner:self options:nil] firstObject];
     }
-    cell.textLabel.text = @"视频分类";
+
+    // Acquire data instance..
+    CategoryListInterface *instance = [self.categories objectAtIndex:indexPath.row];
+    cCell.categorySubscribeButton.tag = indexPath.row;
+
+    // Configure image and title..
+    if (instance) {
+        cCell.categoryLabel.text = instance.title ? instance.title : @"（无标题）";
+        [cCell.categorySubscribeButton addTarget:self action:@selector(clickSubscribeCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
+        if ([@"1" isEqualToString:instance.subscribed]) {
+            [cCell.categorySubscribeButton setImage:[UIImage imageNamed:@"celan_dinngyue_press.png"] forState:UIControlStateNormal];
+            [cCell.categorySubscribeButton setEnabled:TRUE];
+        } else if ([@"0" isEqualToString:instance.subscribed]){
+            [cCell.categorySubscribeButton setImage:[UIImage imageNamed:@"celan_dinngyue.png"] forState:UIControlStateNormal];
+            [cCell.categorySubscribeButton setEnabled:TRUE];
+        } else {
+            [cCell.categorySubscribeButton setEnabled:FALSE];
+        }
+    }
+
+    // Asign category slider cell..
+    cell = cCell;
     return cell;
 }
 
-
-
-
-#pragma mark - UITableViewDelegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
 }
+
+- (IBAction)clickSubscribeCategoryButton: (UIButton *)sender
+{
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    
+    if (uid && token) {
+        if (-1 < sender.tag < self.categories.count) {
+            CategoryListInterface *instance = [self.categories objectAtIndex:sender.tag];
+            NSLog(@"click: %@, %@, %@", instance.title, instance.category, instance.subscribed);
+        } else {
+            NSLog(@"you were shocked!");
+        }
+    } else {
+        
+    }
+}
+
+
+
 
 
 
@@ -340,7 +443,6 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         [self.vods removeAllObjects];
         self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
         self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
-//        NSLog(@"data arr=%@",[result objectForKey:@"data"]);
         for (NSDictionary *data in [result objectForKey:@"data"]) {
             VODListInterface *interface = [[VODListInterface alloc] init];
             interface.page = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
@@ -350,24 +452,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
             interface.imageUrl = [NSString stringWithFormat:@"%@", [data objectForKey:@"image"]];
             interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
             [self.vods addObject:interface];
-            
-            NSLog(@"export: %@", interface.title);
         }
-        
-//        // TEST
-//        for (int i = 0; i < 8; i++) {
-//            InformationListInterface *interface = [[InformationListInterface alloc] init];
-//            interface.identity = @"1";
-//            interface.category = self.category;
-//            interface.title = @"大风！大风！大风！";
-//            interface.imageUrl = @"";
-//            interface.brief = @"上元点鬟招萼绿，王母挥袂别飞琼。繁音急节十二遍，跳珠撼玉何铿铮。翔鸾舞了却收翅，唳鹤曲终长引声。当时乍见惊心目，凝视谛听殊未足。一落人间八九年，耳冷不曾闻此曲。湓城但听山魈语，巴峡唯闻杜鹃哭。";
-//            interface.count = @"1776";
-//            interface.publisher = @"赢扶苏";
-//            interface.time = @"1368-10-01";
-//            interface.type = self.type;
-//            [self.informations addObject:interface];
-//        }
         
         // Refresh list layout after data received..
         [self.collectionView reloadData];
@@ -375,6 +460,53 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     } else {
         [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
+}
+
+- (void)categoryListNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSArray *results = [dict objectForKey:@"result"];
+        if (!results) {
+            NSLog(@"妈蛋，results里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
+        
+        [self.categories removeAllObjects];
+        for (NSDictionary *result in results) {
+            CategoryListInterface *interface = [[CategoryListInterface alloc] init];
+            interface.category = [NSString stringWithFormat:@"%@", [result objectForKey:@"cate_id"]];
+            interface.title = [NSString stringWithFormat:@"%@", [result objectForKey:@"title"]];
+            interface.subscribed = [NSString stringWithFormat:@"%@", [result objectForKey:@"subscribe"]];
+            [self.categories addObject:interface];
+            
+            NSLog(@"export: %@, %@, %@", interface.title, interface.category, interface.subscribed);
+        }
+        
+        // Refresh categories list..
+        [rightView reloadData];
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+    
+//    // TEST
+//    for (int i = 0; i < 15; i++) {
+//        CategoryListInterface *instance = [[CategoryListInterface alloc] init];
+//        instance.category = @"12";
+//        instance.title = @"瓦量两";
+//        instance.subscribed = @"1";
+//        [self.categories addObject:instance];
+//    }
+//    
+//    // ref
+//    [rightView reloadData];
 }
 
 
