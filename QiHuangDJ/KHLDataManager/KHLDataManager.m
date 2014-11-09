@@ -437,15 +437,46 @@
                   category:(NSString *)category
                      token:(NSString *)token
 {
+//    // Start progress HUD..
+//    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
+//    
+//    NSString *ustr = [NSString stringWithFormat:KHLUrlSubscribeCategory, uid, category, token];
+//    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSLog(@"subscribe ustr=%@", ustr);
+//    
+//    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
+//    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+//     {
+//         NSError *error;
+//         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+//         NSLog(@"subscribe succ=\n%@", json);
+//         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubscribeCategory" object:json];
+//         
+//         // Stop progress HUD..
+//         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+//     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+//     {
+//         NSLog(@"subscribe fail=\n%@", error);
+//         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubscribeCategory" object:nil];
+//         
+//         // Stop progress HUD..
+//         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+//     }];
+    
     // Start progress HUD..
     [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
     
-    NSString *ustr = [NSString stringWithFormat:KHLUrlSubscribeCategory, uid, category, token];
+    NSString *ustr = [NSString stringWithFormat:KHLUrlSubscribeCategory];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"subscribe ustr=%@", ustr);
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
+                           uid, @"uid",
+                           category, @"cate_id",
+                           token, @"token",
+                           nil];
+    NSLog(@"subscribe url=%@ param=%@", ustr, param);
     
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSError *error;
          NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];

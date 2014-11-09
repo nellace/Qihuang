@@ -51,7 +51,7 @@
 #define KHLUrlVODDetailAcquire @"app_dianbo.php?info_id=%@&model=%@"
 
 #pragma mark - 8.1 （2.12）订阅
-#define KHLUrlSubscribeCategory @"app_dingyue.php?uid=%@&cate_id=%@&token=%@"
+#define KHLUrlSubscribeCategory @"app_dingyue.php"//?uid=%@&cate_id=%@&token=%@"
 
 #pragma mark - 8.2 （2.13）退订
 #define KHLUrlUnsubscribeCategory @"app_quxiaodingyue.php"//?uid=%@&cate_id=%@&token=%@"
