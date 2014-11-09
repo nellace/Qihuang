@@ -340,6 +340,17 @@
 @property (nonatomic, strong) NSString *time;
 @property (nonatomic, strong) NSString *type;              // model
 
+@end
+
+
+
+#pragma mark - 分类列表
+
+@interface CategoryListInterface: NSObject
+
+@property (nonatomic, strong) NSString *category;          // cate_id
+@property (nonatomic, strong) NSString *title;             // title
+@property (nonatomic, strong) NSString *subscribed;        // subscribe
 
 @end
 

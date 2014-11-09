@@ -104,6 +104,10 @@
 
 @end
 
+@implementation CategoryListInterface
+
+@end
+
 
 
 
