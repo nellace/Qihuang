@@ -43,6 +43,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 @property (nonatomic) KHLVODFilter filter;
 
 @property (nonatomic, strong) NSMutableArray *categories;
+@property (nonatomic) NSInteger categoryListIndex;
 
 @end
 
@@ -90,6 +91,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         [self setNeedsRequest:TRUE];
         [self setFilter:KHLVODFilterLatest];
         [self setSliderShowing:FALSE];
+        [self setCategoryListIndex:-1];
     }
     
     return self;
@@ -124,6 +126,8 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     // Register notification..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categoryListNotified:) name:@"KHLNotiCategoryListAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoOnDemandListNotified:) name:@"KHLNotiVODListAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categorySubscribeNotified:) name:@"KHLNotiSubscribeCategory" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categoryUnsubscribeNotified:) name:@"KHLNotiUnsubscribeCategory" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -141,6 +145,8 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiCategoryListAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiVODListAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiSubscribeCategory" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiUnsubscribeCategory" object:nil];
 }
 
 
@@ -353,10 +359,12 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         cCell.categoryLabel.text = instance.title ? instance.title : @"（无标题）";
         [cCell.categorySubscribeButton addTarget:self action:@selector(clickSubscribeCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
         if ([@"1" isEqualToString:instance.subscribed]) {
-            [cCell.categorySubscribeButton setImage:[UIImage imageNamed:@"celan_dinngyue_press.png"] forState:UIControlStateNormal];
+            [cCell.categorySubscribeButton setTitleColor:[KHLColor juhuang] forState:UIControlStateNormal];
+            [cCell.categorySubscribeButton setBackgroundImage:[UIImage imageNamed:@"celan_dinngyue_press.png"] forState:UIControlStateNormal];
             [cCell.categorySubscribeButton setEnabled:TRUE];
         } else if ([@"0" isEqualToString:instance.subscribed]){
-            [cCell.categorySubscribeButton setImage:[UIImage imageNamed:@"celan_dinngyue.png"] forState:UIControlStateNormal];
+            [cCell.categorySubscribeButton setTitleColor:[KHLColor tubai] forState:UIControlStateNormal];
+            [cCell.categorySubscribeButton setBackgroundImage:[UIImage imageNamed:@"celan_dinngyue.png"] forState:UIControlStateNormal];
             [cCell.categorySubscribeButton setEnabled:TRUE];
         } else {
             [cCell.categorySubscribeButton setEnabled:FALSE];
@@ -394,12 +402,21 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     if (uid && token) {
         if (-1 < sender.tag < self.categories.count) {
             CategoryListInterface *instance = [self.categories objectAtIndex:sender.tag];
-            [[KHLDataManager instance] subscribeHUDHolder:[[UIView alloc] init] uid:uid category:instance.category token:token];
+            [self setCategoryListIndex:sender.tag];
+            if ([instance.subscribed isEqualToString:@"0"]) {
+                [[KHLDataManager instance] subscribeHUDHolder:[[UIView alloc] init] uid:uid category:instance.category token:token];
+            }
+            else if ([instance.subscribed isEqualToString:@"1"]) {
+                [[KHLDataManager instance] unsubscribeHUDHolder:[[UIView alloc] init] uid:uid category:instance.category token:token];
+            }
         } else {
             // 点出天际了……
         }
     } else {
         // Not logged in..
+        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+//        loginViewController.delegate = self;
+        [self.navigationController pushViewController:loginViewController animated:TRUE];
     }
 }
 
@@ -481,6 +498,54 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         
     } else {
         [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+}
+
+- (void)categorySubscribeNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        // Subscribe success..
+        [[[UIAlertView alloc] initWithTitle:@"订阅成功" message:@"订阅成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        if (-1 < self.categoryListIndex < self.categories.count) {
+            [self.categories[self.categoryListIndex] setSubscribed:@"1"];
+            [rightView reloadData];
+        }
+        
+    } else {
+        
+        // Subscribe fail..
+        [[[UIAlertView alloc] initWithTitle:@"订阅失败" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+}
+
+- (void)categoryUnsubscribeNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        // Subscribe success..
+        [[[UIAlertView alloc] initWithTitle:@"退订成功" message:@"退订成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        if (-1 < self.categoryListIndex < self.categories.count) {
+            [self.categories[self.categoryListIndex] setSubscribed:@"0"];
+            [rightView reloadData];
+        }
+        
+    } else {
+        
+        // Subscribe fail..
+        [[[UIAlertView alloc] initWithTitle:@"退订失败" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
 }
 
