@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 {
     _filter = filter;
     if (![self needsRequest]) {
-        [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%lu", self.filter] category:self.category page:@"" search:@""];
+        [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:@"" search:@""];
     }
 }
 
@@ -113,7 +113,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     
     // Request data..
     if ([self needsRequest]) {
-        [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%lu", self.filter] category:self.category page:@"" search:@""];
+        [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:@"" search:@""];
         NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
         NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
         [[KHLDataManager instance] categoryListHUDHolder:self.view uid:uid token:token];
@@ -349,6 +349,16 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     return 50.0f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIView alloc] init];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Create view instance..
@@ -400,7 +410,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     if (-1 < indexPath.row < self.categories.count) {
         CategoryListInterface *instance = [self.categories objectAtIndex:indexPath.row];
         if (instance.category) {
-            [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%lu", self.filter] category:self.category page:@"" search:@""];
+            [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:@"" search:@""];
         }
     }
 }
@@ -445,7 +455,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 - (void)onLoginSuccess
 {
     // Request VOD list..
-    [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%lu", self.filter] category:self.category page:@"" search:@""];
+    [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%i", self.filter] category:self.category page:@"" search:@""];
     
     // Request categories list..
     NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
