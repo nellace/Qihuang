@@ -69,6 +69,11 @@
     return [KHLColor red:26 green:13 blue:7];
 }
 
++ (UIColor *)transWhite
+{
+    return [UIColor colorWithRed:[KHLColor value:255] green:[KHLColor value:255] blue:[KHLColor value:255] alpha:0.7];
+}
+
 #pragma mark - 工具方法
 
 /*!

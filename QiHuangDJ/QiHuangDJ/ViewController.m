@@ -171,6 +171,8 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 {
     // Configure page controller..
     indicator.numberOfPages = [loopings count];
+    indicator.currentPageIndicatorTintColor = [KHLColor juhuang];
+    indicator.pageIndicatorTintColor = [KHLColor transWhite];
     
     // Calculate frame..
     CGFloat width = carousel.frame.size.width;
