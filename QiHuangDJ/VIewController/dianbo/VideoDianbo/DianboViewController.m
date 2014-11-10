@@ -9,7 +9,7 @@
 #import "DianboViewController.h"
 #import "DianboCell.h"
 #import "LoginViewController.h"
-@interface DianboViewController () <LTPlayerDelegate>
+@interface DianboViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *shuruTextFiled;
 @property (weak, nonatomic) IBOutlet UIView *inputView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeight;
