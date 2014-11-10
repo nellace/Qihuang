@@ -152,7 +152,7 @@
                 <constraint firstItem="ONK-L3-J2d" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tKQ-fU-Tsv"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-2031" y="-247"/>
+            <point key="canvasLocation" x="-2100" y="-250"/>
         </view>
     </objects>
     <resources>

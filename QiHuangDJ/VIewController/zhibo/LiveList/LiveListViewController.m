@@ -79,6 +79,7 @@
         liveListinterface.identity = [NSString stringWithFormat:@"%@",[dic objectForKey:@"info_id"]];
         liveListinterface.imageUrl = [NSString stringWithFormat:@"%@",[dic objectForKey:@"image"]];
         liveListinterface.time = [NSString stringWithFormat:@"%@",[dic objectForKey:@"time"]];
+
         liveListinterface.name = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
         [zhiboListArray addObject:liveListinterface];
     }
@@ -135,24 +136,24 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifierStr];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifierStr];
-//        [self dingyueBtnUI:cell];
     }
     
     if (indexPath.section == 0) {
         liveListinterface = zhiboListArray[indexPath.row];
-        if ([liveListinterface.imageUrl isEqualToString:@""]) {
-             cell.imageView.image = [UIImage imageNamed:@"zhibo_huanchongtu"];
-        }else {
-            [cell.imageView setImageWithURL:[NSURL URLWithString:liveListinterface.imageUrl]];
-        }
-        cell.textLabel.text = liveListinterface.name;
+
     }else {
         liveListinterface = yugaoListArray[indexPath.row];
-        [cell.imageView setImageWithURL:[NSURL URLWithString:liveListinterface.imageUrl]];
-        
-        cell.textLabel.text = liveListinterface.name;
     }
     
+    if ([liveListinterface.imageUrl isEqualToString:@""]) {
+        cell.imageView.image = [UIImage imageNamed:@"zhibo_huanchongtu"];
+    }else {
+        [cell.imageView setImageWithURL:[NSURL URLWithString:liveListinterface.imageUrl]];
+    }
+    NSString *textlabel1 = [NSString stringWithFormat:@"%@  %@",liveListinterface.time,liveListinterface.name];;
+    
+    cell.textLabel.text = textlabel1;
+    cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //    cell.imageView.image = [UIImage imageNamed:@"zhibo_huanchongtu"];
@@ -198,14 +199,11 @@
     
     if (indexPath.section == 0) {
         liveListinterface = zhiboListArray [indexPath.row];
-        
-    }else {
-        liveListinterface = yugaoListArray [indexPath.row];
+        VideoLiveViewController *video = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
+        video.liveInfoID = liveListinterface.identity;
+        [self.navigationController pushViewController:video animated:YES];
     }
     
-   VideoLiveViewController *video = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
-    video.liveInfoID = liveListinterface.identity;
-    [self.navigationController pushViewController:video animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

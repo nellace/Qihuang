@@ -108,7 +108,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    
+    tableView.tableFooterView = [UIView new];
     KHLInformationTableViewCell *infoCell = [self.tableView dequeueReusableCellWithIdentifier:@"KHLInformationTableViewCell"];
     if (infoCell == nil) {
         infoCell = [[[NSBundle mainBundle] loadNibNamed:@"KHLInformationTableViewCell" owner:self options:nil] firstObject];

@@ -8,7 +8,7 @@
 
 #import "KHLEntertainerHolderView.h"
 
-@interface KHLEntertainerHolderView() <UIWebViewDelegate>
+@interface KHLEntertainerHolderView()
 @property (nonatomic) CGSize size;
 @end
 
@@ -19,7 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-
+        self.programmeWebView.delegate = self;
     }
     return self;
 }
