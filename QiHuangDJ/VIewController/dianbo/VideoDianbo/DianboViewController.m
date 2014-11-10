@@ -8,15 +8,25 @@
 
 #import "DianboViewController.h"
 #import "DianboCell.h"
-@interface DianboViewController ()
+#import "LoginViewController.h"
+@interface DianboViewController () <LTPlayerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *shuruTextFiled;
 @property (weak, nonatomic) IBOutlet UIView *inputView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *videoScaleImageView;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *liulanCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *editorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleForVideoLabel;
+
+@property (weak, nonatomic) IBOutlet UITableView *mainTabe;
+@property (strong,nonatomic) NSMutableArray *listMutableArr;
 
 @end
 
-@implementation DianboViewController
+@implementation DianboViewController {
+    NSString *otherUserName;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,6 +35,7 @@
         // Custom initialization
         [self setCascTitle:@"点播"];
         [self setFanhui];
+        self.listMutableArr = [NSMutableArray new];
     }
 
     return self;
@@ -37,10 +48,19 @@
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullScreenMehod)];
     
     [self.videoScaleImageView addGestureRecognizer:tap];
-    
+    self.imageUrl = @"http://www.175kh.com/img/2014/04/29/535f4faac7fb4.jpg";
+    [self.videoScaleImageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
 }
 
 - (void)fullScreenMehod {
+//    [LTPlayerSDK showWithUserUnique:@"cbec2a7d04"
+//                        videoUnique:@"128342e318"
+//                          videoName:@""
+//                          payerName:@""
+//                          checkCode:@""
+//                                 ap:YES
+//                   inViewController:self
+//                     playerDelegate:self];
     
 }
 
@@ -61,15 +81,24 @@
 -(void)registerNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dianboInfoMehod:) name:@"KHLNotiVODDetailAcquired" object:nil];
+    //commentlist
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dianboCommentlistMehod:) name:@"KHLUrlcommentlist" object:nil];
+    //评论
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(replyDianboMethod:) name:@"KHLNotiReplied" object:nil];
 }
 
 - (void)removeNotificaiton {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiVODDetailAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlcommentlist" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiReplied" object:nil];
 }
 
 - (void)requestDianboInfo {
-    [[KHLDataManager instance] VODDetailHUDHolder:self.view identity:@"4373" type:@"article"];
+    self.info_id = @"4373";
+    [[KHLDataManager instance] VODDetailHUDHolder:self.view identity:self.info_id type:@"article"];
+    //获取评论列表
+    [[KHLDataManager instance] commentlistHUDHolder:self.view model:@"article" zhiboid:self.info_id];
 }
 
 - (void)dianboInfoMehod:(NSNotification *)aNotification {
@@ -78,24 +107,86 @@
         NSLog(@"dianbo request failed");
         return;
     }
-    NSLog(@"aDic %@",aDic);
+    NSDictionary *dic = [aDic objectForKey:@"result"];
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSString *timeStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"time"]];
+        self.timeLabel.text = [timeStr substringToIndex:10];
+        self.titleForVideoLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
+        self.liulanCountLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"count"]];
+        self.editorLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
+    }
+}
+
+- (void)dianboCommentlistMehod:(NSNotification *)aNotification {
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"commentList failed"); return;
+    }
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSDictionary * dic = [aDic objectForKey:@"result"];
+        NSArray * arr = [dic objectForKey:@"data"];
+        for (NSDictionary *dataDic in arr) {
+            CommentListInterface *commentlist = [CommentListInterface new];
+            commentlist.username = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"uname"]];
+            commentlist.poster   = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"comment_id"]];
+            commentlist.portraitImageUrl = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"uimage"]];
+            commentlist.content  = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"content"]];
+            commentlist.countBad = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"bad"]];
+            commentlist.countGood= [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"good"]];
+            commentlist.time     = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"time"]];
+            commentlist.usernameWithReply = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"reply"]];
+            
+            [self.listMutableArr addObject:commentlist];
+        }
+        [self.mainTabe reloadData];
+    }
+}
+
+- (void)replyDianboMethod:(NSNotification *)aNotification {
+    NSDictionary * aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"reply failed");
+        return;
+    }
     
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUsername"];
+        NSString *replyTitle;
+        NSLog(@"othexrUserName  %@",otherUserName);
+        if (otherUserName.length == 0) {
+            replyTitle = username;
+        }else {
+            replyTitle = [NSString stringWithFormat:@"%@回复%@",username,otherUserName];
+        }
+        
+        CommentListInterface * commentlist = [CommentListInterface new];
+        commentlist.content = self.shuruTextFiled.text;
+        commentlist.username = replyTitle;
+        commentlist.time = @"1234";
+        commentlist.countBad = @"0";
+        commentlist.countGood = @"0";
+        
+        [self.listMutableArr insertObject:commentlist atIndex:0];
+        [self.mainTabe reloadData];
+        [self.shuruTextFiled resignFirstResponder];
+        self.shuruTextFiled.text = @"";
+        otherUserName = @"";
+    }
 }
 
 # pragma mark UITableViewDataSouce
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
-    
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    return @"评论区（231）";
+    NSString *str = [NSString stringWithFormat:@"评论区 (%d)",self.listMutableArr.count];
+    return str;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.listMutableArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,7 +194,29 @@
     DianboCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil]lastObject];
+        [cell.huifuMehod addTarget:self action:@selector(pinglunMethondWithBottomBarAndDianbo:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.jubaoMedhod addTarget:self action:@selector(jubaoDianboMehod:) forControlEvents:UIControlEventTouchUpInside];
     }
+    tableView.tableFooterView = [UIView new];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //行号给tag
+    cell.huifuMehod.tag = indexPath.row;
+    
+    CommentListInterface * commentlist = self.listMutableArr[indexPath.row];
+    cell.contentLabel.text = commentlist.content;
+    cell.goodCountLabel.text = commentlist.countGood;
+    cell.badCountLabel.text = commentlist.countBad;
+    //    [cell.imgeWithIcon setImageWithURL:[NSURL URLWithString:commentlist.portraitImageUrl]];
+    cell.timeLabel.text = [self returnTheTimelabel:commentlist.time];
+    
+    NSString * usernametext;
+    
+    if (commentlist.usernameWithReply.length == 0) {
+        usernametext = commentlist.username;
+    }else {
+        usernametext = [NSString stringWithFormat:@"%@回复%@",commentlist.username,commentlist.usernameWithReply];
+    }
+    cell.titleLabel.text = usernametext;
     return cell;
 }
 
@@ -118,6 +231,46 @@
     [self.shuruTextFiled becomeFirstResponder];
 }
 - (IBAction)fabiaopinglunMethod:(id)sender {
+    if ([self.shuruTextFiled.text isEqualToString:@""]) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }else {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        
+        //取出点击行的相关信息
+        
+        NSString * comment_id;
+        NSString * modelStr;
+        if (self.shuruTextFiled.tag == 101) {
+            comment_id = self.info_id;
+            modelStr = @"article";
+        }else {
+            CommentListInterface * commentlist = self.listMutableArr[self.shuruTextFiled.tag];
+            otherUserName = commentlist.username;
+            comment_id = commentlist.poster;
+            modelStr = @"comment";
+        }
+        [[KHLDataManager instance] replyHUDHolder:self.view uid:uidStr target:comment_id content:self.shuruTextFiled.text token:tokenStr targetType:modelStr];
+    }
+
+}
+- (void)pinglunMethondWithBottomBarAndDianbo:(UIButton *)sender {
+    NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    if (!(uidStr == nil || tokenStr == nil)) {
+        UIButton * btn = (UIButton * )sender;
+        self.shuruTextFiled.tag =btn.tag;
+        [self.shuruTextFiled becomeFirstResponder];
+        
+    } else {
+        LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
+
+}
+- (IBAction)retRootVC:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 # pragma mark textFiledCreateUI
@@ -161,6 +314,60 @@
     }];
 
     [CATransaction commit];
+}
+
+# pragma mark
+# pragma mark 计算时间方法
+-(NSString*)returnTheTimelabel:(NSString*)theTime
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate * d = [dateFormatter dateFromString:theTime];
+    
+    NSDate *now = [[NSDate alloc]init];
+    
+    
+    NSTimeInterval late = [now timeIntervalSinceDate:d];
+    NSString *returnStr ;
+    if(late<3600)
+    {
+        if ((int)(late/60) == 0 )
+        {
+            returnStr = @"刚刚";
+        }else
+        {
+            returnStr = [NSString stringWithFormat:@"%i分前",(int)(late/60)];
+        }
+    }
+    else if(late>=3600&&late<3600*24) {
+        returnStr = [NSString stringWithFormat:@"%i小时前",(int)(late/3600)];
+    }
+    else if(late>=3600*24&&late<3600*48)
+    {
+        returnStr = [NSString stringWithFormat:@"昨天"];
+    }
+    else
+    {
+        //NSDateFormatter *dateFormatter1 =[[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy"];
+        NSString *returnYear = [dateFormatter stringFromDate:d];
+        NSString *nowReturnYear = [dateFormatter stringFromDate:now];
+        
+        
+        if([returnYear isEqualToString:nowReturnYear])
+        {
+            [dateFormatter setDateFormat:@"MM-dd"];
+            
+            returnStr = [dateFormatter stringFromDate:d];
+        }
+        else
+        {
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            
+            returnStr = [dateFormatter stringFromDate:d];
+        }
+    }
+    return returnStr;
 }
 
 @end
