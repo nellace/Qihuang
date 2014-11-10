@@ -809,7 +809,7 @@
      {
          NSError *error;
          NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"reply succ=\n%@", json);
+         NSLog(@"reply succ=\n%@ reason %@", json,[json objectForKey:@"reason"]);
          [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiReplied" object:json];
          
          // Stop progress HUD..
