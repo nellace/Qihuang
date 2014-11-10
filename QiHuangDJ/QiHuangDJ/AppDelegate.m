@@ -23,6 +23,7 @@
     CustomNavViewController * navCustom = [[CustomNavViewController alloc] initWithRootViewController:vc];
     self.window.rootViewController = navCustom;
     [self.window makeKeyAndVisible];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
 
