@@ -24,8 +24,13 @@
 
 @end
 
+static  NSInteger goodCount;
+static  NSInteger badCount;
+
 @implementation DianboViewController {
     NSString *otherUserName;
+   
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -85,6 +90,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dianboCommentlistMehod:) name:@"KHLUrlcommentlist" object:nil];
     //评论
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(replyDianboMethod:) name:@"KHLNotiReplied" object:nil];
+    //good
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goodDianboNotifiMethod:) name:@"KHLUrlGoodWithComment" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(badDianboNotifiMethod:) name:@"KHLUrlbadWithComment" object:nil];
+    //KHLUrlGoodWithComment
 }
 
 - (void)removeNotificaiton {
@@ -92,6 +101,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiVODDetailAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlcommentlist" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiReplied" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlGoodWithComment" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlbadWithComment" object:nil];
 }
 
 - (void)requestDianboInfo {
@@ -173,6 +184,35 @@
         otherUserName = @"";
     }
 }
+- (void)goodDianboNotifiMethod:(NSNotification *)aNotification {
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"good for dianbo falied");
+    }
+    //ui数量加1
+    CommentListInterface *commentlist = self.listMutableArr[goodCount];
+    NSInteger good = [commentlist.countGood integerValue];
+    good ++;
+    commentlist.countGood = [NSString stringWithFormat:@"%d",good];
+    [self.listMutableArr replaceObjectAtIndex:goodCount withObject:commentlist];
+    [self.mainTabe reloadData];
+        goodCount = 0;
+    
+}
+- (void)badDianboNotifiMethod:(NSNotification *)aNotification {
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"bad for dianbo falied");
+    }
+    //ui数量加1
+    CommentListInterface *commentlist = self.listMutableArr[goodCount];
+    NSInteger good = [commentlist.countBad integerValue];
+    good ++;
+    commentlist.countBad = [NSString stringWithFormat:@"%d",good];
+    [self.listMutableArr replaceObjectAtIndex:goodCount withObject:commentlist];
+    [self.mainTabe reloadData];
+    goodCount = 0;
+}
 
 # pragma mark UITableViewDataSouce
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -196,16 +236,24 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil]lastObject];
         [cell.huifuMehod addTarget:self action:@selector(pinglunMethondWithBottomBarAndDianbo:) forControlEvents:UIControlEventTouchUpInside];
         [cell.jubaoMedhod addTarget:self action:@selector(jubaoDianboMehod:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.goodMethod addTarget:self action:@selector(goodDianboMethod:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.badMethod addTarget:self action:@selector(badDianboMethod:) forControlEvents:UIControlEventTouchUpInside];
     }
     tableView.tableFooterView = [UIView new];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //行号给tag
     cell.huifuMehod.tag = indexPath.row;
+    cell.jubaoMedhod.tag = indexPath.row;
+    cell.goodMethod.tag = indexPath.row;
+    cell.badMethod.tag = indexPath.row;
+
     
     CommentListInterface * commentlist = self.listMutableArr[indexPath.row];
     cell.contentLabel.text = commentlist.content;
+
     cell.goodCountLabel.text = commentlist.countGood;
     cell.badCountLabel.text = commentlist.countBad;
+    
     //    [cell.imgeWithIcon setImageWithURL:[NSURL URLWithString:commentlist.portraitImageUrl]];
     cell.timeLabel.text = [self returnTheTimelabel:commentlist.time];
     
@@ -255,24 +303,52 @@
 
 }
 - (void)pinglunMethondWithBottomBarAndDianbo:(UIButton *)sender {
-    NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
-    NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-    if (!(uidStr == nil || tokenStr == nil)) {
+    if ([self isLogin]) {
         UIButton * btn = (UIButton * )sender;
         self.shuruTextFiled.tag =btn.tag;
         [self.shuruTextFiled becomeFirstResponder];
-        
     } else {
         LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        
         [self.navigationController pushViewController:loginVC animated:YES];
     }
-
 }
 - (IBAction)retRootVC:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (void)jubaoDianboMehod:(UIButton *)sender {
+    if ([self isLogin]) {
+        
+    } else {
+        [self pushLoginVCMethod];
+    }
+}
+
+- (void)goodDianboMethod:(UIButton *)sender {
+    if ([self isLogin]) {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        CommentListInterface * commentlist = self.listMutableArr[sender.tag];
+        goodCount = sender.tag;
+        [[KHLDataManager instance] goodHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster];
+    } else {
+        [self pushLoginVCMethod];
+    }
+
+}
+
+- (void)badDianboMethod:(UIButton *)sender {
+    if ([self isLogin]) {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        CommentListInterface * commentlist = self.listMutableArr[sender.tag];
+        goodCount = sender.tag;
+        [[KHLDataManager instance] badHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster];
+    } else {
+        [self pushLoginVCMethod];
+    }
+
+}
 # pragma mark textFiledCreateUI
 - (void)textFiledCreateUI {
     
@@ -370,4 +446,21 @@
     return returnStr;
 }
 
+- (BOOL)isLogin {
+    NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    if (!(uidStr == nil || tokenStr == nil)) {
+        return YES;
+    } else {
+        
+        return NO;
+    }
+}
+
+- (void)pushLoginVCMethod {
+
+        LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        [self.navigationController pushViewController:loginVC animated:YES];
+
+}
 @end

@@ -19,4 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *badCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *badMethod;
+@property (weak, nonatomic) IBOutlet UIButton *goodMethod;
+
 @end
