@@ -25,8 +25,8 @@
 #define RECOMMENDED_LABEL_FONT_PROPORTION (11.0f / 320.0f)
 #define VIDEO_CELL_PROPORTION (90.0f / 320.0f)
 #define VIDEO_THUMB_IMAGE_PROPORTION (120.0f / 90.0f)
-#define VIDEO_MAJOR_TEXT_FONT_PROPORTION (14.0f / 320.0f)
-#define VIDEO_MINOR_TEXT_FONT_PROPORTION (12.0f / 320.0f)
+#define VIDEO_MAJOR_TEXT_FONT_PROPORTION (13.0f / 320.0f)
+#define VIDEO_MINOR_TEXT_FONT_PROPORTION (11.0f / 320.0f)
 #define VIDEO_CELL_TEXT_PADDING (6.0f)
 
 typedef NS_ENUM(NSUInteger, KHLPICListState) {
@@ -319,8 +319,9 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             description = interface.title;
             
             // Configure attached information text..
+            NSString *dateString = [interface.time length] > 10 ? [interface.time substringToIndex:10] : interface.time;
             [viCell.browseCountingLabel setText:[NSString stringWithFormat:@"浏览量：%@", interface.count]];
-            [viCell.dateLabel setText:[NSString stringWithFormat:@"%@", interface.time]];
+            [viCell.dateLabel setText:[NSString stringWithFormat:@"%@", dateString]];
             
         } else {
             CollectionListInterface *interface = (indexPath.row < self.collections.count ?
@@ -395,13 +396,11 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
         if (l) {
             [recoCell.leftImageView setImageWithURL:[NSURL URLWithString:l.imageUrl]];
             [recoCell.leftLabel setText:l.title];
-            NSLog(@"left -       (%d) %@", counter - 2, l.title);
         }
         
         if (r) {
             [recoCell.rightImageView setImageWithURL:[NSURL URLWithString:r.imageUrl]];
             [recoCell.rightLabel setText:r.title];
-            NSLog(@"     - right (%d) %@", counter - 1, r.title);
         }
         
         // Configure recommended cell label..
@@ -652,26 +651,25 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
             interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"type"]];
             [self.subscriptions addObject:interface];
-            
-            NSLog(@"add %@", interface.title);
         }
         
         // TEST
-        for (int i = 0; i < 3; i++) {
-            SubscriptionListInterface *interface = [[SubscriptionListInterface alloc] init];
-            interface.page = @"1";
-            interface.size = @"1";
-            interface.identity = @"1";
-            interface.category = @"1";
-            interface.title = @"北越雪谱";
-            interface.imageUrl = @"http://img3.douban.com/lpic/s1745705.jpg";
-            interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
-            interface.count = @"1776";
-            interface.publisher = @"牧之";
-            interface.time = @"1500-01-01";
-            interface.type = @"article";
-            [self.subscriptions addObject:interface];
-        }
+        if (self.subscriptions.count == 0)
+            for (int i = 0; i < 3; i++) {
+                SubscriptionListInterface *interface = [[SubscriptionListInterface alloc] init];
+                interface.page = @"1";
+                interface.size = @"1";
+                interface.identity = @"1";
+                interface.category = @"1";
+                interface.title = @"北越雪谱";
+                interface.imageUrl = @"http://img3.douban.com/lpic/s1745705.jpg";
+                interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
+                interface.count = @"1776";
+                interface.publisher = @"牧之";
+                interface.time = @"1500-01-01";
+                interface.type = @"article";
+                [self.subscriptions addObject:interface];
+            }
         
         // Refresh list layout after data received..
         [self refreshTableView];
@@ -718,26 +716,25 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
                     interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
                     interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"type"]];
                     [self.subscriptions addObject:interface];
-                    
-                    NSLog(@"add %@", interface.title);
                 }
         
         // TEST
-        for (int i = 0; i < 7; i++) {
-            CollectionListInterface *interface = [[CollectionListInterface alloc] init];
-            interface.page = @"1";
-            interface.size = @"1";
-            interface.identity = @"1";
-            interface.category = @"1";
-            interface.title = @"舜水先生文集";
-            interface.imageUrl = @"http://gd1.alicdn.com/imgextra/i1/1914798654/T2GF4EX5NXXXXXXXXX-1914798654.jpg";
-            interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
-            interface.count = @"5210";
-            interface.publisher = @"舜水";
-            interface.time = @"1692-05-21";
-            interface.type = @"article";
-            [self.collections addObject:interface];
-        }
+        if (self.subscriptions.count == 0)
+            for (int i = 0; i < 7; i++) {
+                CollectionListInterface *interface = [[CollectionListInterface alloc] init];
+                interface.page = @"1";
+                interface.size = @"1";
+                interface.identity = @"1";
+                interface.category = @"1";
+                interface.title = @"舜水先生文集";
+                interface.imageUrl = @"http://gd1.alicdn.com/imgextra/i1/1914798654/T2GF4EX5NXXXXXXXXX-1914798654.jpg";
+                interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
+                interface.count = @"5210";
+                interface.publisher = @"舜水";
+                interface.time = @"1692-05-21";
+                interface.type = @"article";
+                [self.collections addObject:interface];
+            }
         
         // Refresh list layout after data received..
         [self refreshTableView];

@@ -152,6 +152,7 @@
     
     if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         NSLog(@"注册成功。uid=%@", [dict objectForKey:@"result"]);
+        [[[UIAlertView alloc] initWithTitle:@"注册成功" message:@"注册成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         [self.navigationController popViewControllerAnimated:TRUE];
     } else {
         [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

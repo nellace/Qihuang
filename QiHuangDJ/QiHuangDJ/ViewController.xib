@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -77,10 +78,10 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q68-jv-pSJ" userLabel="DotA Image View">
                                     <rect key="frame" x="0.0" y="537" width="320" height="85"/>
                                 </imageView>
-                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
-                                    <rect key="frame" x="210" y="197" width="110" height="85"/>
+                                <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
+                                    <rect key="frame" x="210" y="197" width="110" height="86"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="yKI-Zs-yps" secondAttribute="height" multiplier="22:17" id="srV-vl-iWU"/>
+                                        <constraint firstAttribute="width" secondItem="yKI-Zs-yps" secondAttribute="height" multiplier="55:43" id="LCB-Om-5HS"/>
                                     </constraints>
                                     <state key="normal" backgroundImage="qihuangshouye_icon1.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,8 +90,8 @@
                                         <action selector="zhibo:" destination="-1" eventType="touchUpInside" id="LI6-Ox-IGX"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK" userLabel="Keahoarl Entertainers Button">
-                                    <rect key="frame" x="210" y="282" width="110" height="85"/>
+                                <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK" userLabel="Keahoarl Entertainers Button">
+                                    <rect key="frame" x="210" y="282" width="110" height="86"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon5.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -98,7 +99,7 @@
                                         <action selector="qihuangyiren:" destination="-1" eventType="touchUpInside" id="ZGm-gE-9bO"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w" userLabel="Hearthstone Button">
+                                <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w" userLabel="Hearthstone Button">
                                     <rect key="frame" x="210" y="367" width="110" height="85"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon3.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -107,8 +108,8 @@
                                         <action selector="LSchuanshuo:" destination="-1" eventType="touchUpInside" id="t1C-oh-FEg"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM" userLabel="L.O.L. Button">
-                                    <rect key="frame" x="210" y="452" width="110" height="85"/>
+                                <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM" userLabel="L.O.L. Button">
+                                    <rect key="frame" x="210" y="452" width="110" height="86"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon2.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -116,8 +117,8 @@
                                         <action selector="LOL:" destination="-1" eventType="touchUpInside" id="ggL-28-pLr"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns" userLabel="DotA Button">
-                                    <rect key="frame" x="210" y="537" width="110" height="85"/>
+                                <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns" userLabel="DotA Button">
+                                    <rect key="frame" x="210" y="537" width="110" height="86"/>
                                     <state key="normal" backgroundImage="qihuangshouye_icon4.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -141,12 +142,12 @@
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="height" secondItem="Q68-jv-pSJ" secondAttribute="height" id="JP9-5o-FSP"/>
                                 <constraint firstAttribute="trailing" secondItem="1zx-ig-2YG" secondAttribute="trailing" constant="20" symbolic="YES" id="Kap-eh-gZt"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="trailing" secondItem="8VV-Ro-o7w" secondAttribute="trailing" id="LDN-5d-wiV"/>
-                                <constraint firstItem="uz6-g4-Gns" firstAttribute="bottom" secondItem="Q68-jv-pSJ" secondAttribute="bottom" id="Mk1-RX-9Qf"/>
+                                <constraint firstItem="uz6-g4-Gns" firstAttribute="bottom" secondItem="Q68-jv-pSJ" secondAttribute="bottom" constant="1" id="Mk1-RX-9Qf"/>
                                 <constraint firstItem="1zx-ig-2YG" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" constant="20" symbolic="YES" id="N6E-bH-ebo"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="top" secondItem="ffO-jW-5Sv" secondAttribute="bottom" id="NtL-qs-6pk"/>
                                 <constraint firstAttribute="trailing" secondItem="FwY-nF-WP2" secondAttribute="trailing" id="O7X-oY-Zuu"/>
                                 <constraint firstItem="SjN-OH-bcf" firstAttribute="top" secondItem="UIy-TT-MCX" secondAttribute="top" id="PCx-Ms-zjy"/>
-                                <constraint firstItem="DHn-6T-3Sh" firstAttribute="bottom" secondItem="K6J-Kn-ueM" secondAttribute="bottom" id="Udt-7f-3QZ"/>
+                                <constraint firstItem="DHn-6T-3Sh" firstAttribute="bottom" secondItem="K6J-Kn-ueM" secondAttribute="bottom" constant="-1" id="Udt-7f-3QZ"/>
                                 <constraint firstItem="yKI-Zs-yps" firstAttribute="top" secondItem="Sjr-FT-pIw" secondAttribute="top" id="WRH-zm-Suj"/>
                                 <constraint firstAttribute="trailing" secondItem="ffO-jW-5Sv" secondAttribute="trailing" id="XTo-Ag-Uy3"/>
                                 <constraint firstItem="8VV-Ro-o7w" firstAttribute="width" secondItem="K6J-Kn-ueM" secondAttribute="width" id="YCk-3y-JpI"/>
@@ -171,8 +172,8 @@
                                 <constraint firstItem="Q68-jv-pSJ" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="pwv-Bi-MMA"/>
                                 <constraint firstItem="1zx-ig-2YG" firstAttribute="bottom" secondItem="SjN-OH-bcf" secondAttribute="bottom" id="rUg-6Y-VwB"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="v4L-VK-dTi"/>
-                                <constraint firstItem="yKI-Zs-yps" firstAttribute="bottom" secondItem="Sjr-FT-pIw" secondAttribute="bottom" id="vdy-mk-RhI"/>
-                                <constraint firstItem="x6d-LO-7XK" firstAttribute="bottom" secondItem="ch3-tj-caD" secondAttribute="bottom" id="vuG-rF-C4C"/>
+                                <constraint firstItem="yKI-Zs-yps" firstAttribute="bottom" secondItem="Sjr-FT-pIw" secondAttribute="bottom" constant="1" id="vdy-mk-RhI"/>
+                                <constraint firstItem="x6d-LO-7XK" firstAttribute="bottom" secondItem="ch3-tj-caD" secondAttribute="bottom" constant="1" id="vuG-rF-C4C"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="height" secondItem="ffO-jW-5Sv" secondAttribute="height" id="yQ6-WG-P02"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="bottom" secondItem="8VV-Ro-o7w" secondAttribute="bottom" id="ykq-7F-fsS"/>
                                 <constraint firstAttribute="trailing" secondItem="DHn-6T-3Sh" secondAttribute="trailing" id="zgF-0Y-YYP"/>

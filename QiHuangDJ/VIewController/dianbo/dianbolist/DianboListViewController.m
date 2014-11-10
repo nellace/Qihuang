@@ -7,7 +7,6 @@
 //
 
 #import "DianboListViewController.h"
-//#import "SliderRightList.h"
 #import "DianboListCollectionViewCell.h"
 #import "DianboViewController.h"
 #import "KHLCategorySliderTableViewCell.h"
@@ -29,7 +28,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 #pragma mark - INTERFACE AND IMPLEMENTATION
 
-@interface DianboListViewController () {
+@interface DianboListViewController () <LoginDelegate> {
     UITableView *rightView;
 }
 
@@ -115,6 +114,9 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     // Request data..
     if ([self needsRequest]) {
         [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%lu", self.filter] category:self.category page:@"" search:@""];
+        NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        [[KHLDataManager instance] categoryListHUDHolder:self.view uid:uid token:token];
         [self setNeedsRequest:FALSE];
     }
 }
@@ -132,10 +134,10 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    // Request categories list..
-    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
-    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-    [[KHLDataManager instance] categoryListHUDHolder:[[UIView alloc] init] uid:uid token:token];
+//    // Request categories list..
+//    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+//    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+//    [[KHLDataManager instance] categoryListHUDHolder:[[UIView alloc] init] uid:uid token:token];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -179,6 +181,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     //    [rightView.tableView setUserInteractionEnabled:TRUE];
     //    rightView.tableView1.scrollEnabled = YES;
     //    [self.view insertSubview:rightView atIndex:0];
+    [rightView setSeparatorColor:[UIColor clearColor]];
     [self.view addSubview:rightView];
     [self.view insertSubview:rightView belowSubview:self.holder];
 }
@@ -343,7 +346,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44.0f;
+    return 50.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -375,6 +378,9 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
             [cCell.categorySubscribeButton setEnabled:FALSE];
         }
     }
+    
+    cCell.selectedBackgroundView = [[UIView alloc] initWithFrame:cCell.frame];
+    cCell.selectedBackgroundView.backgroundColor = [KHLColor zong];
     
     // Asign category slider cell..
     cell = cCell;
@@ -419,10 +425,37 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         }
     } else {
         // Not logged in..
-        LoginViewController *loginViewController = [[LoginViewController alloc] init];
-//        loginViewController.delegate = self;
-        [self.navigationController pushViewController:loginViewController animated:TRUE];
+        
+        [UIView animateWithDuration:0.3f animations:^{
+            self.holder.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, 320, 44);
+            [self setSliderShowing:FALSE];
+        } completion:^(BOOL finished) {
+            LoginViewController *loginViewController = [[LoginViewController alloc] init];
+            loginViewController.delegate = self;
+            [self.navigationController pushViewController:loginViewController animated:TRUE];
+        }];
     }
+}
+
+
+
+#pragma mark - LOGIN DELEGATE
+
+- (void)onLoginSuccess
+{
+    // Request VOD list..
+    [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%lu", self.filter] category:self.category page:@"" search:@""];
+    
+    // Request categories list..
+    NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    [[KHLDataManager instance] categoryListHUDHolder:self.view uid:uid token:token];
+}
+
+- (void)onLoginFailed
+{
+    
 }
 
 

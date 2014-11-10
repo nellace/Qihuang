@@ -39,6 +39,12 @@
     return [KHLColor red:173 green:173 blue:173];
 }
 
+/** 小石青 */
++ (UIColor *)xiaoshiqing
+{
+    return [KHLColor red:189 green:189 blue:189];
+}
+
 /** 橘黄 */
 + (UIColor *)juhuang
 {
@@ -55,6 +61,12 @@
 + (UIColor *)qinghui
 {
     return [KHLColor red:222 green:222 blue:222];
+}
+
+/** 棕 */
++ (UIColor *)zong
+{
+    return [KHLColor red:26 green:13 blue:7];
 }
 
 #pragma mark - 工具方法

@@ -17,12 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="157" height="100"/>
                     </imageView>
                     <view alpha="0.74999999999999978" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9k5-42-fp5">
-                        <rect key="frame" x="0.0" y="57" width="157" height="43"/>
+                        <rect key="frame" x="0.0" y="68" width="157" height="32"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="视频名称视频名称视频名称视频名称" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="141" translatesAutoresizingMaskIntoConstraints="NO" id="Jci-HS-fh0" userLabel="titleLabel">
-                        <rect key="frame" x="0.0" y="57" width="157" height="43"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="8" y="68" width="141" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="BOb-ey-0kH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -33,16 +36,23 @@
                 <constraint firstItem="Jci-HS-fh0" firstAttribute="top" secondItem="9k5-42-fp5" secondAttribute="top" id="3Os-1d-VqO"/>
                 <constraint firstItem="xgf-xa-s4L" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DJ9-Yn-c7Q"/>
                 <constraint firstAttribute="trailing" secondItem="9k5-42-fp5" secondAttribute="trailing" id="GCf-UK-POC"/>
+                <constraint firstAttribute="trailing" secondItem="Jci-HS-fh0" secondAttribute="trailing" constant="8" id="O2B-wz-DbF"/>
                 <constraint firstItem="Jci-HS-fh0" firstAttribute="bottom" secondItem="xgf-xa-s4L" secondAttribute="bottom" id="Pki-dM-rzj"/>
                 <constraint firstAttribute="bottom" secondItem="9k5-42-fp5" secondAttribute="bottom" id="Pvr-2F-Vw3"/>
                 <constraint firstItem="Jci-HS-fh0" firstAttribute="centerX" secondItem="xgf-xa-s4L" secondAttribute="centerX" id="T6Q-32-HBV"/>
                 <constraint firstAttribute="trailing" secondItem="xgf-xa-s4L" secondAttribute="trailing" id="TxA-Rn-RJl"/>
                 <constraint firstAttribute="bottom" secondItem="xgf-xa-s4L" secondAttribute="bottom" id="boJ-ix-2cc"/>
                 <constraint firstItem="Jci-HS-fh0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="57" id="orf-If-96o"/>
-                <constraint firstItem="Jci-HS-fh0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tDY-eB-55C"/>
+                <constraint firstItem="Jci-HS-fh0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="tDY-eB-55C"/>
                 <constraint firstItem="xgf-xa-s4L" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vrB-7T-Kfn"/>
             </constraints>
             <size key="customSize" width="237" height="93"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="T6Q-32-HBV"/>
+                    <exclude reference="orf-If-96o"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="backdropImageView" destination="xgf-xa-s4L" id="buG-ei-n2x"/>
                 <outlet property="titleLabel" destination="Jci-HS-fh0" id="b8B-oh-kHF"/>
