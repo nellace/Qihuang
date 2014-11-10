@@ -894,4 +894,75 @@
      }];
 }
 
+
+- (void)goodHUDHolder: (UIView *)holder
+                  uid: (NSString *)uid
+                token: (NSString *)token
+           comment_id:(NSString *)comment_id {
+    // Start progress HUD..
+    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
+    
+    NSString *ustr = [NSString stringWithFormat:KHLUrlGoodWithComment];
+    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
+                           uid, @"uid",
+                           token, @"token",
+                           comment_id,@"comment_id",
+                           nil];
+    NSLog(@"good url=%@ param=%@", ustr, param);
+    
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
+    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         NSLog(@"good succ=\n%@", json);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlGoodWithComment" object:json];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"good fail=\n%@", error);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlGoodWithComment" object:nil];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     }];
+}
+
+- (void)badHUDHolder:(UIView *)holder uid:(NSString *)uid token:(NSString *)token comment_id:(NSString *)comment_id {
+    
+    // Start progress HUD..
+    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
+    
+    NSString *ustr = [NSString stringWithFormat:KHLUrlbadWithComment];
+    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
+                           uid, @"uid",
+                           token, @"token",
+                           comment_id,@"comment_id",
+                           nil];
+    NSLog(@"bad url=%@ param=%@", ustr, param);
+    
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
+    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         NSLog(@"bad succ=\n%@", json);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlbadWithComment" object:json];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"bad fail=\n%@", error);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlbadWithComment" object:nil];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     }];
+
+}
 @end

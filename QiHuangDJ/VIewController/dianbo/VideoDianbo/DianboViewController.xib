@@ -83,7 +83,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8Ee-jb-9Oy" userLabel="pinglun Table View">
-                    <rect key="frame" x="0.0" y="197" width="320" height="371"/>
+                    <rect key="frame" x="0.0" y="197" width="320" height="331"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="brs-9V-Cor"/>
@@ -177,7 +177,7 @@
                 <constraint firstItem="DmW-zl-0hh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Lf-X9-zfJ"/>
                 <constraint firstItem="8Ee-jb-9Oy" firstAttribute="top" secondItem="e2H-ZF-Na3" secondAttribute="bottom" constant="1" id="DvO-WY-KMA"/>
                 <constraint firstAttribute="trailing" secondItem="4Ss-3l-xad" secondAttribute="trailing" id="EOX-pg-f3j"/>
-                <constraint firstAttribute="bottom" secondItem="8Ee-jb-9Oy" secondAttribute="bottom" id="FSr-Wo-xpO"/>
+                <constraint firstAttribute="bottom" secondItem="8Ee-jb-9Oy" secondAttribute="bottom" constant="40" id="FSr-Wo-xpO"/>
                 <constraint firstItem="DdI-HQ-jDv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GK3-fC-MEo"/>
                 <constraint firstAttribute="trailing" secondItem="DdI-HQ-jDv" secondAttribute="trailing" id="IDc-jO-N7R"/>
                 <constraint firstItem="DmW-zl-0hh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NJc-8S-zfL"/>
@@ -193,7 +193,7 @@
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-1765" y="231"/>
+            <point key="canvasLocation" x="-2071" y="238"/>
         </view>
     </objects>
     <resources>

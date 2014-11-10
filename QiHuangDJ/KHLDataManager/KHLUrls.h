@@ -86,4 +86,9 @@
 #pragma mark - (2.25) 点播分类列表
 #define KHLUrlCategoryListAcquire @"app_catelist.php"
 
+#pragma mark - (2.26) 评论 - 顶
+#define KHLUrlGoodWithComment @"app_good.php"
+
+#pragma mark - (2.27) 评论 - 踩
+#define KHLUrlbadWithComment @"app_bad.php"
 #endif

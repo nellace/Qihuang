@@ -940,5 +940,53 @@
                         token: (NSString *)token;
 
 
+#pragma mark - (2.26) 评论 - 顶
+/*
+ 
+ 类型：
+    POST
+ 
+ 参数：
+     uid            用户ID
+     token          用户token
+     comment_id		评论id
+ 
+ 返回：
+     "resultCode": "0",
+     "reason": "success"
+ 
+ 使用：
+ KHLUrlBase
+ KHLUrlGoodWithComment
+ 
+ */
+- (void)goodHUDHolder: (UIView *)holder
+                          uid: (NSString *)uid
+                        token: (NSString *)token
+                   comment_id:(NSString *)comment_id;
 
+#pragma mark - (2.26) 评论 - 踩
+/*
+ 
+ 类型：
+        POST
+ 
+ 参数：
+         uid            用户ID
+         token          用户token
+         comment_id		评论id
+ 
+ 返回：
+         "resultCode": "0",
+         "reason": "success"
+ 
+ 使用：
+ KHLUrlBase
+ KHLUrlBadWithComment
+ 
+ */
+- (void)badHUDHolder: (UIView *)holder
+                          uid: (NSString *)uid
+                        token: (NSString *)token
+                   comment_id:(NSString *)comment_id;
 @end
