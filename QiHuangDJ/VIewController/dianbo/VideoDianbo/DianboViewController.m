@@ -9,6 +9,7 @@
 #import "DianboViewController.h"
 #import "DianboCell.h"
 #import "LoginViewController.h"
+#import "JubaoViewController.h"
 @interface DianboViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *shuruTextFiled;
 @property (weak, nonatomic) IBOutlet UIView *inputView;
@@ -24,8 +25,8 @@
 
 @end
 
-static  NSInteger goodCount;
-static  NSInteger badCount;
+static  NSInteger goodCount; //记录等号
+
 
 @implementation DianboViewController {
     NSString *otherUserName;
@@ -308,8 +309,7 @@ static  NSInteger badCount;
         self.shuruTextFiled.tag =btn.tag;
         [self.shuruTextFiled becomeFirstResponder];
     } else {
-        LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        [self.navigationController pushViewController:loginVC animated:YES];
+        [self pushLoginVCMethod];
     }
 }
 - (IBAction)retRootVC:(id)sender {
@@ -318,7 +318,10 @@ static  NSInteger badCount;
 
 - (void)jubaoDianboMehod:(UIButton *)sender {
     if ([self isLogin]) {
-        
+        JubaoViewController *jubaoVC = [[JubaoViewController alloc] initWithNibName:@"JubaoViewController" bundle:nil];
+        CommentListInterface * commentlist = self.listMutableArr[sender.tag];
+        jubaoVC.pinglunId =commentlist.poster;
+        [self.navigationController pushViewController:jubaoVC animated:YES];
     } else {
         [self pushLoginVCMethod];
     }
@@ -334,7 +337,6 @@ static  NSInteger badCount;
     } else {
         [self pushLoginVCMethod];
     }
-
 }
 
 - (void)badDianboMethod:(UIButton *)sender {

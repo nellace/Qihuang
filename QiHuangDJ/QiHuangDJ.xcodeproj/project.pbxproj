@@ -74,6 +74,8 @@
 		3DD9646419FFA934004C3AF1 /* DianboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9646319FFA934004C3AF1 /* DianboCell.m */; };
 		3DD9646619FFA944004C3AF1 /* DianboCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD9646519FFA944004C3AF1 /* DianboCell.xib */; };
 		3DE8DAA21A0769F80048CAE8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE8DAA11A0769F80048CAE8 /* MediaPlayer.framework */; };
+		3DED34451A10CD4C008483D4 /* JubaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DED34431A10CD4C008483D4 /* JubaoViewController.m */; };
+		3DED34461A10CD4C008483D4 /* JubaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DED34441A10CD4C008483D4 /* JubaoViewController.xib */; };
 		FC2FA76B1A08B8AC006290BE /* KHLSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2FA7691A08B8AC006290BE /* KHLSearchResultViewController.m */; };
 		FC2FA76C1A08B8AC006290BE /* KHLSearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2FA76A1A08B8AC006290BE /* KHLSearchResultViewController.xib */; };
 		FC2FA7701A08F0E8006290BE /* KHLSearchResultSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2FA76E1A08F0E8006290BE /* KHLSearchResultSubViewController.m */; };
@@ -333,6 +335,9 @@
 		3DD9646319FFA934004C3AF1 /* DianboCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboCell.m; sourceTree = "<group>"; };
 		3DD9646519FFA944004C3AF1 /* DianboCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboCell.xib; sourceTree = "<group>"; };
 		3DE8DAA11A0769F80048CAE8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3DED34421A10CD4C008483D4 /* JubaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JubaoViewController.h; sourceTree = "<group>"; };
+		3DED34431A10CD4C008483D4 /* JubaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JubaoViewController.m; sourceTree = "<group>"; };
+		3DED34441A10CD4C008483D4 /* JubaoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JubaoViewController.xib; sourceTree = "<group>"; };
 		FC2FA7681A08B8AC006290BE /* KHLSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHLSearchResultViewController.h; path = SearchResult/KHLSearchResultViewController.h; sourceTree = "<group>"; };
 		FC2FA7691A08B8AC006290BE /* KHLSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHLSearchResultViewController.m; path = SearchResult/KHLSearchResultViewController.m; sourceTree = "<group>"; };
 		FC2FA76A1A08B8AC006290BE /* KHLSearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KHLSearchResultViewController.xib; path = SearchResult/KHLSearchResultViewController.xib; sourceTree = "<group>"; };
@@ -732,6 +737,7 @@
 		3D44754D19C9738600D9B2B1 /* VIewController */ = {
 			isa = PBXGroup;
 			children = (
+				3DED34411A10CD40008483D4 /* jubao */,
 				FC511E671A0A51B200518265 /* GamesphereWebView */,
 				FC2FA7671A08B66A006290BE /* SearchResult */,
 				3D858E0519E8DFD7005022BA /* dianbo */,
@@ -877,6 +883,16 @@
 				FC3FD84D1A0F3327001E7562 /* KHLCategorySliderTableViewCell.xib */,
 			);
 			path = dianbolist;
+			sourceTree = "<group>";
+		};
+		3DED34411A10CD40008483D4 /* jubao */ = {
+			isa = PBXGroup;
+			children = (
+				3DED34421A10CD4C008483D4 /* JubaoViewController.h */,
+				3DED34431A10CD4C008483D4 /* JubaoViewController.m */,
+				3DED34441A10CD4C008483D4 /* JubaoViewController.xib */,
+			);
+			path = jubao;
 			sourceTree = "<group>";
 		};
 		FC2FA7671A08B66A006290BE /* SearchResult */ = {
@@ -1225,6 +1241,7 @@
 				3D121C2919CAB47E0040870C /* ViewController.xib in Resources */,
 				3DD9646619FFA944004C3AF1 /* DianboCell.xib in Resources */,
 				FCFDCB341A0731FA007F3F2E /* nav_btn_quxiao@2x.png in Resources */,
+				3DED34461A10CD4C008483D4 /* JubaoViewController.xib in Resources */,
 				FC708A7219ED4C3E002DF952 /* KHLPICRecommendedCell.xib in Resources */,
 				FCFDCB451A0731FA007F3F2E /* qihuangshouye_icon5@2x.png in Resources */,
 				FCFDCB211A0731FA007F3F2E /* dota_tiao1@2x.png in Resources */,
@@ -1360,6 +1377,7 @@
 				3D4003EB19D407E2006622E4 /* classifyModel.m in Sources */,
 				3D44757E19C984AC00D9B2B1 /* MQLCustomViewController.m in Sources */,
 				3D44752B19C972CE00D9B2B1 /* AppDelegate.m in Sources */,
+				3DED34451A10CD4C008483D4 /* JubaoViewController.m in Sources */,
 				3D121C2819CAB47E0040870C /* ViewController.m in Sources */,
 				3D121C3219CABCD10040870C /* ClassifyViewController.m in Sources */,
 				FCED6BEA19EE553F0009F8FF /* KHLPICVideoItemCell.m in Sources */,
