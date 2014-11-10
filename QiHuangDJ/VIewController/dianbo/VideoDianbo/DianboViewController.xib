@@ -8,9 +8,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DianboViewController">
             <connections>
+                <outlet property="editorLabel" destination="y6G-nQ-xbf" id="Bdl-0j-VdD"/>
                 <outlet property="inputView" destination="DdI-HQ-jDv" id="KeC-RO-REa"/>
-                <outlet property="keyboardHeight" destination="jLJ-LM-lGH" id="LhE-U0-ffB"/>
+                <outlet property="keyboardHeight" destination="UUn-rE-nq8" id="Tkv-Qu-qU0"/>
+                <outlet property="liulanCountLabel" destination="swJ-d1-cM8" id="w3C-7k-56W"/>
+                <outlet property="mainTabe" destination="8Ee-jb-9Oy" id="r4T-ZS-pVx"/>
                 <outlet property="shuruTextFiled" destination="1P4-Zc-Jkw" id="vRV-kr-7Ps"/>
+                <outlet property="timeLabel" destination="9yZ-jZ-icr" id="3cX-Qa-pQA"/>
+                <outlet property="titleForVideoLabel" destination="93y-1V-z2d" id="IEf-ds-XDL"/>
                 <outlet property="videoScaleImageView" destination="DmW-zl-0hh" id="dqp-we-veX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,14 +25,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao1.png" translatesAutoresizingMaskIntoConstraints="NO" id="DmW-zl-0hh" userLabel="Video Image">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="DmW-zl-0hh" secondAttribute="height" multiplier="320:153" id="pXC-bl-c8G"/>
-                    </constraints>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2H-ZF-Na3" userLabel="infomation View">
-                    <rect key="frame" x="0.0" y="153" width="320" height="55"/>
+                    <rect key="frame" x="0.0" y="153" width="320" height="43"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="视频:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="34" translatesAutoresizingMaskIntoConstraints="NO" id="K8G-fX-Q1e">
                             <rect key="frame" x="11" y="2" width="34" height="21"/>
@@ -42,7 +41,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="时间：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6P-OY-m0J">
-                            <rect key="frame" x="11" y="22" width="41" height="21"/>
+                            <rect key="frame" x="12" y="22" width="41" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -78,13 +77,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="e2H-ZF-Na3" secondAttribute="height" multiplier="64:11" id="9Rh-3c-5fm"/>
+                        <constraint firstAttribute="width" secondItem="e2H-ZF-Na3" secondAttribute="height" multiplier="320:43" id="rrl-QM-S4x"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8Ee-jb-9Oy" userLabel="pinglun Table View">
-                    <rect key="frame" x="0.0" y="209" width="320" height="359"/>
+                    <rect key="frame" x="0.0" y="197" width="320" height="371"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="brs-9V-Cor"/>
@@ -99,6 +98,9 @@
                             <state key="normal" image="zhibo_btn_fanhui.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="retRootVC:" destination="-1" eventType="touchUpInside" id="KRv-R4-q86"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="232" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="z0V-dK-OOz">
                             <rect key="frame" x="262" y="11" width="56" height="21"/>
@@ -129,12 +131,12 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DdI-HQ-jDv" userLabel="inputVIew">
-                    <rect key="frame" x="0.0" y="569" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="567" width="320" height="44"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhibo_huifukuang.png" translatesAutoresizingMaskIntoConstraints="NO" id="yrJ-YR-dck">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1P4-Zc-Jkw">
+                        <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1P4-Zc-Jkw">
                             <rect key="frame" x="8" y="6" width="258" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -158,35 +160,40 @@
                     <constraints>
                         <constraint firstItem="yrJ-YR-dck" firstAttribute="top" secondItem="DdI-HQ-jDv" secondAttribute="top" id="MNa-XM-KKo"/>
                         <constraint firstItem="yrJ-YR-dck" firstAttribute="leading" secondItem="DdI-HQ-jDv" secondAttribute="leading" id="NDf-P6-5gM"/>
+                        <constraint firstAttribute="height" constant="44" id="T3P-CU-1FD"/>
                         <constraint firstAttribute="trailing" secondItem="yrJ-YR-dck" secondAttribute="trailing" id="eEj-vg-NBu"/>
-                        <constraint firstAttribute="width" secondItem="DdI-HQ-jDv" secondAttribute="height" multiplier="80:11" id="faR-0s-BpP"/>
                         <constraint firstAttribute="bottom" secondItem="yrJ-YR-dck" secondAttribute="bottom" id="ms8-rd-H4r"/>
                     </constraints>
                 </view>
+                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao1.png" translatesAutoresizingMaskIntoConstraints="NO" id="DmW-zl-0hh" userLabel="Video Image">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="DmW-zl-0hh" secondAttribute="height" multiplier="320:153" id="pXC-bl-c8G"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="DmW-zl-0hh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Lf-X9-zfJ"/>
-                <constraint firstAttribute="trailing" secondItem="DdI-HQ-jDv" secondAttribute="trailing" id="CIQ-hA-Ahb"/>
                 <constraint firstItem="8Ee-jb-9Oy" firstAttribute="top" secondItem="e2H-ZF-Na3" secondAttribute="bottom" constant="1" id="DvO-WY-KMA"/>
                 <constraint firstAttribute="trailing" secondItem="4Ss-3l-xad" secondAttribute="trailing" id="EOX-pg-f3j"/>
                 <constraint firstAttribute="bottom" secondItem="8Ee-jb-9Oy" secondAttribute="bottom" id="FSr-Wo-xpO"/>
+                <constraint firstItem="DdI-HQ-jDv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GK3-fC-MEo"/>
+                <constraint firstAttribute="trailing" secondItem="DdI-HQ-jDv" secondAttribute="trailing" id="IDc-jO-N7R"/>
                 <constraint firstItem="DmW-zl-0hh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NJc-8S-zfL"/>
                 <constraint firstAttribute="trailing" secondItem="DmW-zl-0hh" secondAttribute="trailing" id="PPD-Y6-k2m"/>
+                <constraint firstAttribute="bottom" secondItem="DdI-HQ-jDv" secondAttribute="bottom" constant="-43" id="UUn-rE-nq8"/>
                 <constraint firstItem="e2H-ZF-Na3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V5Y-4R-NEF"/>
-                <constraint firstItem="DdI-HQ-jDv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wr0-dR-WrV"/>
                 <constraint firstAttribute="bottom" secondItem="4Ss-3l-xad" secondAttribute="bottom" id="XKO-W1-jxh"/>
-                <constraint firstItem="DdI-HQ-jDv" firstAttribute="top" secondItem="4Ss-3l-xad" secondAttribute="bottom" constant="1" id="aX4-nQ-are"/>
                 <constraint firstItem="8Ee-jb-9Oy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="caA-XZ-sAu"/>
                 <constraint firstItem="e2H-ZF-Na3" firstAttribute="top" secondItem="DmW-zl-0hh" secondAttribute="bottom" id="f9t-LQ-5Bn"/>
-                <constraint firstAttribute="bottom" secondItem="DdI-HQ-jDv" secondAttribute="bottom" constant="-45" id="jLJ-LM-lGH"/>
                 <constraint firstAttribute="trailing" secondItem="8Ee-jb-9Oy" secondAttribute="trailing" id="n4s-AY-kuz"/>
                 <constraint firstAttribute="trailing" secondItem="e2H-ZF-Na3" secondAttribute="trailing" id="puE-Wh-AuP"/>
                 <constraint firstItem="4Ss-3l-xad" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="syD-W4-9Xn"/>
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-1316" y="472"/>
+            <point key="canvasLocation" x="-1765" y="231"/>
         </view>
     </objects>
     <resources>

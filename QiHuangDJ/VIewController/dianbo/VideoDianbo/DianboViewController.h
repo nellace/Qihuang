@@ -9,5 +9,7 @@
 #import "MQLCustomViewController.h"
 
 @interface DianboViewController : MQLCustomViewController <UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+
 @property (nonatomic,strong) NSString *info_id;
+@property (nonatomic,strong) NSString *imageUrl;
 @end
