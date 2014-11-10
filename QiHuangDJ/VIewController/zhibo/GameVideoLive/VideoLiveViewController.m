@@ -139,6 +139,8 @@
             commentlist.countBad = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"bad"]];
             commentlist.countGood= [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"good"]];
             commentlist.time     = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"time"]];
+            commentlist.usernameWithReply = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"reply"]];
+
             [listForTableView addObject:commentlist];
         }
         [mainTableView reloadData];
@@ -154,8 +156,13 @@
     
     if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUsername"];
-        
-        NSString *replyTitle = [NSString stringWithFormat:@"%@回复%@",username,otherUserName];
+        NSString *replyTitle;
+        NSLog(@"otherUserName  %@",otherUserName);
+        if (otherUserName.length == 0) {
+            replyTitle = username;
+        }else {
+            replyTitle = [NSString stringWithFormat:@"%@回复%@",username,otherUserName];
+        }
         
         CommentListInterface * commentlist = [CommentListInterface new];
         commentlist.content = inputTextFiled.text;
@@ -342,7 +349,17 @@
     cell.badCountLabel.text = commentlist.countBad;
 //    [cell.imgeWithIcon setImageWithURL:[NSURL URLWithString:commentlist.portraitImageUrl]];
     cell.timeLabel.text = [self returnTheTimelabel:commentlist.time];
-    cell.titleLabel.text = commentlist.username;
+    
+    
+    NSString * usernametext;
+    
+    if (commentlist.usernameWithReply.length == 0) {
+        usernametext = commentlist.username;
+    }else {
+        usernametext = [NSString stringWithFormat:@"%@回复%@",commentlist.username,commentlist.usernameWithReply];
+    }
+    cell.titleLabel.text = usernametext;
+    
     return cell;
 }
 
@@ -383,7 +400,8 @@
             otherUserName = commentlist.username;
             comment_id = commentlist.poster;
         }
-        [[KHLDataManager instance] replyHUDHolder:self.view uid:uidStr target:comment_id content:inputTextFiled.text token:tokenStr targetType:@"live"];
+        [[KHLDataManager instance] replyHUDHolder:self.view uid:uidStr target:comment_id content:inputTextFiled.text token:tokenStr targetType:@"comment"];
+        NSLog(@"comment_id%@",comment_id);
     }
 }
 - (IBAction)returnRootHomePage:(id)sender {
@@ -437,7 +455,7 @@
         [dateFormatter setDateFormat:@"yyyy"];
         NSString *returnYear = [dateFormatter stringFromDate:d];
         NSString *nowReturnYear = [dateFormatter stringFromDate:now];
-        //        NSLog(@"%@~~~~ %@",returnYear,nowReturnYear);
+
         
         if([returnYear isEqualToString:nowReturnYear])
         {

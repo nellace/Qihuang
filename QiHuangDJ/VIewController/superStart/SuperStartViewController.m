@@ -100,6 +100,7 @@
         self.entertainers = [[self MakeSimulateEntertainersWithCapacity:1] mutableCopy];
     for (int i = 0; i < [self.entertainers count]; i++) {
         KHLEntertainerHolderView * holder = [[[NSBundle mainBundle] loadNibNamed:@"KHLEntertainerHolderView" owner:self options:nil] firstObject];
+//        holder.programmeWebView.delegate = self;
         [holder setFrame:CGRectMake(i * self.controllableWidth, 0, self.controllableWidth, self.controllableHeight)];
         [holder loadData:self.entertainers[i] useWindowSize:self.view.frame.size];
         [self.entertainerScrollView addSubview:holder];

@@ -11,6 +11,7 @@
                 <outlet property="inputView" destination="DdI-HQ-jDv" id="KeC-RO-REa"/>
                 <outlet property="keyboardHeight" destination="jLJ-LM-lGH" id="LhE-U0-ffB"/>
                 <outlet property="shuruTextFiled" destination="1P4-Zc-Jkw" id="vRV-kr-7Ps"/>
+                <outlet property="videoScaleImageView" destination="DmW-zl-0hh" id="dqp-we-veX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao1.png" translatesAutoresizingMaskIntoConstraints="NO" id="DmW-zl-0hh" userLabel="Video Image">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao1.png" translatesAutoresizingMaskIntoConstraints="NO" id="DmW-zl-0hh" userLabel="Video Image">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="DmW-zl-0hh" secondAttribute="height" multiplier="320:153" id="pXC-bl-c8G"/>
@@ -185,7 +186,7 @@
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-1220" y="474"/>
+            <point key="canvasLocation" x="-1316" y="472"/>
         </view>
     </objects>
     <resources>

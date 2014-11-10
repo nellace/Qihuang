@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *shuruTextFiled;
 @property (weak, nonatomic) IBOutlet UIView *inputView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeight;
-
+@property (weak, nonatomic) IBOutlet UIImageView *videoScaleImageView;
 
 @end
 
@@ -33,21 +33,54 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullScreenMehod)];
+    
+    [self.videoScaleImageView addGestureRecognizer:tap];
+    
+}
+
+- (void)fullScreenMehod {
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [self registerNotification];
+    [self requestDianboInfo];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [self removeNotificaiton];
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-
 }
 
+#pragma mark - dianboInfo
+-(void)registerNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dianboInfoMehod:) name:@"KHLNotiVODDetailAcquired" object:nil];
+}
+
+- (void)removeNotificaiton {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiVODDetailAcquired" object:nil];
+}
+
+- (void)requestDianboInfo {
+    [[KHLDataManager instance] VODDetailHUDHolder:self.view identity:@"4373" type:@"article"];
+}
+
+- (void)dianboInfoMehod:(NSNotification *)aNotification {
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"dianbo request failed");
+        return;
+    }
+    NSLog(@"aDic %@",aDic);
+    
+}
 
 # pragma mark UITableViewDataSouce
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

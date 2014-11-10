@@ -339,6 +339,7 @@
 @property (nonatomic, strong) NSString *countBad;          // bad
 @property (nonatomic, strong) NSString *time;
 @property (nonatomic, strong) NSString *type;              // model
+@property (nonatomic, strong) NSString *usernameWithReply; //被回复的评论
 
 @end
 

@@ -21,6 +21,25 @@
 		3D121C5219CAE4B80040870C /* SuperStartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C5019CAE4B80040870C /* SuperStartViewController.xib */; };
 		3D121C5719CAFADF0040870C /* PersonCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C5519CAFADF0040870C /* PersonCenterViewController.m */; };
 		3D121C5819CAFADF0040870C /* PersonCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C5619CAFADF0040870C /* PersonCenterViewController.xib */; };
+		3D34C35E1A0F9567009B3BDF /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3521A0F9567009B3BDF /* libAFNetworking.a */; };
+		3D34C35F1A0F9567009B3BDF /* libGTMBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3531A0F9567009B3BDF /* libGTMBase64.a */; };
+		3D34C3601A0F9567009B3BDF /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3541A0F9567009B3BDF /* libJSONKit.a */; };
+		3D34C3611A0F9567009B3BDF /* libJSONModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3551A0F9567009B3BDF /* libJSONModel.a */; };
+		3D34C3621A0F9567009B3BDF /* libLTCloudPlayerSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3561A0F9567009B3BDF /* libLTCloudPlayerSDK.a */; };
+		3D34C3631A0F9567009B3BDF /* libMZMonitor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3571A0F9567009B3BDF /* libMZMonitor.a */; };
+		3D34C3641A0F9567009B3BDF /* libNetworkReachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3581A0F9567009B3BDF /* libNetworkReachability.a */; };
+		3D34C3651A0F9567009B3BDF /* libRegexKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3591A0F9567009B3BDF /* libRegexKit.a */; };
+		3D34C3661A0F9567009B3BDF /* libSBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C35A1A0F9567009B3BDF /* libSBJSON.a */; };
+		3D34C3671A0F9567009B3BDF /* libUtility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C35B1A0F9567009B3BDF /* libUtility.a */; };
+		3D34C3681A0F9567009B3BDF /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D34C35D1A0F9567009B3BDF /* Resources.bundle */; };
+		3D34C36A1A0F95DB009B3BDF /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3691A0F95DB009B3BDF /* libicucore.dylib */; };
+		3D34C36C1A0F95E8009B3BDF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C36B1A0F95E8009B3BDF /* libz.dylib */; };
+		3D34C36E1A0F95F2009B3BDF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C36D1A0F95F2009B3BDF /* AdSupport.framework */; };
+		3D34C3701A0F9601009B3BDF /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C36F1A0F9601009B3BDF /* CoreTelephony.framework */; };
+		3D34C3721A0F9611009B3BDF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3711A0F9611009B3BDF /* SystemConfiguration.framework */; };
+		3D34C3741A0F961C009B3BDF /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3731A0F961C009B3BDF /* CoreFoundation.framework */; };
+		3D34C3761A0F9626009B3BDF /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3751A0F9626009B3BDF /* ImageIO.framework */; };
+		3D34C3781A0F962F009B3BDF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D34C3771A0F962F009B3BDF /* AudioToolbox.framework */; };
 		3D39636319FF3B4B00F6C004 /* DataManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D39636219FF3B4B00F6C004 /* DataManagerModel.m */; };
 		3D4003E719D3BEC3006622E4 /* KHLColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4003E419D3BEC3006622E4 /* KHLColor.m */; };
 		3D4003E819D3BEC3006622E4 /* KHLEntertainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4003E619D3BEC3006622E4 /* KHLEntertainer.m */; };
@@ -242,6 +261,27 @@
 		3D121C5419CAFADF0040870C /* PersonCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCenterViewController.h; sourceTree = "<group>"; };
 		3D121C5519CAFADF0040870C /* PersonCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCenterViewController.m; sourceTree = "<group>"; };
 		3D121C5619CAFADF0040870C /* PersonCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCenterViewController.xib; sourceTree = "<group>"; };
+		3D34C3511A0F9567009B3BDF /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		3D34C3521A0F9567009B3BDF /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAFNetworking.a; sourceTree = "<group>"; };
+		3D34C3531A0F9567009B3BDF /* libGTMBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGTMBase64.a; sourceTree = "<group>"; };
+		3D34C3541A0F9567009B3BDF /* libJSONKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJSONKit.a; sourceTree = "<group>"; };
+		3D34C3551A0F9567009B3BDF /* libJSONModel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJSONModel.a; sourceTree = "<group>"; };
+		3D34C3561A0F9567009B3BDF /* libLTCloudPlayerSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTCloudPlayerSDK.a; sourceTree = "<group>"; };
+		3D34C3571A0F9567009B3BDF /* libMZMonitor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMZMonitor.a; sourceTree = "<group>"; };
+		3D34C3581A0F9567009B3BDF /* libNetworkReachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNetworkReachability.a; sourceTree = "<group>"; };
+		3D34C3591A0F9567009B3BDF /* libRegexKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRegexKit.a; sourceTree = "<group>"; };
+		3D34C35A1A0F9567009B3BDF /* libSBJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSBJSON.a; sourceTree = "<group>"; };
+		3D34C35B1A0F9567009B3BDF /* libUtility.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUtility.a; sourceTree = "<group>"; };
+		3D34C35C1A0F9567009B3BDF /* LTPlayerSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPlayerSDK.h; sourceTree = "<group>"; };
+		3D34C35D1A0F9567009B3BDF /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
+		3D34C3691A0F95DB009B3BDF /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		3D34C36B1A0F95E8009B3BDF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3D34C36D1A0F95F2009B3BDF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3D34C36F1A0F9601009B3BDF /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3D34C3711A0F9611009B3BDF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3D34C3731A0F961C009B3BDF /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		3D34C3751A0F9626009B3BDF /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		3D34C3771A0F962F009B3BDF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3D39636119FF3B4B00F6C004 /* DataManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagerModel.h; sourceTree = "<group>"; };
 		3D39636219FF3B4B00F6C004 /* DataManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManagerModel.m; sourceTree = "<group>"; };
 		3D4003E319D3BEC3006622E4 /* KHLColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLColor.h; sourceTree = "<group>"; };
@@ -481,10 +521,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D34C3781A0F962F009B3BDF /* AudioToolbox.framework in Frameworks */,
+				3D34C3761A0F9626009B3BDF /* ImageIO.framework in Frameworks */,
+				3D34C3741A0F961C009B3BDF /* CoreFoundation.framework in Frameworks */,
+				3D34C3721A0F9611009B3BDF /* SystemConfiguration.framework in Frameworks */,
+				3D34C3701A0F9601009B3BDF /* CoreTelephony.framework in Frameworks */,
+				3D34C36E1A0F95F2009B3BDF /* AdSupport.framework in Frameworks */,
+				3D34C36C1A0F95E8009B3BDF /* libz.dylib in Frameworks */,
+				3D34C36A1A0F95DB009B3BDF /* libicucore.dylib in Frameworks */,
 				3DE8DAA21A0769F80048CAE8 /* MediaPlayer.framework in Frameworks */,
+				3D34C3631A0F9567009B3BDF /* libMZMonitor.a in Frameworks */,
+				3D34C3651A0F9567009B3BDF /* libRegexKit.a in Frameworks */,
+				3D34C3601A0F9567009B3BDF /* libJSONKit.a in Frameworks */,
+				3D34C3621A0F9567009B3BDF /* libLTCloudPlayerSDK.a in Frameworks */,
+				3D34C35F1A0F9567009B3BDF /* libGTMBase64.a in Frameworks */,
 				3D44751D19C972CE00D9B2B1 /* CoreGraphics.framework in Frameworks */,
 				3D44751F19C972CE00D9B2B1 /* UIKit.framework in Frameworks */,
+				3D34C3671A0F9567009B3BDF /* libUtility.a in Frameworks */,
+				3D34C3641A0F9567009B3BDF /* libNetworkReachability.a in Frameworks */,
+				3D34C35E1A0F9567009B3BDF /* libAFNetworking.a in Frameworks */,
 				3D44751B19C972CE00D9B2B1 /* Foundation.framework in Frameworks */,
+				3D34C3661A0F9567009B3BDF /* libSBJSON.a in Frameworks */,
+				3D34C3611A0F9567009B3BDF /* libJSONModel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +639,26 @@
 			path = PersonCenter;
 			sourceTree = "<group>";
 		};
+		3D34C3501A0F9567009B3BDF /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				3D34C3511A0F9567009B3BDF /* KeychainItemWrapper.h */,
+				3D34C3521A0F9567009B3BDF /* libAFNetworking.a */,
+				3D34C3531A0F9567009B3BDF /* libGTMBase64.a */,
+				3D34C3541A0F9567009B3BDF /* libJSONKit.a */,
+				3D34C3551A0F9567009B3BDF /* libJSONModel.a */,
+				3D34C3561A0F9567009B3BDF /* libLTCloudPlayerSDK.a */,
+				3D34C3571A0F9567009B3BDF /* libMZMonitor.a */,
+				3D34C3581A0F9567009B3BDF /* libNetworkReachability.a */,
+				3D34C3591A0F9567009B3BDF /* libRegexKit.a */,
+				3D34C35A1A0F9567009B3BDF /* libSBJSON.a */,
+				3D34C35B1A0F9567009B3BDF /* libUtility.a */,
+				3D34C35C1A0F9567009B3BDF /* LTPlayerSDK.h */,
+				3D34C35D1A0F9567009B3BDF /* Resources.bundle */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
 		3D44750E19C972CE00D9B2B1 = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +681,14 @@
 		3D44751919C972CE00D9B2B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D34C3771A0F962F009B3BDF /* AudioToolbox.framework */,
+				3D34C3751A0F9626009B3BDF /* ImageIO.framework */,
+				3D34C3731A0F961C009B3BDF /* CoreFoundation.framework */,
+				3D34C3711A0F9611009B3BDF /* SystemConfiguration.framework */,
+				3D34C36F1A0F9601009B3BDF /* CoreTelephony.framework */,
+				3D34C36D1A0F95F2009B3BDF /* AdSupport.framework */,
+				3D34C36B1A0F95E8009B3BDF /* libz.dylib */,
+				3D34C3691A0F95DB009B3BDF /* libicucore.dylib */,
 				3DE8DAA11A0769F80048CAE8 /* MediaPlayer.framework */,
 				3D44751A19C972CE00D9B2B1 /* Foundation.framework */,
 				3D44751C19C972CE00D9B2B1 /* CoreGraphics.framework */,
@@ -688,6 +774,7 @@
 		3D44754C19C9738600D9B2B1 /* ThrildLib */ = {
 			isa = PBXGroup;
 			children = (
+				3D34C3501A0F9567009B3BDF /* iphoneos */,
 				3D491BB619D192FF004D6DEF /* customSearchBar */,
 				3D44755319C984AC00D9B2B1 /* AFNetworking */,
 				3D44756919C984AC00D9B2B1 /* CustomNavViewController */,
@@ -1270,6 +1357,7 @@
 				3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */,
 				FCFDCB491A0731FA007F3F2E /* shouye_bg4@2x.png in Resources */,
 				FCFDCB371A0731FA007F3F2E /* nav_jiantou@2x.png in Resources */,
+				3D34C3681A0F9567009B3BDF /* Resources.bundle in Resources */,
 				FCFDCB141A0731FA007F3F2E /* denglu_kuangbg@2x.png in Resources */,
 				FCFDCB2B1A0731FA007F3F2E /* shezhi_line_press@2x.png in Resources */,
 				FCFDCB4D1A0731FA007F3F2E /* shouye_icon3@2x.png in Resources */,
@@ -1470,6 +1558,11 @@
 				GCC_PREFIX_HEADER = "QiHuangDJ/QiHuangDJ-Prefix.pch";
 				INFOPLIST_FILE = "QiHuangDJ/QiHuangDJ-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThrildLib/iphoneos",
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1484,6 +1577,11 @@
 				GCC_PREFIX_HEADER = "QiHuangDJ/QiHuangDJ-Prefix.pch";
 				INFOPLIST_FILE = "QiHuangDJ/QiHuangDJ-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThrildLib/iphoneos",
+				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
