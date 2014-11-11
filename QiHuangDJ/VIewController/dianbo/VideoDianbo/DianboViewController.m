@@ -131,7 +131,6 @@ static  NSInteger goodCount; //记录等号
 
      UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:messageStr delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] ;
         [alert show];
-       
     }
 }
 
