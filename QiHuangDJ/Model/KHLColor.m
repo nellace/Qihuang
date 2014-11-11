@@ -104,4 +104,70 @@
               alpha:1.0];
     return result;
 }
+
+# pragma mark
+# pragma mark 计算时间方法
++(NSString*)returnTheTimelabel:(NSString*)theTime
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate * d = [dateFormatter dateFromString:theTime];
+    
+    NSDate *now = [[NSDate alloc]init];
+    
+    
+    NSTimeInterval late = [now timeIntervalSinceDate:d];
+    NSString *returnStr ;
+    if(late<3600)
+    {
+        if ((int)(late/60) == 0 )
+        {
+            returnStr = @"刚刚";
+        }else
+        {
+            returnStr = [NSString stringWithFormat:@"%i分前",(int)(late/60)];
+        }
+    }
+    else if(late>=3600&&late<3600*24) {
+        returnStr = [NSString stringWithFormat:@"%i小时前",(int)(late/3600)];
+    }
+    else if(late>=3600*24&&late<3600*48)
+    {
+        returnStr = [NSString stringWithFormat:@"昨天"];
+    }
+    else
+    {
+        //NSDateFormatter *dateFormatter1 =[[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy"];
+        NSString *returnYear = [dateFormatter stringFromDate:d];
+        NSString *nowReturnYear = [dateFormatter stringFromDate:now];
+        
+        
+        if([returnYear isEqualToString:nowReturnYear])
+        {
+            [dateFormatter setDateFormat:@"MM-dd"];
+            
+            returnStr = [dateFormatter stringFromDate:d];
+        }
+        else
+        {
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            
+            returnStr = [dateFormatter stringFromDate:d];
+        }
+    }
+    return returnStr;
+}
+
++ (BOOL)isLogin {
+    NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+    if (!(uidStr == nil || tokenStr == nil)) {
+        return YES;
+    } else {
+        
+        return NO;
+    }
+}
+
 @end

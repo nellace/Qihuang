@@ -263,7 +263,8 @@ static  NSInteger goodCount; //记录等号
     cell.badCountLabel.text = commentlist.countBad;
     
     //    [cell.imgeWithIcon setImageWithURL:[NSURL URLWithString:commentlist.portraitImageUrl]];
-    cell.timeLabel.text = [self returnTheTimelabel:commentlist.time];
+
+    cell.timeLabel.text =  [KHLColor returnTheTimelabel:commentlist.time];
     
     NSString * usernametext;
     
@@ -311,7 +312,7 @@ static  NSInteger goodCount; //记录等号
 
 }
 - (void)pinglunMethondWithBottomBarAndDianbo:(UIButton *)sender {
-    if ([self isLogin]) {
+    if ([KHLColor isLogin]) {
         UIButton * btn = (UIButton * )sender;
         self.shuruTextFiled.tag =btn.tag;
         [self.shuruTextFiled becomeFirstResponder];
@@ -324,7 +325,7 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (void)jubaoDianboMehod:(UIButton *)sender {
-    if ([self isLogin]) {
+    if ([KHLColor isLogin]) {
         JubaoViewController *jubaoVC = [[JubaoViewController alloc] initWithNibName:@"JubaoViewController" bundle:nil];
         CommentListInterface * commentlist = self.listMutableArr[sender.tag];
         jubaoVC.pinglunId =commentlist.poster;
@@ -335,7 +336,7 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (void)goodDianboMethod:(UIButton *)sender {
-    if ([self isLogin]) {
+    if ([KHLColor isLogin]) {
         NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
         NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
         CommentListInterface * commentlist = self.listMutableArr[sender.tag];
@@ -347,7 +348,7 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (void)badDianboMethod:(UIButton *)sender {
-    if ([self isLogin]) {
+    if ([KHLColor isLogin]) {
         NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
         NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
         CommentListInterface * commentlist = self.listMutableArr[sender.tag];
@@ -401,75 +402,10 @@ static  NSInteger goodCount; //记录等号
     [CATransaction commit];
 }
 
-# pragma mark
-# pragma mark 计算时间方法
--(NSString*)returnTheTimelabel:(NSString*)theTime
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    NSDate * d = [dateFormatter dateFromString:theTime];
-    
-    NSDate *now = [[NSDate alloc]init];
-    
-    
-    NSTimeInterval late = [now timeIntervalSinceDate:d];
-    NSString *returnStr ;
-    if(late<3600)
-    {
-        if ((int)(late/60) == 0 )
-        {
-            returnStr = @"刚刚";
-        }else
-        {
-            returnStr = [NSString stringWithFormat:@"%i分前",(int)(late/60)];
-        }
-    }
-    else if(late>=3600&&late<3600*24) {
-        returnStr = [NSString stringWithFormat:@"%i小时前",(int)(late/3600)];
-    }
-    else if(late>=3600*24&&late<3600*48)
-    {
-        returnStr = [NSString stringWithFormat:@"昨天"];
-    }
-    else
-    {
-        //NSDateFormatter *dateFormatter1 =[[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy"];
-        NSString *returnYear = [dateFormatter stringFromDate:d];
-        NSString *nowReturnYear = [dateFormatter stringFromDate:now];
-        
-        
-        if([returnYear isEqualToString:nowReturnYear])
-        {
-            [dateFormatter setDateFormat:@"MM-dd"];
-            
-            returnStr = [dateFormatter stringFromDate:d];
-        }
-        else
-        {
-            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-            
-            returnStr = [dateFormatter stringFromDate:d];
-        }
-    }
-    return returnStr;
-}
-
-- (BOOL)isLogin {
-    NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
-    NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-    if (!(uidStr == nil || tokenStr == nil)) {
-        return YES;
-    } else {
-        
-        return NO;
-    }
-}
-
 - (void)pushLoginVCMethod {
 
-        LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        [self.navigationController pushViewController:loginVC animated:YES];
+    LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    [self.navigationController pushViewController:loginVC animated:YES];
 
 }
 @end

@@ -9,17 +9,25 @@
 #import "InfomationViewController.h"
 #import "DianboCell.h"
 #import "infomationForHeader.h"
-@interface InfomationViewController () <UIWebViewDelegate>
+#import "LoginViewController.h"
+#import "JubaoViewController.h"
+@interface InfomationViewController () <UIWebViewDelegate,UITextFieldDelegate>
 @property (nonatomic,strong) IBOutlet UITableView *mainTableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeighAuto;
 
 @property (nonatomic, getter=needsPrestrain, setter=setNeedsPrestrain:) BOOL prestrainTag;
 @property (nonatomic, strong) InformationDetailInterface *detail;
+@property (weak, nonatomic) IBOutlet UITextField *inputTextFiled;
 
 @end
+
+static  NSInteger goodCount; //记录等号
 
 @implementation InfomationViewController {
     infomationForHeader * infoHeader;
     NSInteger sectionHeight;
+    NSMutableArray *listArrayWithInfo;
+    NSString *otherUserName;  //被评论人的名子
 }
 
 #pragma mark - ATTRIBUTES GETTER AND SETTER
@@ -36,8 +44,6 @@
     return _detail;
 }
 
-
-
 #pragma mark - VIEW CONTROLLER LIFECYCLE
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,7 +53,8 @@
         [self setCascTitle:@"资讯详情"];
         [self setFanhui];
         [self setNeedsPrestrain:TRUE];
-
+        listArrayWithInfo = [NSMutableArray new];
+        infoHeader = [[[NSBundle mainBundle] loadNibNamed:@"InfomationForHeader" owner:self options:nil]lastObject];
     }
     
     return self;
@@ -62,7 +69,8 @@
     }
 
     // Register notifications..
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(informationDetailNotified:) name:@"KHLNotiInformationDetailAcquired" object:nil];
+    [self registerNotification];
+
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -72,10 +80,9 @@
     CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
     frame.size = fittingSize;
     webView.frame = frame;
-    
+    infoHeader.webViewLaytou.frame = webView.frame;
     infoHeader.webViewHeight.constant = webView.frame.size.height;
-    NSInteger infoheight = infoHeader.frame.size.height + webView.frame.size.height - heght;
-    infoHeader.frame = CGRectMake(infoHeader.frame.origin.x, infoHeader.frame.origin.y, infoHeader.frame.size.width, infoheight);
+    NSInteger infoheight = infoHeader.frame.size.height + (webView.frame.size.height - heght);
 
     [self.mainTableView beginUpdates];
     sectionHeight = infoheight;
@@ -86,7 +93,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     // Remove notifications..
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiInformationDetailAcquired" object:nil];
+    [self removeNotificaiton];
 }
 
 - (void)viewDidLoad
@@ -96,9 +103,201 @@
     // Request data..
 //    [[KHLDataManager instance] informationDetailHUDHolder:self.view identity:self.prestrain.identity type:self.prestrain.category];
     [[KHLDataManager instance] informationDetailHUDHolder:self.view identity:self.prestrain.identity type:@"article"];
+     [[KHLDataManager instance] commentlistHUDHolder:self.view model:@"article" zhiboid:self.prestrain.identity];
 }
 
+#pragma mark - ABOUT NSNOTIFICATION
+-(void)registerNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHeightInfo:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(informationDetailNotified:) name:@"KHLNotiInformationDetailAcquired" object:nil];
+    
+    //commentlist
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(infoCommentlistMehod:) name:@"KHLUrlcommentlist" object:nil];
+    //评论
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(replyInfoMethod:) name:@"KHLNotiReplied" object:nil];
+    //good
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goodInfoNotifiMethod:) name:@"KHLUrlGoodWithComment" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(badInfoNotifiMethod:) name:@"KHLUrlbadWithComment" object:nil];
+    //KHLUrlGoodWithComment
+}
 
+- (void)removeNotificaiton {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiInformationDetailAcquired" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlcommentlist" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiReplied" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlGoodWithComment" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlbadWithComment" object:nil];
+}
+
+#pragma mark - NOTIFICATION METHODES
+
+- (void)informationDetailNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        //        NSInteger c = [[dict objectForKey:@"result"] count];
+        NSArray *results = [dict objectForKey:@"result"];
+        NSDictionary *result = nil;
+        if (!results || results.count == 0) {
+            NSLog(@"妈蛋，results里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"results为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        } else {
+            result = [results firstObject];
+            if (!result) {
+                NSLog(@"妈蛋，result里没东西。");
+                [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                return;
+            }
+        }
+        
+        self.detail.identity = [NSString stringWithFormat:@"%@", [result objectForKey:@"info_id"]];
+        self.detail.category = [NSString stringWithFormat:@"%@", [result objectForKey:@"cate_id"]];
+        self.detail.title = [NSString stringWithFormat:@"%@", [result objectForKey:@"title"]];
+        self.detail.source = [NSString stringWithFormat:@"%@", [result objectForKey:@"source"]];
+        self.detail.imageUrls = [result objectForKey:@"imagelist"];
+        self.detail.count = [NSString stringWithFormat:@"%@", [result objectForKey:@"count"]];
+        self.detail.publisher = [NSString stringWithFormat:@"%@", [result objectForKey:@"nickname"]];
+        self.detail.content = [NSString stringWithFormat:@"%@", [result objectForKey:@"content"]];
+        self.detail.time = [NSString stringWithFormat:@"%@", [result objectForKey:@"time"]];
+        
+        // Refresh with received detail..
+        [self loadDetailData];
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+}
+//comment list
+- (void)infoCommentlistMehod:(NSNotification *)aNotification {
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"commentList failed"); return;
+    }
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSDictionary * dic = [aDic objectForKey:@"result"];
+        NSArray * arr = [dic objectForKey:@"data"];
+        for (NSDictionary *dataDic in arr) {
+            CommentListInterface *commentlist = [CommentListInterface new];
+            commentlist.username = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"uname"]];
+            commentlist.poster   = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"comment_id"]];
+            commentlist.portraitImageUrl = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"uimage"]];
+            commentlist.content  = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"content"]];
+            commentlist.countBad = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"bad"]];
+            commentlist.countGood= [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"good"]];
+            commentlist.time     = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"time"]];
+            commentlist.usernameWithReply = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"reply"]];
+            
+            [listArrayWithInfo addObject:commentlist];
+        }
+        NSLog(@"comment list frame front %d",sectionHeight);
+        [self.mainTableView reloadData];
+        NSLog(@"comment list frame blowe %d",sectionHeight);
+    }
+    
+}
+
+//reply
+- (void)replyInfoMethod:(NSNotification *)aNotification {
+    NSDictionary * aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"reply failed");
+        return;
+    }
+    
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUsername"];
+        NSString *replyTitle;
+        NSLog(@"othexrUserName  %@",otherUserName);
+        if (otherUserName.length == 0) {
+            replyTitle = username;
+        }else {
+            replyTitle = [NSString stringWithFormat:@"%@回复%@",username,otherUserName];
+        }
+        
+        CommentListInterface * commentlist = [CommentListInterface new];
+        commentlist.content = self.inputTextFiled.text;
+        commentlist.username = replyTitle;
+        commentlist.time = @"1234";
+        commentlist.countBad = @"0";
+        commentlist.countGood = @"0";
+        
+        [listArrayWithInfo insertObject:commentlist atIndex:0];
+        [self.mainTableView reloadData];
+        [self.inputTextFiled resignFirstResponder];
+        self.inputTextFiled.text = @"";
+        otherUserName = @"";
+    }
+    
+}
+
+// good
+- (void)goodInfoNotifiMethod:(NSNotification *)aNotification {
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"good for dianbo falied");
+    }
+    //ui数量加1
+    CommentListInterface *commentlist = listArrayWithInfo[goodCount];
+    NSInteger good = [commentlist.countGood integerValue];
+    good ++;
+    commentlist.countGood = [NSString stringWithFormat:@"%d",good];
+    [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
+    [self.mainTableView reloadData];
+    goodCount = 0;
+
+}
+// bad
+-(void)badInfoNotifiMethod:(NSNotification *)aNotification {
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"bad for dianbo falied");
+    }
+    //ui数量加1
+    CommentListInterface *commentlist = listArrayWithInfo[goodCount];
+    NSInteger good = [commentlist.countBad integerValue];
+    good ++;
+    commentlist.countBad = [NSString stringWithFormat:@"%d",good];
+    [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
+    [self.mainTableView reloadData];
+    goodCount = 0;
+}
+
+#pragma mark - KEYBOARD HEIGHT 
+- (void)keyboardHeightInfo:(NSNotification *)aNotification {
+    //获取到键盘frame 变化之前的frame
+    NSValue  *keyboardBeginBounds = [[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect beginRect = [keyboardBeginBounds CGRectValue];
+    
+    //获取到键盘frame变化之后的frame
+    NSValue *keyboardEndBounds = [[aNotification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect endRect = [keyboardEndBounds CGRectValue];
+    
+    CGFloat deltaY=endRect.origin.y-beginRect.origin.y;
+    //拿frame变化之后的origin.y-变化之前的origin.y，其差值(带正负号)就是我们self.view的y方向上的增量
+    
+    [CATransaction begin];
+    [UIView animateWithDuration:0.3f animations:^{
+        
+        _keyboardHeighAuto.constant = -deltaY;
+        
+        [self.view updateConstraints];
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    [CATransaction commit];
+
+}
 
 #pragma mark - CUSTOM LAYOUT METHODES
 
@@ -135,6 +334,7 @@
     } else {
         [infoHeader.photoImageView setImage:[UIImage imageNamed:@"zhibo_huanchongtu@2x.png"]];
     }
+
 }
 
 - (void)refreshData
@@ -149,79 +349,115 @@
     [infoHeader.bodyLabel setText:finalContent];
 }
 
-
-
-#pragma mark - NOTIFICATION METHODES
-
-- (void)informationDetailNotified: (NSNotification *)notification
-{
-    NSDictionary *dict = notification.object;
-    if (!dict) {
-        NSLog(@"妈蛋，返回nil了。");
-        return;
-    }
-    
-    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
-        
-//        NSInteger c = [[dict objectForKey:@"result"] count];
-        NSArray *results = [dict objectForKey:@"result"];
-        NSDictionary *result = nil;
-        if (!results || results.count == 0) {
-            NSLog(@"妈蛋，results里没东西。");
-            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"results为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-            return;
-        } else {
-            result = [results firstObject];
-            if (!result) {
-                NSLog(@"妈蛋，result里没东西。");
-                [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                return;
-            }
-        }
-        
-        self.detail.identity = [NSString stringWithFormat:@"%@", [result objectForKey:@"info_id"]];
-        self.detail.category = [NSString stringWithFormat:@"%@", [result objectForKey:@"cate_id"]];
-        self.detail.title = [NSString stringWithFormat:@"%@", [result objectForKey:@"title"]];
-        self.detail.source = [NSString stringWithFormat:@"%@", [result objectForKey:@"source"]];
-        self.detail.imageUrls = [result objectForKey:@"imagelist"];
-        self.detail.count = [NSString stringWithFormat:@"%@", [result objectForKey:@"count"]];
-        self.detail.publisher = [NSString stringWithFormat:@"%@", [result objectForKey:@"nickname"]];
-        self.detail.content = [NSString stringWithFormat:@"%@", [result objectForKey:@"content"]];
-        self.detail.time = [NSString stringWithFormat:@"%@", [result objectForKey:@"time"]];
-        
-        // Refresh with received detail..
-        [self loadDetailData];
-        
+#pragma mark - BUTTON ACTION METHOD
+- (IBAction)backRootMehod:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+- (IBAction)showKeyboard:(id)sender {
+    if ([KHLColor isLogin]) {
+        [self.inputTextFiled becomeFirstResponder];
     } else {
-        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [self pushLoginVCMethod];
     }
 }
+- (IBAction)zanMehod:(id)sender {
+}
+- (IBAction)discussMehod:(id)sender {
+    if ([self.inputTextFiled.text isEqualToString:@""]) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }else {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        
+        //取出点击行的相关信息
+        
+        NSString * comment_id;
+        NSString * modelStr;
+        if (self.inputTextFiled.tag == 101) {
+            comment_id = self.prestrain.identity;
+            modelStr = @"article";
+        }else {
+            CommentListInterface * commentlist = listArrayWithInfo[self.inputTextFiled.tag];
+            otherUserName = commentlist.username;
+            comment_id = commentlist.poster;
+            modelStr = @"comment";
+        }
+        [[KHLDataManager instance] replyHUDHolder:self.view uid:uidStr target:comment_id content:self.inputTextFiled.text token:tokenStr targetType:modelStr];
+    }
+
+    
+}
+
+
+
+#pragma mark - UITEXTFILED -DELEGATE -
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 #pragma mark - UITABLEVIEW-DATASCOUR
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    infoHeader = [[[NSBundle mainBundle] loadNibNamed:@"InfomationForHeader" owner:self options:nil]lastObject];
+
     return infoHeader;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
+    NSLog(@"headerHeight %d",sectionHeight);
     return sectionHeight;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return listArrayWithInfo.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    tableView.tableFooterView = [UIView new];
     static NSString *identifier = @"KHLDianboCell";
-    DianboCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    DianboCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil]lastObject];
+        [cell.huifuMehod addTarget:self action:@selector(pinglunMethondWithBottomBarAndMessage:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.jubaoMedhod addTarget:self action:@selector(jubaoMessageMehod:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.goodMethod addTarget:self action:@selector(goodMessageMethod:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.badMethod addTarget:self action:@selector(badMessageMethod:) forControlEvents:UIControlEventTouchUpInside];
     }
+    tableView.tableFooterView = [UIView new];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //行号给tag
+    cell.huifuMehod.tag = indexPath.row;
+    cell.jubaoMedhod.tag = indexPath.row;
+    cell.goodMethod.tag = indexPath.row;
+    cell.badMethod.tag = indexPath.row;
     
+    
+    CommentListInterface * commentlist = listArrayWithInfo[indexPath.row];
+    cell.contentLabel.text = commentlist.content;
+    
+    cell.goodCountLabel.text = commentlist.countGood;
+    cell.badCountLabel.text = commentlist.countBad;
+    
+    //    [cell.imgeWithIcon setImageWithURL:[NSURL URLWithString:commentlist.portraitImageUrl]];
+    cell.timeLabel.text = [KHLColor returnTheTimelabel:commentlist.time];
+    
+    NSString * usernametext;
+    
+    if (commentlist.usernameWithReply.length == 0) {
+        usernametext = commentlist.username;
+    }else {
+        usernametext = [NSString stringWithFormat:@"%@回复%@",commentlist.username,commentlist.usernameWithReply];
+    }
+    cell.titleLabel.text = usernametext;
+
     return cell;
 }
 
@@ -234,5 +470,63 @@
     return 110;
 }
 
+#pragma mark - UITableViewCell Button Method
+- (void)pinglunMethondWithBottomBarAndMessage:(UIButton *)sender {
+    if ([KHLColor isLogin]) {
+        UIButton * btn = (UIButton * )sender;
+        self.inputTextFiled.tag =btn.tag;
+        [self.inputTextFiled becomeFirstResponder];
+    } else {
+        [self pushLoginVCMethod];
+    }
+
+}
+
+- (void)jubaoMessageMehod:(UIButton *)sender {
+    if ([KHLColor isLogin]) {
+        JubaoViewController *jubaoVC = [[JubaoViewController alloc] initWithNibName:@"JubaoViewController" bundle:nil];
+        CommentListInterface * commentlist = listArrayWithInfo[sender.tag];
+        jubaoVC.pinglunId =commentlist.poster;
+        [self.navigationController pushViewController:jubaoVC animated:YES];
+    } else {
+        [self pushLoginVCMethod];
+    }
+}
+
+- (void)goodMessageMethod:(UIButton *)sender {
+    if ([KHLColor isLogin]) {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        CommentListInterface * commentlist = listArrayWithInfo[sender.tag];
+        goodCount = sender.tag;
+        [[KHLDataManager instance] goodHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster];
+    } else {
+        [self pushLoginVCMethod];
+    }
+
+}
+
+-(void)badMessageMethod:(UIButton *)sender {
+    if ([KHLColor isLogin]) {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        CommentListInterface * commentlist = listArrayWithInfo[sender.tag];
+        goodCount = sender.tag;
+        [[KHLDataManager instance] badHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster];
+    } else {
+        [self pushLoginVCMethod];
+    }
+
+}
+- (void)pushLoginVCMethod {
+    
+    LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    [self.navigationController pushViewController:loginVC animated:YES];
+    
+}
+
+-(void)reloadForTableViewWithWebViewHeight:(NSInteger)het {
+    [self.mainTableView reloadData];
+}
 
 @end

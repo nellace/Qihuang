@@ -21,4 +21,6 @@
 
 + (UIColor *)colorFromHexRGB:(NSString *)inColorString;
 
++(NSString*)returnTheTimelabel:(NSString*)theTime;
++ (BOOL)isLogin ;
 @end

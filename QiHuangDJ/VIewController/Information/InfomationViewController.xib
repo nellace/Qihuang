@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfomationViewController">
             <connections>
+                <outlet property="inputTextFiled" destination="hr0-5U-Tgx" id="0JL-r1-JXR"/>
+                <outlet property="keyboardHeighAuto" destination="1wg-os-Esc" id="xFe-gy-r1y"/>
                 <outlet property="mainTableView" destination="hIl-Vg-tDO" id="wOj-jh-rCZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,21 +18,115 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="hIl-Vg-tDO">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="hIl-Vg-tDO">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="467"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="bZ7-le-POH"/>
                         <outlet property="delegate" destination="-1" id="Ib1-AA-xqD"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBH-Fs-UDY" userLabel="inputVIew">
+                    <rect key="frame" x="0.0" y="506" width="320" height="44"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="zhibo_huifukuang.png" translatesAutoresizingMaskIntoConstraints="NO" id="e5H-Db-jJx">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hr0-5U-Tgx">
+                            <rect key="frame" x="8" y="6" width="258" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="ppD-YN-a0K"/>
+                            </connections>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6W3-bA-OLR">
+                            <rect key="frame" x="269" y="7" width="46" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="评论">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="discussMehod:" destination="-1" eventType="touchUpInside" id="3TF-Fs-7o6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="amd-k1-wyB"/>
+                    </constraints>
+                </view>
+                <view alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JG9-kT-ZNy" userLabel="bottom bar View">
+                    <rect key="frame" x="0.0" y="467" width="320" height="37"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYz-is-33a">
+                            <rect key="frame" x="16" y="9" width="9" height="22"/>
+                            <state key="normal" image="zhibo_btn_fanhui.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="backRootMehod:" destination="-1" eventType="touchUpInside" id="7kl-bw-n2c"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="232" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="7Ab-9f-Luf">
+                            <rect key="frame" x="262" y="11" width="56" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTP-wl-N3n">
+                            <rect key="frame" x="233" y="11" width="26" height="22"/>
+                            <state key="normal" image="zhibo_btn_zan.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="zhibo_icon_zan_press.png"/>
+                            <connections>
+                                <action selector="zanMehod:" destination="-1" eventType="touchUpInside" id="eUB-oq-N1r"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VP4-B5-W1U" userLabel="discuss Btn">
+                            <rect key="frame" x="157" y="11" width="19" height="22"/>
+                            <state key="normal" image="zhibo_btn_huifu.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="showKeyboard:" destination="-1" eventType="touchUpInside" id="uu7-qq-MpH"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="QwH-Zt-34v"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="cBH-Fs-UDY" secondAttribute="bottom" constant="-46" id="1wg-os-Esc"/>
+                <constraint firstAttribute="trailing" secondItem="hIl-Vg-tDO" secondAttribute="trailing" id="3Uf-mN-bAl"/>
+                <constraint firstItem="hIl-Vg-tDO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5Ri-RI-bVt"/>
+                <constraint firstAttribute="trailing" secondItem="cBH-Fs-UDY" secondAttribute="trailing" id="ChF-9M-zUE"/>
+                <constraint firstItem="JG9-kT-ZNy" firstAttribute="top" secondItem="hIl-Vg-tDO" secondAttribute="bottom" id="Gwj-UC-mZ0"/>
+                <constraint firstItem="cBH-Fs-UDY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IGf-BA-Hga"/>
+                <constraint firstAttribute="trailing" secondItem="JG9-kT-ZNy" secondAttribute="trailing" id="UsX-aH-t5a"/>
+                <constraint firstItem="JG9-kT-ZNy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jcL-Ux-Zy4"/>
+                <constraint firstItem="hIl-Vg-tDO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="y4C-Ax-icZ"/>
+                <constraint firstAttribute="bottom" secondItem="JG9-kT-ZNy" secondAttribute="bottom" id="zQO-31-6bP"/>
+            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-369" y="455"/>
+            <point key="canvasLocation" x="-532" y="368"/>
         </view>
     </objects>
+    <resources>
+        <image name="zhibo_btn_fanhui.png" width="9" height="16"/>
+        <image name="zhibo_btn_huifu.png" width="19" height="17"/>
+        <image name="zhibo_btn_zan.png" width="19" height="17"/>
+        <image name="zhibo_huifukuang.png" width="320" height="40"/>
+        <image name="zhibo_icon_zan_press.png" width="16" height="14"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -146,12 +146,16 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     //中间导航
     SearchBarCustom *search = [SearchBarCustom new];
 //    [search setBackgroundColor:[UIColor whiteColor]];
+    NSString *searchStr = @"搜索";
+
+    search.placeholder = searchStr;
+
     [search customSearchBarUI:@"home"];
     search.delegate = self;
     self.navigationItem.titleView = search;
     //右侧按钮
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 60, 40);
+    btn.frame = CGRectMake(0, 0, 30, 40);
     [btn setImage:[UIImage imageNamed:@"nav_btn_shezhi.png"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(settingBtnMethond) forControlEvents:UIControlEventTouchUpInside];;
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] init];
@@ -195,6 +199,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
         HomepageImagesInterface *looping = [loopings objectAtIndex:i];
         if (looping.loopingImageUrl && ![looping.loopingImageUrl isEqualToString:@""]) {
             [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageUrl]];
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
         } else {
             [imageView setImage:[UIImage imageNamed:@"huanchong_shouyeguanggao@2x.png"]];
         }
