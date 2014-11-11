@@ -61,6 +61,8 @@
 		3D858E2319EB9E6B005022BA /* SliderRightList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2219EB9E6B005022BA /* SliderRightList.xib */; };
 		3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */; };
 		3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */; };
+		3D95A2051A11B2F80015F41B /* InfomationForHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D95A2041A11B2F80015F41B /* InfomationForHeader.xib */; };
+		3D95A2081A11C2930015F41B /* infomationForHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D95A2071A11C2930015F41B /* infomationForHeader.m */; };
 		3DA08DFB1A11086E0065C784 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DE71A11086E0065C784 /* AFDownloadRequestOperation.m */; };
 		3DA08DFD1A11086E0065C784 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DEB1A11086E0065C784 /* AFHTTPRequestOperation.m */; };
 		3DA08DFE1A11086E0065C784 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DED1A11086E0065C784 /* AFImageRequestOperation.m */; };
@@ -321,6 +323,9 @@
 		3D858E2419EBC221005022BA /* DianboListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboListCollectionViewCell.h; sourceTree = "<group>"; };
 		3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboListCollectionViewCell.m; sourceTree = "<group>"; };
 		3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboListCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D95A2041A11B2F80015F41B /* InfomationForHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfomationForHeader.xib; sourceTree = "<group>"; };
+		3D95A2061A11C2930015F41B /* infomationForHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infomationForHeader.h; sourceTree = "<group>"; };
+		3D95A2071A11C2930015F41B /* infomationForHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = infomationForHeader.m; sourceTree = "<group>"; };
 		3DA08DE61A11086E0065C784 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		3DA08DE71A11086E0065C784 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
 		3DA08DE81A11086E0065C784 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -571,6 +576,9 @@
 				3D121C3919CABD100040870C /* InfomationViewController.h */,
 				3D121C3A19CABD100040870C /* InfomationViewController.m */,
 				3D121C3B19CABD100040870C /* InfomationViewController.xib */,
+				3D95A2061A11C2930015F41B /* infomationForHeader.h */,
+				3D95A2071A11C2930015F41B /* infomationForHeader.m */,
+				3D95A2041A11B2F80015F41B /* InfomationForHeader.xib */,
 				FC834C8619F0EEA5009E17FF /* KHLInformationTableViewController.h */,
 				FC834C8719F0EEA5009E17FF /* KHLInformationTableViewController.m */,
 				FC834C8819F0EEA5009E17FF /* KHLInformationTableViewController.xib */,
@@ -1337,6 +1345,7 @@
 				FCFDCB3D1A0731FA007F3F2E /* qihuangyiren_icon_jiemu@2x.png in Resources */,
 				3D121C3D19CABD100040870C /* InfomationViewController.xib in Resources */,
 				FCFDCB3B1A0731FA007F3F2E /* shouye_logo@2x.png in Resources */,
+				3D95A2051A11B2F80015F41B /* InfomationForHeader.xib in Resources */,
 				FCFDCB3C1A0731FA007F3F2E /* qihuangyiren_baibg@2x.png in Resources */,
 				FCFDCB5A1A0731FA007F3F2E /* caidan_zhong@2x.png in Resources */,
 				FCFDCB4A1A0731FA007F3F2E /* shouye_bg5@2x.png in Resources */,
@@ -1414,6 +1423,7 @@
 			files = (
 				FC708A7119ED4C3E002DF952 /* KHLPICRecommendedCell.m in Sources */,
 				3D858E2119EB9D4E005022BA /* SliderRightList.m in Sources */,
+				3D95A2081A11C2930015F41B /* infomationForHeader.m in Sources */,
 				3D121C3C19CABD100040870C /* InfomationViewController.m in Sources */,
 				3DD9646419FFA934004C3AF1 /* DianboCell.m in Sources */,
 				3DA08E031A11086E0065C784 /* AFXMLRequestOperation.m in Sources */,

@@ -8,23 +8,19 @@
 
 #import "InfomationViewController.h"
 #import "DianboCell.h"
+#import "infomationForHeader.h"
 @interface InfomationViewController () <UIWebViewDelegate>
+@property (nonatomic,strong) IBOutlet UITableView *mainTableView;
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *attachLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
-@property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
-@property (weak, nonatomic) IBOutlet UILabel *commentLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewHeight;
-@property (weak, nonatomic) IBOutlet UIWebView *webViewLaytou;
 @property (nonatomic, getter=needsPrestrain, setter=setNeedsPrestrain:) BOOL prestrainTag;
 @property (nonatomic, strong) InformationDetailInterface *detail;
 
 @end
 
-@implementation InfomationViewController
-
-
+@implementation InfomationViewController {
+    infomationForHeader * infoHeader;
+    NSInteger sectionHeight;
+}
 
 #pragma mark - ATTRIBUTES GETTER AND SETTER
 
@@ -51,6 +47,7 @@
         [self setCascTitle:@"资讯详情"];
         [self setFanhui];
         [self setNeedsPrestrain:TRUE];
+
     }
     
     return self;
@@ -58,6 +55,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    sectionHeight = 336;
     if ([self needsPrestrain]) {
         [self loadPrestrainData];
         [self setNeedsPrestrain:FALSE];
@@ -68,14 +66,21 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSInteger heght = webView.frame.size.height;
+    
     CGRect frame = webView.frame;
     CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
     frame.size = fittingSize;
     webView.frame = frame;
     
-    self.webViewHeight.constant = webView.frame.size.height;
-    
-    NSLog(@"webview.frame%@",NSStringFromCGRect(webView.frame));
+    infoHeader.webViewHeight.constant = webView.frame.size.height;
+    NSInteger infoheight = infoHeader.frame.size.height + webView.frame.size.height - heght;
+    infoHeader.frame = CGRectMake(infoHeader.frame.origin.x, infoHeader.frame.origin.y, infoHeader.frame.size.width, infoheight);
+
+    [self.mainTableView beginUpdates];
+    sectionHeight = infoheight;
+    [self.mainTableView endUpdates];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -99,8 +104,8 @@
 
 - (void)loadPrestrainData
 {
-    self.titleLabel.text = self.prestrain.title;
-    self.bodyLabel.text = self.prestrain.brief;
+    infoHeader.titleLabel.text = self.prestrain.title;
+    infoHeader.bodyLabel.text = self.prestrain.brief;
 }
 
 - (void)loadDetailData
@@ -113,12 +118,12 @@
 //    NSString *dateString = [dateFormatter stringFromDate:date];
     NSString *dateString = [self.detail.time length] > 10 ? [self.detail.time substringToIndex:10] : @"";
     
-    self.titleLabel.text = [NSString stringWithFormat:@"%@", self.detail.title];
-    self.attachLabel.text = [NSString stringWithFormat:@"来源：%@ 时间：%@ 浏览量：%@ 编辑：%@", self.detail.source, dateString, self.detail.count, self.detail.publisher];
+    infoHeader.titleLabel.text = [NSString stringWithFormat:@"%@", self.detail.title];
+    infoHeader.attachLabel.text = [NSString stringWithFormat:@"来源：%@ 时间：%@ 浏览量：%@ 编辑：%@", self.detail.source, dateString, self.detail.count, self.detail.publisher];
 //    self.bodyLabel.text = [NSString stringWithFormat:@"%@", self.detail.content];
 //    NSLog(@"content%@",self.detail.content);
-    [self.webViewLaytou loadHTMLString:self.detail.content baseURL:nil];
-    self.commentLabel.text = @"";
+    [infoHeader.webViewLaytou loadHTMLString:self.detail.content baseURL:nil];
+    infoHeader.commentLabel.text = @"";
     
     if (self.detail.imageUrls && [self.detail.imageUrls isKindOfClass:[NSArray class]] && [self.detail.imageUrls firstObject] && [[self.detail.imageUrls firstObject] isKindOfClass:[NSString class]]) {
         //[self.photoImageView setImageWithURL:[NSURL URLWithString:[self.detail.imageUrls objectAtIndex:0]]];
@@ -128,7 +133,7 @@
             loaded = false;
         }
     } else {
-        [self.photoImageView setImage:[UIImage imageNamed:@"zhibo_huanchongtu@2x.png"]];
+        [infoHeader.photoImageView setImage:[UIImage imageNamed:@"zhibo_huanchongtu@2x.png"]];
     }
 }
 
@@ -141,7 +146,7 @@
         finalContent = [NSString stringWithFormat:@"%@%@", finalContent, content];
     }
     
-    [self.bodyLabel setText:finalContent];
+    [infoHeader.bodyLabel setText:finalContent];
 }
 
 
@@ -193,8 +198,21 @@
 }
 
 #pragma mark - UITABLEVIEW-DATASCOUR
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    infoHeader = [[[NSBundle mainBundle] loadNibNamed:@"InfomationForHeader" owner:self options:nil]lastObject];
+    return infoHeader;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return sectionHeight;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

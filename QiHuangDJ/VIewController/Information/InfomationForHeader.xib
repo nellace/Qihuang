@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="infomationForHeader">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="352"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我大标题党我大标题党我大标题党" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WjX-Rm-pH6" userLabel="Title Label">
+                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来源：网    时间：2014.09.21    浏览量：1333    编辑：浪里个浪" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EC-sC-gS3" userLabel="Attach Label">
+                    <rect key="frame" x="8" y="37" width="304" height="11"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                    <color key="textColor" red="0.60204081629999995" green="0.60204081629999995" blue="0.60204081629999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhibo_huanchongtu.png" translatesAutoresizingMaskIntoConstraints="NO" id="20D-TA-Ich" userLabel="Photo Image View">
+                    <rect key="frame" x="8" y="56" width="304" height="147"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="147" id="Hsr-kL-Y2P"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赛前点评：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4S-sE-EIl" userLabel="Comment Indicating Label">
+                    <rect key="frame" x="8" y="273" width="304" height="17"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="304" translatesAutoresizingMaskIntoConstraints="NO" id="s5l-ip-z4V" userLabel="Comment Label">
+                    <rect key="frame" x="8" y="298" width="304" height="42"/>
+                    <attributedString key="attributedText">
+                        <fragment content="人间清暑殿天上广寒宫人间清暑殿天上广寒宫人间清暑殿天上广寒宫人间清暑殿天上广寒宫人间清暑殿天上广寒宫人间清暑殿天上广寒宫">
+                            <attributes>
+                                <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="14" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRD-x3-K7h">
+                    <rect key="frame" x="8" y="211" width="304" height="54"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="K3h-bf-XJv"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="fDu-u5-4cy"/>
+                    </connections>
+                </webView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="y4S-sE-EIl" firstAttribute="top" secondItem="aRD-x3-K7h" secondAttribute="bottom" constant="8" id="0gM-Y8-m6p"/>
+                <constraint firstAttribute="trailing" secondItem="6EC-sC-gS3" secondAttribute="trailing" constant="8" id="6kb-x8-X03"/>
+                <constraint firstItem="aRD-x3-K7h" firstAttribute="top" secondItem="20D-TA-Ich" secondAttribute="bottom" constant="8" id="7YL-4C-GZ7"/>
+                <constraint firstItem="6EC-sC-gS3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="9C5-vY-XvM"/>
+                <constraint firstAttribute="trailing" secondItem="y4S-sE-EIl" secondAttribute="trailing" constant="8" id="DsM-q3-cdm"/>
+                <constraint firstItem="s5l-ip-z4V" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Isk-if-DVR"/>
+                <constraint firstAttribute="trailing" secondItem="aRD-x3-K7h" secondAttribute="trailing" constant="8" id="NDw-pb-xLb"/>
+                <constraint firstItem="20D-TA-Ich" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Pa2-9p-yUG"/>
+                <constraint firstItem="20D-TA-Ich" firstAttribute="top" secondItem="6EC-sC-gS3" secondAttribute="bottom" constant="8" id="QWe-su-6og"/>
+                <constraint firstAttribute="trailing" secondItem="WjX-Rm-pH6" secondAttribute="trailing" constant="8" id="QXH-J7-hz0"/>
+                <constraint firstItem="WjX-Rm-pH6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="TPB-4S-vqY"/>
+                <constraint firstItem="6EC-sC-gS3" firstAttribute="top" secondItem="WjX-Rm-pH6" secondAttribute="bottom" constant="8" id="UuJ-Ga-kVe"/>
+                <constraint firstItem="aRD-x3-K7h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ZgK-LN-ghR"/>
+                <constraint firstAttribute="trailing" secondItem="s5l-ip-z4V" secondAttribute="trailing" constant="8" id="as6-zn-Jmd"/>
+                <constraint firstItem="y4S-sE-EIl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="cmi-MJ-UeM"/>
+                <constraint firstAttribute="bottom" secondItem="s5l-ip-z4V" secondAttribute="bottom" constant="12" id="mvT-5m-Llg"/>
+                <constraint firstItem="WjX-Rm-pH6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ocP-pQ-qwC"/>
+                <constraint firstAttribute="trailing" secondItem="20D-TA-Ich" secondAttribute="trailing" constant="8" id="sla-I8-noa"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="attachLabel" destination="6EC-sC-gS3" id="YTt-pI-7by"/>
+                <outlet property="commentLabel" destination="s5l-ip-z4V" id="LG1-0x-hoi"/>
+                <outlet property="photoImageView" destination="20D-TA-Ich" id="KNl-AG-Sys"/>
+                <outlet property="titleLabel" destination="WjX-Rm-pH6" id="Kwr-ul-eoO"/>
+                <outlet property="webViewHeight" destination="K3h-bf-XJv" id="5at-ek-aRq"/>
+                <outlet property="webViewLaytou" destination="aRD-x3-K7h" id="hWB-HY-Keh"/>
+            </connections>
+            <point key="canvasLocation" x="-254" y="207"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="zhibo_huanchongtu.png" width="25" height="25"/>
+    </resources>
+</document>

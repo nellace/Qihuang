@@ -125,6 +125,14 @@ static  NSInteger goodCount; //记录等号
         self.liulanCountLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"count"]];
         self.editorLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
     }
+    
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"1"]) {
+        NSString *messageStr = [aDic objectForKey:@"reason"];
+
+     UIAlertView * alert =[[UIAlertView alloc] initWithTitle:@"提示" message:messageStr delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] ;
+        [alert show];
+       
+    }
 }
 
 - (void)dianboCommentlistMehod:(NSNotification *)aNotification {
