@@ -93,6 +93,7 @@
     NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
     NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
     if (!([uidStr isEqualToString:@""] && [tokenStr isEqualToString:@""] && [self.liveInfoID isEqualToString:@""])) {
+        self.liveInfoID = @"110";
         [[KHLDataManager instance] liveDetailHUDHolder:self.view identity:self.liveInfoID uid:uidStr token:tokenStr];
     }else {
         NSLog(@"请求数据的参数为空");
@@ -118,7 +119,7 @@
         
         liveTtitle.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
         //从网络获取到url 然后播放
-//        [moviePlayerViewController.moviePlayer setContentURL:[NSURL URLWithString:@"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"]];
+        [moviePlayerViewController.moviePlayer setContentURL:[NSURL URLWithString:liveDetailInterface.url]];
     }
 }
 //获取评论列表的通知方法
