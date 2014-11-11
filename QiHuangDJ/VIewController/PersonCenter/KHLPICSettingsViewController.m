@@ -54,11 +54,6 @@
     [self.navigationController pushViewController:aboutUsViewController animated:TRUE];
 }
 
-- (IBAction)pressContactUsButton:(UIButton *)sender
-{
-    
-}
-
 - (IBAction)pressLogOutButton:(UIButton *)sender
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIUID"];

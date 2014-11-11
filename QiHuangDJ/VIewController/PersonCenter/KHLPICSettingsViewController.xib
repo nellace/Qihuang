@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGm-kr-H3I" userLabel="Holder View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="362"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="317"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="32a-Ou-KNC" userLabel="MP Holder View">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
@@ -165,7 +165,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="lzU-FG-LpB"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于我们" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kax-Qc-bcv" userLabel="About Specific Label">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于七煌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kax-Qc-bcv" userLabel="About Specific Label">
                                             <rect key="frame" x="8" y="8" width="304" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -208,61 +208,8 @@
                                         <constraint firstItem="WeT-jg-UZD" firstAttribute="leading" secondItem="gv6-7p-Sgk" secondAttribute="leading" id="sib-Jd-Hye"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRb-6V-vDE" userLabel="Contact Holder View">
-                                    <rect key="frame" x="0.0" y="180" width="320" height="45"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UU0-YH-a1t" userLabel="Contact Divider View">
-                                            <rect key="frame" x="0.0" y="44" width="320" height="1"/>
-                                            <color key="backgroundColor" red="0.73725490199999999" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="b7v-nE-Pgl"/>
-                                            </constraints>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系我们" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ew-qu-DaK" userLabel="Contact Specific Label">
-                                            <rect key="frame" x="8" y="8" width="304" height="29"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_jiantou.png" translatesAutoresizingMaskIntoConstraints="NO" id="32i-lr-t18" userLabel="Contact Clickable Indicator Image View">
-                                            <rect key="frame" x="300" y="0.0" width="20" height="45"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="m7w-JN-ARF"/>
-                                            </constraints>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyc-dZ-oWP" userLabel="Contact Button">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="selected" backgroundImage="denglu_btn_login_press.png"/>
-                                            <state key="highlighted" backgroundImage="shezhi_line_press"/>
-                                            <connections>
-                                                <action selector="pressContactUsButton:" destination="-1" eventType="touchUpInside" id="99f-Dq-lWC"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstItem="eyc-dZ-oWP" firstAttribute="leading" secondItem="LRb-6V-vDE" secondAttribute="leading" id="7R1-ZV-pyY"/>
-                                        <constraint firstItem="32i-lr-t18" firstAttribute="top" secondItem="LRb-6V-vDE" secondAttribute="top" id="EQ2-K0-ND7"/>
-                                        <constraint firstAttribute="bottom" secondItem="32i-lr-t18" secondAttribute="bottom" id="MGI-Qt-Ofr"/>
-                                        <constraint firstAttribute="trailing" secondItem="5Ew-qu-DaK" secondAttribute="trailing" constant="8" id="R2k-Ov-KCv"/>
-                                        <constraint firstAttribute="trailing" secondItem="eyc-dZ-oWP" secondAttribute="trailing" id="UER-Yt-yTJ"/>
-                                        <constraint firstAttribute="trailing" secondItem="UU0-YH-a1t" secondAttribute="trailing" id="aVa-JW-FaE"/>
-                                        <constraint firstAttribute="bottom" secondItem="eyc-dZ-oWP" secondAttribute="bottom" id="aWi-At-S4q"/>
-                                        <constraint firstItem="eyc-dZ-oWP" firstAttribute="top" secondItem="LRb-6V-vDE" secondAttribute="top" id="eAy-xp-Q3H"/>
-                                        <constraint firstItem="UU0-YH-a1t" firstAttribute="leading" secondItem="LRb-6V-vDE" secondAttribute="leading" id="iaR-Z7-CP0"/>
-                                        <constraint firstAttribute="trailing" secondItem="32i-lr-t18" secondAttribute="trailing" id="ije-hf-JH0"/>
-                                        <constraint firstAttribute="bottom" secondItem="UU0-YH-a1t" secondAttribute="bottom" id="j2f-y6-SDL"/>
-                                        <constraint firstAttribute="bottom" secondItem="5Ew-qu-DaK" secondAttribute="bottom" constant="8" id="kCg-R1-TU6"/>
-                                        <constraint firstItem="5Ew-qu-DaK" firstAttribute="top" secondItem="LRb-6V-vDE" secondAttribute="top" constant="8" id="rO6-ZX-1T8"/>
-                                        <constraint firstItem="5Ew-qu-DaK" firstAttribute="leading" secondItem="LRb-6V-vDE" secondAttribute="leading" constant="8" id="zwv-pt-BQW"/>
-                                    </constraints>
-                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOw-yO-Cl4">
-                                    <rect key="frame" x="54" y="265" width="212" height="47"/>
+                                    <rect key="frame" x="54" y="220" width="212" height="47"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <state key="normal" title="退出登录" backgroundImage="denglu_btn_login_press.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -276,25 +223,20 @@
                             <constraints>
                                 <constraint firstItem="ZBl-Ht-qXg" firstAttribute="top" secondItem="QtR-tl-St2" secondAttribute="bottom" id="0fC-E0-DUc"/>
                                 <constraint firstItem="32a-Ou-KNC" firstAttribute="top" secondItem="eGm-kr-H3I" secondAttribute="top" id="5Z4-K2-iPZ"/>
-                                <constraint firstItem="LRb-6V-vDE" firstAttribute="top" secondItem="gv6-7p-Sgk" secondAttribute="bottom" id="A2K-Se-T4p"/>
                                 <constraint firstAttribute="trailing" secondItem="gv6-7p-Sgk" secondAttribute="trailing" id="FEy-qm-sb1"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="504" id="Fpv-xC-nyh"/>
                                 <constraint firstItem="ZBl-Ht-qXg" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" id="GT5-hj-Vkx"/>
                                 <constraint firstAttribute="trailing" secondItem="32a-Ou-KNC" secondAttribute="trailing" id="HPg-LR-Em3"/>
-                                <constraint firstItem="LRb-6V-vDE" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" id="JNu-jp-0sm"/>
-                                <constraint firstItem="yOw-yO-Cl4" firstAttribute="top" secondItem="5Ew-qu-DaK" secondAttribute="bottom" constant="40" id="LhF-wB-8ve"/>
                                 <constraint firstItem="QtR-tl-St2" firstAttribute="top" secondItem="32a-Ou-KNC" secondAttribute="bottom" id="PnS-Ud-MZt"/>
                                 <constraint firstItem="32a-Ou-KNC" firstAttribute="height" secondItem="QtR-tl-St2" secondAttribute="height" id="RTJ-dq-2yo"/>
                                 <constraint firstAttribute="trailing" secondItem="yOw-yO-Cl4" secondAttribute="trailing" constant="54" id="ar0-LP-zPm"/>
                                 <constraint firstItem="32a-Ou-KNC" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" id="bGC-wY-ISk"/>
                                 <constraint firstItem="ZBl-Ht-qXg" firstAttribute="height" secondItem="QtR-tl-St2" secondAttribute="height" id="cS6-xo-vOD"/>
                                 <constraint firstAttribute="bottom" secondItem="yOw-yO-Cl4" secondAttribute="bottom" priority="999" constant="50" id="foQ-sJ-RLR"/>
-                                <constraint firstItem="yOw-yO-Cl4" firstAttribute="top" secondItem="LRb-6V-vDE" secondAttribute="bottom" constant="40" id="hEr-SZ-HyP"/>
-                                <constraint firstAttribute="trailing" secondItem="LRb-6V-vDE" secondAttribute="trailing" id="koI-Ma-azn"/>
+                                <constraint firstItem="yOw-yO-Cl4" firstAttribute="top" secondItem="gv6-7p-Sgk" secondAttribute="bottom" constant="40" id="niG-nh-Coa"/>
                                 <constraint firstAttribute="trailing" secondItem="QtR-tl-St2" secondAttribute="trailing" id="puX-CP-Ugi"/>
                                 <constraint firstItem="gv6-7p-Sgk" firstAttribute="top" secondItem="ZBl-Ht-qXg" secondAttribute="bottom" id="qbJ-Rz-VU1"/>
                                 <constraint firstAttribute="trailing" secondItem="ZBl-Ht-qXg" secondAttribute="trailing" id="rjg-Nx-CgH"/>
-                                <constraint firstItem="LRb-6V-vDE" firstAttribute="height" secondItem="gv6-7p-Sgk" secondAttribute="height" id="sOL-Qb-t77"/>
                                 <constraint firstItem="gv6-7p-Sgk" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" id="tze-Iq-ECG"/>
                                 <constraint firstItem="yOw-yO-Cl4" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" constant="54" id="u1r-dz-u3K"/>
                                 <constraint firstItem="QtR-tl-St2" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" id="yIH-Wv-yYw"/>
@@ -303,7 +245,6 @@
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="Fpv-xC-nyh"/>
-                                    <exclude reference="LhF-wB-8ve"/>
                                 </mask>
                             </variation>
                         </view>
