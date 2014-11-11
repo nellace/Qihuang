@@ -317,7 +317,10 @@
 #pragma mark
 #pragma mark UITableViewDataSource
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"评论区（231）";
+    if (listForTableView.count == 0) {
+        return @"暂无评论";
+    }
+    return [NSString stringWithFormat:@"评论区（%i）", listForTableView.count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
