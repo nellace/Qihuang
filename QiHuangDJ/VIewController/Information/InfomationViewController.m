@@ -7,7 +7,7 @@
 //
 
 #import "InfomationViewController.h"
-
+#import "DianboCell.h"
 @interface InfomationViewController () <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -192,14 +192,29 @@
     }
 }
 
+#pragma mark - UITABLEVIEW-DATASCOUR
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 6;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"KHLDianboCell";
+    DianboCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil]lastObject];
+    }
+    
+    return cell;
+}
 
+#pragma mark - UITABLVIEW-DELEGATE
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+}
 
-
-
-
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 110;
+}
 
 
 @end

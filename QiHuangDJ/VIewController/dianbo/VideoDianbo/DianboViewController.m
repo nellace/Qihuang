@@ -10,7 +10,8 @@
 #import "DianboCell.h"
 #import "LoginViewController.h"
 #import "JubaoViewController.h"
-@interface DianboViewController ()
+#import "LTPlayerSDK.h"
+@interface DianboViewController () <LTPlayerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *shuruTextFiled;
 @property (weak, nonatomic) IBOutlet UIView *inputView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeight;
@@ -54,20 +55,17 @@ static  NSInteger goodCount; //记录等号
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullScreenMehod)];
     
     [self.videoScaleImageView addGestureRecognizer:tap];
-    self.imageUrl = @"http://www.175kh.com/img/2014/04/29/535f4faac7fb4.jpg";
     [self.videoScaleImageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
 }
 
 - (void)fullScreenMehod {
 //    [LTPlayerSDK showWithUserUnique:@"cbec2a7d04"
 //                        videoUnique:@"128342e318"
-//                          videoName:@""
-//                          payerName:@""
-//                          checkCode:@""
+//                          videoName:@"aaa"
+//                          payerName:nil
+//                          checkCode:nil
 //                                 ap:YES
-//                   inViewController:self
 //                     playerDelegate:self];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -107,7 +105,7 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (void)requestDianboInfo {
-    self.info_id = @"4373";
+
     [[KHLDataManager instance] VODDetailHUDHolder:self.view identity:self.info_id type:@"article"];
     //获取评论列表
     [[KHLDataManager instance] commentlistHUDHolder:self.view model:@"article" zhiboid:self.info_id];
@@ -231,7 +229,9 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    tableView.tableFooterView = [UIView new];
     static NSString *identifier = @"KHLDianboCell";
+    
     DianboCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil]lastObject];
