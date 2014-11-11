@@ -139,8 +139,8 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 
 - (void)navUI {
     //左侧图片
-    UIImageView *imgLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 59, 27)];
-    [imgLogo setImage:[UIImage imageNamed:@"shouye_logo.png"]];
+    UIImageView *imgLogo = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 59, 35)];
+    [imgLogo setImage:[UIImage imageNamed:@"shouye_logo_custom.png"]];
     UIBarButtonItem *imgLeft = [[UIBarButtonItem alloc ] initWithCustomView:imgLogo];
     self.navigationItem.leftBarButtonItem = imgLeft;
     //中间导航

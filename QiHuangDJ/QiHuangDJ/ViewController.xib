@@ -79,11 +79,8 @@
                                     <rect key="frame" x="0.0" y="537" width="320" height="85"/>
                                 </imageView>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
-                                    <rect key="frame" x="210" y="197" width="110" height="86"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="yKI-Zs-yps" secondAttribute="height" multiplier="55:43" id="LCB-Om-5HS"/>
-                                    </constraints>
-                                    <state key="normal" backgroundImage="qihuangshouye_icon1.png">
+                                    <rect key="frame" x="0.0" y="197" width="319.5" height="85"/>
+                                    <state key="normal" backgroundImage="homepage_button_live">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -91,8 +88,8 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK" userLabel="Keahoarl Entertainers Button">
-                                    <rect key="frame" x="210" y="282" width="110" height="86"/>
-                                    <state key="normal" backgroundImage="qihuangshouye_icon5.png">
+                                    <rect key="frame" x="0.0" y="282" width="319.5" height="85"/>
+                                    <state key="normal" backgroundImage="homepage_button_entertainers">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -100,8 +97,8 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w" userLabel="Hearthstone Button">
-                                    <rect key="frame" x="210" y="367" width="110" height="85"/>
-                                    <state key="normal" backgroundImage="qihuangshouye_icon3.png">
+                                    <rect key="frame" x="0.0" y="367" width="319.5" height="85"/>
+                                    <state key="normal" backgroundImage="homepage_button_hearthstone">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -109,8 +106,8 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM" userLabel="L.O.L. Button">
-                                    <rect key="frame" x="210" y="452" width="110" height="86"/>
-                                    <state key="normal" backgroundImage="qihuangshouye_icon2.png">
+                                    <rect key="frame" x="0.0" y="452" width="319.5" height="85"/>
+                                    <state key="normal" backgroundImage="homepage_button_lol">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -118,8 +115,8 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns" userLabel="DotA Button">
-                                    <rect key="frame" x="210" y="537" width="110" height="86"/>
-                                    <state key="normal" backgroundImage="qihuangshouye_icon4.png">
+                                    <rect key="frame" x="0.0" y="537" width="319.5" height="85"/>
+                                    <state key="normal" backgroundImage="homepage_button_dota">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -138,14 +135,15 @@
                                 <constraint firstItem="x6d-LO-7XK" firstAttribute="top" secondItem="ch3-tj-caD" secondAttribute="top" id="FId-C5-SRx"/>
                                 <constraint firstAttribute="trailing" secondItem="SjN-OH-bcf" secondAttribute="trailing" id="FSV-LX-4e0"/>
                                 <constraint firstItem="yKI-Zs-yps" firstAttribute="width" secondItem="x6d-LO-7XK" secondAttribute="width" id="FkP-fF-GuW"/>
+                                <constraint firstItem="yKI-Zs-yps" firstAttribute="leading" secondItem="Sjr-FT-pIw" secondAttribute="leading" id="FoR-2e-xQY"/>
                                 <constraint firstItem="Sjr-FT-pIw" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="GWo-EV-19G"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="height" secondItem="Q68-jv-pSJ" secondAttribute="height" id="JP9-5o-FSP"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="trailing" secondItem="8VV-Ro-o7w" secondAttribute="trailing" id="LDN-5d-wiV"/>
-                                <constraint firstItem="uz6-g4-Gns" firstAttribute="bottom" secondItem="Q68-jv-pSJ" secondAttribute="bottom" constant="1" id="Mk1-RX-9Qf"/>
+                                <constraint firstItem="uz6-g4-Gns" firstAttribute="bottom" secondItem="Q68-jv-pSJ" secondAttribute="bottom" id="Mk1-RX-9Qf"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="top" secondItem="ffO-jW-5Sv" secondAttribute="bottom" id="NtL-qs-6pk"/>
                                 <constraint firstAttribute="trailing" secondItem="FwY-nF-WP2" secondAttribute="trailing" id="O7X-oY-Zuu"/>
                                 <constraint firstItem="SjN-OH-bcf" firstAttribute="top" secondItem="UIy-TT-MCX" secondAttribute="top" id="PCx-Ms-zjy"/>
-                                <constraint firstItem="DHn-6T-3Sh" firstAttribute="bottom" secondItem="K6J-Kn-ueM" secondAttribute="bottom" constant="-1" id="Udt-7f-3QZ"/>
+                                <constraint firstItem="DHn-6T-3Sh" firstAttribute="bottom" secondItem="K6J-Kn-ueM" secondAttribute="bottom" id="Udt-7f-3QZ"/>
                                 <constraint firstItem="yKI-Zs-yps" firstAttribute="top" secondItem="Sjr-FT-pIw" secondAttribute="top" id="WRH-zm-Suj"/>
                                 <constraint firstAttribute="trailing" secondItem="ffO-jW-5Sv" secondAttribute="trailing" id="XTo-Ag-Uy3"/>
                                 <constraint firstItem="8VV-Ro-o7w" firstAttribute="width" secondItem="K6J-Kn-ueM" secondAttribute="width" id="YCk-3y-JpI"/>
@@ -171,8 +169,8 @@
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="top" secondItem="8VV-Ro-o7w" secondAttribute="top" id="pqw-N9-jLd"/>
                                 <constraint firstItem="Q68-jv-pSJ" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="pwv-Bi-MMA"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="v4L-VK-dTi"/>
-                                <constraint firstItem="yKI-Zs-yps" firstAttribute="bottom" secondItem="Sjr-FT-pIw" secondAttribute="bottom" constant="1" id="vdy-mk-RhI"/>
-                                <constraint firstItem="x6d-LO-7XK" firstAttribute="bottom" secondItem="ch3-tj-caD" secondAttribute="bottom" constant="1" id="vuG-rF-C4C"/>
+                                <constraint firstItem="yKI-Zs-yps" firstAttribute="bottom" secondItem="Sjr-FT-pIw" secondAttribute="bottom" id="vdy-mk-RhI"/>
+                                <constraint firstItem="x6d-LO-7XK" firstAttribute="bottom" secondItem="ch3-tj-caD" secondAttribute="bottom" id="vuG-rF-C4C"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="height" secondItem="ffO-jW-5Sv" secondAttribute="height" id="yQ6-WG-P02"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="bottom" secondItem="8VV-Ro-o7w" secondAttribute="bottom" id="ykq-7F-fsS"/>
                                 <constraint firstAttribute="trailing" secondItem="DHn-6T-3Sh" secondAttribute="trailing" id="zgF-0Y-YYP"/>
@@ -200,17 +198,17 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="19" y="260.5"/>
+            <point key="canvasLocation" x="19.5" y="260.5"/>
         </view>
     </objects>
     <resources>
         <image name="gamesphere" width="640" height="194"/>
+        <image name="homepage_button_dota" width="320" height="81"/>
+        <image name="homepage_button_entertainers" width="320" height="81"/>
+        <image name="homepage_button_hearthstone" width="320" height="81"/>
+        <image name="homepage_button_live" width="320" height="81"/>
+        <image name="homepage_button_lol" width="320" height="81"/>
         <image name="huanchong_shouye.png" width="320" height="81"/>
-        <image name="qihuangshouye_icon1.png" width="111" height="81"/>
-        <image name="qihuangshouye_icon2.png" width="111" height="81"/>
-        <image name="qihuangshouye_icon3.png" width="111" height="81"/>
-        <image name="qihuangshouye_icon4.png" width="111" height="81"/>
-        <image name="qihuangshouye_icon5.png" width="111" height="81"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
