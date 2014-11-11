@@ -132,6 +132,7 @@
     // Configure thumb image view..
     if (information.imageUrl && ![information.imageUrl isEqualToString:@""]) {
         [infoCell.thumbImageView setImageWithURL:[NSURL URLWithString:information.imageUrl]];
+
     } else {
         [infoCell.thumbImageView setImage:[UIImage imageNamed:@"zhibo_huanchongtu@2x.png"]];
     }

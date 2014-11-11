@@ -327,6 +327,9 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:TRUE];
     DianboViewController *dianboVC = [[DianboViewController alloc] initWithNibName:@"DianboViewController" bundle:nil];
+    VODListInterface * vodlist = self.vods[indexPath.row];
+    dianboVC.info_id = vodlist.identity;
+    dianboVC.imageUrl = vodlist.imageUrl;
     [self.navigationController pushViewController:dianboVC animated:YES];
 }
 

@@ -8,7 +8,7 @@
 
 #import "MQLCustomViewController.h"
 
-@interface InfomationViewController : MQLCustomViewController
+@interface InfomationViewController : MQLCustomViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) SearchInterface *prestrain;
 
