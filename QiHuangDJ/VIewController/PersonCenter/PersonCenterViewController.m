@@ -192,7 +192,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 - (void)setNavigationRightButton
 {
     UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [settingsButton setFrame:CGRectMake(0, 0, 60, 40)];
+    [settingsButton setFrame:CGRectMake(0, 0, 32, 40)];
     [settingsButton setImage:[UIImage imageNamed:@"nav_btn_shezhi.png"] forState:UIControlStateNormal];
     [settingsButton addTarget:self action:@selector(pushToSettingsViewController)
              forControlEvents:UIControlEventTouchUpInside];
@@ -466,7 +466,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
     [self.headerView.photoImageView addGestureRecognizer:pressPhotoImageViewGesture];
     
     // Configure photo image view..
-    UIImage *photoImage = [UIImage imageNamed:@"tzelann_logout"];
+    UIImage *photoImage = [UIImage imageNamed:@"gerenzhongxin_touxiang.png"];
     self.headerView.photoImageView.layer.cornerRadius = self.headerView.photoImageView.frame.size.height/2;
     self.headerView.photoImageView.layer.masksToBounds = TRUE;
     self.headerView.photoImageView.layer.borderWidth = 2;
@@ -513,7 +513,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 
     // Recommended Template
     else {
-        photoImage = [UIImage imageNamed:@"tzelann_logout"];
+        photoImage = [UIImage imageNamed:@"gerenzhongxin_touxiang.png"];
         self.headerView.nicknameLabel.text = @"未登录";
     }
     
