@@ -49,13 +49,14 @@
 -(void) setFanhui
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 0, 60, 40);
-    [btn setImage:[UIImage imageNamed:@"nav_btn_fanhui.png"] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(0, 0, 40, 60);
+    [btn setImage:[UIImage imageNamed:@"nav_btn_back_custom.png"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(fanhuiBtn) forControlEvents:UIControlEventTouchUpInside];;
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] init];
     [leftBtn setCustomView:btn];
     
     self.navigationItem.leftBarButtonItem = leftBtn;
+//    [((id)self.navigationItem.leftBarButtonItem) setFrame:CGRectMake(-30, 0, 60, 40)];
 }
 -(void)fanhuiBtn
 {
