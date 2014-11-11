@@ -11,8 +11,9 @@
 #import "DianboViewController.h"
 #import "KHLCategorySliderTableViewCell.h"
 #import "LoginViewController.h"
+#import "MJRefresh.h"
 
-
+#define MJRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
 
 #pragma mark - DEFINATION AND ENUMERATION
 
@@ -30,6 +31,8 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 @interface DianboListViewController () <LoginDelegate> {
     UITableView *rightView;
+    NSArray *copyArray;
+    int pCount;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *holder;
@@ -104,6 +107,10 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     [self setFanhui];
     [self rightViewUI];
     [self rightBtnItemUI];
+    [self addFooter];
+    [self addHeader];
+    
+    pCount = 2;
     
     [mySearch setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     
@@ -114,6 +121,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     // Request data..
     if ([self needsRequest]) {
         [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:@"" search:@""];
+        
         NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
         NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
         [[KHLDataManager instance] categoryListHUDHolder:self.view uid:uid token:token];
@@ -151,6 +159,59 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiUnsubscribeCategory" object:nil];
 }
 
+#pragma mark
+#pragma mark REFRESH
+- (void)addHeader
+{
+    __unsafe_unretained typeof(self) vc = self;
+    // 添加下拉刷新头部控件
+    [self.collectionView addHeaderWithCallback:^{
+        // 进入刷新状态就会回调这个Block
+        if (pCount>1) {
+            pCount--;
+        }
+        
+        if (![self needsRequest]) {
+            [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:[NSString stringWithFormat:@"%D",pCount] search:@""];
+            
+            NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+            NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+            [[KHLDataManager instance] categoryListHUDHolder:self.view uid:uid token:token];
+        }
+        
+        // 模拟延迟加载数据，因此1秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.collectionView reloadData];
+            // 结束刷新
+            [vc.collectionView headerEndRefreshing];
+        });
+    } dateKey:@"collection"];
+    // dateKey用于存储刷新时间，也可以不传值，可以保证不同界面拥有不同的刷新时间
+    NSLog(@"pCount---- %D",pCount);
+    
+#warning 自动刷新(一进入程序就下拉刷新)
+//    [self.collectionView headerBeginRefreshing];
+}
+- (void)addFooter
+{
+    __unsafe_unretained typeof(self) vc = self;
+    [self.collectionView addFooterWithCallback:^{
+        pCount++;
+        if (![self needsRequest]) {
+            [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:[NSString stringWithFormat:@"%D",pCount] search:@""];
+            
+            NSString *uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+            NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+            [[KHLDataManager instance] categoryListHUDHolder:self.view uid:uid token:token];
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [vc.collectionView reloadData];
+            // 结束刷新
+            [vc.collectionView footerEndRefreshing];
+        });
+    }];
+    NSLog(@"pCountfoot---- %D",pCount);
+}
 
 
 
@@ -508,6 +569,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
             interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
             [self.vods addObject:interface];
         }
+        //sg
         
         // Refresh list layout after data received..
         [self.collectionView reloadData];
