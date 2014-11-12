@@ -11,6 +11,7 @@
                 <outlet property="anchorView" destination="eUq-ZH-kh4" id="I2d-rC-haM"/>
                 <outlet property="headerPageControl" destination="1zx-ig-2YG" id="ebA-ud-kvw"/>
                 <outlet property="headerScrollView" destination="SjN-OH-bcf" id="gT6-59-0J5"/>
+                <outlet property="layoutScroller" destination="vJk-bu-3sV" id="FL9-hC-zLP"/>
                 <outlet property="mainScrollView" destination="89f-sG-F2m" id="iJq-bX-rCV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="backdropImageViewCollection" destination="Sjr-FT-pIw" id="TJh-u2-ne1"/>
@@ -32,24 +33,24 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="715"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIy-TT-MCX" userLabel="Main Holder View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="622"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="722"/>
                             <subviews>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SjN-OH-bcf" userLabel="Header Scroll View">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2YR-lX-jvN">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="100" id="vJk-bu-3sV"/>
+                                        <constraint firstAttribute="height" constant="200" id="vJk-bu-3sV"/>
                                     </constraints>
                                 </scrollView>
                                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="1zx-ig-2YG" userLabel="Header Page Controll">
-                                    <rect key="frame" x="233" y="67" width="71" height="37"/>
+                                    <rect key="frame" x="233" y="167" width="71" height="37"/>
                                 </pageControl>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwY-nF-WP2" userLabel="Gamesphere Button">
-                                    <rect key="frame" x="0.0" y="100" width="320" height="97"/>
+                                    <rect key="frame" x="0.0" y="200" width="320" height="97"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="FwY-nF-WP2" secondAttribute="height" multiplier="320:97" id="psf-2N-6h9"/>
                                     </constraints>
@@ -61,25 +62,25 @@
                                     </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-FT-pIw" userLabel="Live Broadcast Image View">
-                                    <rect key="frame" x="0.0" y="197" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="297" width="320" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Sjr-FT-pIw" secondAttribute="height" multiplier="64:17" id="W7q-jI-1fK"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-tj-caD" userLabel="Keahoarl Entertainers Image View">
-                                    <rect key="frame" x="0.0" y="282" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="382" width="320" height="85"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="ffO-jW-5Sv" userLabel="Hearthstone Image View">
-                                    <rect key="frame" x="0.0" y="367" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="467" width="320" height="85"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="DHn-6T-3Sh" userLabel="L.O.L. Image View">
-                                    <rect key="frame" x="0.0" y="452" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="552" width="320" height="85"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q68-jv-pSJ" userLabel="DotA Image View">
-                                    <rect key="frame" x="0.0" y="537" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="637" width="320" height="85"/>
                                 </imageView>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
-                                    <rect key="frame" x="0.0" y="197" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="297" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_live">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -88,7 +89,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK" userLabel="Keahoarl Entertainers Button">
-                                    <rect key="frame" x="0.0" y="282" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="382" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_entertainers">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -97,7 +98,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w" userLabel="Hearthstone Button">
-                                    <rect key="frame" x="0.0" y="367" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="467" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_hearthstone">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -106,7 +107,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM" userLabel="L.O.L. Button">
-                                    <rect key="frame" x="0.0" y="452" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="552" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_lol">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -115,7 +116,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns" userLabel="DotA Button">
-                                    <rect key="frame" x="0.0" y="537" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="637" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_dota">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -198,7 +199,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-125" y="261.5"/>
+            <point key="canvasLocation" x="-501" y="271.5"/>
         </view>
     </objects>
     <resources>

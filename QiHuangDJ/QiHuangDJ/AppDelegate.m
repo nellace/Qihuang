@@ -20,16 +20,17 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    
+    //友盟统计
     [MobClick startWithAppkey:@"5461a154fd98c5ce9f0073b4" reportPolicy:BATCH   channelId:@""];
     
     //register umeng
      [UMSocialData setAppKey:@"5461a154fd98c5ce9f0073b4"];
     
 //    //打开新浪微博的SSO开关
-    [UMSocialSinaHandler openSSOWithRedirectURL:@"https://api.weibo.com/oauth2/default.html"];
+    [UMSocialSinaHandler openSSOWithRedirectURL:nil];
 //    
 //    [UMSocialQQHandler setQQWithAppId:@"101104063" appKey:@"904f216a6d26389b3fff036a838ab416" url:nil];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController * vc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     CustomNavViewController * navCustom = [[CustomNavViewController alloc] initWithRootViewController:vc];
@@ -65,8 +66,20 @@
     
     return YES;
 }
+#pragma mark -umeng sina share redirect method
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
 
-
+#pragma mark -JPush Redirect Method
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     // Required

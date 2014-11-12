@@ -10,7 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "DianboCell.h"
 #import "LoginViewController.h"
-@interface VideoLiveViewController () <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate> {
+@interface VideoLiveViewController () <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UMSocialUIDelegate> {
     __weak IBOutlet UITextField *inputTextFiled;
     __weak IBOutlet UILabel *liveTtitle;
     __weak IBOutlet NSLayoutConstraint *keyboardHeight;
@@ -53,6 +53,7 @@
     // Do any additional setup after loading the view from its nib.
     [self addVideoViewController];
     [self registerNotification];
+    [self rightButtonMethod];
      [self requestNetworkData];
 }
 
@@ -68,6 +69,32 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [self removeNotification];
 }
+
+#pragma mark - RIGHT- BUTTON - METHOD
+
+-(void)rightButtonMethod {
+    UIButton * shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun.png"] forState:UIControlStateNormal];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun_press.png"] forState:UIControlStateHighlighted];
+    [shareBtn setTitle:@"分享" forState:UIControlStateNormal];
+    [shareBtn setFrame:CGRectMake(0, 0, 42, 27)];
+    [shareBtn setTitleColor:[KHLColor colorFromHexRGB:@"FE6024"] forState:UIControlStateNormal];
+    [shareBtn.titleLabel setFont: [UIFont systemFontOfSize:14.0f]];
+    UIBarButtonItem *fenleiRightBtn = [[UIBarButtonItem alloc] initWithCustomView:shareBtn];
+    [shareBtn addTarget:self action:@selector(shareBtnMethond:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = fenleiRightBtn;
+}
+
+
+- (void)shareBtnMethond:(UIButton *)sender {
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"687706a51ff9836859a643485fc684bddacc3576"
+                                      shareText:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social"
+                                     shareImage:[UIImage imageNamed:@"icon.png"]
+                                shareToSnsNames:@[UMShareToSina]
+                                       delegate:self];
+}
+#pragma mark - Register Notification
 - (void)registerNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
 //    直播详情
@@ -85,6 +112,8 @@
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiReplied" object:nil];
 }
+
+
 
 # pragma mark
 # pragma mark NETWORKING REQUEST METHOD
@@ -107,6 +136,10 @@
     NSDictionary *aDic = aNotification.object;
     if (aDic == nil) {
         NSLog(@"live detail failed");
+        
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请求超时" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        
         return;
     }
     if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
@@ -213,11 +246,13 @@
 - (UIView *)fullScreenViewUI {
     
     fullScreenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    fullScreenBtn.frame = CGRectMake(mediaPlayBGView.frame.size.width - fullScreenBtn.frame.size.width,mediaPlayBGView.frame.size.height - 20,20, 20);
+    fullScreenBtn.frame = CGRectMake(mediaPlayBGView.frame.size.width - fullScreenBtn.frame.size.width,mediaPlayBGView.frame.size.height - 40,40, 40);
     fullScreenBtn.frame =CGRectMake(mediaPlayBGView.frame.size.width - fullScreenBtn.frame.size.width,
-                                    (mediaPlayBGView.frame.size.height - 20), 20, 20);
-    [fullScreenBtn setBackgroundImage:[UIImage imageNamed:@"zhibo_icon_fangda"] forState:UIControlStateNormal];
-    [fullScreenBtn setBackgroundImage:[UIImage imageNamed:@"zhibo_icon_suoxiao"] forState:UIControlStateSelected];
+                                    (mediaPlayBGView.frame.size.height - 40), 40, 40);
+    [fullScreenBtn setImage:[UIImage imageNamed:@"zhibo_icon_fangda"] forState:UIControlStateNormal];
+    [fullScreenBtn setImage:[UIImage imageNamed:@"zhibo_icon_suoxiao"] forState:UIControlStateSelected];
+    [fullScreenBtn setBackgroundColor:[UIColor blackColor]];
+    fullScreenBtn.alpha = 0.6f;
     [fullScreenBtn addTarget:self action:@selector(fuScreenMethod:) forControlEvents:UIControlEventTouchUpInside];
     return fullScreenBtn;
 }
@@ -255,7 +290,7 @@
             mediaPlayBGView.frame = mediaPleayViewFrame;
             
             fullScreenBtn.frame =CGRectMake(mediaPlayBGView.frame.size.width - fullScreenBtn.frame.size.width,
-                                            (mediaPlayBGView.frame.size.height - 20), 20, 20);
+                                            (mediaPlayBGView.frame.size.height - 40), 40, 40);
         } completion:^(BOOL finished) {
             [self showStatusBar];
             self.navigationController.navigationBarHidden = NO;
@@ -274,8 +309,8 @@
             
              mediaPlayBGView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 
-            fullScreenBtn.frame =CGRectMake(mediaPlayBGView.frame.size.height - 20,
-                                            mediaPlayBGView.frame.size.width - 20, 20, 20);
+            fullScreenBtn.frame =CGRectMake(mediaPlayBGView.frame.size.height - 40,
+                                            mediaPlayBGView.frame.size.width - 40, 40, 40);
         } completion:^(BOOL finished) {
 
         }];
@@ -352,7 +387,7 @@
     cell.goodCountLabel.text = commentlist.countGood;
     cell.badCountLabel.text = commentlist.countBad;
 //    [cell.imgeWithIcon setImageWithURL:[NSURL URLWithString:commentlist.portraitImageUrl]];
-    cell.timeLabel.text = [self returnTheTimelabel:commentlist.time];
+    cell.timeLabel.text = [KHLColor returnTheTimelabel:commentlist.time];
     
     
     NSString * usernametext;
@@ -423,58 +458,4 @@
     [textField resignFirstResponder];
     return YES;
 }
-# pragma mark
-# pragma mark 计算时间方法
--(NSString*)returnTheTimelabel:(NSString*)theTime
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    NSDate * d = [dateFormatter dateFromString:theTime];
-    
-    NSDate *now = [[NSDate alloc]init];
-
-    
-    NSTimeInterval late = [now timeIntervalSinceDate:d];
-    NSString *returnStr ;
-    if(late<3600)
-    {
-        if ((int)(late/60) == 0 )
-        {
-            returnStr = @"刚刚";
-        }else
-        {
-            returnStr = [NSString stringWithFormat:@"%i分前",(int)(late/60)];
-        }
-    }
-    else if(late>=3600&&late<3600*24) {
-        returnStr = [NSString stringWithFormat:@"%i小时前",(int)(late/3600)];
-    }
-    else if(late>=3600*24&&late<3600*48)
-    {
-        returnStr = [NSString stringWithFormat:@"昨天"];
-    }
-    else
-    {
-        //NSDateFormatter *dateFormatter1 =[[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy"];
-        NSString *returnYear = [dateFormatter stringFromDate:d];
-        NSString *nowReturnYear = [dateFormatter stringFromDate:now];
-
-        
-        if([returnYear isEqualToString:nowReturnYear])
-        {
-            [dateFormatter setDateFormat:@"MM-dd"];
-            
-            returnStr = [dateFormatter stringFromDate:d];
-        }
-        else
-        {
-            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-            
-            returnStr = [dateFormatter stringFromDate:d];
-        }
-    }
-    return returnStr;
-}
-
 @end

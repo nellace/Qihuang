@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIView *anchorView;
 @property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *headerScrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutScroller;
 @property (weak, nonatomic) IBOutlet UIPageControl *headerPageControl;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *backdropImageViewCollection;
 
@@ -34,9 +35,9 @@
 @implementation ViewController {
     ClassifyViewController *classify ;
     BOOL isLogin;
+    UIImageView * backImage;
+    SearchBarCustom *search ;
 }
-
-
 
 
 #pragma mark - DEFINITION AND ENUMERATION
@@ -78,6 +79,11 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIEmail"];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KHLPIQQ"];
         }
+         [self navUI];
+       
+        
+     
+
     }
     
     return self;
@@ -91,6 +97,21 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     // Register notification..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homepageImagesNotified:) name:@"KHLNotiHomepageImagesAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchResultNotified:) name:@"KHLNotiSearchResult" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHiden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardShow :(NSNotification *)noti {
+    backImage.hidden = NO;
+}
+
+- (void)keyboardHiden:(NSNotification *)noti {
+    
+    backImage.hidden = YES;
+}
+
+- (void)keyboardHid {
+    [search resignFirstResponder];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -103,8 +124,17 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    classify = [ClassifyViewController new];
-    [self navUI];
+    
+    backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    backImage.backgroundColor = [UIColor blackColor];
+    backImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHid)];
+    [backImage addGestureRecognizer:tap];
+    backImage.alpha = 0.6f;
+    backImage.hidden = YES;
+    [self.view addSubview:backImage];
+    
+     classify = [ClassifyViewController new];
     
     // Request homepage image data..
     [[KHLDataManager instance] homepageImagesHUDHolder:self.view];
@@ -144,12 +174,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     UIBarButtonItem *imgLeft = [[UIBarButtonItem alloc ] initWithCustomView:imgLogo];
     self.navigationItem.leftBarButtonItem = imgLeft;
     //中间导航
-    SearchBarCustom *search = [SearchBarCustom new];
-//    [search setBackgroundColor:[UIColor whiteColor]];
-    UIFont *font = [UIFont systemFontOfSize:12.0f];
-    NSDictionary *attributes = @{NSFontAttributeName: font};
-//
-    NSAttributedString * searchStr =[[NSAttributedString alloc] initWithString:@"搜索" attributes:attributes];
+    search = [SearchBarCustom new];
     search.placeholder = @"搜索";
 
     [search customSearchBarUI:@"home"];
@@ -201,7 +226,10 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
         HomepageImagesInterface *looping = [loopings objectAtIndex:i];
         if (looping.loopingImageUrl && ![looping.loopingImageUrl isEqualToString:@""]) {
             [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageUrl]];
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+
+//            imageView.frame = CGRectMake(x, y, width, height);
+            NSLog(@"lunbo imageview%f",imageView.frame.size.height);
         } else {
             [imageView setImage:[UIImage imageNamed:@"huanchong_shouyeguanggao@2x.png"]];
         }

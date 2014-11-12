@@ -417,6 +417,15 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 }
 
 
+#pragma makr - UITABLEVIEW-DATASCOUR
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 1;
+}
+
 
 #pragma mark - HEADER VIEW DELEGATE
 

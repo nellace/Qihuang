@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -90,10 +91,10 @@
                     </connections>
                 </tableView>
                 <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ss-3l-xad" userLabel="bottom bar View">
-                    <rect key="frame" x="0.0" y="531" width="320" height="37"/>
+                    <rect key="frame" x="0.0" y="532" width="320" height="37"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCD-lk-Tqc">
-                            <rect key="frame" x="16" y="9" width="9" height="22"/>
+                            <rect key="frame" x="16" y="11" width="9" height="22"/>
                             <state key="normal" image="zhibo_btn_fanhui.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -102,20 +103,20 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="232" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="z0V-dK-OOz">
-                            <rect key="frame" x="227" y="11" width="56" height="21"/>
+                            <rect key="frame" x="236" y="11" width="56" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIR-JB-eMb">
-                            <rect key="frame" x="198" y="11" width="26" height="22"/>
+                            <rect key="frame" x="207" y="11" width="26" height="22"/>
                             <state key="normal" image="zhibo_btn_zan.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" image="zhibo_icon_zan_press.png"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8B-AK-GZh" userLabel="discuss Btn">
-                            <rect key="frame" x="157" y="11" width="19" height="22"/>
+                            <rect key="frame" x="157" y="12" width="19" height="22"/>
                             <state key="normal" image="zhibo_btn_huifu.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -124,7 +125,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVc-aU-Ssg">
-                            <rect key="frame" x="283" y="11" width="16" height="22"/>
+                            <rect key="frame" x="283" y="10" width="16" height="22"/>
                             <state key="normal" image="icon_shoucang.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -193,7 +194,7 @@
                 <constraint firstAttribute="trailing" secondItem="DmW-zl-0hh" secondAttribute="trailing" id="PPD-Y6-k2m"/>
                 <constraint firstAttribute="bottom" secondItem="DdI-HQ-jDv" secondAttribute="bottom" constant="-43" id="UUn-rE-nq8"/>
                 <constraint firstItem="e2H-ZF-Na3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V5Y-4R-NEF"/>
-                <constraint firstAttribute="bottom" secondItem="4Ss-3l-xad" secondAttribute="bottom" id="XKO-W1-jxh"/>
+                <constraint firstAttribute="bottom" secondItem="4Ss-3l-xad" secondAttribute="bottom" constant="-1" id="XKO-W1-jxh"/>
                 <constraint firstItem="8Ee-jb-9Oy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="caA-XZ-sAu"/>
                 <constraint firstItem="e2H-ZF-Na3" firstAttribute="top" secondItem="DmW-zl-0hh" secondAttribute="bottom" id="f9t-LQ-5Bn"/>
                 <constraint firstAttribute="trailing" secondItem="8Ee-jb-9Oy" secondAttribute="trailing" id="n4s-AY-kuz"/>

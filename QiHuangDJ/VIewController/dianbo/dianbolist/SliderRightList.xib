@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -20,7 +20,7 @@
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="VUU-qe-MKQ" secondAttribute="bottom" id="Msq-A0-qCU"/>
                 <constraint firstItem="VUU-qe-MKQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PgF-ws-LYy"/>
@@ -31,7 +31,7 @@
             <connections>
                 <outlet property="tableView1" destination="VUU-qe-MKQ" id="byM-j8-WRM"/>
             </connections>
-            <point key="canvasLocation" x="267" y="179"/>
+            <point key="canvasLocation" x="-132" y="28"/>
         </view>
     </objects>
 </document>

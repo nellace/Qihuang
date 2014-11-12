@@ -13,7 +13,7 @@
 -(void)onLoginFailed;
 @end
 
-@interface LoginViewController : MQLCustomViewController <UMSocialUIDelegate>
+@interface LoginViewController : MQLCustomViewController <UMSocialUIDelegate,UITextFieldDelegate>
 
 @property(nonatomic, assign) id<LoginDelegate> delegate;
 

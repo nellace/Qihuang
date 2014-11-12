@@ -120,7 +120,11 @@
 
 - (IBAction)pressInterrelatedLoginWithQQ:(UIButton *)sender
 {
-    [self umengThirdWithName:UMShareToQQ];
+//    [self umengThirdWithName:UMShareToQQ];
+//    [[UMSocialDataService defaultDataService] requestUnOauthWithType:UMShareToSina  completion:^(UMSocialResponseEntity *response){
+//        NSLog(@"response is %@",response);
+//    }];
+    
 }
 
 - (IBAction)pressInterrelatedLoginWithWeibo:(UIButton *)sender
@@ -142,10 +146,23 @@
         if (response.responseCode == UMSResponseCodeSuccess) {
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:thirdName];
             NSLog(@"username is %@, uid is %@, token is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken);
-        [[KHLDataManager instance] thirdLogin:self.view third_type:thirdName sina_id:snsAccount.usid tencet_id:snsAccount.usid third_username:snsAccount.userName];
+            
+//        [[KHLDataManager instance] thirdLogin:self.view third_type:thirdName sina_id:snsAccount.usid tencet_id:snsAccount.usid third_username:snsAccount.userName];
         }
     });
 
+    [[UMSocialDataService defaultDataService] requestSnsInformation:UMShareToSina  completion:^(UMSocialResponseEntity *response){
+        NSLog(@"SnsInformation is %@",response.data);
+    }];
+    
+}
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    if (response.viewControllerType == UMSViewControllerOauth) {
+
+        NSLog(@"didFinishOauthAndGetAccount response is %@",response);
+    }
 }
 
 - (IBAction)pressRegisterButton:(UIButton *)sender
@@ -225,5 +242,11 @@
     
 }
 
+#pragma mark - UITEXTFILED-DELEGATE
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

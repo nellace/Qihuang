@@ -54,10 +54,9 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     IBOutletCollection(UIButton) NSArray *btnCollection;
     __weak IBOutlet UISearchBar *mySearch;
     UIImageView * imgBG;  //用于键盘弹出时 触摸隐藏键盘的imageView
+    UIButton * fenleiBtn;
     
 }
-
-
 
 #pragma mark - ATTRIBUTES GETTER AND SETTER
 
@@ -94,6 +93,17 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         [self setFilter:KHLVODFilterLatest];
         [self setSliderShowing:FALSE];
         [self setCategoryListIndex:-1];
+        
+        
+        imgBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        imgBG.backgroundColor = [UIColor blackColor];
+        imgBG.userInteractionEnabled = YES;
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHid)];
+        [imgBG addGestureRecognizer:tap];
+        imgBG.alpha = 0.6f;
+        imgBG.hidden = YES;
+        [self.view addSubview:imgBG];
+
     }
     
     return self;
@@ -112,11 +122,8 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     
     pCount = 2;
     
-    [mySearch setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+//    [mySearch setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     
-    //键盘出现通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHiden:) name:UIKeyboardWillHideNotification object:nil];
     
     // Request data..
     if ([self needsRequest]) {
@@ -132,12 +139,19 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 - (void)viewWillAppear:(BOOL)animated {
     
     [self.collectionItem registerNib:[UINib nibWithNibName:@"DianboListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"QHidentifierDianboCollectionCell"];
-    
+    [self registerNotification];
+   
+}
+
+-(void)registerNotification {
     // Register notification..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categoryListNotified:) name:@"KHLNotiCategoryListAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoOnDemandListNotified:) name:@"KHLNotiVODListAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categorySubscribeNotified:) name:@"KHLNotiSubscribeCategory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categoryUnsubscribeNotified:) name:@"KHLNotiUnsubscribeCategory" object:nil];
+    //键盘出现通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHiden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -189,7 +203,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     // dateKey用于存储刷新时间，也可以不传值，可以保证不同界面拥有不同的刷新时间
     NSLog(@"pCount---- %D",pCount);
     
-#warning 自动刷新(一进入程序就下拉刷新)
+#pragma mark 自动刷新(一进入程序就下拉刷新)
 //    [self.collectionView headerBeginRefreshing];
 }
 - (void)addFooter
@@ -218,15 +232,15 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 #pragma mark - CUSTOM LAYOUT METHODES
 
 - (void)rightBtnItemUI {
-    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun@2x.png"] forState:UIControlStateNormal];
-    [btn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun_press@2x.png"] forState:UIControlStateHighlighted];
-    [btn setTitle:@"分类" forState:UIControlStateNormal];
-    [btn setFrame:CGRectMake(0, 0, 42, 27)];
-    [btn setTitleColor:[KHLColor colorFromHexRGB:@"FE6024"] forState:UIControlStateNormal];
-    [btn.titleLabel setFont: [UIFont systemFontOfSize:14.0f]];
-    UIBarButtonItem *fenleiRightBtn = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    [btn addTarget:self action:@selector(feileiBtnMethond:) forControlEvents:UIControlEventTouchUpInside];
+    fenleiBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [fenleiBtn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun@2x.png"] forState:UIControlStateNormal];
+    [fenleiBtn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun_press@2x.png"] forState:UIControlStateHighlighted];
+    [fenleiBtn setTitle:@"分类" forState:UIControlStateNormal];
+    [fenleiBtn setFrame:CGRectMake(0, 0, 42, 27)];
+    [fenleiBtn setTitleColor:[KHLColor colorFromHexRGB:@"FE6024"] forState:UIControlStateNormal];
+    [fenleiBtn.titleLabel setFont: [UIFont systemFontOfSize:14.0f]];
+    UIBarButtonItem *fenleiRightBtn = [[UIBarButtonItem alloc] initWithCustomView:fenleiBtn];
+    [fenleiBtn addTarget:self action:@selector(feileiBtnMethond:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = fenleiRightBtn;
 }
 
@@ -273,22 +287,19 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 }
 
 
-
-
 #pragma mark - KeyboardNotification
 
 - (void)keyboardShow :(NSNotification *)noti {
-    imgBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    imgBG.backgroundColor = [UIColor grayColor];
-    imgBG.userInteractionEnabled = YES;
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHid)];
-    [imgBG addGestureRecognizer:tap];
-    imgBG.alpha = 0.4;
-    [self.view addSubview:imgBG];
+    imgBG.hidden = NO;
+    
+    self.holder.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+    self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.view.frame.size.width, 44);
+    [self setSliderShowing:TRUE];
 }
 
 - (void)keyboardHiden:(NSNotification *)noti {
-    
+    imgBG.hidden = YES;
+    fenleiBtn.hidden = NO;
     [imgBG removeFromSuperview];
 }
 
@@ -303,9 +314,15 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    
+    if (searchBar.text.length != 0) {
+         [[KHLDataManager instance] VODListHUDHolder:self.view type:@"1" category:self.category page:[NSString stringWithFormat:@"%d", self.filter] search:searchBar.text];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入的内容不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     [searchBar resignFirstResponder];
 }
-
 
 
 
