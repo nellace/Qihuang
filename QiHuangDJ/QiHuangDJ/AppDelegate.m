@@ -26,7 +26,7 @@
      [UMSocialData setAppKey:@"5461a154fd98c5ce9f0073b4"];
     
 //    //打开新浪微博的SSO开关
-    [UMSocialSinaHandler openSSOWithRedirectURL:@"www.175kh.com/qqloginback.php"];
+    [UMSocialSinaHandler openSSOWithRedirectURL:@"https://api.weibo.com/oauth2/default.html"];
 //    
 //    [UMSocialQQHandler setQQWithAppId:@"101104063" appKey:@"904f216a6d26389b3fff036a838ab416" url:nil];
     self.window.backgroundColor = [UIColor whiteColor];

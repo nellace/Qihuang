@@ -59,13 +59,14 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (void)fullScreenMehod {
-//    [LTPlayerSDK showWithUserUnique:@"cbec2a7d04"
-//                        videoUnique:@"128342e318"
-//                          videoName:@"aaa"
-//                          payerName:nil
-//                          checkCode:nil
-//                                 ap:YES
-//                     playerDelegate:self];
+    [LTPlayerSDK showWithUserUnique:@"cbec2a7d04"
+                        videoUnique:@"128342e318"
+                          videoName:nil
+                          payerName:nil
+                          checkCode:nil
+                                 ap:YES
+                   inViewController:self
+                     playerDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,7 +93,9 @@ static  NSInteger goodCount; //记录等号
     //good
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goodDianboNotifiMethod:) name:@"KHLUrlGoodWithComment" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(badDianboNotifiMethod:) name:@"KHLUrlbadWithComment" object:nil];
-    //KHLUrlGoodWithComment
+
+    // collection
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollectionNotifiMethod:) name:@"KHLNotiCollectArticle" object:nil];
 }
 
 - (void)removeNotificaiton {
@@ -102,6 +105,7 @@ static  NSInteger goodCount; //记录等号
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiReplied" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlGoodWithComment" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlbadWithComment" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiCollectArticle" object:nil];
 }
 
 - (void)requestDianboInfo {
@@ -220,6 +224,13 @@ static  NSInteger goodCount; //记录等号
     goodCount = 0;
 }
 
+- (void)addCollectionNotifiMethod:(NSNotification *)aNotification {
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"bad for dianbo falied"); return;
+    }
+}
+
 # pragma mark UITableViewDataSouce
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -309,7 +320,16 @@ static  NSInteger goodCount; //记录等号
         }
         [[KHLDataManager instance] replyHUDHolder:self.view uid:uidStr target:comment_id content:self.shuruTextFiled.text token:tokenStr targetType:modelStr];
     }
-
+}
+- (IBAction)collectonMethod:(id)sender {
+    if ([KHLColor isLogin]) {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        [[KHLDataManager instance] collectArticleHUDHolder:self.view uid:uidStr identity:@"" category:@"" token:tokenStr];
+    }else {
+        [self pushLoginVCMethod];
+    }
+    
 }
 - (void)pinglunMethondWithBottomBarAndDianbo:(UIButton *)sender {
     if ([KHLColor isLogin]) {

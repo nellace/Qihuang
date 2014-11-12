@@ -138,7 +138,7 @@
         
         NSLog(@"login response is %@",response);
         
-        //          获取微博用户名、uid、token等
+        //     获取微博用户名、uid、token等
         if (response.responseCode == UMSResponseCodeSuccess) {
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:thirdName];
             NSLog(@"username is %@, uid is %@, token is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken);

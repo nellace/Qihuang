@@ -205,17 +205,6 @@
 		3D90A1961A124471003AF951 /* zhibo_pinglunhuifu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D90A1101A124471003AF951 /* zhibo_pinglunhuifu@2x.png */; };
 		3D95A2051A11B2F80015F41B /* InfomationForHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D95A2041A11B2F80015F41B /* InfomationForHeader.xib */; };
 		3D95A2081A11C2930015F41B /* infomationForHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D95A2071A11C2930015F41B /* infomationForHeader.m */; };
-		3DA08DFB1A11086E0065C784 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DE71A11086E0065C784 /* AFDownloadRequestOperation.m */; };
-		3DA08DFD1A11086E0065C784 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DEB1A11086E0065C784 /* AFHTTPRequestOperation.m */; };
-		3DA08DFE1A11086E0065C784 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DED1A11086E0065C784 /* AFImageRequestOperation.m */; };
-		3DA08DFF1A11086E0065C784 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DEF1A11086E0065C784 /* AFJSONRequestOperation.m */; };
-		3DA08E001A11086E0065C784 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DF11A11086E0065C784 /* AFNetworkActivityIndicatorManager.m */; };
-		3DA08E011A11086E0065C784 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DF41A11086E0065C784 /* AFPropertyListRequestOperation.m */; };
-		3DA08E021A11086E0065C784 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DF61A11086E0065C784 /* AFURLConnectionOperation.m */; };
-		3DA08E031A11086E0065C784 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DF81A11086E0065C784 /* AFXMLRequestOperation.m */; };
-		3DA08E041A11086E0065C784 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DFA1A11086E0065C784 /* UIImageView+AFNetworking.m */; };
-		3DA08E051A11094A0065C784 /* libGTMBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED344B1A10FC25008483D4 /* libGTMBase64.a */; };
-		3DA08E071A110F100065C784 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08E061A110F100065C784 /* AFHTTPClient.m */; };
 		3DCA5A411A13011900A51183 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A271A13011900A51183 /* UMSocialLocalizable.strings */; };
 		3DCA5A421A13011900A51183 /* libUMSocial_Sdk_4.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A351A13011900A51183 /* libUMSocial_Sdk_4.2.a */; };
 		3DCA5A431A13011900A51183 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A371A13011900A51183 /* UMSCommentDetailController.xib */; };
@@ -228,26 +217,29 @@
 		3DCA5A4A1A13011900A51183 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A3E1A13011900A51183 /* UMSShareListController.xib */; };
 		3DCA5A4B1A13011900A51183 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A3F1A13011900A51183 /* UMSocialSDKResourcesNew.bundle */; };
 		3DCA5A4F1A1308D400A51183 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A4D1A1308D400A51183 /* libSocialSina.a */; };
-		3DCA5A5D1A132D5000A51183 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A591A132D5000A51183 /* libSocialQQ.a */; };
-		3DCA5A5E1A132D5000A51183 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A5A1A132D5000A51183 /* TencentOpenAPI.framework */; };
-		3DCA5A5F1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A5B1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		3DCA5A641A13300000A51183 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A611A13300000A51183 /* libMobClickLibrary.a */; };
 		3DCA5A661A13368900A51183 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A651A13368900A51183 /* Security.framework */; };
 		3DCA5A681A1336C300A51183 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A671A1336C300A51183 /* libiconv.dylib */; };
+		3DCA5A791A13462E00A51183 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6B1A13462E00A51183 /* libAFNetworking.a */; };
+		3DCA5A7A1A13462E00A51183 /* libGTMBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6C1A13462E00A51183 /* libGTMBase64.a */; };
+		3DCA5A7B1A13462E00A51183 /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6D1A13462E00A51183 /* libJSONKit.a */; };
+		3DCA5A7C1A13462E00A51183 /* libJSONModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6E1A13462E00A51183 /* libJSONModel.a */; };
+		3DCA5A7D1A13462E00A51183 /* libLTCloudPlayerSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6F1A13462E00A51183 /* libLTCloudPlayerSDK.a */; };
+		3DCA5A7E1A13462E00A51183 /* libmVideoTracker_min.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A701A13462E00A51183 /* libmVideoTracker_min.a */; };
+		3DCA5A7F1A13462E00A51183 /* libMZMonitor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A711A13462E00A51183 /* libMZMonitor.a */; };
+		3DCA5A801A13462E00A51183 /* libNetworkReachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A721A13462E00A51183 /* libNetworkReachability.a */; };
+		3DCA5A811A13462E00A51183 /* libRegexKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A731A13462E00A51183 /* libRegexKit.a */; };
+		3DCA5A821A13462E00A51183 /* libSBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A741A13462E00A51183 /* libSBJSON.a */; };
+		3DCA5A831A13462E00A51183 /* libUtility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A751A13462E00A51183 /* libUtility.a */; };
+		3DCA5A841A13462E00A51183 /* mAppTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A771A13462E00A51183 /* mAppTracker.a */; };
+		3DCA5A851A13462E00A51183 /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A781A13462E00A51183 /* Resources.bundle */; };
+		3DCA5A871A134C1C00A51183 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A861A134C1C00A51183 /* QuartzCore.framework */; };
+		3DCA5A881A134CB900A51183 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DFA1A11086E0065C784 /* UIImageView+AFNetworking.m */; };
 		3DD9646419FFA934004C3AF1 /* DianboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9646319FFA934004C3AF1 /* DianboCell.m */; };
 		3DD9646619FFA944004C3AF1 /* DianboCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD9646519FFA944004C3AF1 /* DianboCell.xib */; };
 		3DE8DAA21A0769F80048CAE8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE8DAA11A0769F80048CAE8 /* MediaPlayer.framework */; };
 		3DED34451A10CD4C008483D4 /* JubaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DED34431A10CD4C008483D4 /* JubaoViewController.m */; };
 		3DED34461A10CD4C008483D4 /* JubaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DED34441A10CD4C008483D4 /* JubaoViewController.xib */; };
-		3DED34561A10FC25008483D4 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED344A1A10FC25008483D4 /* libAFNetworking.a */; };
-		3DED34581A10FC25008483D4 /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED344C1A10FC25008483D4 /* libJSONKit.a */; };
-		3DED34591A10FC25008483D4 /* libJSONModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED344D1A10FC25008483D4 /* libJSONModel.a */; };
-		3DED345A1A10FC25008483D4 /* libLTCloudPlayerSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED344E1A10FC25008483D4 /* libLTCloudPlayerSDK.a */; };
-		3DED345B1A10FC25008483D4 /* libMZMonitor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED344F1A10FC25008483D4 /* libMZMonitor.a */; };
-		3DED345C1A10FC25008483D4 /* libNetworkReachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED34501A10FC25008483D4 /* libNetworkReachability.a */; };
-		3DED345E1A10FC25008483D4 /* libSBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED34521A10FC25008483D4 /* libSBJSON.a */; };
-		3DED345F1A10FC25008483D4 /* libUtility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED34531A10FC25008483D4 /* libUtility.a */; };
-		3DED34601A10FC25008483D4 /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DED34551A10FC25008483D4 /* Resources.bundle */; };
 		3DED34621A10FCE5008483D4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED34611A10FCE5008483D4 /* libsqlite3.0.dylib */; };
 		FC2FA76B1A08B8AC006290BE /* KHLSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2FA7691A08B8AC006290BE /* KHLSearchResultViewController.m */; };
 		FC2FA76C1A08B8AC006290BE /* KHLSearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2FA76A1A08B8AC006290BE /* KHLSearchResultViewController.xib */; };
@@ -567,15 +559,27 @@
 		3DCA5A401A13011900A51183 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
 		3DCA5A4D1A1308D400A51183 /* libSocialSina.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSina.a; sourceTree = "<group>"; };
 		3DCA5A4E1A1308D400A51183 /* UMSocialSinaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaHandler.h; sourceTree = "<group>"; };
-		3DCA5A591A132D5000A51183 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
-		3DCA5A5A1A132D5000A51183 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		3DCA5A5B1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
-		3DCA5A5C1A132D5000A51183 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
 		3DCA5A611A13300000A51183 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		3DCA5A621A13300000A51183 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		3DCA5A631A13300000A51183 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		3DCA5A651A13368900A51183 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3DCA5A671A1336C300A51183 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		3DCA5A6A1A13462E00A51183 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		3DCA5A6B1A13462E00A51183 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAFNetworking.a; sourceTree = "<group>"; };
+		3DCA5A6C1A13462E00A51183 /* libGTMBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGTMBase64.a; sourceTree = "<group>"; };
+		3DCA5A6D1A13462E00A51183 /* libJSONKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJSONKit.a; sourceTree = "<group>"; };
+		3DCA5A6E1A13462E00A51183 /* libJSONModel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJSONModel.a; sourceTree = "<group>"; };
+		3DCA5A6F1A13462E00A51183 /* libLTCloudPlayerSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTCloudPlayerSDK.a; sourceTree = "<group>"; };
+		3DCA5A701A13462E00A51183 /* libmVideoTracker_min.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmVideoTracker_min.a; sourceTree = "<group>"; };
+		3DCA5A711A13462E00A51183 /* libMZMonitor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMZMonitor.a; sourceTree = "<group>"; };
+		3DCA5A721A13462E00A51183 /* libNetworkReachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNetworkReachability.a; sourceTree = "<group>"; };
+		3DCA5A731A13462E00A51183 /* libRegexKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRegexKit.a; sourceTree = "<group>"; };
+		3DCA5A741A13462E00A51183 /* libSBJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSBJSON.a; sourceTree = "<group>"; };
+		3DCA5A751A13462E00A51183 /* libUtility.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUtility.a; sourceTree = "<group>"; };
+		3DCA5A761A13462E00A51183 /* LTPlayerSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPlayerSDK.h; sourceTree = "<group>"; };
+		3DCA5A771A13462E00A51183 /* mAppTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = mAppTracker.a; sourceTree = "<group>"; };
+		3DCA5A781A13462E00A51183 /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
+		3DCA5A861A134C1C00A51183 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3DD9646219FFA934004C3AF1 /* DianboCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboCell.h; sourceTree = "<group>"; };
 		3DD9646319FFA934004C3AF1 /* DianboCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboCell.m; sourceTree = "<group>"; };
 		3DD9646519FFA944004C3AF1 /* DianboCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboCell.xib; sourceTree = "<group>"; };
@@ -583,19 +587,6 @@
 		3DED34421A10CD4C008483D4 /* JubaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JubaoViewController.h; sourceTree = "<group>"; };
 		3DED34431A10CD4C008483D4 /* JubaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JubaoViewController.m; sourceTree = "<group>"; };
 		3DED34441A10CD4C008483D4 /* JubaoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JubaoViewController.xib; sourceTree = "<group>"; };
-		3DED34491A10FC25008483D4 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
-		3DED344A1A10FC25008483D4 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAFNetworking.a; sourceTree = "<group>"; };
-		3DED344B1A10FC25008483D4 /* libGTMBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGTMBase64.a; sourceTree = "<group>"; };
-		3DED344C1A10FC25008483D4 /* libJSONKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJSONKit.a; sourceTree = "<group>"; };
-		3DED344D1A10FC25008483D4 /* libJSONModel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJSONModel.a; sourceTree = "<group>"; };
-		3DED344E1A10FC25008483D4 /* libLTCloudPlayerSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTCloudPlayerSDK.a; sourceTree = "<group>"; };
-		3DED344F1A10FC25008483D4 /* libMZMonitor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMZMonitor.a; sourceTree = "<group>"; };
-		3DED34501A10FC25008483D4 /* libNetworkReachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNetworkReachability.a; sourceTree = "<group>"; };
-		3DED34511A10FC25008483D4 /* libRegexKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRegexKit.a; sourceTree = "<group>"; };
-		3DED34521A10FC25008483D4 /* libSBJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSBJSON.a; sourceTree = "<group>"; };
-		3DED34531A10FC25008483D4 /* libUtility.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUtility.a; sourceTree = "<group>"; };
-		3DED34541A10FC25008483D4 /* LTPlayerSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPlayerSDK.h; sourceTree = "<group>"; };
-		3DED34551A10FC25008483D4 /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
 		3DED34611A10FCE5008483D4 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		FC2FA7681A08B8AC006290BE /* KHLSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHLSearchResultViewController.h; path = SearchResult/KHLSearchResultViewController.h; sourceTree = "<group>"; };
 		FC2FA7691A08B8AC006290BE /* KHLSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHLSearchResultViewController.m; path = SearchResult/KHLSearchResultViewController.m; sourceTree = "<group>"; };
@@ -646,35 +637,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DCA5A871A134C1C00A51183 /* QuartzCore.framework in Frameworks */,
 				3DCA5A681A1336C300A51183 /* libiconv.dylib in Frameworks */,
+				3DCA5A7E1A13462E00A51183 /* libmVideoTracker_min.a in Frameworks */,
 				3DCA5A661A13368900A51183 /* Security.framework in Frameworks */,
-				3DA08E051A11094A0065C784 /* libGTMBase64.a in Frameworks */,
+				3DCA5A831A13462E00A51183 /* libUtility.a in Frameworks */,
+				3DCA5A791A13462E00A51183 /* libAFNetworking.a in Frameworks */,
 				3DED34621A10FCE5008483D4 /* libsqlite3.0.dylib in Frameworks */,
 				3D34C3781A0F962F009B3BDF /* AudioToolbox.framework in Frameworks */,
-				3DED345B1A10FC25008483D4 /* libMZMonitor.a in Frameworks */,
+				3DCA5A811A13462E00A51183 /* libRegexKit.a in Frameworks */,
+				3DCA5A7A1A13462E00A51183 /* libGTMBase64.a in Frameworks */,
 				3D34C3761A0F9626009B3BDF /* ImageIO.framework in Frameworks */,
 				3D34C3741A0F961C009B3BDF /* CoreFoundation.framework in Frameworks */,
 				3D34C3721A0F9611009B3BDF /* SystemConfiguration.framework in Frameworks */,
 				3D34C3701A0F9601009B3BDF /* CoreTelephony.framework in Frameworks */,
-				3DED345E1A10FC25008483D4 /* libSBJSON.a in Frameworks */,
-				3DED345A1A10FC25008483D4 /* libLTCloudPlayerSDK.a in Frameworks */,
-				3DCA5A5D1A132D5000A51183 /* libSocialQQ.a in Frameworks */,
+				3DCA5A7D1A13462E00A51183 /* libLTCloudPlayerSDK.a in Frameworks */,
+				3DCA5A801A13462E00A51183 /* libNetworkReachability.a in Frameworks */,
 				3D34C36E1A0F95F2009B3BDF /* AdSupport.framework in Frameworks */,
 				3DCA5A4F1A1308D400A51183 /* libSocialSina.a in Frameworks */,
 				3DCA5A421A13011900A51183 /* libUMSocial_Sdk_4.2.a in Frameworks */,
-				3DED34561A10FC25008483D4 /* libAFNetworking.a in Frameworks */,
+				3DCA5A821A13462E00A51183 /* libSBJSON.a in Frameworks */,
 				3D34C36C1A0F95E8009B3BDF /* libz.dylib in Frameworks */,
-				3DED34581A10FC25008483D4 /* libJSONKit.a in Frameworks */,
-				3DCA5A5E1A132D5000A51183 /* TencentOpenAPI.framework in Frameworks */,
+				3DCA5A7C1A13462E00A51183 /* libJSONModel.a in Frameworks */,
+				3DCA5A841A13462E00A51183 /* mAppTracker.a in Frameworks */,
+				3DCA5A7F1A13462E00A51183 /* libMZMonitor.a in Frameworks */,
 				3DCA5A641A13300000A51183 /* libMobClickLibrary.a in Frameworks */,
 				3D34C36A1A0F95DB009B3BDF /* libicucore.dylib in Frameworks */,
-				3DED345C1A10FC25008483D4 /* libNetworkReachability.a in Frameworks */,
 				3DE8DAA21A0769F80048CAE8 /* MediaPlayer.framework in Frameworks */,
 				3D44751D19C972CE00D9B2B1 /* CoreGraphics.framework in Frameworks */,
 				3D44751F19C972CE00D9B2B1 /* UIKit.framework in Frameworks */,
 				3D44751B19C972CE00D9B2B1 /* Foundation.framework in Frameworks */,
-				3DED345F1A10FC25008483D4 /* libUtility.a in Frameworks */,
-				3DED34591A10FC25008483D4 /* libJSONModel.a in Frameworks */,
+				3DCA5A7B1A13462E00A51183 /* libJSONKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,6 +812,7 @@
 		3D44751919C972CE00D9B2B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3DCA5A861A134C1C00A51183 /* QuartzCore.framework */,
 				3DCA5A671A1336C300A51183 /* libiconv.dylib */,
 				3DCA5A651A13368900A51183 /* Security.framework */,
 				3DED34611A10FCE5008483D4 /* libsqlite3.0.dylib */,
@@ -915,11 +909,11 @@
 		3D44754C19C9738600D9B2B1 /* ThrildLib */ = {
 			isa = PBXGroup;
 			children = (
+				3DCA5A691A13462E00A51183 /* iphoneos */,
 				3DCA5A601A13300000A51183 /* umengtongji */,
 				3DCA5A261A13011900A51183 /* UMSocial_Sdk_4.2 */,
 				39E5F7401A12144400A7279D /* MJRefresh */,
 				3DA08DE51A11086E0065C784 /* AFNetworking */,
-				3DED34481A10FC25008483D4 /* iphoneos_true */,
 				3D491BB619D192FF004D6DEF /* customSearchBar */,
 				3D44756919C984AC00D9B2B1 /* CustomNavViewController */,
 				3D44756C19C984AC00D9B2B1 /* MBProgressHUD */,
@@ -1304,7 +1298,6 @@
 		3DCA5A261A13011900A51183 /* UMSocial_Sdk_4.2 */ = {
 			isa = PBXGroup;
 			children = (
-				3DCA5A581A132D5000A51183 /* TencentOpenAPI */,
 				3DCA5A4C1A1308D400A51183 /* Sina */,
 				3DCA5A271A13011900A51183 /* UMSocialLocalizable.strings */,
 				3DCA5A291A13011900A51183 /* Header */,
@@ -1357,17 +1350,6 @@
 			path = Sina;
 			sourceTree = "<group>";
 		};
-		3DCA5A581A132D5000A51183 /* TencentOpenAPI */ = {
-			isa = PBXGroup;
-			children = (
-				3DCA5A591A132D5000A51183 /* libSocialQQ.a */,
-				3DCA5A5A1A132D5000A51183 /* TencentOpenAPI.framework */,
-				3DCA5A5B1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle */,
-				3DCA5A5C1A132D5000A51183 /* UMSocialQQHandler.h */,
-			);
-			path = TencentOpenAPI;
-			sourceTree = "<group>";
-		};
 		3DCA5A601A13300000A51183 /* umengtongji */ = {
 			isa = PBXGroup;
 			children = (
@@ -1378,6 +1360,28 @@
 			path = umengtongji;
 			sourceTree = "<group>";
 		};
+		3DCA5A691A13462E00A51183 /* iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				3DCA5A6A1A13462E00A51183 /* KeychainItemWrapper.h */,
+				3DCA5A6B1A13462E00A51183 /* libAFNetworking.a */,
+				3DCA5A6C1A13462E00A51183 /* libGTMBase64.a */,
+				3DCA5A6D1A13462E00A51183 /* libJSONKit.a */,
+				3DCA5A6E1A13462E00A51183 /* libJSONModel.a */,
+				3DCA5A6F1A13462E00A51183 /* libLTCloudPlayerSDK.a */,
+				3DCA5A701A13462E00A51183 /* libmVideoTracker_min.a */,
+				3DCA5A711A13462E00A51183 /* libMZMonitor.a */,
+				3DCA5A721A13462E00A51183 /* libNetworkReachability.a */,
+				3DCA5A731A13462E00A51183 /* libRegexKit.a */,
+				3DCA5A741A13462E00A51183 /* libSBJSON.a */,
+				3DCA5A751A13462E00A51183 /* libUtility.a */,
+				3DCA5A761A13462E00A51183 /* LTPlayerSDK.h */,
+				3DCA5A771A13462E00A51183 /* mAppTracker.a */,
+				3DCA5A781A13462E00A51183 /* Resources.bundle */,
+			);
+			path = iphoneos;
+			sourceTree = "<group>";
+		};
 		3DED34411A10CD40008483D4 /* jubao */ = {
 			isa = PBXGroup;
 			children = (
@@ -1386,26 +1390,6 @@
 				3DED34441A10CD4C008483D4 /* JubaoViewController.xib */,
 			);
 			path = jubao;
-			sourceTree = "<group>";
-		};
-		3DED34481A10FC25008483D4 /* iphoneos_true */ = {
-			isa = PBXGroup;
-			children = (
-				3DED34491A10FC25008483D4 /* KeychainItemWrapper.h */,
-				3DED344A1A10FC25008483D4 /* libAFNetworking.a */,
-				3DED344B1A10FC25008483D4 /* libGTMBase64.a */,
-				3DED344C1A10FC25008483D4 /* libJSONKit.a */,
-				3DED344D1A10FC25008483D4 /* libJSONModel.a */,
-				3DED344E1A10FC25008483D4 /* libLTCloudPlayerSDK.a */,
-				3DED344F1A10FC25008483D4 /* libMZMonitor.a */,
-				3DED34501A10FC25008483D4 /* libNetworkReachability.a */,
-				3DED34511A10FC25008483D4 /* libRegexKit.a */,
-				3DED34521A10FC25008483D4 /* libSBJSON.a */,
-				3DED34531A10FC25008483D4 /* libUtility.a */,
-				3DED34541A10FC25008483D4 /* LTPlayerSDK.h */,
-				3DED34551A10FC25008483D4 /* Resources.bundle */,
-			);
-			path = iphoneos_true;
 			sourceTree = "<group>";
 		};
 		FC2FA7671A08B66A006290BE /* SearchResult */ = {
@@ -1576,7 +1560,6 @@
 				3DCA5A481A13011900A51183 /* UMSLoginViewController.xib in Resources */,
 				3D90A16A1A124471003AF951 /* shouye_lunbo_press@2x.png in Resources */,
 				3D90A1161A124471003AF951 /* denglu_icon_qq@2x.png in Resources */,
-				3DED34601A10FC25008483D4 /* Resources.bundle in Resources */,
 				3D90A1661A124471003AF951 /* shouye_icon4@2x.png in Resources */,
 				3D90A1541A124471003AF951 /* qihuangyiren_baibg@2x.png in Resources */,
 				3D90A1241A124471003AF951 /* celan_dinngyue_press@2x.png in Resources */,
@@ -1684,10 +1667,10 @@
 				3D90A1641A124471003AF951 /* shouye_icon2@2x.png in Resources */,
 				3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */,
 				3D90A1881A124471003AF951 /* zhibo_caidan_icon_3@2x.png in Resources */,
-				3DCA5A5F1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3D90A16C1A124471003AF951 /* nav_btn_quxiao@2x.png in Resources */,
 				3D90A1831A124471003AF951 /* zhibo_btn_zan_press@2x.png in Resources */,
 				3D90A1141A124471003AF951 /* denglu_btn_zidongdenglu_press@2x.png in Resources */,
+				3DCA5A851A13462E00A51183 /* Resources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1714,10 +1697,8 @@
 				3D95A2081A11C2930015F41B /* infomationForHeader.m in Sources */,
 				3D121C3C19CABD100040870C /* InfomationViewController.m in Sources */,
 				3DD9646419FFA934004C3AF1 /* DianboCell.m in Sources */,
-				3DA08E031A11086E0065C784 /* AFXMLRequestOperation.m in Sources */,
 				FC834C8919F0EEA5009E17FF /* KHLInformationTableViewController.m in Sources */,
 				3D121C4619CABD270040870C /* RegisterViewController.m in Sources */,
-				3DA08DFD1A11086E0065C784 /* AFHTTPRequestOperation.m in Sources */,
 				3D121C4119CABD1B0040870C /* LoginViewController.m in Sources */,
 				FC5BD25019EFA6BF00D91A9C /* KHLPICSettingsViewController.m in Sources */,
 				3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */,
@@ -1728,14 +1709,11 @@
 				3D4003EB19D407E2006622E4 /* classifyModel.m in Sources */,
 				39E5F7561A12144400A7279D /* UIScrollView+MJExtension.m in Sources */,
 				3D44757E19C984AC00D9B2B1 /* MQLCustomViewController.m in Sources */,
-				3DA08E021A11086E0065C784 /* AFURLConnectionOperation.m in Sources */,
 				3D44752B19C972CE00D9B2B1 /* AppDelegate.m in Sources */,
-				3DA08DFB1A11086E0065C784 /* AFDownloadRequestOperation.m in Sources */,
 				3DED34451A10CD4C008483D4 /* JubaoViewController.m in Sources */,
 				3D121C2819CAB47E0040870C /* ViewController.m in Sources */,
 				3D121C3219CABCD10040870C /* ClassifyViewController.m in Sources */,
 				FCED6BEA19EE553F0009F8FF /* KHLPICVideoItemCell.m in Sources */,
-				3DA08DFF1A11086E0065C784 /* AFJSONRequestOperation.m in Sources */,
 				3D121C5119CAE4B80040870C /* SuperStartViewController.m in Sources */,
 				3D44757C19C984AC00D9B2B1 /* CustomNavViewController.m in Sources */,
 				FC2FA7701A08F0E8006290BE /* KHLSearchResultSubViewController.m in Sources */,
@@ -1744,8 +1722,6 @@
 				3D44752719C972CE00D9B2B1 /* main.m in Sources */,
 				3D4003E719D3BEC3006622E4 /* KHLColor.m in Sources */,
 				3D858E1319E8DFD7005022BA /* DianboViewController.m in Sources */,
-				3DA08E041A11086E0065C784 /* UIImageView+AFNetworking.m in Sources */,
-				3DA08E071A110F100065C784 /* AFHTTPClient.m in Sources */,
 				FC81ADFF19E68DA9002D74EF /* KHLEntertainerHolderView.m in Sources */,
 				3D121C5719CAFADF0040870C /* PersonCenterViewController.m in Sources */,
 				FC834C8E19F0EEFF009E17FF /* KHLInformationTableViewCell.m in Sources */,
@@ -1756,13 +1732,11 @@
 				3D858E1D19E8E023005022BA /* DianboListViewController.m in Sources */,
 				3D858E1519E8DFD7005022BA /* VideoLiveViewController.m in Sources */,
 				3D39636319FF3B4B00F6C004 /* DataManagerModel.m in Sources */,
-				3DA08DFE1A11086E0065C784 /* AFImageRequestOperation.m in Sources */,
+				3DCA5A881A134CB900A51183 /* UIImageView+AFNetworking.m in Sources */,
 				39E5F7521A12144400A7279D /* MJRefreshBaseView.m in Sources */,
 				FC3FD84E1A0F3327001E7562 /* KHLCategorySliderTableViewCell.m in Sources */,
-				3DA08E011A11086E0065C784 /* AFPropertyListRequestOperation.m in Sources */,
 				FC511E6B1A0A526000518265 /* KHLGamesphereViewController.m in Sources */,
 				FC61088B19F4C2A60057BA0E /* KHLPICProfileViewController.m in Sources */,
-				3DA08E001A11086E0065C784 /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1903,17 +1877,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ThrildLib/iphoneos_true",
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2",
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/Sina",
-					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/TencentOpenAPI",
 					"$(PROJECT_DIR)/ThrildLib/umengtongji",
+					"$(PROJECT_DIR)/ThrildLib/iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7s armv7";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1935,17 +1908,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ThrildLib/iphoneos_true",
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2",
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/Sina",
-					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/TencentOpenAPI",
 					"$(PROJECT_DIR)/ThrildLib/umengtongji",
+					"$(PROJECT_DIR)/ThrildLib/iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7s armv7";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
