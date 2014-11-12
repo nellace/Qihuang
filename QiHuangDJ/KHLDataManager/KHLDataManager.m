@@ -963,6 +963,44 @@
          // Stop progress HUD..
          [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
      }];
+}
+
+- (void)thirdLogin: (UIView *)holder
+        third_type:(NSString *)third_type
+           sina_id:(NSString *)sina_id
+         tencet_id:(NSString *)tencet_id
+    third_username:(NSString*)third_username{
+    // Start progress HUD..
+    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
+    
+    NSString *ustr = [NSString stringWithFormat:HKLUrlThrild];
+    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
+                           third_type, @"type",
+                           sina_id, @"sina_id",
+                           tencet_id,@"open_id",
+                           third_username,@"sina_uname",
+                           nil];
+    NSLog(@"bad url=%@ param=%@", ustr, param);
+    
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
+    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         NSLog(@"bad succ=\n%@", json);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"HKLUrlThrild" object:json];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"bad fail=\n%@", error);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"HKLUrlThrild" object:nil];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     }];
 
 }
 @end

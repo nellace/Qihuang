@@ -227,6 +227,13 @@
 		3DCA5A491A13011900A51183 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A3D1A13011900A51183 /* UMSnsAccountViewController.xib */; };
 		3DCA5A4A1A13011900A51183 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A3E1A13011900A51183 /* UMSShareListController.xib */; };
 		3DCA5A4B1A13011900A51183 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A3F1A13011900A51183 /* UMSocialSDKResourcesNew.bundle */; };
+		3DCA5A4F1A1308D400A51183 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A4D1A1308D400A51183 /* libSocialSina.a */; };
+		3DCA5A5D1A132D5000A51183 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A591A132D5000A51183 /* libSocialQQ.a */; };
+		3DCA5A5E1A132D5000A51183 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A5A1A132D5000A51183 /* TencentOpenAPI.framework */; };
+		3DCA5A5F1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A5B1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		3DCA5A641A13300000A51183 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A611A13300000A51183 /* libMobClickLibrary.a */; };
+		3DCA5A661A13368900A51183 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A651A13368900A51183 /* Security.framework */; };
+		3DCA5A681A1336C300A51183 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A671A1336C300A51183 /* libiconv.dylib */; };
 		3DD9646419FFA934004C3AF1 /* DianboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9646319FFA934004C3AF1 /* DianboCell.m */; };
 		3DD9646619FFA944004C3AF1 /* DianboCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD9646519FFA944004C3AF1 /* DianboCell.xib */; };
 		3DE8DAA21A0769F80048CAE8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE8DAA11A0769F80048CAE8 /* MediaPlayer.framework */; };
@@ -558,6 +565,17 @@
 		3DCA5A3E1A13011900A51183 /* UMSShareListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSShareListController.xib; sourceTree = "<group>"; };
 		3DCA5A3F1A13011900A51183 /* UMSocialSDKResourcesNew.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResourcesNew.bundle; sourceTree = "<group>"; };
 		3DCA5A401A13011900A51183 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
+		3DCA5A4D1A1308D400A51183 /* libSocialSina.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSina.a; sourceTree = "<group>"; };
+		3DCA5A4E1A1308D400A51183 /* UMSocialSinaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaHandler.h; sourceTree = "<group>"; };
+		3DCA5A591A132D5000A51183 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
+		3DCA5A5A1A132D5000A51183 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		3DCA5A5B1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		3DCA5A5C1A132D5000A51183 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		3DCA5A611A13300000A51183 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		3DCA5A621A13300000A51183 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		3DCA5A631A13300000A51183 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		3DCA5A651A13368900A51183 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3DCA5A671A1336C300A51183 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		3DD9646219FFA934004C3AF1 /* DianboCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboCell.h; sourceTree = "<group>"; };
 		3DD9646319FFA934004C3AF1 /* DianboCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboCell.m; sourceTree = "<group>"; };
 		3DD9646519FFA944004C3AF1 /* DianboCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboCell.xib; sourceTree = "<group>"; };
@@ -628,6 +646,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DCA5A681A1336C300A51183 /* libiconv.dylib in Frameworks */,
+				3DCA5A661A13368900A51183 /* Security.framework in Frameworks */,
 				3DA08E051A11094A0065C784 /* libGTMBase64.a in Frameworks */,
 				3DED34621A10FCE5008483D4 /* libsqlite3.0.dylib in Frameworks */,
 				3D34C3781A0F962F009B3BDF /* AudioToolbox.framework in Frameworks */,
@@ -638,11 +658,15 @@
 				3D34C3701A0F9601009B3BDF /* CoreTelephony.framework in Frameworks */,
 				3DED345E1A10FC25008483D4 /* libSBJSON.a in Frameworks */,
 				3DED345A1A10FC25008483D4 /* libLTCloudPlayerSDK.a in Frameworks */,
+				3DCA5A5D1A132D5000A51183 /* libSocialQQ.a in Frameworks */,
 				3D34C36E1A0F95F2009B3BDF /* AdSupport.framework in Frameworks */,
+				3DCA5A4F1A1308D400A51183 /* libSocialSina.a in Frameworks */,
 				3DCA5A421A13011900A51183 /* libUMSocial_Sdk_4.2.a in Frameworks */,
 				3DED34561A10FC25008483D4 /* libAFNetworking.a in Frameworks */,
 				3D34C36C1A0F95E8009B3BDF /* libz.dylib in Frameworks */,
 				3DED34581A10FC25008483D4 /* libJSONKit.a in Frameworks */,
+				3DCA5A5E1A132D5000A51183 /* TencentOpenAPI.framework in Frameworks */,
+				3DCA5A641A13300000A51183 /* libMobClickLibrary.a in Frameworks */,
 				3D34C36A1A0F95DB009B3BDF /* libicucore.dylib in Frameworks */,
 				3DED345C1A10FC25008483D4 /* libNetworkReachability.a in Frameworks */,
 				3DE8DAA21A0769F80048CAE8 /* MediaPlayer.framework in Frameworks */,
@@ -795,6 +819,8 @@
 		3D44751919C972CE00D9B2B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3DCA5A671A1336C300A51183 /* libiconv.dylib */,
+				3DCA5A651A13368900A51183 /* Security.framework */,
 				3DED34611A10FCE5008483D4 /* libsqlite3.0.dylib */,
 				3D34C3771A0F962F009B3BDF /* AudioToolbox.framework */,
 				3D34C3751A0F9626009B3BDF /* ImageIO.framework */,
@@ -889,6 +915,7 @@
 		3D44754C19C9738600D9B2B1 /* ThrildLib */ = {
 			isa = PBXGroup;
 			children = (
+				3DCA5A601A13300000A51183 /* umengtongji */,
 				3DCA5A261A13011900A51183 /* UMSocial_Sdk_4.2 */,
 				39E5F7401A12144400A7279D /* MJRefresh */,
 				3DA08DE51A11086E0065C784 /* AFNetworking */,
@@ -1277,6 +1304,8 @@
 		3DCA5A261A13011900A51183 /* UMSocial_Sdk_4.2 */ = {
 			isa = PBXGroup;
 			children = (
+				3DCA5A581A132D5000A51183 /* TencentOpenAPI */,
+				3DCA5A4C1A1308D400A51183 /* Sina */,
 				3DCA5A271A13011900A51183 /* UMSocialLocalizable.strings */,
 				3DCA5A291A13011900A51183 /* Header */,
 				3DCA5A351A13011900A51183 /* libUMSocial_Sdk_4.2.a */,
@@ -1317,6 +1346,36 @@
 				3DCA5A3E1A13011900A51183 /* UMSShareListController.xib */,
 			);
 			path = SocialSDKXib;
+			sourceTree = "<group>";
+		};
+		3DCA5A4C1A1308D400A51183 /* Sina */ = {
+			isa = PBXGroup;
+			children = (
+				3DCA5A4D1A1308D400A51183 /* libSocialSina.a */,
+				3DCA5A4E1A1308D400A51183 /* UMSocialSinaHandler.h */,
+			);
+			path = Sina;
+			sourceTree = "<group>";
+		};
+		3DCA5A581A132D5000A51183 /* TencentOpenAPI */ = {
+			isa = PBXGroup;
+			children = (
+				3DCA5A591A132D5000A51183 /* libSocialQQ.a */,
+				3DCA5A5A1A132D5000A51183 /* TencentOpenAPI.framework */,
+				3DCA5A5B1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle */,
+				3DCA5A5C1A132D5000A51183 /* UMSocialQQHandler.h */,
+			);
+			path = TencentOpenAPI;
+			sourceTree = "<group>";
+		};
+		3DCA5A601A13300000A51183 /* umengtongji */ = {
+			isa = PBXGroup;
+			children = (
+				3DCA5A611A13300000A51183 /* libMobClickLibrary.a */,
+				3DCA5A621A13300000A51183 /* MobClick.h */,
+				3DCA5A631A13300000A51183 /* MobClickSocialAnalytics.h */,
+			);
+			path = umengtongji;
 			sourceTree = "<group>";
 		};
 		3DED34411A10CD40008483D4 /* jubao */ = {
@@ -1625,6 +1684,7 @@
 				3D90A1641A124471003AF951 /* shouye_icon2@2x.png in Resources */,
 				3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */,
 				3D90A1881A124471003AF951 /* zhibo_caidan_icon_3@2x.png in Resources */,
+				3DCA5A5F1A132D5000A51183 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3D90A16C1A124471003AF951 /* nav_btn_quxiao@2x.png in Resources */,
 				3D90A1831A124471003AF951 /* zhibo_btn_zan_press@2x.png in Resources */,
 				3D90A1141A124471003AF951 /* denglu_btn_zidongdenglu_press@2x.png in Resources */,
@@ -1833,6 +1893,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/TencentOpenAPI",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QiHuangDJ/QiHuangDJ-Prefix.pch";
 				INFOPLIST_FILE = "QiHuangDJ/QiHuangDJ-Info.plist";
@@ -1841,6 +1905,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ThrildLib/iphoneos_true",
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2",
+					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/Sina",
+					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/TencentOpenAPI",
+					"$(PROJECT_DIR)/ThrildLib/umengtongji",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
@@ -1858,6 +1925,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/TencentOpenAPI",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QiHuangDJ/QiHuangDJ-Prefix.pch";
 				INFOPLIST_FILE = "QiHuangDJ/QiHuangDJ-Info.plist";
@@ -1866,6 +1937,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ThrildLib/iphoneos_true",
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2",
+					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/Sina",
+					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/TencentOpenAPI",
+					"$(PROJECT_DIR)/ThrildLib/umengtongji",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";

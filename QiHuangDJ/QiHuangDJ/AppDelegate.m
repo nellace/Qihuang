@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import "CustomNavViewController.h"
 #import "ViewController.h"
-
+#import "UMSocial.h"
+#import "UMSocialSinaHandler.h"
+#import "MobClick.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,6 +20,15 @@
     // Override point for customization after application launch.
     
     
+    [MobClick startWithAppkey:@"5461a154fd98c5ce9f0073b4" reportPolicy:BATCH   channelId:@""];
+    
+    //register umeng
+     [UMSocialData setAppKey:@"5461a154fd98c5ce9f0073b4"];
+    
+//    //打开新浪微博的SSO开关
+    [UMSocialSinaHandler openSSOWithRedirectURL:@"www.175kh.com/qqloginback.php"];
+//    
+//    [UMSocialQQHandler setQQWithAppId:@"101104063" appKey:@"904f216a6d26389b3fff036a838ab416" url:nil];
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController * vc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     CustomNavViewController * navCustom = [[CustomNavViewController alloc] initWithRootViewController:vc];

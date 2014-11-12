@@ -10,7 +10,7 @@
 #import "RegisterViewController.h"
 
 
-@interface LoginViewController ()
+@interface LoginViewController () 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *autoLoginButton;
@@ -49,6 +49,7 @@
     // Register notification..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginNotified:) name:@"KHLNotiLogin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrievePasswordNotified:) name:@"KHLNotiRetrievePassword" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginNotified:) name:@"HKLUrlThrild" object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -119,12 +120,32 @@
 
 - (IBAction)pressInterrelatedLoginWithQQ:(UIButton *)sender
 {
-    NSLog(@"Q泥煤呀");
+    [self umengThirdWithName:UMShareToQQ];
 }
 
 - (IBAction)pressInterrelatedLoginWithWeibo:(UIButton *)sender
 {
-    NSLog(@"微个博呀");
+    [self umengThirdWithName:UMShareToSina];
+}
+
+-(void)umengThirdWithName:(NSString *)thirdName {
+    //此处调用授权的方法,你可以把下面的platformName 替换成 UMShareToSina,UMShareToTencent等
+    [UMSocialControllerService defaultControllerService].socialUIDelegate = self;
+    
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:thirdName];
+    
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        
+        NSLog(@"login response is %@",response);
+        
+        //          获取微博用户名、uid、token等
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:thirdName];
+            NSLog(@"username is %@, uid is %@, token is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken);
+        [[KHLDataManager instance] thirdLogin:self.view third_type:thirdName sina_id:snsAccount.usid tencet_id:snsAccount.usid third_username:snsAccount.userName];
+        }
+    });
+
 }
 
 - (IBAction)pressRegisterButton:(UIButton *)sender
@@ -203,9 +224,6 @@
 {
     
 }
-
-
-
 
 
 @end

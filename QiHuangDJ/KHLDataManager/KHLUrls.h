@@ -91,4 +91,8 @@
 
 #pragma mark - (2.27) 评论 - 踩
 #define KHLUrlbadWithComment @"app_bad.php"
+
+#pragma mark - (2.28)  第三方登陆
+#define HKLUrlThrild @"app_thirdparty.php"
+
 #endif

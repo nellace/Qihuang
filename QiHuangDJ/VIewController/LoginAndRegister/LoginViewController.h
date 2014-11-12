@@ -7,13 +7,13 @@
 //
 
 #import "MQLCustomViewController.h"
-
+#import "UMSocial.h"
 @protocol LoginDelegate <NSObject>
 -(void)onLoginSuccess;
 -(void)onLoginFailed;
 @end
 
-@interface LoginViewController : MQLCustomViewController
+@interface LoginViewController : MQLCustomViewController <UMSocialUIDelegate>
 
 @property(nonatomic, assign) id<LoginDelegate> delegate;
 

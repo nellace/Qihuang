@@ -989,4 +989,13 @@
                           uid: (NSString *)uid
                         token: (NSString *)token
                    comment_id:(NSString *)comment_id;
+
+#pragma mark - (2.28)第三方
+
+- (void)thirdLogin: (UIView *)holder
+        third_type:(NSString *)third_type
+           sina_id:(NSString *)sina_id
+         tencet_id:(NSString *)tencet_id
+    third_username:(NSString*)third_username;
+
 @end
