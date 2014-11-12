@@ -14,12 +14,14 @@
 #import "KHLInformationTableViewController.h"
 
 @interface ClassifyViewController () <UISearchBarDelegate>
+{
+    UIImageView *backImage;
+}
 @property (weak, nonatomic) IBOutlet UISearchBar *search;
 
 @end
 
 @implementation ClassifyViewController
-
 
 
 #pragma mark - VIEW CONTROLLER LIFECYCLE
@@ -38,15 +40,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UISearchBar *se = [[SearchBarCustom alloc] init];
-    self.search = se;
+//    UISearchBar *se = [[SearchBarCustom alloc] init];
+//    self.search = se;
     [self setFanhui];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHiden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [self setCascTitle:self.title];
 }
+//sg
+
+- (void)keyboardShow :(NSNotification *)noti {
+    backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    backImage.backgroundColor = [UIColor grayColor];
+    backImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHid)];
+    [backImage addGestureRecognizer:tap];
+    backImage.alpha = 0.4;
+    [self.view addSubview:backImage];
+}
+
+- (void)keyboardHiden:(NSNotification *)noti {
+    
+    [backImage removeFromSuperview];
+}
+
+- (void)keyboardHid {
+    [self.search resignFirstResponder];
+}
+
 
 #pragma mark - USER INTERACTION RESPONSE
 
