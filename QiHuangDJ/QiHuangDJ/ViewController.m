@@ -146,9 +146,11 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     //中间导航
     SearchBarCustom *search = [SearchBarCustom new];
 //    [search setBackgroundColor:[UIColor whiteColor]];
-    NSString *searchStr = @"搜索";
-
-    search.placeholder = searchStr;
+    UIFont *font = [UIFont systemFontOfSize:12.0f];
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+//
+    NSAttributedString * searchStr =[[NSAttributedString alloc] initWithString:@"搜索" attributes:attributes];
+    search.placeholder = @"搜索";
 
     [search customSearchBarUI:@"home"];
     search.delegate = self;

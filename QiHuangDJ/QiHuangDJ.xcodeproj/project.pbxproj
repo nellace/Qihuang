@@ -235,6 +235,9 @@
 		3DCA5A851A13462E00A51183 /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A781A13462E00A51183 /* Resources.bundle */; };
 		3DCA5A871A134C1C00A51183 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A861A134C1C00A51183 /* QuartzCore.framework */; };
 		3DCA5A881A134CB900A51183 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DFA1A11086E0065C784 /* UIImageView+AFNetworking.m */; };
+		3DCA5A8C1A1360A000A51183 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A8B1A1360A000A51183 /* libPushSDK.a */; };
+		3DCA5A8E1A13610A00A51183 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A8D1A13610A00A51183 /* CFNetwork.framework */; };
+		3DCA5A901A13618100A51183 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A8F1A13618100A51183 /* PushConfig.plist */; };
 		3DD9646419FFA934004C3AF1 /* DianboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9646319FFA934004C3AF1 /* DianboCell.m */; };
 		3DD9646619FFA944004C3AF1 /* DianboCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD9646519FFA944004C3AF1 /* DianboCell.xib */; };
 		3DE8DAA21A0769F80048CAE8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE8DAA11A0769F80048CAE8 /* MediaPlayer.framework */; };
@@ -580,6 +583,10 @@
 		3DCA5A771A13462E00A51183 /* mAppTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = mAppTracker.a; sourceTree = "<group>"; };
 		3DCA5A781A13462E00A51183 /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
 		3DCA5A861A134C1C00A51183 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3DCA5A8A1A1360A000A51183 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		3DCA5A8B1A1360A000A51183 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
+		3DCA5A8D1A13610A00A51183 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		3DCA5A8F1A13618100A51183 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		3DD9646219FFA934004C3AF1 /* DianboCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboCell.h; sourceTree = "<group>"; };
 		3DD9646319FFA934004C3AF1 /* DianboCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboCell.m; sourceTree = "<group>"; };
 		3DD9646519FFA944004C3AF1 /* DianboCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboCell.xib; sourceTree = "<group>"; };
@@ -637,6 +644,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DCA5A8E1A13610A00A51183 /* CFNetwork.framework in Frameworks */,
 				3DCA5A871A134C1C00A51183 /* QuartzCore.framework in Frameworks */,
 				3DCA5A681A1336C300A51183 /* libiconv.dylib in Frameworks */,
 				3DCA5A7E1A13462E00A51183 /* libmVideoTracker_min.a in Frameworks */,
@@ -657,6 +665,7 @@
 				3DCA5A4F1A1308D400A51183 /* libSocialSina.a in Frameworks */,
 				3DCA5A421A13011900A51183 /* libUMSocial_Sdk_4.2.a in Frameworks */,
 				3DCA5A821A13462E00A51183 /* libSBJSON.a in Frameworks */,
+				3DCA5A8C1A1360A000A51183 /* libPushSDK.a in Frameworks */,
 				3D34C36C1A0F95E8009B3BDF /* libz.dylib in Frameworks */,
 				3DCA5A7C1A13462E00A51183 /* libJSONModel.a in Frameworks */,
 				3DCA5A841A13462E00A51183 /* mAppTracker.a in Frameworks */,
@@ -812,6 +821,7 @@
 		3D44751919C972CE00D9B2B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3DCA5A8D1A13610A00A51183 /* CFNetwork.framework */,
 				3DCA5A861A134C1C00A51183 /* QuartzCore.framework */,
 				3DCA5A671A1336C300A51183 /* libiconv.dylib */,
 				3DCA5A651A13368900A51183 /* Security.framework */,
@@ -859,6 +869,7 @@
 				3D44752319C972CE00D9B2B1 /* InfoPlist.strings */,
 				3D44752619C972CE00D9B2B1 /* main.m */,
 				3D44752819C972CE00D9B2B1 /* QiHuangDJ-Prefix.pch */,
+				3DCA5A8F1A13618100A51183 /* PushConfig.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -909,6 +920,7 @@
 		3D44754C19C9738600D9B2B1 /* ThrildLib */ = {
 			isa = PBXGroup;
 			children = (
+				3DCA5A891A1360A000A51183 /* JPushlib */,
 				3DCA5A691A13462E00A51183 /* iphoneos */,
 				3DCA5A601A13300000A51183 /* umengtongji */,
 				3DCA5A261A13011900A51183 /* UMSocial_Sdk_4.2 */,
@@ -1382,6 +1394,15 @@
 			path = iphoneos;
 			sourceTree = "<group>";
 		};
+		3DCA5A891A1360A000A51183 /* JPushlib */ = {
+			isa = PBXGroup;
+			children = (
+				3DCA5A8A1A1360A000A51183 /* APService.h */,
+				3DCA5A8B1A1360A000A51183 /* libPushSDK.a */,
+			);
+			path = JPushlib;
+			sourceTree = "<group>";
+		};
 		3DED34411A10CD40008483D4 /* jubao */ = {
 			isa = PBXGroup;
 			children = (
@@ -1463,7 +1484,15 @@
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
 					3D44751619C972CE00D9B2B1 = {
-						DevelopmentTeam = DL6GBFL7D3;
+						DevelopmentTeam = 7L8LCGSAFD;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					3D44753119C972CE00D9B2B1 = {
 						TestTargetID = 3D44751619C972CE00D9B2B1;
@@ -1562,6 +1591,7 @@
 				3D90A1161A124471003AF951 /* denglu_icon_qq@2x.png in Resources */,
 				3D90A1661A124471003AF951 /* shouye_icon4@2x.png in Resources */,
 				3D90A1541A124471003AF951 /* qihuangyiren_baibg@2x.png in Resources */,
+				3DCA5A901A13618100A51183 /* PushConfig.plist in Resources */,
 				3D90A1241A124471003AF951 /* celan_dinngyue_press@2x.png in Resources */,
 				FC3FD84F1A0F3327001E7562 /* KHLCategorySliderTableViewCell.xib in Resources */,
 				3D90A1261A124471003AF951 /* dota_tiao1@2x.png in Resources */,
@@ -1865,6 +1895,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1881,10 +1913,12 @@
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/Sina",
 					"$(PROJECT_DIR)/ThrildLib/umengtongji",
 					"$(PROJECT_DIR)/ThrildLib/iphoneos",
+					"$(PROJECT_DIR)/ThrildLib/JPushlib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -1896,6 +1930,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1912,10 +1948,12 @@
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/Sina",
 					"$(PROJECT_DIR)/ThrildLib/umengtongji",
 					"$(PROJECT_DIR)/ThrildLib/iphoneos",
+					"$(PROJECT_DIR)/ThrildLib/JPushlib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;

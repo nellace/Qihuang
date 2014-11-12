@@ -60,7 +60,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="120" height="90"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="3Lf-W8-GcH" secondAttribute="height" multiplier="4:3" id="yGY-cd-ili"/>
+                            <constraint firstAttribute="width" secondItem="3Lf-W8-GcH" secondAttribute="height" multiplier="4:3" id="yvA-kf-NgP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="yvA-kf-NgP"/>
+                            </mask>
+                        </variation>
                     </imageView>
                 </subviews>
                 <constraints>

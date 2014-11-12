@@ -12,7 +12,7 @@
 
 - (UISearchBar *)customSearchBarUI:(NSString *)searchBarstyle{
     //自定义搜索条左侧放大镜
-    [self setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+//    [self setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     //自定义搜索条输入框背景图片
     [self setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchWithHomepage"] forState:UIControlStateNormal];
 
