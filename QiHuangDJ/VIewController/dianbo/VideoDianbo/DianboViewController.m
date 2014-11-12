@@ -31,6 +31,8 @@ static  NSInteger goodCount; //记录等号
 
 @implementation DianboViewController {
     NSString *otherUserName;
+    NSString *infomId;
+    NSString *cateId;
    
     
 }
@@ -128,6 +130,8 @@ static  NSInteger goodCount; //记录等号
         self.titleForVideoLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
         self.liulanCountLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"count"]];
         self.editorLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
+//        infomId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"info_id"]];
+//        cateId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cate_id"]];
     }
     
     if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"1"]) {
@@ -226,8 +230,14 @@ static  NSInteger goodCount; //记录等号
 
 - (void)addCollectionNotifiMethod:(NSNotification *)aNotification {
     NSDictionary *aDic = aNotification.object;
+    NSLog(@"%@",[aDic objectForKey:@"reason"]);
     if (aDic == nil) {
-        NSLog(@"bad for dianbo falied"); return;
+        NSLog(@"bad for collect falied");
+        return;
+    }else if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"收藏成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
     }
 }
 
@@ -325,7 +335,7 @@ static  NSInteger goodCount; //记录等号
     if ([KHLColor isLogin]) {
         NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
         NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-        [[KHLDataManager instance] collectArticleHUDHolder:self.view uid:uidStr identity:@"" category:@"" token:tokenStr];
+        [[KHLDataManager instance] collectArticleHUDHolder:self.view uid:uidStr identity:@"81" category:@"45" token:tokenStr];
     }else {
         [self pushLoginVCMethod];
     }

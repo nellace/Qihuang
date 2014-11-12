@@ -19,9 +19,11 @@
 }
 @property (weak, nonatomic) IBOutlet UISearchBar *search;
 
+
 @end
 
 @implementation ClassifyViewController
+
 
 
 #pragma mark - VIEW CONTROLLER LIFECYCLE
@@ -52,25 +54,37 @@
 {
     [self setCascTitle:self.title];
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+}
 //sg
 
 - (void)keyboardShow :(NSNotification *)noti {
-    backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    backImage.backgroundColor = [UIColor grayColor];
-    backImage.userInteractionEnabled = YES;
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHid)];
-    [backImage addGestureRecognizer:tap];
-    backImage.alpha = 0.4;
-    [self.view addSubview:backImage];
+    if (!backImage) {
+        backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height)];
+        backImage.backgroundColor = [UIColor grayColor];
+        backImage.userInteractionEnabled = YES;
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHid)];
+        [backImage addGestureRecognizer:tap];
+        backImage.alpha = 0.4;
+        [self.view addSubview:backImage];
+    }
+    
 }
 
 - (void)keyboardHiden:(NSNotification *)noti {
     
     [backImage removeFromSuperview];
+    backImage = nil;
 }
 
 - (void)keyboardHid {
     [self.search resignFirstResponder];
+    self.search.text = @"";
+    
 }
 
 
@@ -97,14 +111,21 @@
 }
 #pragma mark - UISEARCHBAR DELEGATE
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
+    //[self.search resignFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
+    //[self.search resignFirstResponder];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
+    // [self.search resignFirstResponder];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+//    backImage.alpha = 0.1;
+//    [backImage removeFromSuperview];
+    
 }
 @end
