@@ -251,6 +251,7 @@ static  NSInteger goodCount; //记录等号
     return str;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.listMutableArr.count;
@@ -258,6 +259,7 @@ static  NSInteger goodCount; //记录等号
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     tableView.tableFooterView = [UIView new];
+    tableView.tableFooterView.backgroundColor = [UIColor clearColor];
     static NSString *identifier = @"KHLDianboCell";
     
     DianboCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];

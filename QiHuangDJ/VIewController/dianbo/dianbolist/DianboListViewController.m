@@ -125,6 +125,13 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 //    [mySearch setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     
     
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [self.collectionItem registerNib:[UINib nibWithNibName:@"DianboListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"QHidentifierDianboCollectionCell"];
+    [self registerNotification];
     // Request data..
     if ([self needsRequest]) {
         [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:@"" search:@""];
@@ -134,13 +141,6 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         [[KHLDataManager instance] categoryListHUDHolder:self.view uid:uid token:token];
         [self setNeedsRequest:FALSE];
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [self.collectionItem registerNib:[UINib nibWithNibName:@"DianboListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"QHidentifierDianboCollectionCell"];
-    [self registerNotification];
-   
 }
 
 -(void)registerNotification {

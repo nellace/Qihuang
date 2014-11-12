@@ -90,56 +90,6 @@
                         <outlet property="delegate" destination="-1" id="HdV-da-GFy"/>
                     </connections>
                 </tableView>
-                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ss-3l-xad" userLabel="bottom bar View">
-                    <rect key="frame" x="0.0" y="532" width="320" height="37"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCD-lk-Tqc">
-                            <rect key="frame" x="16" y="11" width="9" height="22"/>
-                            <state key="normal" image="zhibo_btn_fanhui.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="retRootVC:" destination="-1" eventType="touchUpInside" id="KRv-R4-q86"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="232" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="z0V-dK-OOz">
-                            <rect key="frame" x="236" y="11" width="56" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIR-JB-eMb">
-                            <rect key="frame" x="207" y="11" width="26" height="22"/>
-                            <state key="normal" image="zhibo_btn_zan.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="zhibo_icon_zan_press.png"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8B-AK-GZh" userLabel="discuss Btn">
-                            <rect key="frame" x="157" y="12" width="19" height="22"/>
-                            <state key="normal" image="zhibo_btn_huifu.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="discussMehod:" destination="-1" eventType="touchUpInside" id="sCW-jK-XUc"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVc-aU-Ssg">
-                            <rect key="frame" x="283" y="10" width="16" height="22"/>
-                            <state key="normal" image="icon_shoucang.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="icon_shoucang_press.png"/>
-                            <connections>
-                                <action selector="collectonMethod:" destination="-1" eventType="touchUpInside" id="sYV-QU-Shx"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="4Ss-3l-xad" secondAttribute="height" multiplier="320:37" id="O74-DQ-iu1"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DdI-HQ-jDv" userLabel="inputVIew">
                     <rect key="frame" x="0.0" y="567" width="320" height="44"/>
                     <subviews>
@@ -181,6 +131,56 @@
                         <constraint firstAttribute="width" secondItem="DmW-zl-0hh" secondAttribute="height" multiplier="320:153" id="pXC-bl-c8G"/>
                     </constraints>
                 </imageView>
+                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ss-3l-xad" userLabel="bottom bar View">
+                    <rect key="frame" x="0.0" y="531" width="320" height="37"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCD-lk-Tqc">
+                            <rect key="frame" x="16" y="9" width="9" height="22"/>
+                            <state key="normal" image="zhibo_btn_fanhui.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="retRootVC:" destination="-1" eventType="touchUpInside" id="KRv-R4-q86"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="232" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="z0V-dK-OOz">
+                            <rect key="frame" x="236" y="9" width="56" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIR-JB-eMb">
+                            <rect key="frame" x="207" y="9" width="26" height="22"/>
+                            <state key="normal" image="zhibo_btn_zan.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="zhibo_icon_zan_press.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8B-AK-GZh" userLabel="discuss Btn">
+                            <rect key="frame" x="157" y="10" width="19" height="22"/>
+                            <state key="normal" image="zhibo_btn_huifu.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="discussMehod:" destination="-1" eventType="touchUpInside" id="sCW-jK-XUc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVc-aU-Ssg">
+                            <rect key="frame" x="283" y="8" width="16" height="22"/>
+                            <state key="normal" image="icon_shoucang.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="icon_shoucang_press.png"/>
+                            <connections>
+                                <action selector="collectonMethod:" destination="-1" eventType="touchUpInside" id="sYV-QU-Shx"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="ORA-je-UF1"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -194,7 +194,7 @@
                 <constraint firstAttribute="trailing" secondItem="DmW-zl-0hh" secondAttribute="trailing" id="PPD-Y6-k2m"/>
                 <constraint firstAttribute="bottom" secondItem="DdI-HQ-jDv" secondAttribute="bottom" constant="-43" id="UUn-rE-nq8"/>
                 <constraint firstItem="e2H-ZF-Na3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V5Y-4R-NEF"/>
-                <constraint firstAttribute="bottom" secondItem="4Ss-3l-xad" secondAttribute="bottom" constant="-1" id="XKO-W1-jxh"/>
+                <constraint firstAttribute="bottom" secondItem="4Ss-3l-xad" secondAttribute="bottom" id="XKO-W1-jxh"/>
                 <constraint firstItem="8Ee-jb-9Oy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="caA-XZ-sAu"/>
                 <constraint firstItem="e2H-ZF-Na3" firstAttribute="top" secondItem="DmW-zl-0hh" secondAttribute="bottom" id="f9t-LQ-5Bn"/>
                 <constraint firstAttribute="trailing" secondItem="8Ee-jb-9Oy" secondAttribute="trailing" id="n4s-AY-kuz"/>
@@ -203,7 +203,7 @@
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="-2608" y="289"/>
+            <point key="canvasLocation" x="-2733" y="291"/>
         </view>
     </objects>
     <resources>
