@@ -1484,7 +1484,7 @@
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
 					3D44751619C972CE00D9B2B1 = {
-						DevelopmentTeam = DL6GBFL7D3;
+						DevelopmentTeam = 7L8LCGSAFD;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
