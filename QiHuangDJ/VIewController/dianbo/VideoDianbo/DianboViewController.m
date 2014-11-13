@@ -10,8 +10,8 @@
 #import "DianboCell.h"
 #import "LoginViewController.h"
 #import "JubaoViewController.h"
-#import "LTPlayerSDK.h"
-@interface DianboViewController () <LTPlayerDelegate>
+//#import "LTPlayerSDK.h"
+@interface DianboViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *shuruTextFiled;
 @property (weak, nonatomic) IBOutlet UIView *inputView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeight;
@@ -61,14 +61,14 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (void)fullScreenMehod {
-    [LTPlayerSDK showWithUserUnique:@"cbec2a7d04"
-                        videoUnique:@"128342e318"
-                          videoName:nil
-                          payerName:nil
-                          checkCode:nil
-                                 ap:YES
-                   inViewController:self
-                     playerDelegate:self];
+//    [LTPlayerSDK showWithUserUnique:@"cbec2a7d04"
+//                        videoUnique:@"128342e318"
+//                          videoName:nil
+//                          payerName:nil
+//                          checkCode:nil
+//                                 ap:YES
+//                   inViewController:self
+//                     playerDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

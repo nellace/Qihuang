@@ -15,6 +15,15 @@
 		39E5F7561A12144400A7279D /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E5F74C1A12144400A7279D /* UIScrollView+MJExtension.m */; };
 		39E5F7571A12144400A7279D /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E5F74E1A12144400A7279D /* UIScrollView+MJRefresh.m */; };
 		39E5F7581A12144400A7279D /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E5F7501A12144400A7279D /* UIView+MJExtension.m */; };
+		3D0F5A2D1A14B077003AB516 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DE71A11086E0065C784 /* AFDownloadRequestOperation.m */; };
+		3D0F5A2E1A14B07B003AB516 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DEB1A11086E0065C784 /* AFHTTPRequestOperation.m */; };
+		3D0F5A2F1A14B07D003AB516 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08E061A110F100065C784 /* AFHTTPClient.m */; };
+		3D0F5A301A14B082003AB516 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DED1A11086E0065C784 /* AFImageRequestOperation.m */; };
+		3D0F5A311A14B083003AB516 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DEF1A11086E0065C784 /* AFJSONRequestOperation.m */; };
+		3D0F5A321A14B085003AB516 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DF11A11086E0065C784 /* AFNetworkActivityIndicatorManager.m */; };
+		3D0F5A331A14B088003AB516 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DF41A11086E0065C784 /* AFPropertyListRequestOperation.m */; };
+		3D0F5A341A14B08A003AB516 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DF61A11086E0065C784 /* AFURLConnectionOperation.m */; };
+		3D0F5A351A14B08C003AB516 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DF81A11086E0065C784 /* AFXMLRequestOperation.m */; };
 		3D121C2819CAB47E0040870C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C2619CAB47E0040870C /* ViewController.m */; };
 		3D121C2919CAB47E0040870C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D121C2719CAB47E0040870C /* ViewController.xib */; };
 		3D121C3219CABCD10040870C /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D121C3019CABCD10040870C /* ClassifyViewController.m */; };
@@ -220,19 +229,6 @@
 		3DCA5A641A13300000A51183 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A611A13300000A51183 /* libMobClickLibrary.a */; };
 		3DCA5A661A13368900A51183 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A651A13368900A51183 /* Security.framework */; };
 		3DCA5A681A1336C300A51183 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A671A1336C300A51183 /* libiconv.dylib */; };
-		3DCA5A791A13462E00A51183 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6B1A13462E00A51183 /* libAFNetworking.a */; };
-		3DCA5A7A1A13462E00A51183 /* libGTMBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6C1A13462E00A51183 /* libGTMBase64.a */; };
-		3DCA5A7B1A13462E00A51183 /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6D1A13462E00A51183 /* libJSONKit.a */; };
-		3DCA5A7C1A13462E00A51183 /* libJSONModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6E1A13462E00A51183 /* libJSONModel.a */; };
-		3DCA5A7D1A13462E00A51183 /* libLTCloudPlayerSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A6F1A13462E00A51183 /* libLTCloudPlayerSDK.a */; };
-		3DCA5A7E1A13462E00A51183 /* libmVideoTracker_min.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A701A13462E00A51183 /* libmVideoTracker_min.a */; };
-		3DCA5A7F1A13462E00A51183 /* libMZMonitor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A711A13462E00A51183 /* libMZMonitor.a */; };
-		3DCA5A801A13462E00A51183 /* libNetworkReachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A721A13462E00A51183 /* libNetworkReachability.a */; };
-		3DCA5A811A13462E00A51183 /* libRegexKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A731A13462E00A51183 /* libRegexKit.a */; };
-		3DCA5A821A13462E00A51183 /* libSBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A741A13462E00A51183 /* libSBJSON.a */; };
-		3DCA5A831A13462E00A51183 /* libUtility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A751A13462E00A51183 /* libUtility.a */; };
-		3DCA5A841A13462E00A51183 /* mAppTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A771A13462E00A51183 /* mAppTracker.a */; };
-		3DCA5A851A13462E00A51183 /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA5A781A13462E00A51183 /* Resources.bundle */; };
 		3DCA5A871A134C1C00A51183 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A861A134C1C00A51183 /* QuartzCore.framework */; };
 		3DCA5A881A134CB900A51183 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA08DFA1A11086E0065C784 /* UIImageView+AFNetworking.m */; };
 		3DCA5A8C1A1360A000A51183 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCA5A8B1A1360A000A51183 /* libPushSDK.a */; };
@@ -567,21 +563,6 @@
 		3DCA5A631A13300000A51183 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		3DCA5A651A13368900A51183 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3DCA5A671A1336C300A51183 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
-		3DCA5A6A1A13462E00A51183 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
-		3DCA5A6B1A13462E00A51183 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAFNetworking.a; sourceTree = "<group>"; };
-		3DCA5A6C1A13462E00A51183 /* libGTMBase64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGTMBase64.a; sourceTree = "<group>"; };
-		3DCA5A6D1A13462E00A51183 /* libJSONKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJSONKit.a; sourceTree = "<group>"; };
-		3DCA5A6E1A13462E00A51183 /* libJSONModel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJSONModel.a; sourceTree = "<group>"; };
-		3DCA5A6F1A13462E00A51183 /* libLTCloudPlayerSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTCloudPlayerSDK.a; sourceTree = "<group>"; };
-		3DCA5A701A13462E00A51183 /* libmVideoTracker_min.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmVideoTracker_min.a; sourceTree = "<group>"; };
-		3DCA5A711A13462E00A51183 /* libMZMonitor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMZMonitor.a; sourceTree = "<group>"; };
-		3DCA5A721A13462E00A51183 /* libNetworkReachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNetworkReachability.a; sourceTree = "<group>"; };
-		3DCA5A731A13462E00A51183 /* libRegexKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libRegexKit.a; sourceTree = "<group>"; };
-		3DCA5A741A13462E00A51183 /* libSBJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSBJSON.a; sourceTree = "<group>"; };
-		3DCA5A751A13462E00A51183 /* libUtility.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUtility.a; sourceTree = "<group>"; };
-		3DCA5A761A13462E00A51183 /* LTPlayerSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTPlayerSDK.h; sourceTree = "<group>"; };
-		3DCA5A771A13462E00A51183 /* mAppTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = mAppTracker.a; sourceTree = "<group>"; };
-		3DCA5A781A13462E00A51183 /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
 		3DCA5A861A134C1C00A51183 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3DCA5A8A1A1360A000A51183 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		3DCA5A8B1A1360A000A51183 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
@@ -647,36 +628,24 @@
 				3DCA5A8E1A13610A00A51183 /* CFNetwork.framework in Frameworks */,
 				3DCA5A871A134C1C00A51183 /* QuartzCore.framework in Frameworks */,
 				3DCA5A681A1336C300A51183 /* libiconv.dylib in Frameworks */,
-				3DCA5A7E1A13462E00A51183 /* libmVideoTracker_min.a in Frameworks */,
 				3DCA5A661A13368900A51183 /* Security.framework in Frameworks */,
-				3DCA5A831A13462E00A51183 /* libUtility.a in Frameworks */,
-				3DCA5A791A13462E00A51183 /* libAFNetworking.a in Frameworks */,
 				3DED34621A10FCE5008483D4 /* libsqlite3.0.dylib in Frameworks */,
 				3D34C3781A0F962F009B3BDF /* AudioToolbox.framework in Frameworks */,
-				3DCA5A811A13462E00A51183 /* libRegexKit.a in Frameworks */,
-				3DCA5A7A1A13462E00A51183 /* libGTMBase64.a in Frameworks */,
 				3D34C3761A0F9626009B3BDF /* ImageIO.framework in Frameworks */,
 				3D34C3741A0F961C009B3BDF /* CoreFoundation.framework in Frameworks */,
 				3D34C3721A0F9611009B3BDF /* SystemConfiguration.framework in Frameworks */,
 				3D34C3701A0F9601009B3BDF /* CoreTelephony.framework in Frameworks */,
-				3DCA5A7D1A13462E00A51183 /* libLTCloudPlayerSDK.a in Frameworks */,
-				3DCA5A801A13462E00A51183 /* libNetworkReachability.a in Frameworks */,
 				3D34C36E1A0F95F2009B3BDF /* AdSupport.framework in Frameworks */,
 				3DCA5A4F1A1308D400A51183 /* libSocialSina.a in Frameworks */,
 				3DCA5A421A13011900A51183 /* libUMSocial_Sdk_4.2.a in Frameworks */,
-				3DCA5A821A13462E00A51183 /* libSBJSON.a in Frameworks */,
 				3DCA5A8C1A1360A000A51183 /* libPushSDK.a in Frameworks */,
 				3D34C36C1A0F95E8009B3BDF /* libz.dylib in Frameworks */,
-				3DCA5A7C1A13462E00A51183 /* libJSONModel.a in Frameworks */,
-				3DCA5A841A13462E00A51183 /* mAppTracker.a in Frameworks */,
-				3DCA5A7F1A13462E00A51183 /* libMZMonitor.a in Frameworks */,
 				3DCA5A641A13300000A51183 /* libMobClickLibrary.a in Frameworks */,
 				3D34C36A1A0F95DB009B3BDF /* libicucore.dylib in Frameworks */,
 				3DE8DAA21A0769F80048CAE8 /* MediaPlayer.framework in Frameworks */,
 				3D44751D19C972CE00D9B2B1 /* CoreGraphics.framework in Frameworks */,
 				3D44751F19C972CE00D9B2B1 /* UIKit.framework in Frameworks */,
 				3D44751B19C972CE00D9B2B1 /* Foundation.framework in Frameworks */,
-				3DCA5A7B1A13462E00A51183 /* libJSONKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,7 +890,6 @@
 			isa = PBXGroup;
 			children = (
 				3DCA5A891A1360A000A51183 /* JPushlib */,
-				3DCA5A691A13462E00A51183 /* iphoneos */,
 				3DCA5A601A13300000A51183 /* umengtongji */,
 				3DCA5A261A13011900A51183 /* UMSocial_Sdk_4.2 */,
 				39E5F7401A12144400A7279D /* MJRefresh */,
@@ -1372,28 +1340,6 @@
 			path = umengtongji;
 			sourceTree = "<group>";
 		};
-		3DCA5A691A13462E00A51183 /* iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				3DCA5A6A1A13462E00A51183 /* KeychainItemWrapper.h */,
-				3DCA5A6B1A13462E00A51183 /* libAFNetworking.a */,
-				3DCA5A6C1A13462E00A51183 /* libGTMBase64.a */,
-				3DCA5A6D1A13462E00A51183 /* libJSONKit.a */,
-				3DCA5A6E1A13462E00A51183 /* libJSONModel.a */,
-				3DCA5A6F1A13462E00A51183 /* libLTCloudPlayerSDK.a */,
-				3DCA5A701A13462E00A51183 /* libmVideoTracker_min.a */,
-				3DCA5A711A13462E00A51183 /* libMZMonitor.a */,
-				3DCA5A721A13462E00A51183 /* libNetworkReachability.a */,
-				3DCA5A731A13462E00A51183 /* libRegexKit.a */,
-				3DCA5A741A13462E00A51183 /* libSBJSON.a */,
-				3DCA5A751A13462E00A51183 /* libUtility.a */,
-				3DCA5A761A13462E00A51183 /* LTPlayerSDK.h */,
-				3DCA5A771A13462E00A51183 /* mAppTracker.a */,
-				3DCA5A781A13462E00A51183 /* Resources.bundle */,
-			);
-			path = iphoneos;
-			sourceTree = "<group>";
-		};
 		3DCA5A891A1360A000A51183 /* JPushlib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1700,7 +1646,6 @@
 				3D90A16C1A124471003AF951 /* nav_btn_quxiao@2x.png in Resources */,
 				3D90A1831A124471003AF951 /* zhibo_btn_zan_press@2x.png in Resources */,
 				3D90A1141A124471003AF951 /* denglu_btn_zidongdenglu_press@2x.png in Resources */,
-				3DCA5A851A13462E00A51183 /* Resources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1719,6 +1664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D0F5A341A14B08A003AB516 /* AFURLConnectionOperation.m in Sources */,
 				39E5F7531A12144400A7279D /* MJRefreshConst.m in Sources */,
 				39E5F7541A12144400A7279D /* MJRefreshFooterView.m in Sources */,
 				FC708A7119ED4C3E002DF952 /* KHLPICRecommendedCell.m in Sources */,
@@ -1727,10 +1673,15 @@
 				3D95A2081A11C2930015F41B /* infomationForHeader.m in Sources */,
 				3D121C3C19CABD100040870C /* InfomationViewController.m in Sources */,
 				3DD9646419FFA934004C3AF1 /* DianboCell.m in Sources */,
+				3D0F5A331A14B088003AB516 /* AFPropertyListRequestOperation.m in Sources */,
+				3D0F5A351A14B08C003AB516 /* AFXMLRequestOperation.m in Sources */,
+				3D0F5A321A14B085003AB516 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				FC834C8919F0EEA5009E17FF /* KHLInformationTableViewController.m in Sources */,
 				3D121C4619CABD270040870C /* RegisterViewController.m in Sources */,
 				3D121C4119CABD1B0040870C /* LoginViewController.m in Sources */,
+				3D0F5A2F1A14B07D003AB516 /* AFHTTPClient.m in Sources */,
 				FC5BD25019EFA6BF00D91A9C /* KHLPICSettingsViewController.m in Sources */,
+				3D0F5A311A14B083003AB516 /* AFJSONRequestOperation.m in Sources */,
 				3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */,
 				FC5E8AB819FF349F00925EBD /* KHLDataManager.m in Sources */,
 				3D4003E819D3BEC3006622E4 /* KHLEntertainer.m in Sources */,
@@ -1741,8 +1692,10 @@
 				3D44757E19C984AC00D9B2B1 /* MQLCustomViewController.m in Sources */,
 				3D44752B19C972CE00D9B2B1 /* AppDelegate.m in Sources */,
 				3DED34451A10CD4C008483D4 /* JubaoViewController.m in Sources */,
+				3D0F5A2E1A14B07B003AB516 /* AFHTTPRequestOperation.m in Sources */,
 				3D121C2819CAB47E0040870C /* ViewController.m in Sources */,
 				3D121C3219CABCD10040870C /* ClassifyViewController.m in Sources */,
+				3D0F5A2D1A14B077003AB516 /* AFDownloadRequestOperation.m in Sources */,
 				FCED6BEA19EE553F0009F8FF /* KHLPICVideoItemCell.m in Sources */,
 				3D121C5119CAE4B80040870C /* SuperStartViewController.m in Sources */,
 				3D44757C19C984AC00D9B2B1 /* CustomNavViewController.m in Sources */,
@@ -1764,6 +1717,7 @@
 				3D39636319FF3B4B00F6C004 /* DataManagerModel.m in Sources */,
 				3DCA5A881A134CB900A51183 /* UIImageView+AFNetworking.m in Sources */,
 				39E5F7521A12144400A7279D /* MJRefreshBaseView.m in Sources */,
+				3D0F5A301A14B082003AB516 /* AFImageRequestOperation.m in Sources */,
 				FC3FD84E1A0F3327001E7562 /* KHLCategorySliderTableViewCell.m in Sources */,
 				FC511E6B1A0A526000518265 /* KHLGamesphereViewController.m in Sources */,
 				FC61088B19F4C2A60057BA0E /* KHLPICProfileViewController.m in Sources */,
@@ -1912,11 +1866,10 @@
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2",
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/Sina",
 					"$(PROJECT_DIR)/ThrildLib/umengtongji",
-					"$(PROJECT_DIR)/ThrildLib/iphoneos",
 					"$(PROJECT_DIR)/ThrildLib/JPushlib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1947,11 +1900,10 @@
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2",
 					"$(PROJECT_DIR)/ThrildLib/UMSocial_Sdk_4.2/Sina",
 					"$(PROJECT_DIR)/ThrildLib/umengtongji",
-					"$(PROJECT_DIR)/ThrildLib/iphoneos",
 					"$(PROJECT_DIR)/ThrildLib/JPushlib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;

@@ -88,7 +88,7 @@
 
 - (void)shareBtnMethond:(UIButton *)sender {
     [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:@"687706a51ff9836859a643485fc684bddacc3576"
+appKey:@"687706a51ff9836859a643485fc684bddacc3576"
                                       shareText:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social"
                                      shareImage:[UIImage imageNamed:@"icon.png"]
                                 shareToSnsNames:@[UMShareToSina]
