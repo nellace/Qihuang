@@ -248,7 +248,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     //    rightView = [[[NSBundle mainBundle] loadNibNamed:@"SliderRightList" owner:self options:nil] lastObject];
     rightView = [[UITableView alloc] init];
     //    rightView.frame = CGRectMake(320 - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height + 64);
-    rightView.frame = CGRectMake(320 - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height + 64);
+    rightView.frame = CGRectMake(320 - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height);
     rightView.delegate = self;
     rightView.dataSource = self;
     [rightView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"celan_bg@2x.png"]]];
@@ -432,7 +432,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20.0f;
+    return 64.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -491,7 +491,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     if (-1 < indexPath.row < self.categories.count) {
         CategoryListInterface *instance = [self.categories objectAtIndex:indexPath.row];
         if (instance.category) {
-            [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:@"" search:@""];
+            [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:instance.category page:@"" search:@""];
         }
     }
 }
