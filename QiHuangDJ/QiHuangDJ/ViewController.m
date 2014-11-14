@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutScroller;
 @property (weak, nonatomic) IBOutlet UIPageControl *headerPageControl;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *backdropImageViewCollection;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *moduleLabelCollection;
+
 
 @property (nonatomic, weak) NSTimer *timer;
 @property (nonatomic, strong) NSMutableArray *backdropImages;
@@ -289,8 +291,9 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             [self.backdropImageViewCollection[i] setImageWithURL:[NSURL URLWithString:[self.backdropImages[i] backdropImageUrl]]];
         } else {
             [self.backdropImageViewCollection[i] setImage:[UIImage imageNamed:@"huanchong_shouye.png"]];
-
         }
+        
+        [self.moduleLabelCollection[i] setText:[NSString stringWithFormat:@"%@", backdrop.backdropImageName]];
     }
 }
 
@@ -331,21 +334,21 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 
 - (IBAction)LOL:(id)sender
 {
-    classify.title = @"英雄联盟";
+    classify.title = [self.moduleLabelCollection[3] text];;
     classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryLOL"];
     [self.navigationController pushViewController:classify animated:YES];
 }
 
 - (IBAction)LSchuanshuo:(id)sender
 {
-    classify.title = @"炉石传说";
+    classify.title = [self.moduleLabelCollection[2] text];;
     classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryHearthStone"];
     [self.navigationController pushViewController:classify animated:YES];
 }
 
 - (IBAction)dota2:(id)sender
 {
-    classify.title = @"刀塔2";
+    classify.title = [self.moduleLabelCollection[4] text];;
     classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryDota"];
     [self.navigationController pushViewController:classify animated:YES];
 }
