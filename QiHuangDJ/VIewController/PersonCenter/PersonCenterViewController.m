@@ -8,6 +8,8 @@
 
 #import "PersonCenterViewController.h"
 #import "LoginViewController.h"
+#import "DianboViewController.h"
+#import "InfomationViewController.h"
 
 #import "KHLColor.h"
 #import "KHLPICHeaderView.h"
@@ -160,6 +162,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             self.state = KHLPICListStateCollection;
     } else {
         self.state = KHLPICListStateRecommend;
+        
     }
     
     //[self refreshTableView];
@@ -278,7 +281,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
         return self.collections.count;
     } else {
         NSLog(@"will never appear..");
-        return 8;
+        return 0;
     }
     
     return 0;
@@ -356,6 +359,8 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
         [viCell.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [viCell.titleLabel setTextAlignment:NSTextAlignmentNatural];
         
+        viCell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        
         // Asign video item cell to return cell..
         cell = viCell;
     }
@@ -408,6 +413,14 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
         [recoCell.leftLabel setFont:labelFont];
         [recoCell.rightLabel setFont:labelFont];
         
+        // Add click button method..
+        [recoCell.leftButton setTag:(indexPath.row * 2)];
+        [recoCell.rightButton setTag:(indexPath.row * 2 + 1)];
+        [recoCell.leftButton addTarget:self action:@selector(clickRecommendItem:) forControlEvents:UIControlEventTouchUpInside];
+        [recoCell.rightButton addTarget:self action:@selector(clickRecommendItem:) forControlEvents:UIControlEventTouchUpInside];
+        
+        recoCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         // Asign recommended cell to return cell..
         cell = recoCell;
     }
@@ -416,14 +429,63 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
     return cell;
 }
 
-
-#pragma makr - UITABLEVIEW-DATASCOUR
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (IBAction)clickRecommendItem:(UIButton *)sender
+{
+    if (-1 < sender.tag < self.recommends.count) {
+        RecommendListInterface *instance = [self.recommends objectAtIndex:sender.tag];
+        if (instance) {
+            UIViewController *targetViewController = nil;
+            if ([@"video" isEqualToString:instance.type]) {
+                targetViewController = [[DianboViewController alloc] init];
+                // Configure prestrain..
+            } else if ([@"article" isEqualToString:instance.type]) {
+                targetViewController = [[InfomationViewController alloc] init];
+                SearchInterface *prestrain = [[SearchInterface alloc] init];
+                [prestrain setTitle:instance.title];
+                [prestrain setTime:instance.time];
+                [prestrain setType:instance.type];
+                [prestrain setCategory:instance.category];
+                [prestrain setIdentity:instance.identity];
+                [prestrain setCount:instance.count];
+                [(InfomationViewController *)targetViewController setPrestrain:prestrain];
+            } else return;
+            [self.navigationController pushViewController:targetViewController animated:TRUE];
+        }
+    }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 1;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:TRUE];
+    if (self.isLogIn) {
+        SearchInterface *prestrain = [[SearchInterface alloc] init];
+        if (self.state == KHLPICListStateCollection) {
+            CollectionListInterface *instance = [self.collections objectAtIndex:indexPath.row];
+            prestrain.title = instance.title;
+            prestrain.identity = instance.identity;
+            prestrain.category = instance.category;
+            prestrain.time = instance.time;
+            prestrain.count = instance.count;
+            prestrain.publisher = instance.publisher;
+        } else if (self.state == KHLPICListStateSubscription) {
+            SubscriptionListInterface *instance = [self.subscriptions objectAtIndex:indexPath.row];
+            prestrain.title = instance.title;
+            prestrain.identity = instance.identity;
+            prestrain.category = instance.category;
+            prestrain.time = instance.time;
+            prestrain.count = instance.count;
+            prestrain.publisher = instance.publisher;
+        } else return;
+        
+        InfomationViewController *informationViewController = [[InfomationViewController alloc] init];
+        [informationViewController setPrestrain:prestrain];
+        [self.navigationController pushViewController:informationViewController animated:TRUE];
+    } else return;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1.0f;
 }
 
 
@@ -433,7 +495,8 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 {
     NSLog(@"pressMyCollection");
     if (self.state == KHLPICListStateRecommend) {
-        NSLog(@"to log in view controller");
+        [self setLogIn:FALSE];
+        [self pressPhotoImageView];
         return;
     }
     
@@ -450,7 +513,8 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 {
     NSLog(@"pressMySubscription");
     if (self.state == KHLPICListStateRecommend) {
-        NSLog(@"to log in view controller");
+        [self setLogIn:FALSE];
+        [self pressPhotoImageView];
         return;
     }
     
@@ -610,7 +674,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             interface.count = [NSString stringWithFormat:@"%@", [data objectForKey:@"count"]];
             interface.publisher = [NSString stringWithFormat:@"%@", [data objectForKey:@"nickname"]];
             interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
-            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"type"]];
+            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
             [self.recommends addObject:interface];
             // NSLog(@"add %@", interface.title);
         }
@@ -658,27 +722,27 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             interface.count = [NSString stringWithFormat:@"%@", [data objectForKey:@"count"]];
             interface.publisher = [NSString stringWithFormat:@"%@", [data objectForKey:@"nickname"]];
             interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
-            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"type"]];
+            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
             [self.subscriptions addObject:interface];
         }
         
         // TEST
-        if (self.subscriptions.count == 0)
-            for (int i = 0; i < 3; i++) {
-                SubscriptionListInterface *interface = [[SubscriptionListInterface alloc] init];
-                interface.page = @"1";
-                interface.size = @"1";
-                interface.identity = @"1";
-                interface.category = @"1";
-                interface.title = @"北越雪谱";
-                interface.imageUrl = @"http://img3.douban.com/lpic/s1745705.jpg";
-                interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
-                interface.count = @"1776";
-                interface.publisher = @"牧之";
-                interface.time = @"1500-01-01";
-                interface.type = @"article";
-                [self.subscriptions addObject:interface];
-            }
+//        if (self.subscriptions.count == 0)
+//            for (int i = 0; i < 3; i++) {
+//                SubscriptionListInterface *interface = [[SubscriptionListInterface alloc] init];
+//                interface.page = @"1";
+//                interface.size = @"1";
+//                interface.identity = @"1";
+//                interface.category = @"1";
+//                interface.title = @"北越雪谱";
+//                interface.imageUrl = @"http://img3.douban.com/lpic/s1745705.jpg";
+//                interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
+//                interface.count = @"1776";
+//                interface.publisher = @"牧之";
+//                interface.time = @"1500-01-01";
+//                interface.type = @"article";
+//                [self.subscriptions addObject:interface];
+//            }
         
         // Refresh list layout after data received..
         [self refreshTableView];
@@ -723,27 +787,27 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
                     interface.count = [NSString stringWithFormat:@"%@", [data objectForKey:@"count"]];
                     interface.publisher = [NSString stringWithFormat:@"%@", [data objectForKey:@"nickname"]];
                     interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
-                    interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"type"]];
-                    [self.subscriptions addObject:interface];
+                    interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
+                    [self.collections addObject:interface];
                 }
         
-        // TEST
-        if (self.subscriptions.count == 0)
-            for (int i = 0; i < 7; i++) {
-                CollectionListInterface *interface = [[CollectionListInterface alloc] init];
-                interface.page = @"1";
-                interface.size = @"1";
-                interface.identity = @"1";
-                interface.category = @"1";
-                interface.title = @"舜水先生文集";
-                interface.imageUrl = @"http://gd1.alicdn.com/imgextra/i1/1914798654/T2GF4EX5NXXXXXXXXX-1914798654.jpg";
-                interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
-                interface.count = @"5210";
-                interface.publisher = @"舜水";
-                interface.time = @"1692-05-21";
-                interface.type = @"article";
-                [self.collections addObject:interface];
-            }
+//        // TEST
+//        if (self.subscriptions.count == 0)
+//            for (int i = 0; i < 7; i++) {
+//                CollectionListInterface *interface = [[CollectionListInterface alloc] init];
+//                interface.page = @"1";
+//                interface.size = @"1";
+//                interface.identity = @"1";
+//                interface.category = @"1";
+//                interface.title = @"舜水先生文集";
+//                interface.imageUrl = @"http://gd1.alicdn.com/imgextra/i1/1914798654/T2GF4EX5NXXXXXXXXX-1914798654.jpg";
+//                interface.content = @"喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝喝";
+//                interface.count = @"5210";
+//                interface.publisher = @"舜水";
+//                interface.time = @"1692-05-21";
+//                interface.type = @"article";
+//                [self.collections addObject:interface];
+//            }
         
         // Refresh list layout after data received..
         [self refreshTableView];

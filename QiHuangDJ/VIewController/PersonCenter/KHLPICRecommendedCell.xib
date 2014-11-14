@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -46,6 +46,12 @@
                                             </mask>
                                         </variation>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWs-88-yCO" userLabel="Left Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="158" height="102"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -57,10 +63,14 @@
                                     <constraint firstAttribute="trailing" secondItem="toj-mX-fE0" secondAttribute="trailing" id="NEo-oR-hgg"/>
                                     <constraint firstAttribute="bottom" secondItem="toj-mX-fE0" secondAttribute="bottom" id="byl-Sr-9II"/>
                                     <constraint firstItem="toj-mX-fE0" firstAttribute="leading" secondItem="fig-tL-ECF" secondAttribute="leading" id="e8x-Es-tQB"/>
+                                    <constraint firstAttribute="bottom" secondItem="AWs-88-yCO" secondAttribute="bottom" id="eLD-vz-0bn"/>
                                     <constraint firstAttribute="bottom" secondItem="4on-SN-QKt" secondAttribute="bottom" id="eQi-dc-GRr"/>
+                                    <constraint firstItem="AWs-88-yCO" firstAttribute="top" secondItem="fig-tL-ECF" secondAttribute="top" id="gDw-qA-4i1"/>
                                     <constraint firstAttribute="width" secondItem="fig-tL-ECF" secondAttribute="height" multiplier="79:50" id="hA2-Z2-MU9"/>
+                                    <constraint firstItem="AWs-88-yCO" firstAttribute="leading" secondItem="fig-tL-ECF" secondAttribute="leading" id="mWx-HS-LuL"/>
                                     <constraint firstItem="fxG-FH-w6n" firstAttribute="leading" secondItem="fig-tL-ECF" secondAttribute="leading" id="oBh-6R-WhS"/>
                                     <constraint firstAttribute="trailing" secondItem="4on-SN-QKt" secondAttribute="trailing" constant="8" id="qIi-1b-EAO"/>
+                                    <constraint firstAttribute="trailing" secondItem="AWs-88-yCO" secondAttribute="trailing" id="xgF-hn-xpb"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -87,13 +97,22 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IP2-Ms-fkC" userLabel="Right Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="158" height="102"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IP2-Ms-fkC" secondAttribute="trailing" id="3dp-Vz-egn"/>
                                     <constraint firstAttribute="bottom" secondItem="zkf-Q2-O5E" secondAttribute="bottom" id="9Km-nE-Bk3"/>
                                     <constraint firstAttribute="bottom" secondItem="4eu-8p-S3M" secondAttribute="bottom" id="EI3-pg-lIT"/>
                                     <constraint firstAttribute="trailing" secondItem="zkf-Q2-O5E" secondAttribute="trailing" constant="8" id="H07-1h-sjy"/>
+                                    <constraint firstItem="IP2-Ms-fkC" firstAttribute="top" secondItem="8qD-iM-0fw" secondAttribute="top" id="JKQ-lb-p0p"/>
                                     <constraint firstItem="4eu-8p-S3M" firstAttribute="leading" secondItem="8qD-iM-0fw" secondAttribute="leading" id="KSM-Zc-XWy"/>
+                                    <constraint firstAttribute="bottom" secondItem="IP2-Ms-fkC" secondAttribute="bottom" id="MOw-71-qhz"/>
                                     <constraint firstItem="JtS-8c-1jo" firstAttribute="leading" secondItem="8qD-iM-0fw" secondAttribute="leading" id="MgP-tK-dXS"/>
                                     <constraint firstItem="JtS-8c-1jo" firstAttribute="height" secondItem="zkf-Q2-O5E" secondAttribute="height" id="Ntx-Qs-5cA"/>
                                     <constraint firstAttribute="bottom" secondItem="JtS-8c-1jo" secondAttribute="bottom" id="O49-md-d31"/>
@@ -101,6 +120,7 @@
                                     <constraint firstAttribute="trailing" secondItem="4eu-8p-S3M" secondAttribute="trailing" id="QPa-qj-vQH"/>
                                     <constraint firstItem="zkf-Q2-O5E" firstAttribute="leading" secondItem="8qD-iM-0fw" secondAttribute="leading" constant="8" id="Xjy-Mf-3z3"/>
                                     <constraint firstAttribute="width" secondItem="8qD-iM-0fw" secondAttribute="height" multiplier="79:50" id="eNN-vb-PoA"/>
+                                    <constraint firstItem="IP2-Ms-fkC" firstAttribute="leading" secondItem="8qD-iM-0fw" secondAttribute="leading" id="ovH-XU-wXD"/>
                                     <constraint firstItem="4eu-8p-S3M" firstAttribute="top" secondItem="8qD-iM-0fw" secondAttribute="top" id="tRR-mB-yuw"/>
                                 </constraints>
                                 <variation key="default">
@@ -132,13 +152,15 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="leftBackdropView" destination="toj-mX-fE0" id="q9n-Zp-USv"/>
+                <outlet property="leftButton" destination="AWs-88-yCO" id="h1d-Xf-rkF"/>
                 <outlet property="leftImageView" destination="fxG-FH-w6n" id="2gO-Wo-fAw"/>
                 <outlet property="leftLabel" destination="4on-SN-QKt" id="G4j-XM-Nk9"/>
                 <outlet property="rightBackdropView" destination="JtS-8c-1jo" id="9Op-Fy-Ucw"/>
+                <outlet property="rightButton" destination="IP2-Ms-fkC" id="ukQ-cv-LIO"/>
                 <outlet property="rightImageView" destination="4eu-8p-S3M" id="SXh-vC-AUt"/>
                 <outlet property="rightLabel" destination="zkf-Q2-O5E" id="Qe0-dd-D8e"/>
             </connections>
-            <point key="canvasLocation" x="168" y="141.5"/>
+            <point key="canvasLocation" x="168" y="141"/>
         </tableViewCell>
     </objects>
 </document>
