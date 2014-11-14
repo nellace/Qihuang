@@ -333,6 +333,7 @@ static  NSInteger goodCount; //记录等号
         [[KHLDataManager instance] replyHUDHolder:self.view uid:uidStr target:comment_id content:self.shuruTextFiled.text token:tokenStr targetType:modelStr];
     }
 }
+//sg
 - (IBAction)collectonMethod:(id)sender {
     if ([KHLColor isLogin]) {
         NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
