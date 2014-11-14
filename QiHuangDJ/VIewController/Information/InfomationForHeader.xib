@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -12,23 +12,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我大标题党我大标题党我大标题党" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WjX-Rm-pH6" userLabel="Title Label">
-                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                    <rect key="frame" x="8" y="8" width="304" height="20.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来源：网    时间：2014.09.21    浏览量：1333    编辑：浪里个浪" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EC-sC-gS3" userLabel="Attach Label">
-                    <rect key="frame" x="8" y="37" width="304" height="11"/>
+                    <rect key="frame" x="8" y="36.5" width="304" height="11"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
                     <color key="textColor" red="0.60204081629999995" green="0.60204081629999995" blue="0.60204081629999995" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhibo_huanchongtu.png" translatesAutoresizingMaskIntoConstraints="NO" id="20D-TA-Ich" userLabel="Photo Image View">
-                    <rect key="frame" x="8" y="56" width="304" height="147"/>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRD-x3-K7h">
+                    <rect key="frame" x="8" y="55.5" width="304" height="54"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="147" id="Hsr-kL-Y2P"/>
+                        <constraint firstAttribute="height" constant="54" id="K3h-bf-XJv"/>
                     </constraints>
-                </imageView>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="fDu-u5-4cy"/>
+                    </connections>
+                </webView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赛前点评：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4S-sE-EIl" userLabel="Comment Indicating Label">
                     <rect key="frame" x="8" y="273" width="304" height="17"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -48,27 +52,15 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRD-x3-K7h">
-                    <rect key="frame" x="8" y="211" width="304" height="54"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="54" id="K3h-bf-XJv"/>
-                    </constraints>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="fDu-u5-4cy"/>
-                    </connections>
-                </webView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="aRD-x3-K7h" firstAttribute="top" secondItem="6EC-sC-gS3" secondAttribute="bottom" constant="8" id="0A2-x7-3N6"/>
                 <constraint firstAttribute="trailing" secondItem="6EC-sC-gS3" secondAttribute="trailing" constant="8" id="6kb-x8-X03"/>
-                <constraint firstItem="aRD-x3-K7h" firstAttribute="top" secondItem="20D-TA-Ich" secondAttribute="bottom" constant="8" id="7YL-4C-GZ7"/>
                 <constraint firstItem="6EC-sC-gS3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="9C5-vY-XvM"/>
                 <constraint firstAttribute="trailing" secondItem="y4S-sE-EIl" secondAttribute="trailing" constant="8" id="DsM-q3-cdm"/>
                 <constraint firstItem="s5l-ip-z4V" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Isk-if-DVR"/>
                 <constraint firstAttribute="trailing" secondItem="aRD-x3-K7h" secondAttribute="trailing" constant="8" id="NDw-pb-xLb"/>
-                <constraint firstItem="20D-TA-Ich" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Pa2-9p-yUG"/>
-                <constraint firstItem="20D-TA-Ich" firstAttribute="top" secondItem="6EC-sC-gS3" secondAttribute="bottom" constant="8" id="QWe-su-6og"/>
                 <constraint firstAttribute="trailing" secondItem="WjX-Rm-pH6" secondAttribute="trailing" constant="8" id="QXH-J7-hz0"/>
                 <constraint firstItem="s5l-ip-z4V" firstAttribute="top" secondItem="y4S-sE-EIl" secondAttribute="bottom" constant="8" id="Rqx-ox-gi9"/>
                 <constraint firstItem="WjX-Rm-pH6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="TPB-4S-vqY"/>
@@ -78,7 +70,6 @@
                 <constraint firstItem="y4S-sE-EIl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="cmi-MJ-UeM"/>
                 <constraint firstAttribute="bottom" secondItem="s5l-ip-z4V" secondAttribute="bottom" constant="12" id="mvT-5m-Llg"/>
                 <constraint firstItem="WjX-Rm-pH6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="ocP-pQ-qwC"/>
-                <constraint firstAttribute="trailing" secondItem="20D-TA-Ich" secondAttribute="trailing" constant="8" id="sla-I8-noa"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -86,7 +77,6 @@
             <connections>
                 <outlet property="attachLabel" destination="6EC-sC-gS3" id="YTt-pI-7by"/>
                 <outlet property="commentLabel" destination="s5l-ip-z4V" id="LG1-0x-hoi"/>
-                <outlet property="photoImageView" destination="20D-TA-Ich" id="KNl-AG-Sys"/>
                 <outlet property="titleLabel" destination="WjX-Rm-pH6" id="Kwr-ul-eoO"/>
                 <outlet property="webViewHeight" destination="K3h-bf-XJv" id="0fg-E5-gLS"/>
                 <outlet property="webViewLaytou" destination="aRD-x3-K7h" id="hWB-HY-Keh"/>
@@ -94,7 +84,4 @@
             <point key="canvasLocation" x="-682" y="185"/>
         </view>
     </objects>
-    <resources>
-        <image name="zhibo_huanchongtu.png" width="25" height="25"/>
-    </resources>
 </document>
