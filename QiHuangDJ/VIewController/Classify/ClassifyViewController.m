@@ -8,21 +8,34 @@
 
 #import "ClassifyViewController.h"
 #import "VideoLiveViewController.h"
-//#import "NewsViewController.h"
 #import "InfomationViewController.h"
 #import "DianboListViewController.h"
 #import "KHLInformationTableViewController.h"
 #import "KHLSearchResultViewController.h"
-@interface ClassifyViewController () <UISearchBarDelegate>
-{
+
+@interface ClassifyViewController () <UISearchBarDelegate> {
     UIImageView *backImage;
 }
-@property (weak, nonatomic) IBOutlet UISearchBar *search;
 
+
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *moduleImageViews;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *search;
+@property (nonatomic, strong) NSMutableArray *modules;
 
 @end
 
 @implementation ClassifyViewController
+
+
+
+#pragma mark - ATTRIBUTES GETTER AND SETTER
+
+- (NSMutableArray *)modules
+{
+    if (!_modules) _modules = [[NSMutableArray alloc] init];
+    return _modules;
+}
 
 
 
@@ -58,23 +71,27 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowWithClass:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHidenWithClass:) name:UIKeyboardWillHideNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchResultMethod:) name:@"KHLNotiSearchResult" object:nil];
-    
     backImage.hidden = YES;
     [self setCascTitle:self.title];
+    
+    // Register notifications..
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShowWithClass:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHidenWithClass:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchResultMethod:) name:@"KHLNotiSearchResult" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subpageNotified:) name:@"KHLNotiSubpageAcquired" object:nil];
+    
+    // Request subpage data..
+    [[KHLDataManager instance] subpageHUDHolder:self.view category:self.category];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
+    // Remove notifications..
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiSearchResult" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiSubpageAcquired" object:nil];
 }
-//sg
 
 - (void)keyboardShowWithClass :(NSNotification *)noti {
 
@@ -208,4 +225,64 @@
 //    [backImage removeFromSuperview];
     
 }
+
+
+
+#pragma mark - CUSTOM LAYOUT METHODES
+
+- (void)refreshModules
+{
+    if (self.modules.count < 3) {
+        return;
+    } else {
+        for (int i = 0; i < 3; i++) {
+            [[self.moduleImageViews objectAtIndex:i] setImageWithURL:[NSURL URLWithString:[[self.modules objectAtIndex:i] imageUrl]]];
+        }
+    }
+}
+
+
+
+
+#pragma mark - NOTIFICATION METHODES
+
+- (void)subpageNotified: (NSNotification *)notification
+{
+    NSDictionary *dict = notification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        NSDictionary *result = [dict objectForKey:@"result"];
+        if ((!result) || (result.count == 0)) {
+            NSLog(@"妈蛋，result里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
+        
+        [self.modules removeAllObjects];
+        for (NSDictionary *data in result) {
+            SubpageInterface *interface = [[SubpageInterface alloc] init];
+            interface.category = [NSString stringWithFormat:@"%@", [data objectForKey:@"cate_id"]];
+            interface.title = [NSString stringWithFormat:@"%@", [data objectForKey:@"title"]];
+            interface.imageUrl = [NSString stringWithFormat:@"%@", [data objectForKey:@"image"]];
+            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
+            [self.modules addObject:interface];
+        }
+        
+        // Refresh modules..
+        [self refreshModules];
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+}
+
+
+
+
+
 @end
