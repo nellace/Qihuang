@@ -357,3 +357,16 @@
 
 
 
+#pragma mark - 二级导航
+
+@interface SubpageInterface : NSObject
+
+@property (nonatomic, strong) NSString *title;              // title
+@property (nonatomic, strong) NSString *category;           // cate_id
+@property (nonatomic, strong) NSString *imageUrl;           // image
+@property (nonatomic, strong) NSString *type;               // model
+
+@end
+
+
+
