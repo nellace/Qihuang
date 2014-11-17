@@ -110,6 +110,9 @@
     if (pCount > 1) {
         pCount--;
     }
+    if (pCount > [self.allPages intValue]) {
+        return;
+    }
     [[KHLDataManager instance]informationListHUDHolder:self.view category:self.category type:self.type keyword:@"" page:[NSString stringWithFormat:@"%D",pCount]];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -122,6 +125,13 @@
 - (void)footerRereshing
 {
     pCount++;
+    if (pCount > [self.allPages intValue]) {
+        UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"没有更多内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alter show];
+        [self.tableView footerEndRefreshing];
+        [self.tableView footerEndRefreshing];
+        return;
+    }
     if (pCount > 1) {
         [[KHLDataManager instance]informationListHUDHolder:self.view category:self.category type:self.type keyword:@"" page:[NSString stringWithFormat:@"%D",pCount]];
     }
