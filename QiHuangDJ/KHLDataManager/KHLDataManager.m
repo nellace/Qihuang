@@ -534,6 +534,7 @@
 }
 
 #pragma mark - 9.1 （2.16）添加收藏
+//sg
 - (void)collectArticleHUDHolder:(UIView *)holder
                             uid:(UIView *)uid
                        identity:(UIView *)identity
@@ -894,7 +895,7 @@
      }];
 }
 
-
+//sg 2.26
 - (void)goodHUDHolder: (UIView *)holder
                   uid: (NSString *)uid
                 token: (NSString *)token
@@ -929,6 +930,35 @@
          // Stop progress HUD..
          [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
      }];
+}
+
+- (void)zanHUDHolder: (UIView *)holder
+                 uid: (NSString *)uid
+               token: (NSString *)token
+             info_id:(NSString *)info_id
+               model:(NSString*)model
+{
+    [MBProgressHUD showHUDAddedTo:holder animated:YES];
+    NSString *ustr = [NSString stringWithFormat:KHLUrlGoodWithComment];
+    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *param = [[NSDictionary alloc]initWithObjectsAndKeys:
+                                                    uid,@"uid",
+                                                    token,@"token",
+                                                    info_id,@"info_id",
+                                                    model,@"model",nil];
+    NSLog(@"good url=%@ param=%@", ustr, param);
+    AFHTTPClient *client = [[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
+    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+        NSLog(@"good succ=\n%@", json);
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"KHLUrlZanWithModel" object:json];
+        [MBProgressHUD hideHUDForView:holder animated:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"zan fail = \n%@",error);
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"KHLUrlZanWithModel" object:nil];
+        [MBProgressHUD hideHUDForView:holder animated:YES];
+    }];
 }
 
 - (void)badHUDHolder:(UIView *)holder uid:(NSString *)uid token:(NSString *)token comment_id:(NSString *)comment_id {

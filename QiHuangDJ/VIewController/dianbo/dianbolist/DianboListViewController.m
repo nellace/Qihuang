@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         [self setCategoryListIndex:-1];
         
         
-        imgBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        imgBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height)];
         imgBG.backgroundColor = [UIColor blackColor];
         imgBG.userInteractionEnabled = YES;
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHid)];
@@ -141,6 +141,9 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         [[KHLDataManager instance] categoryListHUDHolder:self.view uid:uid token:token];
         [self setNeedsRequest:FALSE];
     }
+    //键盘出现通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHiden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 -(void)registerNotification {
@@ -149,9 +152,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoOnDemandListNotified:) name:@"KHLNotiVODListAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categorySubscribeNotified:) name:@"KHLNotiSubscribeCategory" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(categoryUnsubscribeNotified:) name:@"KHLNotiUnsubscribeCategory" object:nil];
-    //键盘出现通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHiden:) name:UIKeyboardWillHideNotification object:nil];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -175,6 +176,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 #pragma mark
 #pragma mark REFRESH
+//sg
 - (void)addHeader
 {
     __unsafe_unretained typeof(self) vc = self;
@@ -300,7 +302,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 - (void)keyboardHiden:(NSNotification *)noti {
     imgBG.hidden = YES;
     fenleiBtn.hidden = NO;
-    [imgBG removeFromSuperview];
+//    [imgBG removeFromSuperview];
 }
 
 - (void)keyboardHid {
@@ -567,7 +569,8 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         
         NSDictionary *result = [dict objectForKey:@"result"];
-        if (!result) {
+        NSMutableArray *data = [result objectForKey:@"data"];
+        if ([data count] == 0) {
             NSLog(@"妈蛋，result里没东西。");
             [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             return;

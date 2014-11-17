@@ -110,6 +110,8 @@ static  NSInteger goodCount; //记录等号
 -(void)registerNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHeightInfo:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(informationDetailNotified:) name:@"KHLNotiInformationDetailAcquired" object:nil];
+    //zan
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(infoZanNotified:) name:@"KHLUrlZanWithModel" object:nil];
     
     //commentlist
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(infoCommentlistMehod:) name:@"KHLUrlcommentlist" object:nil];
@@ -239,6 +241,14 @@ static  NSInteger goodCount; //记录等号
     
 }
 
+- (void)infoZanNotified:(NSNotification *)aNotification
+{
+    NSDictionary *aDic = aNotification.object;
+    if (aDic == nil) {
+        NSLog(@"zan for dianbo failed");
+    }
+}
+
 // good
 - (void)goodInfoNotifiMethod:(NSNotification *)aNotification {
     NSDictionary *aDic = aNotification.object;
@@ -361,6 +371,15 @@ static  NSInteger goodCount; //记录等号
     }
 }
 - (IBAction)zanMehod:(id)sender {
+    NSLog(@"-------17");
+    if ([KHLColor isLogin]) {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        [[KHLDataManager instance] zanHUDHolder:self.view uid:uidStr token:tokenStr info_id:@"45" model:@"article"];
+    }else{
+        [self pushLoginVCMethod];
+    }
+    
 }
 - (IBAction)discussMehod:(id)sender {
     if ([self.inputTextFiled.text isEqualToString:@""]) {

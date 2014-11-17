@@ -9,6 +9,7 @@
 #import "KHLInformationTableViewController.h"
 #import "KHLInformationTableViewCell.h"
 #import "InfomationViewController.h"
+#import "MJRefresh.h"
 
 
 
@@ -61,6 +62,11 @@
     return self;
 }
 
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    [self setupRefresh];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     // Configure navigation bar..
@@ -87,6 +93,21 @@
 }
 
 
+- (void)setupRefresh
+{
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing) dateKey:@"table"];
+    [self.tableView headerBeginRefreshing];
+}
+
+- (void)headerRereshing
+{
+    
+}
+
+- (void)footerRereshing
+{
+    
+}
 
 #pragma mark - TABLE VIEW DELEGATE
 

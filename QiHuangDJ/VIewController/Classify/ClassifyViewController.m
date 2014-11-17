@@ -118,7 +118,8 @@
     if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         
         NSDictionary *result = [dict objectForKey:@"result"];
-        if (!result) {
+        NSMutableArray *data = [result objectForKey:@"data"];
+        if ([data count] == 0) {
             NSLog(@"妈蛋，result里没东西。");
             [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             return;

@@ -137,6 +137,8 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
     [self.view addSubview:backImage];
     
      classify = [ClassifyViewController new];
+    //sg mainscrollview 滚动条隐藏
+    self.mainScrollView.showsVerticalScrollIndicator = false;
     
     // Request homepage image data..
     [[KHLDataManager instance] homepageImagesHUDHolder:self.view];
@@ -237,8 +239,15 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
         }
         
         UITapGestureRecognizer *tapLoopingRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressLoopingImageView)];
+        UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(nextImage)];
+        [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+        UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(backToBrforeImage)];
+        [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+        
         [imageView setUserInteractionEnabled:TRUE];
         [imageView addGestureRecognizer:tapLoopingRecognizer];
+        [imageView addGestureRecognizer:swipeLeft];
+        [imageView addGestureRecognizer:swipeRight];
         
         carousel.showsHorizontalScrollIndicator = NO;
         [carousel addSubview:imageView];
@@ -260,6 +269,31 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 - (void)nextImage
 {
     [self nextImageCarousel:self.headerScrollView indicator:self.headerPageControl withLoopingThings:self.loopingImages inSpeed:CAROUSEL_SCROLLING_SPEED];
+}
+//sg返回上一个image
+- (void)backToBrforeImage
+{
+    [self backImageCarousel:self.headerScrollView indicator:self.headerPageControl withLoopingThings:self.loopingImages inSpeed:CAROUSEL_SCROLLING_SPEED];
+}
+
+- (void)backImageCarousel: (UIScrollView *)carousel
+                indicator: (UIPageControl *)indicator
+        withLoopingThings: (NSMutableArray *)loopings
+                  inSpeed: (NSTimeInterval )speed
+{
+    NSInteger page = indicator.currentPage;
+    if (page == 0) {
+        page = loopings.count - 1;
+    }else
+    {
+        page--;
+    }
+    //滚回去的坐标
+    CGFloat x = page * carousel.frame.size.width;
+    [UIView beginAnimations:@"BackContentOffset" context:nil];
+    [UIView setAnimationDuration:speed];
+    carousel.contentOffset = CGPointMake(x, 0);
+    [UIView commitAnimations];
 }
 
 - (void)nextImageCarousel: (UIScrollView *)carousel

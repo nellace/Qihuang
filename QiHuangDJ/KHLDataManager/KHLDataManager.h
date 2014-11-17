@@ -965,6 +965,37 @@
                         token: (NSString *)token
                    comment_id:(NSString *)comment_id;
 
+
+#pragma mark - (2.26) 赞
+/*
+ 
+ 类型：
+ POST
+ 
+ 参数：
+ uid            用户ID
+ token          用户token
+ info_id		内容id
+ model          类型，包括live，comment，article
+ 
+ 返回：
+ "resultCode": "0",
+ "reason": "success"
+ 
+ 使用：
+ KHLUrlBase
+ KHLUrlGoodWithComment
+ 
+ */
+
+- (void)zanHUDHolder: (UIView *)holder
+                 uid: (NSString *)uid
+               token: (NSString *)token
+          info_id:(NSString *)info_id
+               model:(NSString*)model;
+
+
+
 #pragma mark - (2.26) 评论 - 踩
 /*
  
