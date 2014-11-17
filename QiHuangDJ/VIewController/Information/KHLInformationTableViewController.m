@@ -25,6 +25,9 @@
 #pragma mark - INTERFACE AND IMPLEMENTATION
 
 @interface KHLInformationTableViewController ()
+{
+    int pCount;
+}
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
@@ -63,6 +66,7 @@
 }
 
 - (void)viewDidLoad{
+    pCount = 2;
     [super viewDidLoad];
     [self setupRefresh];
 }
@@ -96,17 +100,36 @@
 - (void)setupRefresh
 {
     [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing) dateKey:@"table"];
-    [self.tableView headerBeginRefreshing];
+//    [self.tableView headerBeginRefreshing];
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    
 }
 
 - (void)headerRereshing
 {
+    if (pCount > 1) {
+        pCount--;
+    }
+    [[KHLDataManager instance]informationListHUDHolder:self.view category:self.category type:self.type keyword:@"" page:[NSString stringWithFormat:@"%D",pCount]];
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        [self.tableView headerEndRefreshing];
+    });
+
 }
 
 - (void)footerRereshing
 {
-    
+    pCount++;
+    if (pCount > 1) {
+        [[KHLDataManager instance]informationListHUDHolder:self.view category:self.category type:self.type keyword:@"" page:[NSString stringWithFormat:@"%D",pCount]];
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        [self.tableView footerEndRefreshing];
+    });
+
 }
 
 #pragma mark - TABLE VIEW DELEGATE
