@@ -1003,4 +1003,37 @@
      }];
 
 }
+
+#pragma mark - 2.24 二级导航
+- (void)subpageHUDHolder:(UIView *)holder
+                category:(NSString *)category
+{
+    // Start progress HUD..
+    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
+    
+    NSString *ustr = [NSString stringWithFormat:KHLUrlSubpage, category];
+    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"subpage ustr=%@", ustr);
+    
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
+    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         NSLog(@"subpage succ=\n%@", json);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubpageAcquired" object:json];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"subpage fail=\n%@", error);
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubpageAcquired" object:nil];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     }];
+}
+
+
 @end

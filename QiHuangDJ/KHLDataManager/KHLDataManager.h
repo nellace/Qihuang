@@ -990,12 +990,61 @@
                         token: (NSString *)token
                    comment_id:(NSString *)comment_id;
 
+
+
+
+
+#pragma mark - 2.24 二级导航
+/*
+ 
+ 类型：
+     GET
+ 
+ 参数：
+     cate_id  分类ID
+ 
+ 返回：
+     {
+         "resultCode": "0",
+         "reason": "success",
+         "result":
+         [
+             {
+                 "cate_id": "52",
+                 "title": "直播",
+                 "model": "live"
+             },
+             {
+                 "cate_id": "53",
+                 "title": "视频",
+                 "model": "article"
+             },
+             {
+                 "cate_id": "55",
+                 "title": "资讯",
+                 "model": "article"
+             }
+         ]
+     }
+ 
+ 使用：
+     KHLUrlBase
+     KHLUrlSubpage
+ 
+ */
+- (void)subpageHUDHolder: (UIView *)holder
+                category: (NSString *)category;
+
+
+
+
+
 #pragma mark - (2.28)第三方
 
 - (void)thirdLogin: (UIView *)holder
-        third_type:(NSString *)third_type
-           sina_id:(NSString *)sina_id
-         tencet_id:(NSString *)tencet_id
-    third_username:(NSString*)third_username;
+        third_type: (NSString *)third_type
+           sina_id: (NSString *)sina_id
+         tencet_id: (NSString *)tencet_id
+    third_username: (NSString*)third_username;
 
 @end

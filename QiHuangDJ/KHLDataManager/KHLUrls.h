@@ -95,4 +95,7 @@
 #pragma mark - (2.28)  第三方登陆
 #define HKLUrlThrild @"app_thirdparty.php"
 
+#pragma mark - (2.24) 二级导航图片
+#define KHLUrlSubpage @"app_district.php?cate_id=%@"
+
 #endif
