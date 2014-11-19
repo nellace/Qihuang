@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutScroller;
 @property (weak, nonatomic) IBOutlet UIPageControl *headerPageControl;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *backdropImageViewCollection;
+@property (weak, nonatomic) IBOutlet UIImageView *GameCenterBGImage;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *moduleLabelCollection;
 
 
@@ -39,6 +40,7 @@
     BOOL isLogin;
     UIImageView * backImage;
     SearchBarCustom *search ;
+    NSString *gameBGStr; //游戏圈背景图片
 }
 
 
@@ -389,6 +391,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 
 - (IBAction)pressGamesphereButton:(UIButton *)sender
 {
+    
     KHLGamesphereViewController *gamesphereViewController = [[KHLGamesphereViewController alloc] init];
     [self.navigationController pushViewController:gamesphereViewController animated:TRUE];
 }
@@ -441,12 +444,13 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
         
         // Acquire version..
         self.version = [NSString stringWithFormat:@"%@", [result objectForKey:@"version"]];
-        
+
         // Looping images layer..
         NSDictionary *loopings = [result objectForKey:@"lunboimg"];
         if (loopings && loopings.count > 0) {
             [self.loopingImages removeAllObjects];
             for (NSDictionary *looping in loopings) {
+                
                 HomepageImagesInterface *interface = [[HomepageImagesInterface alloc] init];
                 interface.version = [NSString stringWithFormat:@"%@", [result objectForKey:@"version"]];
                 interface.loopingImageUrl = [NSString stringWithFormat:@"%@", [looping objectForKey:@"image"]];
@@ -454,6 +458,9 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
                 interface.loopingType = [NSString stringWithFormat:@"%@", [looping objectForKey:@"model"]];
                 [self.loopingImages addObject:interface];
             }
+            
+            
+       
             
             // Draw looping images to view..
             [self configureCarousel:self.headerScrollView indicator:self.headerPageControl withLoopingThings:self.loopingImages];
@@ -463,21 +470,32 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
         }
         
         // Backdrop images layer..
-        NSDictionary *backdrops = [result objectForKey:@"homebgimg"];
+        NSArray *backdrops = [result objectForKey:@"homebgimg"];
         if (backdrops && backdrops.count >= self.backdropImageViewCollection.count) {
             [self.backdropImages removeAllObjects];
-            for (NSDictionary *backdrop in backdrops) {
-                HomepageImagesInterface *interface = [[HomepageImagesInterface alloc] init];
-                interface.version = [NSString stringWithFormat:@"%@", [result objectForKey:@"version"]];
-                interface.backdropImageName = [NSString stringWithFormat:@"%@", [backdrop objectForKey:@"name"]];
-                interface.backdropImageUrl = [NSString stringWithFormat:@"%@", [backdrop objectForKey:@"image"]];
-                interface.backdropImageCategory = [NSString stringWithFormat:@"%@", [backdrop objectForKey:@"cate_id"]];
-                [self.backdropImages addObject:interface];
+//            for (NSDictionary *backdrop in backdrops) {
+//                
+//            }
+            for (NSInteger i =0; i<backdrops.count; i++) {
+                if (i == 0) {
+                    NSDictionary *backdrop1 = backdrops[i];
+                    gameBGStr  = [backdrop1 objectForKey:@"image"];
+                    NSLog(@"gameCenter BG %@",gameBGStr);
+
+                    self.GameCenterBGImage.image =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:gameBGStr]]];
+                }else {
+                    NSDictionary *backdrop = backdrops[i];
+                    HomepageImagesInterface *interface = [[HomepageImagesInterface alloc] init];
+                    interface.version = [NSString stringWithFormat:@"%@", [result objectForKey:@"version"]];
+                    interface.backdropImageName = [NSString stringWithFormat:@"%@", [backdrop objectForKey:@"name"]];
+                    interface.backdropImageUrl = [NSString stringWithFormat:@"%@", [backdrop objectForKey:@"image"]];
+                    interface.backdropImageCategory = [NSString stringWithFormat:@"%@", [backdrop objectForKey:@"cate_id"]];
+                    [self.backdropImages addObject:interface];
+                }
             }
-            
             // Draw backdrop images to view..
             [self drawBackdropImages];
-            
+
             // Save category identities..
             [self saveCategoryIdentities];
             

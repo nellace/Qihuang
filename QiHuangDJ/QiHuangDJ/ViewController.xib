@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
+                <outlet property="GameCenterBGImage" destination="Y3p-q6-bbZ" id="z8I-SM-Ca9"/>
                 <outlet property="anchorView" destination="eUq-ZH-kh4" id="I2d-rC-haM"/>
                 <outlet property="headerPageControl" destination="1zx-ig-2YG" id="ebA-ud-kvw"/>
                 <outlet property="headerScrollView" destination="SjN-OH-bcf" id="gT6-59-0J5"/>
@@ -68,12 +69,15 @@
                                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="1zx-ig-2YG" userLabel="Header Page Controll">
                                     <rect key="frame" x="233" y="167" width="71" height="37"/>
                                 </pageControl>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3p-q6-bbZ" userLabel="GameCenter">
+                                    <rect key="frame" x="0.0" y="199" width="320" height="98"/>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwY-nF-WP2" userLabel="Gamesphere Button">
                                     <rect key="frame" x="0.0" y="200" width="320" height="97"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="FwY-nF-WP2" secondAttribute="height" multiplier="320:97" id="psf-2N-6h9"/>
                                     </constraints>
-                                    <state key="normal" image="gamesphere">
+                                    <state key="normal">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -144,31 +148,31 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmN-Ms-tIX" userLabel="Live Label">
-                                    <rect key="frame" x="210" y="350" width="110" height="19.5"/>
+                                    <rect key="frame" x="210" y="350" width="110" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="七煌艺人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMo-wc-hSa" userLabel="Entertainers Label">
-                                    <rect key="frame" x="210" y="435" width="110" height="19.5"/>
+                                    <rect key="frame" x="210" y="435" width="110" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="炉石传说" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoM-T6-RaH" userLabel="HearthStone Label">
-                                    <rect key="frame" x="210" y="520" width="110" height="19.5"/>
+                                    <rect key="frame" x="210" y="520" width="110" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="英雄联盟" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnC-Ny-yzO" userLabel="L.O.L. Label">
-                                    <rect key="frame" x="210" y="605" width="110" height="19.5"/>
+                                    <rect key="frame" x="210" y="605" width="110" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刀塔2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgw-wt-y5x" userLabel="DotA Label">
-                                    <rect key="frame" x="210" y="690" width="110" height="19.5"/>
+                                    <rect key="frame" x="210" y="690" width="110" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -263,11 +267,10 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-501" y="271.5"/>
+            <point key="canvasLocation" x="-846" y="300.5"/>
         </view>
     </objects>
     <resources>
-        <image name="gamesphere" width="640" height="194"/>
         <image name="homepage_button_dota" width="320" height="81"/>
         <image name="homepage_button_entertainers" width="320" height="81"/>
         <image name="homepage_button_hearthstone" width="320" height="81"/>
