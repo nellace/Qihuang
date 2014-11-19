@@ -66,7 +66,7 @@
 #define KHLUrlEntertainersListAcquire @"app_ourstar.php"
 
 #pragma mark - 11.1 （2.19）获取资讯列表
-#define KHLUrlInformationListAcquire @"app_zixunlist.php?cate_id=%@&model=%@&search=%@&page=%@"
+#define KHLUrlInformationListAcquire @"app_zixunlist.php?cate_id=%@&model=%@&search=%@&p=%@"
 
 #pragma mark - 11.2 （2.20）获取资讯详情
 #define KHLUrlInformationDetailAcquire @"app_zixuninfo.php?info_id=%@&model=%@"

@@ -36,6 +36,7 @@
 @property (nonatomic, strong) NSString *allPages;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, setter=setNeedsRefresh:, getter=needsRefresh) BOOL refreshTag;
+@property (nonatomic,assign)BOOL headerRefresh;
 
 @end
 
@@ -60,13 +61,14 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self setNeedsRefresh:TRUE];
+        [self setHeaderRefresh:TRUE];
     }
     
     return self;
 }
 
 - (void)viewDidLoad{
-    pCount = 2;
+    pCount = 1;
     [super viewDidLoad];
     [self setupRefresh];
 }
@@ -107,10 +109,14 @@
 
 - (void)headerRereshing
 {
+    if (_headerRefresh == FALSE) {
+        _headerRefresh = TRUE;
+    }
     if (pCount > 1) {
-        pCount--;
+        pCount = 1;
     }
     if (pCount > [self.allPages intValue]) {
+        [self.tableView headerEndRefreshing];
         return;
     }
     [[KHLDataManager instance]informationListHUDHolder:self.view category:self.category type:self.type keyword:@"" page:[NSString stringWithFormat:@"%D",pCount]];
@@ -124,12 +130,15 @@
 
 - (void)footerRereshing
 {
+    if (_headerRefresh == TRUE) {
+        _headerRefresh = FALSE;
+    }
     pCount++;
     if (pCount > [self.allPages intValue]) {
         UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"没有更多内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alter show];
         [self.tableView footerEndRefreshing];
-        [self.tableView footerEndRefreshing];
+//        [self.tableView footerEndRefreshing];
         return;
     }
     if (pCount > 1) {
@@ -249,8 +258,10 @@
             [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             return;
         }
-        
-        [self.informations removeAllObjects];
+//sg
+        if (_headerRefresh == TRUE) {
+            [self.informations removeAllObjects];
+        }
         self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
         self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
         NSLog(@"data arr=%@",[result objectForKey:@"data"]);

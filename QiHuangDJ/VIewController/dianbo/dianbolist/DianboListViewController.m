@@ -120,7 +120,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     [self addFooter];
     [self addHeader];
     
-    pCount = 2;
+    pCount = 1;
     
 //    [mySearch setImage:[UIImage imageNamed:@"nav_icon_sousuo.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     
