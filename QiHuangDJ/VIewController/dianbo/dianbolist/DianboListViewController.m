@@ -46,6 +46,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 @property (nonatomic, strong) NSMutableArray *categories;
 @property (nonatomic) NSInteger categoryListIndex;
+@property (nonatomic,assign)BOOL headerRefresh;
 
 @end
 
@@ -93,7 +94,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         [self setFilter:KHLVODFilterLatest];
         [self setSliderShowing:FALSE];
         [self setCategoryListIndex:-1];
-        
+        [self setHeaderRefresh:YES];
         
         imgBG = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height)];
         imgBG.backgroundColor = [UIColor blackColor];
@@ -180,13 +181,16 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 - (void)addHeader
 {
     __unsafe_unretained typeof(self) vc = self;
+
     // 添加下拉刷新头部控件
     [self.collectionView addHeaderWithCallback:^{
         // 进入刷新状态就会回调这个Block
         if (pCount>1) {
-            pCount--;
+            pCount = 1;
         }
-        
+        if (_headerRefresh == FALSE) {
+            _headerRefresh = TRUE;
+        }
         if (![self needsRequest]) {
             [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:[NSString stringWithFormat:@"%D",pCount] search:@""];
             
@@ -210,9 +214,13 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 }
 - (void)addFooter
 {
+    
     __unsafe_unretained typeof(self) vc = self;
     [self.collectionView addFooterWithCallback:^{
         pCount++;
+        if (_headerRefresh == TRUE) {
+            _headerRefresh = FALSE;
+        }
         if (![self needsRequest]) {
             [[KHLDataManager instance] VODListHUDHolder:self.view type:[NSString stringWithFormat:@"%d", self.filter] category:self.category page:[NSString stringWithFormat:@"%D",pCount] search:@""];
             
@@ -575,8 +583,9 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
             [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             return;
         }
-        
-        [self.vods removeAllObjects];
+        if (_headerRefresh == TRUE) {
+            [self.vods removeAllObjects];
+        }
         self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
         self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
         for (NSDictionary *data in [result objectForKey:@"data"]) {
@@ -588,9 +597,10 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
             interface.imageUrl = [NSString stringWithFormat:@"%@", [data objectForKey:@"image"]];
             interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
             [self.vods addObject:interface];
+            
         }
         //sg
-        
+        NSLog(@"%D",[self.vods count]);
         // Refresh list layout after data received..
         [self.collectionView reloadData];
         
