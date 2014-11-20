@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -53,27 +53,27 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="715"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIy-TT-MCX" userLabel="Main Holder View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="722"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="619"/>
                             <subviews>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SjN-OH-bcf" userLabel="Header Scroll View">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="97"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2YR-lX-jvN">
-                                            <rect key="frame" x="-34" y="-99" width="36" height="42"/>
+                                            <rect key="frame" x="-28" y="-68" width="98" height="11"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="200" id="vJk-bu-3sV"/>
+                                        <constraint firstAttribute="height" constant="97" id="vJk-bu-3sV"/>
                                     </constraints>
                                 </scrollView>
                                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="1zx-ig-2YG" userLabel="Header Page Controll">
-                                    <rect key="frame" x="233" y="167" width="71" height="37"/>
+                                    <rect key="frame" x="233" y="64" width="71" height="37"/>
                                 </pageControl>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3p-q6-bbZ" userLabel="GameCenter">
-                                    <rect key="frame" x="0.0" y="199" width="320" height="98"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamesphere" translatesAutoresizingMaskIntoConstraints="NO" id="Y3p-q6-bbZ" userLabel="GameCenter">
+                                    <rect key="frame" x="0.0" y="97" width="320" height="97"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwY-nF-WP2" userLabel="Gamesphere Button">
-                                    <rect key="frame" x="0.0" y="200" width="320" height="97"/>
+                                    <rect key="frame" x="0.0" y="97" width="320" height="97"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="FwY-nF-WP2" secondAttribute="height" multiplier="320:97" id="psf-2N-6h9"/>
                                     </constraints>
@@ -85,25 +85,25 @@
                                     </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-FT-pIw" userLabel="Live Broadcast Image View">
-                                    <rect key="frame" x="0.0" y="297" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="194" width="320" height="85"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Sjr-FT-pIw" secondAttribute="height" multiplier="64:17" id="W7q-jI-1fK"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-tj-caD" userLabel="Keahoarl Entertainers Image View">
-                                    <rect key="frame" x="0.0" y="382" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="279" width="320" height="85"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="ffO-jW-5Sv" userLabel="Hearthstone Image View">
-                                    <rect key="frame" x="0.0" y="467" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="364" width="320" height="85"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="DHn-6T-3Sh" userLabel="L.O.L. Image View">
-                                    <rect key="frame" x="0.0" y="552" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="449" width="320" height="85"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huanchong_shouye.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q68-jv-pSJ" userLabel="DotA Image View">
-                                    <rect key="frame" x="0.0" y="637" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="534" width="320" height="85"/>
                                 </imageView>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKI-Zs-yps" userLabel="Live Broadcast Button">
-                                    <rect key="frame" x="0.0" y="297" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="194" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_live">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -112,7 +112,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-LO-7XK" userLabel="Keahoarl Entertainers Button">
-                                    <rect key="frame" x="0.0" y="382" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="279" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_entertainers">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -121,7 +121,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VV-Ro-o7w" userLabel="Hearthstone Button">
-                                    <rect key="frame" x="0.0" y="467" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="364" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_hearthstone">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -130,7 +130,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6J-Kn-ueM" userLabel="L.O.L. Button">
-                                    <rect key="frame" x="0.0" y="552" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="449" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_lol">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -139,7 +139,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-g4-Gns" userLabel="DotA Button">
-                                    <rect key="frame" x="0.0" y="637" width="320" height="85"/>
+                                    <rect key="frame" x="0.0" y="534" width="320" height="85"/>
                                     <state key="normal" backgroundImage="homepage_button_dota">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -148,31 +148,31 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmN-Ms-tIX" userLabel="Live Label">
-                                    <rect key="frame" x="210" y="350" width="110" height="20"/>
+                                    <rect key="frame" x="210" y="247" width="110" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="七煌艺人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMo-wc-hSa" userLabel="Entertainers Label">
-                                    <rect key="frame" x="210" y="435" width="110" height="20"/>
+                                    <rect key="frame" x="210" y="332" width="110" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="炉石传说" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoM-T6-RaH" userLabel="HearthStone Label">
-                                    <rect key="frame" x="210" y="520" width="110" height="20"/>
+                                    <rect key="frame" x="210" y="417" width="110" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="英雄联盟" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnC-Ny-yzO" userLabel="L.O.L. Label">
-                                    <rect key="frame" x="210" y="605" width="110" height="20"/>
+                                    <rect key="frame" x="210" y="502" width="110" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刀塔2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xgw-wt-y5x" userLabel="DotA Label">
-                                    <rect key="frame" x="210" y="690" width="110" height="20"/>
+                                    <rect key="frame" x="210" y="587" width="110" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -187,6 +187,7 @@
                                 <constraint firstItem="MMo-wc-hSa" firstAttribute="bottom" secondItem="x6d-LO-7XK" secondAttribute="bottom" constant="-12" id="7Vf-6j-4y6"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="trailing" secondItem="K6J-Kn-ueM" secondAttribute="trailing" id="89l-cC-VTb"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="height" secondItem="ch3-tj-caD" secondAttribute="height" id="8hR-jV-Dl5"/>
+                                <constraint firstItem="Y3p-q6-bbZ" firstAttribute="top" secondItem="FwY-nF-WP2" secondAttribute="top" id="9w8-09-DaJ"/>
                                 <constraint firstItem="SjN-OH-bcf" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="A17-JH-AxF"/>
                                 <constraint firstItem="YoM-T6-RaH" firstAttribute="leading" secondItem="pnC-Ny-yzO" secondAttribute="leading" id="B11-cM-k5t"/>
                                 <constraint firstItem="XmN-Ms-tIX" firstAttribute="bottom" secondItem="yKI-Zs-yps" secondAttribute="bottom" constant="-12" id="Dcj-1h-op1"/>
@@ -209,6 +210,7 @@
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="bottom" secondItem="K6J-Kn-ueM" secondAttribute="bottom" id="Udt-7f-3QZ"/>
                                 <constraint firstItem="YoM-T6-RaH" firstAttribute="bottom" secondItem="8VV-Ro-o7w" secondAttribute="bottom" constant="-12" id="W8z-Ci-QVG"/>
                                 <constraint firstItem="yKI-Zs-yps" firstAttribute="top" secondItem="Sjr-FT-pIw" secondAttribute="top" id="WRH-zm-Suj"/>
+                                <constraint firstItem="Y3p-q6-bbZ" firstAttribute="leading" secondItem="FwY-nF-WP2" secondAttribute="leading" id="X23-yF-h8j"/>
                                 <constraint firstAttribute="trailing" secondItem="ffO-jW-5Sv" secondAttribute="trailing" id="XTo-Ag-Uy3"/>
                                 <constraint firstItem="8VV-Ro-o7w" firstAttribute="width" secondItem="K6J-Kn-ueM" secondAttribute="width" id="YCk-3y-JpI"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="YG8-pe-5Oc"/>
@@ -227,6 +229,7 @@
                                 <constraint firstItem="ch3-tj-caD" firstAttribute="top" secondItem="Sjr-FT-pIw" secondAttribute="bottom" id="h5t-F4-4ph"/>
                                 <constraint firstItem="FwY-nF-WP2" firstAttribute="top" secondItem="SjN-OH-bcf" secondAttribute="bottom" id="hJf-ec-pGF"/>
                                 <constraint firstItem="x6d-LO-7XK" firstAttribute="trailing" secondItem="ch3-tj-caD" secondAttribute="trailing" id="ium-DX-r3m"/>
+                                <constraint firstItem="Y3p-q6-bbZ" firstAttribute="trailing" secondItem="FwY-nF-WP2" secondAttribute="trailing" id="kY5-bt-VhA"/>
                                 <constraint firstItem="1zx-ig-2YG" firstAttribute="trailing" secondItem="SjN-OH-bcf" secondAttribute="trailing" constant="-16" id="lvY-cg-NoZ"/>
                                 <constraint firstItem="MMo-wc-hSa" firstAttribute="leading" secondItem="XmN-Ms-tIX" secondAttribute="leading" id="mi7-aP-xOf"/>
                                 <constraint firstItem="ch3-tj-caD" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="ngI-Xd-iTl"/>
@@ -237,6 +240,7 @@
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="leading" secondItem="UIy-TT-MCX" secondAttribute="leading" id="v4L-VK-dTi"/>
                                 <constraint firstItem="yKI-Zs-yps" firstAttribute="bottom" secondItem="Sjr-FT-pIw" secondAttribute="bottom" id="vdy-mk-RhI"/>
                                 <constraint firstItem="x6d-LO-7XK" firstAttribute="bottom" secondItem="ch3-tj-caD" secondAttribute="bottom" id="vuG-rF-C4C"/>
+                                <constraint firstItem="Y3p-q6-bbZ" firstAttribute="bottom" secondItem="FwY-nF-WP2" secondAttribute="bottom" id="yDu-Nq-0gP"/>
                                 <constraint firstItem="DHn-6T-3Sh" firstAttribute="height" secondItem="ffO-jW-5Sv" secondAttribute="height" id="yQ6-WG-P02"/>
                                 <constraint firstItem="MMo-wc-hSa" firstAttribute="trailing" secondItem="x6d-LO-7XK" secondAttribute="trailing" id="yTQ-5N-cwu"/>
                                 <constraint firstItem="ffO-jW-5Sv" firstAttribute="bottom" secondItem="8VV-Ro-o7w" secondAttribute="bottom" id="ykq-7F-fsS"/>
@@ -271,6 +275,7 @@
         </view>
     </objects>
     <resources>
+        <image name="gamesphere" width="640" height="194"/>
         <image name="homepage_button_dota" width="320" height="81"/>
         <image name="homepage_button_entertainers" width="320" height="81"/>
         <image name="homepage_button_hearthstone" width="320" height="81"/>
