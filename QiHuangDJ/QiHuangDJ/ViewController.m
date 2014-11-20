@@ -232,7 +232,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
         HomepageImagesInterface *looping = [loopings objectAtIndex:i];
         if (looping.loopingImageUrl && ![looping.loopingImageUrl isEqualToString:@""]) {
             [imageView setImageWithURL:[NSURL URLWithString:looping.loopingImageUrl]];
-            imageView.contentMode = UIViewContentModeScaleAspectFill;
+//            imageView.contentMode = UIViewContentModeScaleAspectFill;
 
 //            imageView.frame = CGRectMake(x, y, width, height);
             NSLog(@"lunbo imageview%f",imageView.frame.size.height);
