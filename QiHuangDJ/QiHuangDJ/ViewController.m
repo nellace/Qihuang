@@ -359,6 +359,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 
 - (IBAction)zhibo:(id)sender {
     LiveListViewController * videoLiveVC = [[LiveListViewController alloc] initWithNibName:@"LiveListViewController" bundle:nil];
+    [videoLiveVC setGameId:@""];
     [self.navigationController pushViewController:videoLiveVC animated:YES];
 }
 
@@ -372,6 +373,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 {
     classify.title = [self.moduleLabelCollection[3] text];;
     classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryLOL"];
+    classify.gameId = @"1";
     [self.navigationController pushViewController:classify animated:YES];
 }
 
@@ -379,6 +381,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 {
     classify.title = [self.moduleLabelCollection[2] text];;
     classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryHearthStone"];
+    classify.gameId = @"2";
     [self.navigationController pushViewController:classify animated:YES];
 }
 
@@ -386,6 +389,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 {
     classify.title = [self.moduleLabelCollection[4] text];;
     classify.category = [[NSUserDefaults standardUserDefaults] objectForKey:@"KHLCategoryDota"];
+    classify.gameId = @"3";
     [self.navigationController pushViewController:classify animated:YES];
 }
 
