@@ -22,7 +22,7 @@
 #define INFORMATION_MINOR_TEXT_FONT_PROPORTION (10.0f / 320.0f)
 #define SECTION_HEADER_FONT_SIZE 14.0f
 #define SECTION_HEADER_TEXT_PADDING 8.0f
-#define SECTION_HEADER_HEIGHT 30.0f
+#define SECTION_HEADER_HEIGHT 35.0f
 
 typedef NS_ENUM(NSInteger, KHLSearchResultType) {
     KHLSearchResultTypeVideos = 0,
@@ -120,6 +120,10 @@ typedef NS_ENUM(NSInteger, KHLSearchResultType) {
     UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, header.frame.size.height - 1.0f, self.view.frame.size.width, 1.0f)];
     foot.backgroundColor = [KHLColor qinghui];
     
+    UIImageView *arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nav_jiantou@2x.png"]];
+    [arrowImageView setFrame:CGRectMake(header.frame.size.width - 12 - 8, 10, 12, header.frame.size.height - 10 - 10)];
+    
+    
     // Configure title..
     //  and tap gesture recognizer..
     if (section == KHLSearchResultTypeVideos) {
@@ -147,6 +151,7 @@ typedef NS_ENUM(NSInteger, KHLSearchResultType) {
     [header addSubview:label];
     [header addSubview:head];
     [header addSubview:foot];
+    [header addSubview:arrowImageView];
     return header;
 }
 
