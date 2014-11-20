@@ -579,9 +579,9 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         NSDictionary *result = [dict objectForKey:@"result"];
         NSMutableArray *data = [result objectForKey:@"data"];
         if ([data count] == 0) {
-            NSLog(@"妈蛋，result里没东西。");
-            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-            return;
+//            NSLog(@"妈蛋，result里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"此分类下暂无视频结果。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//            return;
         }
         if (_headerRefresh == TRUE) {
             [self.vods removeAllObjects];
