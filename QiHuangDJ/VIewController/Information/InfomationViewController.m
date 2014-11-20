@@ -19,6 +19,8 @@
 @property (nonatomic, strong) InformationDetailInterface *detail;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextFiled;
 
+@property (nonatomic, strong) NSMutableArray *heights;
+
 @end
 
 static  NSInteger goodCount; //记录等号
@@ -42,6 +44,23 @@ static  NSInteger goodCount; //记录等号
 {
     if (!_detail) _detail = [[InformationDetailInterface alloc] init];
     return _detail;
+}
+
+- (NSMutableArray *)heights
+{
+    if (!_heights) _heights = [[NSMutableArray alloc] init];
+    return _heights;
+}
+
+- (void)configureHeightsArray
+{
+    if (self.heights.count != listArrayWithInfo.count) {
+        [self.heights removeAllObjects];
+        for (int i = 0; i < listArrayWithInfo.count; i++) {
+            NSNumber *height = [[NSNumber alloc] initWithFloat:0];
+            [self.heights addObject:height];
+        }
+    }
 }
 
 #pragma mark - VIEW CONTROLLER LIFECYCLE
@@ -201,6 +220,7 @@ static  NSInteger goodCount; //记录等号
             [listArrayWithInfo addObject:commentlist];
         }
         NSLog(@"comment list frame front %d",sectionHeight);
+        [self configureHeightsArray];
         [self.mainTableView reloadData];
         NSLog(@"comment list frame blowe %d",sectionHeight);
     }
@@ -233,6 +253,7 @@ static  NSInteger goodCount; //记录等号
         commentlist.countGood = @"0";
         
         [listArrayWithInfo insertObject:commentlist atIndex:0];
+        [self configureHeightsArray];
         [self.mainTableView reloadData];
         [self.inputTextFiled resignFirstResponder];
         self.inputTextFiled.text = @"";
@@ -261,6 +282,7 @@ static  NSInteger goodCount; //记录等号
     good ++;
     commentlist.countGood = [NSString stringWithFormat:@"%d",good];
     [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
+    [self configureHeightsArray];
     [self.mainTableView reloadData];
     goodCount = 0;
 
@@ -277,6 +299,7 @@ static  NSInteger goodCount; //记录等号
     good ++;
     commentlist.countBad = [NSString stringWithFormat:@"%d",good];
     [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
+    [self configureHeightsArray];
     [self.mainTableView reloadData];
     goodCount = 0;
 }
@@ -476,6 +499,14 @@ static  NSInteger goodCount; //记录等号
         usernametext = [NSString stringWithFormat:@"%@回复%@",commentlist.username,commentlist.usernameWithReply];
     }
     cell.titleLabel.text = usernametext;
+    
+    if ([[self.heights objectAtIndex:indexPath.row] floatValue] > 0) ;
+    else {
+        NSNumber *num = [self.heights objectAtIndex:indexPath.row];
+        num = [NSNumber numberWithFloat:100 + (10 * (arc4random() % 10))];
+        [self.heights setObject:num atIndexedSubscript:indexPath.row];
+        NSLog(@"%d - %.2f", indexPath.row, num.floatValue);
+    }
 
     return cell;
 }
@@ -486,7 +517,7 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 110;
+    return [[self.heights objectAtIndex:indexPath.row] floatValue] > 0 ? [[self.heights objectAtIndex:indexPath.row] floatValue] : 100;
 }
 
 #pragma mark - UITableViewCell Button Method
@@ -545,6 +576,7 @@ static  NSInteger goodCount; //记录等号
 }
 
 -(void)reloadForTableViewWithWebViewHeight:(NSInteger)het {
+    [self configureHeightsArray];
     [self.mainTableView reloadData];
 }
 
