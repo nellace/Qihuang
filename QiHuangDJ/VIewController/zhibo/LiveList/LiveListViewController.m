@@ -22,6 +22,12 @@
 # pragma mark
 # pragma mark LIFE CYCLE
 
+- (NSString *)gameId
+{
+    if (!_gameId) _gameId = @"";
+    return _gameId;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -54,7 +60,7 @@
 # pragma mark NETWORKING REQUEST
 
 - (void)networkingRequestWithLiveList {
-    [[KHLDataManager  instance] liveListHUDHolder:self.view type:@""];
+    [[KHLDataManager  instance] liveListHUDHolder:self.view type:self.gameId];
 }
 //KHLNotiLiveListAcquired
 - (void)registerNotification {
@@ -210,7 +216,7 @@
     NSInteger lines = 0;
     if (section == 0) {
         lines = zhiboListArray.count;
-    }else {
+    } else {
         lines = yugaoListArray.count;
     }
     return lines;

@@ -10,4 +10,6 @@
 
 @interface LiveListViewController : MQLCustomViewController
 
+@property (nonatomic, strong) NSString *gameId;
+
 @end
