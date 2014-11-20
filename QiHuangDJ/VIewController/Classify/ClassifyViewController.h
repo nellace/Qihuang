@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *category;
+@property (nonatomic, strong) NSString *gameId;
 
 @end

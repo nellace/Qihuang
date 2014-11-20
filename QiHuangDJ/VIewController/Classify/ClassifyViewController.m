@@ -10,6 +10,7 @@
 #import "VideoLiveViewController.h"
 #import "InfomationViewController.h"
 #import "DianboListViewController.h"
+#import "LiveListViewController.h"
 #import "KHLInformationTableViewController.h"
 #import "KHLSearchResultViewController.h"
 
@@ -35,6 +36,12 @@
 {
     if (!_modules) _modules = [[NSMutableArray alloc] init];
     return _modules;
+}
+
+- (NSString *)gameId
+{
+    if (!_gameId) _gameId = @"";
+    return _gameId;
 }
 
 
@@ -184,8 +191,12 @@
 
 - (IBAction)VideoLive:(id)sender
 {
-    VideoLiveViewController * videoLiveVC = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
-    [self.navigationController pushViewController:videoLiveVC animated:YES];
+//    VideoLiveViewController * videoLiveVC = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
+//    [self.navigationController pushViewController:videoLiveVC animated:YES];
+    
+    LiveListViewController *liveListViewController = [[LiveListViewController alloc] init];
+    liveListViewController.gameId = self.gameId;
+    [self.navigationController pushViewController:liveListViewController animated:TRUE];
 }
 
 - (IBAction)dianbo:(id)sender
