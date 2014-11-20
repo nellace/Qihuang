@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
-
+#import <ShareSDK/ShareSDK.h>
 
 @interface LoginViewController () 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -129,7 +129,16 @@
 
 - (IBAction)pressInterrelatedLoginWithWeibo:(UIButton *)sender
 {
-    [self umengThirdWithName:UMShareToSina];
+//    [self umengThirdWithName:UMShareToSina];
+    [ShareSDK getUserInfoWithType:ShareTypeSinaWeibo authOptions:nil result:^(BOOL result, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error) {
+        NSLog(@"%d",result);
+        if (result) {
+            //成功登录后，判断该用户的ID是否在自己的数据库中。
+            //如果有直接登录，没有就将该用户的ID和相关资料在数据库中创建新用户。
+//            [self reloadStateWithType:ShareTypeSinaWeibo];
+        }
+    }];
+    
 }
 
 -(void)umengThirdWithName:(NSString *)thirdName {

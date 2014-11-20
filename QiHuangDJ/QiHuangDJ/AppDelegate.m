@@ -13,6 +13,7 @@
 #import "UMSocialSinaHandler.h"
 #import "MobClick.h"
 #import "APService.h"
+#import <ShareSDK/ShareSDK.h>
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -29,7 +30,13 @@
 //    //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:nil];
 //    
-//    [UMSocialQQHandler setQQWithAppId:@"101104063" appKey:@"904f216a6d26389b3fff036a838ab416" url:nil];
+     [ShareSDK registerApp:@"44f252ae7228"];
+    
+    
+    //添加新浪微博应用 注册网址 http://open.weibo.com
+    [ShareSDK connectSinaWeiboWithAppKey:@"636137795"
+                               appSecret:@"904f216a6d26389b3fff036a838ab416"
+                             redirectUri:@"http://175kh.com"];
     
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController * vc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];

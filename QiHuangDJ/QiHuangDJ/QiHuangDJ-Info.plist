@@ -32,12 +32,12 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>tencent9f2c54ba9cf54cd2e55fdb6cb862230e</string>
-				<string>sina.904f216a6d26389b3fff036a838ab416</string>
+				<string>wb636137795</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIBackgroundModes</key>
