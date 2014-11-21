@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSMutableArray *datasource;
 @property (nonatomic,retain) NSString *keyWord;
+@property (nonatomic, strong) NSString *type;
 
 @end

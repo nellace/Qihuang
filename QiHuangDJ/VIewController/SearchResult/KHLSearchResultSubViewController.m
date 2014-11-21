@@ -124,12 +124,14 @@
             interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
             interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
             
-            if ([@"video" isEqualToString:interface.type]) {
-                [videos addObject:interface];
-            } else if ([@"article" isEqualToString:interface.type]) {
-                [informations addObject:interface];
-            }
-            [searchResultArray addObject:interface];
+//            if ([@"video" isEqualToString:interface.type]) {
+//                [videos addObject:interface];
+//            } else if ([@"article" isEqualToString:interface.type]) {
+//                [informations addObject:interface];
+//            }
+            
+            if ([interface.type isEqualToString:self.type])
+                [searchResultArray addObject:interface];
         }
         /*
         KHLSearchResultViewController *searchResultViewController = [[KHLSearchResultViewController alloc] init];
@@ -257,6 +259,11 @@
     
     // Push to detail view controller..
     [self.navigationController pushViewController:detailViewController animated:TRUE];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [[UIView alloc] init];
 }
 
 @end

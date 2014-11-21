@@ -244,6 +244,7 @@ typedef NS_ENUM(NSInteger, KHLSearchResultType) {
     KHLSearchResultSubViewController *subViewController = [[KHLSearchResultSubViewController alloc] init];
     subViewController.keyWord = _keyWord;
     subViewController.datasource = [self.videos copy];
+    subViewController.type = @"video";
     [self.navigationController pushViewController:subViewController animated:TRUE];
 }
 
@@ -252,6 +253,7 @@ typedef NS_ENUM(NSInteger, KHLSearchResultType) {
     KHLSearchResultSubViewController *subViewController = [[KHLSearchResultSubViewController alloc] init];
     subViewController.keyWord = _keyWord;
     subViewController.datasource = [self.informations copy];
+    subViewController.type = @"article";
     [self.navigationController pushViewController:subViewController animated:TRUE];
 }
 
