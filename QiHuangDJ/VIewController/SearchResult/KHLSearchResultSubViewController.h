@@ -11,5 +11,6 @@
 @interface KHLSearchResultSubViewController : MQLCustomViewController
 
 @property (nonatomic, strong) NSMutableArray *datasource;
+@property (nonatomic,retain) NSString *keyWord;
 
 @end
