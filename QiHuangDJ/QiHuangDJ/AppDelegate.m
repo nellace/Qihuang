@@ -37,6 +37,9 @@
     [ShareSDK connectSinaWeiboWithAppKey:@"933509896"
                                appSecret:@"f79eb0bdc2c8491cac280695e5ddda7f"
                              redirectUri:@"http://175kh.com"];
+//    [ShareSDK connectQQWithAppKey:@"101104063" appSecret:@"9f2c54ba9cf54cd2e55fdb6cb862230e"];
+//    [ShareSDK connectQQWithAppId:<#(NSString *)#> qqApiCls:<#(__unsafe_unretained Class)#>]
+    
     
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController * vc = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
