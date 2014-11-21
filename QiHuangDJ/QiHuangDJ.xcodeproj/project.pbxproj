@@ -74,8 +74,6 @@
 		3D858E1819E8DFD7005022BA /* LiveListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E1219E8DFD7005022BA /* LiveListViewController.xib */; };
 		3D858E1D19E8E023005022BA /* DianboListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E1B19E8E023005022BA /* DianboListViewController.m */; };
 		3D858E1E19E8E023005022BA /* DianboListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E1C19E8E023005022BA /* DianboListViewController.xib */; };
-		3D858E2119EB9D4E005022BA /* SliderRightList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E2019EB9D4E005022BA /* SliderRightList.m */; };
-		3D858E2319EB9E6B005022BA /* SliderRightList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2219EB9E6B005022BA /* SliderRightList.xib */; };
 		3D858E2719EBC221005022BA /* DianboListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */; };
 		3D858E2819EBC221005022BA /* DianboListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */; };
 		3D90A1111A124471003AF951 /* denglu_btn_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D90A0821A124471003AF951 /* denglu_btn_login@2x.png */; };
@@ -384,9 +382,6 @@
 		3D858E1A19E8E023005022BA /* DianboListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboListViewController.h; sourceTree = "<group>"; };
 		3D858E1B19E8E023005022BA /* DianboListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboListViewController.m; sourceTree = "<group>"; };
 		3D858E1C19E8E023005022BA /* DianboListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboListViewController.xib; sourceTree = "<group>"; };
-		3D858E1F19EB9D4E005022BA /* SliderRightList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderRightList.h; sourceTree = "<group>"; };
-		3D858E2019EB9D4E005022BA /* SliderRightList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderRightList.m; sourceTree = "<group>"; };
-		3D858E2219EB9E6B005022BA /* SliderRightList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderRightList.xib; sourceTree = "<group>"; };
 		3D858E2419EBC221005022BA /* DianboListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianboListCollectionViewCell.h; sourceTree = "<group>"; };
 		3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianboListCollectionViewCell.m; sourceTree = "<group>"; };
 		3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DianboListCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1055,9 +1050,6 @@
 				3D858E1A19E8E023005022BA /* DianboListViewController.h */,
 				3D858E1B19E8E023005022BA /* DianboListViewController.m */,
 				3D858E1C19E8E023005022BA /* DianboListViewController.xib */,
-				3D858E1F19EB9D4E005022BA /* SliderRightList.h */,
-				3D858E2019EB9D4E005022BA /* SliderRightList.m */,
-				3D858E2219EB9E6B005022BA /* SliderRightList.xib */,
 				3D858E2419EBC221005022BA /* DianboListCollectionViewCell.h */,
 				3D858E2519EBC221005022BA /* DianboListCollectionViewCell.m */,
 				3D858E2619EBC221005022BA /* DianboListCollectionViewCell.xib */,
@@ -1544,7 +1536,7 @@
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
 					3D44751619C972CE00D9B2B1 = {
-						DevelopmentTeam = 7L8LCGSAFD;
+						DevelopmentTeam = DL6GBFL7D3;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1674,7 +1666,6 @@
 				FC834C8F19F0EEFF009E17FF /* KHLInformationTableViewCell.xib in Resources */,
 				3D90A18B1A124471003AF951 /* zhibo_dingyue_press@2x.png in Resources */,
 				3D90A1591A124471003AF951 /* qihuangshouye_icon1@2x.png in Resources */,
-				3D858E2319EB9E6B005022BA /* SliderRightList.xib in Resources */,
 				3D90A1921A124471003AF951 /* zhibo_icon_suoxiao@2x.png in Resources */,
 				3D90A1841A124471003AF951 /* zhibo_caidan_icon_1@2x.png in Resources */,
 				3DC17A301A1DD4A700C6A23F /* ShareSDKLocalizable.strings in Resources */,
@@ -1787,7 +1778,6 @@
 				39E5F7531A12144400A7279D /* MJRefreshConst.m in Sources */,
 				39E5F7541A12144400A7279D /* MJRefreshFooterView.m in Sources */,
 				FC708A7119ED4C3E002DF952 /* KHLPICRecommendedCell.m in Sources */,
-				3D858E2119EB9D4E005022BA /* SliderRightList.m in Sources */,
 				39E5F7571A12144400A7279D /* UIScrollView+MJRefresh.m in Sources */,
 				3D95A2081A11C2930015F41B /* infomationForHeader.m in Sources */,
 				3D121C3C19CABD100040870C /* InfomationViewController.m in Sources */,
