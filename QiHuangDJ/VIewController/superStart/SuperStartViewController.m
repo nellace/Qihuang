@@ -11,7 +11,7 @@
 #import "AFNetworking.h"
 #import "KHLEntertainerHolderView.h"
 
-@interface SuperStartViewController () <UIScrollViewDelegate>
+@interface SuperStartViewController () <UIScrollViewDelegate, UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *entertainerScrollView;
 @property (weak, nonatomic) IBOutlet UILabel *pageLabel;
 @property (nonatomic) CGFloat controllableWidth;
@@ -100,7 +100,8 @@
         self.entertainers = [[self MakeSimulateEntertainersWithCapacity:1] mutableCopy];
     for (int i = 0; i < [self.entertainers count]; i++) {
         KHLEntertainerHolderView * holder = [[[NSBundle mainBundle] loadNibNamed:@"KHLEntertainerHolderView" owner:self options:nil] firstObject];
-//        holder.programmeWebView.delegate = self;
+        holder.programmeWebView.delegate = self;
+//        holder.experienceWebView.delegate = self;
         [holder setFrame:CGRectMake(i * self.controllableWidth, 0, self.controllableWidth, self.controllableHeight)];
         [holder loadData:self.entertainers[i] useWindowSize:self.view.frame.size];
         [self.entertainerScrollView addSubview:holder];
@@ -123,6 +124,27 @@
         self.page = page;
         self.pageLabel.text = [NSString stringWithFormat:@"%i / %i", self.page, self.entertainers.count];
         //NSLog(@"page: %lu", self.page);
+    }
+}
+
+
+
+#pragma mark - WEB VIEW DELEGATE
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    NSLog(@"- webViewDidFinishLoad");
+    
+    CGRect frame = webView.frame;
+    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
+    frame.size = fittingSize;
+    webView.frame = frame;
+//    [webView updateConstraints];
+    
+    for (NSLayoutConstraint *constraint in webView.constraints) {
+        NSLog(@"constraint: %.f, %.f", constraint.constant, webView.frame.size.height);
+        constraint.constant = webView.frame.size.height;
+        [webView updateConstraints];
     }
 }
 
@@ -207,5 +229,13 @@
     
     return [array copy];
 }
+
+
+
+
+
+
+
+
 
 @end

@@ -19,7 +19,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.programmeWebView.delegate = self;
     }
     return self;
 }
@@ -59,20 +58,20 @@
     return image;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-//    CGRect frame = webView.frame;
-//    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
-//    frame.size = fittingSize;
-//    webView.frame = frame;
-    
-//    CGFloat height = 0.0f;
-    
-    CGFloat webViewHeight=[webView.scrollView contentSize].height;
-    CGRect newFrame = webView.frame;
-    newFrame.size.height = webViewHeight;
-    webView.frame = newFrame;
-}
+//- (void)webViewDidFinishLoad:(UIWebView *)webView
+//{
+////    CGRect frame = webView.frame;
+////    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
+////    frame.size = fittingSize;
+////    webView.frame = frame;
+//    
+////    CGFloat height = 0.0f;
+//    
+//    CGFloat webViewHeight=[webView.scrollView contentSize].height;
+//    CGRect newFrame = webView.frame;
+//    newFrame.size.height = webViewHeight;
+//    webView.frame = newFrame;
+//}
 
 /*
 // Only override drawRect: if you perform custom drawing.

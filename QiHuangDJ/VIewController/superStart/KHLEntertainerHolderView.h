@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KHLEntertainerHolderView : UIView <UIWebViewDelegate>
+@interface KHLEntertainerHolderView : UIView
 
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
