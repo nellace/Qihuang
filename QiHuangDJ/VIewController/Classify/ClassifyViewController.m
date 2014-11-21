@@ -224,7 +224,8 @@
         [alert show];
         return;
     }
-    [[KHLDataManager instance] searchHUDHolder:self.view keyword:searchBar.text];
+    //sg
+    [[KHLDataManager instance] searchHUDHolder:self.view keyword:searchBar.text page:@""];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {

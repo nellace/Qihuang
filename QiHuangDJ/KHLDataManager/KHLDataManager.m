@@ -713,11 +713,12 @@
 #pragma mark - 12.1 （2.21）搜索
 - (void)searchHUDHolder:(UIView *)holder
                 keyword:(NSString *)keyword
+                   page: (NSString *)page
 {
     // Start progress HUD..
     [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
     
-    NSString *ustr = [NSString stringWithFormat:KHLUrlSearch, keyword];
+    NSString *ustr = [NSString stringWithFormat:KHLUrlSearch, keyword,page];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(@"search ustr=%@", ustr);
     

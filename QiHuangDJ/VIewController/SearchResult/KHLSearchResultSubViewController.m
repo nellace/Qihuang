@@ -10,6 +10,7 @@
 #import "KHLInformationTableViewCell.h"
 #import "InfomationViewController.h"
 #import "DianboViewController.h"
+#import "MJRefresh.h"
 
 
 
@@ -25,9 +26,13 @@
 #pragma mark - INTERFACE AND IMPLEMENTATION
 
 @interface KHLSearchResultSubViewController () <UITableViewDataSource, UITableViewDelegate>
+{
+    int pCount;
+    NSMutableArray *searchResultArray;
+    BOOL headerRefresh;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @end
 
 @implementation KHLSearchResultSubViewController
@@ -57,7 +62,120 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setupRefresh];
+    headerRefresh = TRUE;
+    pCount = 1;
+    searchResultArray = [[NSMutableArray alloc]initWithArray:self.datasource];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resultListed:) name:@"KHLNotiSearchResult" object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"KHLNotiSearchResult" object:nil];
+}
+
+
+- (void)resultListed: (NSNotification *)aNotification
+{
+    NSDictionary *dict = aNotification.object;
+    if (!dict) {
+        NSLog(@"妈蛋，返回nil了。");
+        return;
+    }
+    
+    if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        
+        NSDictionary *result = [dict objectForKey:@"result"];
+        NSMutableArray *data = [result objectForKey:@"data"];
+        if ([data count] == 0) {
+            NSLog(@"妈蛋，result里没东西。");
+            [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            return;
+        }
+        if (headerRefresh == TRUE) {
+            pCount = 1;
+            [searchResultArray removeAllObjects];
+        }
+        NSMutableArray *videos = [[NSMutableArray alloc] init];
+        NSMutableArray *informations = [[NSMutableArray alloc] init];
+        
+        //        [self.informations removeAllObjects];
+        //        self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+        //        self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+        //        NSLog(@"data arr=%@",[result objectForKey:@"data"]);
+        for (NSDictionary *data in [result objectForKey:@"data"]) {
+            SearchInterface *interface = [[SearchInterface alloc] init];
+            interface.page = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
+            interface.size = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
+            interface.identity = [NSString stringWithFormat:@"%@", [data objectForKey:@"info_id"]];
+            interface.category = [NSString stringWithFormat:@"%@", [data objectForKey:@"cate_id"]];
+            interface.title = [NSString stringWithFormat:@"%@", [data objectForKey:@"title"]];
+            interface.imageUrl = [NSString stringWithFormat:@"%@", [data objectForKey:@"image"]];
+            interface.brief = [NSString stringWithFormat:@"%@", [data objectForKey:@"content"]];
+            interface.count = [NSString stringWithFormat:@"%@", [data objectForKey:@"count"]];
+            interface.publisher = [NSString stringWithFormat:@"%@", [data objectForKey:@"nickname"]];
+            interface.time = [NSString stringWithFormat:@"%@", [data objectForKey:@"time"]];
+            interface.type = [NSString stringWithFormat:@"%@", [data objectForKey:@"model"]];
+            
+            if ([@"video" isEqualToString:interface.type]) {
+                [videos addObject:interface];
+            } else if ([@"article" isEqualToString:interface.type]) {
+                [informations addObject:interface];
+            }
+            [searchResultArray addObject:interface];
+        }
+        /*
+        KHLSearchResultViewController *searchResultViewController = [[KHLSearchResultViewController alloc] init];
+        searchResultViewController.videos = [videos copy];
+        searchResultViewController.informations = [informations copy];
+        [self.navigationController pushViewController:searchResultViewController animated:TRUE];
+         */
+        
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
+
+}
+
+
+- (void)setupRefresh
+{
+    [self.tableView addHeaderWithTarget:self action:@selector(headerRereshing) dateKey:@"table"];
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+}
+
+- (void)headerRereshing
+{
+    if (headerRefresh == FALSE) {
+        headerRefresh = TRUE;
+    }
+    [[KHLDataManager instance]searchHUDHolder:self.view keyword:_keyWord page:@"1"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        [self.tableView headerEndRefreshing];
+    });
+}
+
+- (void)footerRereshing
+{
+    
+    if (headerRefresh == TRUE) {
+        headerRefresh = FALSE;
+    }
+        pCount++;
+    [[KHLDataManager instance]searchHUDHolder:self.view keyword:_keyWord page:[NSString stringWithFormat:@"%D",pCount]];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        [self.tableView footerEndRefreshing];
+    });
+}
 
 #pragma mark - TABLE VIEW DELEGATE
 
@@ -68,7 +186,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.datasource.count;
+    return searchResultArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,7 +216,7 @@
     [iCell.posterLabel setFont:minorFont];
     
     // Acquire instance..
-    SearchInterface *information = [self.datasource objectAtIndex:indexPath.row];
+    SearchInterface *information = [searchResultArray objectAtIndex:indexPath.row];
     
     // Configure thumb image view..
     if (information.imageUrl && ![information.imageUrl isEqualToString:@""]) {
@@ -140,26 +258,5 @@
     // Push to detail view controller..
     [self.navigationController pushViewController:detailViewController animated:TRUE];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end
