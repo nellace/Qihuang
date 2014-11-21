@@ -72,7 +72,7 @@
 #define KHLUrlInformationDetailAcquire @"app_zixuninfo.php?info_id=%@&model=%@"
 
 #pragma mark - 12.1 （2.21）搜索
-#define KHLUrlSearch @"app_search.php?search=%@"
+#define KHLUrlSearch @"app_search.php?search=%@&p=%@"
 
 #pragma mark - ?.? （2.11）举报
 #define KHLUrlReport @"app_jubao.php"//?info_id=%@&type=%@&uid=%@&token=%@&model=%@"

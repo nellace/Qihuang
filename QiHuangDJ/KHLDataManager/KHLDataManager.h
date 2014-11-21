@@ -791,7 +791,8 @@
  
  */
 - (void)searchHUDHolder: (UIView *)holder
-                keyword: (NSString *)keyword;
+                keyword: (NSString *)keyword
+                   page: (NSString *)page;
 
 
 
