@@ -261,6 +261,8 @@
 		FC3FD84F1A0F3327001E7562 /* KHLCategorySliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC3FD84D1A0F3327001E7562 /* KHLCategorySliderTableViewCell.xib */; };
 		FC511E6B1A0A526000518265 /* KHLGamesphereViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC511E691A0A526000518265 /* KHLGamesphereViewController.m */; };
 		FC511E6C1A0A526000518265 /* KHLGamesphereViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC511E6A1A0A526000518265 /* KHLGamesphereViewController.xib */; };
+		FC56F7181A1F3BFF00CAF4AE /* RetrievePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC56F7161A1F3BFF00CAF4AE /* RetrievePasswordViewController.m */; };
+		FC56F7191A1F3BFF00CAF4AE /* RetrievePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC56F7171A1F3BFF00CAF4AE /* RetrievePasswordViewController.xib */; };
 		FC571EFC19E5447A0035EAB0 /* KHLEntertainerHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */; };
 		FC5BD25019EFA6BF00D91A9C /* KHLPICSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */; };
 		FC5BD25119EFA6BF00D91A9C /* KHLPICSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5BD24F19EFA6BF00D91A9C /* KHLPICSettingsViewController.xib */; };
@@ -615,6 +617,9 @@
 		FC511E681A0A526000518265 /* KHLGamesphereViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHLGamesphereViewController.h; path = GamesphereWebView/KHLGamesphereViewController.h; sourceTree = "<group>"; };
 		FC511E691A0A526000518265 /* KHLGamesphereViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHLGamesphereViewController.m; path = GamesphereWebView/KHLGamesphereViewController.m; sourceTree = "<group>"; };
 		FC511E6A1A0A526000518265 /* KHLGamesphereViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KHLGamesphereViewController.xib; path = GamesphereWebView/KHLGamesphereViewController.xib; sourceTree = "<group>"; };
+		FC56F7151A1F3BFF00CAF4AE /* RetrievePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrievePasswordViewController.h; sourceTree = "<group>"; };
+		FC56F7161A1F3BFF00CAF4AE /* RetrievePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrievePasswordViewController.m; sourceTree = "<group>"; };
+		FC56F7171A1F3BFF00CAF4AE /* RetrievePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RetrievePasswordViewController.xib; sourceTree = "<group>"; };
 		FC571EFB19E5447A0035EAB0 /* KHLEntertainerHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KHLEntertainerHolderView.xib; sourceTree = "<group>"; };
 		FC5BD24D19EFA6BF00D91A9C /* KHLPICSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KHLPICSettingsViewController.h; sourceTree = "<group>"; };
 		FC5BD24E19EFA6BF00D91A9C /* KHLPICSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KHLPICSettingsViewController.m; sourceTree = "<group>"; };
@@ -750,6 +755,9 @@
 				3D121C4319CABD270040870C /* RegisterViewController.h */,
 				3D121C4419CABD270040870C /* RegisterViewController.m */,
 				3D121C4519CABD270040870C /* RegisterViewController.xib */,
+				FC56F7151A1F3BFF00CAF4AE /* RetrievePasswordViewController.h */,
+				FC56F7161A1F3BFF00CAF4AE /* RetrievePasswordViewController.m */,
+				FC56F7171A1F3BFF00CAF4AE /* RetrievePasswordViewController.xib */,
 			);
 			path = LoginAndRegister;
 			sourceTree = "<group>";
@@ -1642,6 +1650,7 @@
 				3DCA5A481A13011900A51183 /* UMSLoginViewController.xib in Resources */,
 				3D90A16A1A124471003AF951 /* shouye_lunbo_press@2x.png in Resources */,
 				3D90A1161A124471003AF951 /* denglu_icon_qq@2x.png in Resources */,
+				FC56F7191A1F3BFF00CAF4AE /* RetrievePasswordViewController.xib in Resources */,
 				3D90A1661A124471003AF951 /* shouye_icon4@2x.png in Resources */,
 				3DC17A361A1DD4A700C6A23F /* WeiboSDK.bundle in Resources */,
 				3D90A1541A124471003AF951 /* qihuangyiren_baibg@2x.png in Resources */,
@@ -1811,6 +1820,7 @@
 				FC2FA7701A08F0E8006290BE /* KHLSearchResultSubViewController.m in Sources */,
 				3D858E1719E8DFD7005022BA /* LiveListViewController.m in Sources */,
 				39E5F7581A12144400A7279D /* UIView+MJExtension.m in Sources */,
+				FC56F7181A1F3BFF00CAF4AE /* RetrievePasswordViewController.m in Sources */,
 				3D44752719C972CE00D9B2B1 /* main.m in Sources */,
 				3D4003E719D3BEC3006622E4 /* KHLColor.m in Sources */,
 				3D858E1319E8DFD7005022BA /* DianboViewController.m in Sources */,
