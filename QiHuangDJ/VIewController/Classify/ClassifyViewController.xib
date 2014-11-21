@@ -45,7 +45,7 @@
                                 <action selector="VideoLive:" destination="-1" eventType="touchUpInside" id="nee-iv-YbF"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao1.png" translatesAutoresizingMaskIntoConstraints="NO" id="hoH-00-aPX" userLabel="直播Img">
+                        <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao1.png" translatesAutoresizingMaskIntoConstraints="NO" id="hoH-00-aPX" userLabel="直播Img">
                             <rect key="frame" x="0.0" y="123" width="320" height="30"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             <constraints>
@@ -96,7 +96,7 @@
                                 <action selector="dianbo:" destination="-1" eventType="touchUpInside" id="KHF-OI-ddd"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao2.png" translatesAutoresizingMaskIntoConstraints="NO" id="fdY-PA-9Vx">
+                        <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao2.png" translatesAutoresizingMaskIntoConstraints="NO" id="fdY-PA-9Vx">
                             <rect key="frame" x="0.0" y="123" width="320" height="30"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         </imageView>
@@ -142,7 +142,7 @@
                                 <action selector="Infomation:" destination="-1" eventType="touchUpInside" id="1AX-Yd-11f"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao3.png" translatesAutoresizingMaskIntoConstraints="NO" id="c64-re-rZQ">
+                        <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dota_tiao3.png" translatesAutoresizingMaskIntoConstraints="NO" id="c64-re-rZQ">
                             <rect key="frame" x="0.0" y="123" width="320" height="30"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         </imageView>
