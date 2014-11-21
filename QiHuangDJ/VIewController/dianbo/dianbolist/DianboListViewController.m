@@ -48,6 +48,8 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 @property (nonatomic) NSInteger categoryListIndex;
 @property (nonatomic,assign)BOOL headerRefresh;
 
+@property (nonatomic) CGFloat fixedWidth;
+
 @end
 
 @implementation DianboListViewController {
@@ -116,6 +118,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     // Do any additional setup after loading the view from its nib.
     [self setCascTitle:@"视频"];
     [self setFanhui];
+    [self setFixedWidth:self.view.frame.size.width];
     [self rightViewUI];
     [self rightBtnItemUI];
     [self addFooter];
@@ -257,8 +260,8 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 - (void)rightViewUI {
     //    rightView = [[[NSBundle mainBundle] loadNibNamed:@"SliderRightList" owner:self options:nil] lastObject];
     rightView = [[UITableView alloc] init];
-    //    rightView.frame = CGRectMake(320 - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height + 64);
-    rightView.frame = CGRectMake(320 - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height);
+    //    rightView.frame = CGRectMake(self.fixedWidth - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height + 64);
+    rightView.frame = CGRectMake(self.fixedWidth - SLIDER_WIDTH, -64, SLIDER_WIDTH, self.view.frame.size.height);
     rightView.delegate = self;
     rightView.dataSource = self;
     [rightView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"celan_bg@2x.png"]]];
@@ -276,11 +279,11 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     
     [UIView animateWithDuration:0.3f animations:^{
         if ([self bSliderShowing]) {
-            self.holder.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
-            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, 320, 44);
+            self.holder.frame = CGRectMake(0, 0, self.fixedWidth, self.view.frame.size.height);
+            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.fixedWidth, 44);
             [self setSliderShowing:FALSE];
         } else {
-            self.holder.frame = CGRectMake(-SLIDER_WIDTH, 0, 320, self.view.frame.size.height);
+            self.holder.frame = CGRectMake(-SLIDER_WIDTH, 0, self.fixedWidth, self.view.frame.size.height);
             self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.view.frame.size.width, 44);
             [self setSliderShowing:TRUE];
         }
@@ -302,7 +305,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 - (void)keyboardShow :(NSNotification *)noti {
     imgBG.hidden = NO;
     
-    self.holder.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+    self.holder.frame = CGRectMake(0, 0, self.fixedWidth, self.view.frame.size.height);
     self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.view.frame.size.width, 44);
     [self setSliderShowing:TRUE];
 }
@@ -418,7 +421,14 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     VODListInterface * vodlist = self.vods[indexPath.row];
     dianboVC.info_id = vodlist.identity;
     dianboVC.imageUrl = vodlist.imageUrl;
-    [self.navigationController pushViewController:dianboVC animated:YES];
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.holder.frame = CGRectMake(0, 0, self.fixedWidth, self.view.frame.size.height);
+        self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.fixedWidth, 44);
+        [self setSliderShowing:FALSE];
+    } completion:^(BOOL finished) {
+        [self.navigationController pushViewController:dianboVC animated:YES];
+    }];
 }
 
 
@@ -494,8 +504,8 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     [self setSliderShowing:FALSE];
     [UIView beginAnimations:@"CloseSliderView" context:nil];
     [UIView setAnimationDuration:0.2f];
-    self.holder.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
-    self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, 320, 44);
+    self.holder.frame = CGRectMake(0, 0, self.fixedWidth, self.view.frame.size.height);
+    self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.fixedWidth, 44);
     [UIView commitAnimations];
     
     if (-1 < indexPath.row < self.categories.count) {
@@ -528,8 +538,8 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         // Not logged in..
         
         [UIView animateWithDuration:0.3f animations:^{
-            self.holder.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
-            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, 320, 44);
+            self.holder.frame = CGRectMake(0, 0, self.fixedWidth, self.view.frame.size.height);
+            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.fixedWidth, 44);
             [self setSliderShowing:FALSE];
         } completion:^(BOOL finished) {
             LoginViewController *loginViewController = [[LoginViewController alloc] init];
@@ -691,24 +701,6 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         [[[UIAlertView alloc] initWithTitle:@"退订失败" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
 }
-
-//- (void)tryAnimateSliderView
-//{
-//    [UIView animateWithDuration:0.3f animations:^{
-//        if ([self bSliderShowing]) {
-//            self.holder.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
-//            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, 320, 44);
-//            [self setSliderShowing:FALSE];
-//        }else {
-//            self.holder.frame = CGRectMake(-SLIDER_WIDTH, 0, 320, self.view.frame.size.height);
-//            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.view.frame.size.width, 44);
-//            [self setSliderShowing:TRUE];
-//        }
-//        
-//    } completion:^(BOOL finished) {
-//        [self.view setNeedsDisplay];
-//    }];
-//}
 
 
 
