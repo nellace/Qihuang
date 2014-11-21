@@ -120,26 +120,31 @@
 
 - (IBAction)pressInterrelatedLoginWithQQ:(UIButton *)sender
 {
-
-    
-}
-
-- (IBAction)pressInterrelatedLoginWithWeibo:(UIButton *)sender
-{
-
-    
-//    [self umengThirdWithName:UMShareToSina];
-    [ShareSDK getUserInfoWithType:ShareTypeSinaWeibo authOptions:nil result:^(BOOL result, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error) {
+    [ShareSDK getUserInfoWithType:ShareTypeQQ authOptions:nil result:^(BOOL result, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error) {
         NSLog(@"result ==%d",result);
         NSLog(@"error ==%@ ",error);
         NSLog(@"userInfo == %@",userInfo);
         if (result) {
             //成功登录后，判断该用户的ID是否在自己的数据库中。
             //如果有直接登录，没有就将该用户的ID和相关资料在数据库中创建新用户。
-            [self reloadStateWithType:ShareTypeSinaWeibo];
+            
+            id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:ShareTypeQQ];
+            [[KHLDataManager instance] thirdLogin:self.view third_type:@"qq" sina_id:[credential uid] tencet_id:[credential uid] third_username:@""];
         }
     }];
+}
 
+- (IBAction)pressInterrelatedLoginWithWeibo:(UIButton *)sender
+{
+    [ShareSDK getUserInfoWithType:ShareTypeSinaWeibo authOptions:nil result:^(BOOL result, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error) {
+        if (result) {
+            //成功登录后，判断该用户的ID是否在自己的数据库中。
+            //如果有直接登录，没有就将该用户的ID和相关资料在数据库中创建新用户。
+
+            id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:ShareTypeSinaWeibo];
+            [[KHLDataManager instance] thirdLogin:self.view third_type:@"sina" sina_id:[credential uid] tencet_id:[credential uid] third_username:@""];
+        }
+    }];
 }
 
 -(void)reloadStateWithType:(ShareType)type{
@@ -147,41 +152,8 @@
     //此处可以在用户进入应用的时候直接调用，如授权信息不为空且不过期可帮用户自动实现登录。
     id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:type];
        [[KHLDataManager instance] thirdLogin:self.view third_type:@"sina" sina_id:[credential uid] tencet_id:[credential uid] third_username:@""];
-    
 }
 
--(void)umengThirdWithName:(NSString *)thirdName {
-    //此处调用授权的方法,你可以把下面的platformName 替换成 UMShareToSina,UMShareToTencent等
-    [UMSocialControllerService defaultControllerService].socialUIDelegate = self;
-    
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:thirdName];
-    
-    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-        
-        NSLog(@"login response is %@",response);
-        
-        //     获取微博用户名、uid、token等
-        if (response.responseCode == UMSResponseCodeSuccess) {
-            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:thirdName];
-            NSLog(@"username is %@, uid is %@, token is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken);
-            
-//        [[KHLDataManager instance] thirdLogin:self.view third_type:thirdName sina_id:snsAccount.usid tencet_id:snsAccount.usid third_username:snsAccount.userName];
-        }
-    });
-
-    [[UMSocialDataService defaultDataService] requestSnsInformation:UMShareToSina  completion:^(UMSocialResponseEntity *response){
-        NSLog(@"SnsInformation is %@",response.data);
-    }];
-    
-}
-
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    if (response.viewControllerType == UMSViewControllerOauth) {
-
-        NSLog(@"didFinishOauthAndGetAccount response is %@",response);
-    }
-}
 
 - (IBAction)pressRegisterButton:(UIButton *)sender
 {
