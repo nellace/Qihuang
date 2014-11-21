@@ -34,8 +34,8 @@
     
     
     //添加新浪微博应用 注册网址 http://open.weibo.com
-    [ShareSDK connectSinaWeiboWithAppKey:@"636137795"
-                               appSecret:@"904f216a6d26389b3fff036a838ab416"
+    [ShareSDK connectSinaWeiboWithAppKey:@"933509896"
+                               appSecret:@"f79eb0bdc2c8491cac280695e5ddda7f"
                              redirectUri:@"http://175kh.com"];
     
     self.window.backgroundColor = [UIColor whiteColor];

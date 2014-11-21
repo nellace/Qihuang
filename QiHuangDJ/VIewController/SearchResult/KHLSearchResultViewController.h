@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSMutableArray *videos;
 @property (nonatomic, strong) NSMutableArray *informations;
+@property (nonatomic,retain) NSString *keyWord;
 
 @end

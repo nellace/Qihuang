@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSMutableArray *backdropImages;
 @property (nonatomic, strong) NSMutableArray *loopingImages;
 @property (nonatomic, strong) NSString *version;
+@property (nonatomic,retain) NSString *keyWord;
 
 @end
 
@@ -581,6 +582,7 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
         KHLSearchResultViewController *searchResultViewController = [[KHLSearchResultViewController alloc] init];
         searchResultViewController.videos = [videos copy];
         searchResultViewController.informations = [informations copy];
+        searchResultViewController.keyWord = _keyWord;
         [self.navigationController pushViewController:searchResultViewController animated:TRUE];
         
     } else {
@@ -617,9 +619,10 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
-    NSString *keyword = searchBar.text;
-    NSLog(@"using keyword: %@", keyword);
-    [[KHLDataManager instance] searchHUDHolder:self.view keyword:keyword];
+    _keyWord = searchBar.text;
+    NSLog(@"using keyword: %@", _keyWord);
+    //sg
+    [[KHLDataManager instance] searchHUDHolder:self.view keyword:_keyWord page:@""];
 }
 
 
