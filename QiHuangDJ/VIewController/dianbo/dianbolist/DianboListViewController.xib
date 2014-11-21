@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -12,7 +13,6 @@
                 <outlet property="mySearch" destination="Wz9-VO-Zkt" id="tjd-2X-eNW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="btnCollection" destination="2z6-3l-b7X" id="PkA-5y-LPs"/>
-                <outletCollection property="btnCollection" destination="gRA-a9-ECx" id="caJ-TW-nWK"/>
                 <outletCollection property="btnCollection" destination="xgB-Pv-rYX" id="oWp-fD-KHM"/>
             </connections>
         </placeholder>
@@ -37,8 +37,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtI-ZY-ZW0" userLabel="btnBGView">
                             <rect key="frame" x="0.0" y="44" width="320" height="41"/>
                             <subviews>
-                                <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z6-3l-b7X">
-                                    <rect key="frame" x="0.0" y="0.0" width="108" height="41"/>
+                                <button opaque="NO" tag="101" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z6-3l-b7X">
+                                    <rect key="frame" x="0.0" y="0.0" width="160" height="41"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
@@ -56,8 +56,8 @@
                                         <action selector="sectionBtn:" destination="-1" eventType="touchUpInside" id="dBB-5b-avt"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-Pv-rYX">
-                                    <rect key="frame" x="108" y="0.0" width="109" height="41"/>
+                                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-Pv-rYX">
+                                    <rect key="frame" x="160" y="0.0" width="160" height="41"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
@@ -76,29 +76,18 @@
                                         <action selector="sectionBtn:" destination="-1" eventType="touchUpInside" id="1mA-cT-cym"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="103" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRA-a9-ECx">
-                                    <rect key="frame" x="212" y="0.0" width="108" height="41"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                    <state key="normal" title="最短时长" image="zhibo_caidan_icon_2.png" backgroundImage="caidan_you.png">
-                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <state key="selected" image="zhibo_caidan_icon_2_press.png" backgroundImage="caidan_you_press.png">
-                                        <color key="titleColor" red="0.99607843137254903" green="0.37647058823529411" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <state key="highlighted" image="zhibo_caidan_icon_2_press.png" backgroundImage="caidan_you.png">
-                                        <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="sectionBtn:" destination="-1" eventType="touchUpInside" id="4DO-4j-Mmz"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="xgB-Pv-rYX" firstAttribute="width" secondItem="2z6-3l-b7X" secondAttribute="width" id="Hk8-pm-mjU"/>
                                 <constraint firstAttribute="height" constant="41" id="Tjq-Ps-6H5"/>
+                                <constraint firstItem="xgB-Pv-rYX" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="top" id="ZGl-mt-OJb"/>
+                                <constraint firstAttribute="trailing" secondItem="xgB-Pv-rYX" secondAttribute="trailing" id="dWl-bt-c2n"/>
+                                <constraint firstItem="2z6-3l-b7X" firstAttribute="top" secondItem="rtI-ZY-ZW0" secondAttribute="top" id="fvb-hB-btT"/>
+                                <constraint firstAttribute="bottom" secondItem="xgB-Pv-rYX" secondAttribute="bottom" id="g54-b5-df4"/>
+                                <constraint firstAttribute="bottom" secondItem="2z6-3l-b7X" secondAttribute="bottom" id="lgs-V4-ag0"/>
+                                <constraint firstItem="xgB-Pv-rYX" firstAttribute="leading" secondItem="2z6-3l-b7X" secondAttribute="trailing" id="lu9-n1-RTS"/>
+                                <constraint firstItem="2z6-3l-b7X" firstAttribute="leading" secondItem="rtI-ZY-ZW0" secondAttribute="leading" id="sZ1-Oo-ms6"/>
                             </constraints>
                         </view>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="C1X-dp-tny">
@@ -148,8 +137,6 @@
         <image name="caidan_you_press.png" width="106" height="41"/>
         <image name="zhibo_caidan_icon_1.png" width="15" height="15"/>
         <image name="zhibo_caidan_icon_1_press.png" width="15" height="15"/>
-        <image name="zhibo_caidan_icon_2.png" width="15" height="15"/>
-        <image name="zhibo_caidan_icon_2_press.png" width="15" height="15"/>
         <image name="zhibo_caidan_icon_3.png" width="15" height="15"/>
         <image name="zhibo_caidan_icon_3_press.png" width="15" height="15"/>
     </resources>

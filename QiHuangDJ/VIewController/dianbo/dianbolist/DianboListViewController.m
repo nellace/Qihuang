@@ -18,6 +18,8 @@
 #pragma mark - DEFINATION AND ENUMERATION
 
 #define SLIDER_WIDTH (250.0f)
+#define STATUS_BAR_HEIGHT (20.0f)
+#define NAVIGATION_BAR_HEIGHT (44.0f)
 
 typedef NS_ENUM(NSInteger, KHLVODFilter) {
     KHLVODFilterLatest = 1,
@@ -452,12 +454,17 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 64.0f;
+    return (STATUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [[UIView alloc] init];
+    UIView *sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.fixedWidth, STATUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT)];
+    UIView *headerFooter = [[UIView alloc] initWithFrame:CGRectMake(0, sectionHeader.frame.size.height - 1, sectionHeader.frame.size.width, 1)];
+    [headerFooter setBackgroundColor:[UIColor blackColor]];
+    [sectionHeader addSubview:headerFooter];
+    [sectionHeader setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"celan_bg@2x.png"]]];
+    return sectionHeader;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -590,7 +597,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         NSMutableArray *data = [result objectForKey:@"data"];
         if ([data count] == 0) {
 //            NSLog(@"妈蛋，result里没东西。");
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"此分类下暂无视频结果。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"此分类下暂无更多视频。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
 //            return;
         }
         if (_headerRefresh == TRUE) {
