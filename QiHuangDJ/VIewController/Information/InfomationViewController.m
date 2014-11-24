@@ -281,17 +281,24 @@ static  NSInteger goodCount; //记录等号
     if (aDic == nil) {
         NSLog(@"good for dianbo falied");
     }
-    //ui数量加1
-    CommentListInterface *commentlist = listArrayWithInfo[goodCount];
-    NSInteger good = [commentlist.countGood integerValue];
-    good ++;
-    commentlist.countGood = [NSString stringWithFormat:@"%d",good];
-    [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
-    [self configureHeightsArray];
-    [self.mainTableView reloadData];
-    [self configureHeightsArray];
-    [self.mainTableView reloadData];
-    goodCount = 0;
+    
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        //ui数量加1
+        CommentListInterface *commentlist = listArrayWithInfo[goodCount];
+        NSInteger good = [commentlist.countGood integerValue];
+        good ++;
+        commentlist.countGood = [NSString stringWithFormat:@"%d",good];
+        [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
+        [self configureHeightsArray];
+        [self.mainTableView reloadData];
+        [self configureHeightsArray];
+        [self.mainTableView reloadData];
+        goodCount = 0;
+    } else {
+        
+        // Failed to post a LIKE action..
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[aDic objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
 
 }
 // bad
@@ -300,20 +307,27 @@ static  NSInteger goodCount; //记录等号
     if (aDic == nil) {
         NSLog(@"bad for dianbo falied");
     }
-    //ui数量加1
-    CommentListInterface *commentlist = listArrayWithInfo[goodCount];
-    NSInteger good = [commentlist.countBad integerValue];
-    good ++;
-    commentlist.countBad = [NSString stringWithFormat:@"%d",good];
-    [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
-    [self configureHeightsArray];
-    [self.mainTableView reloadData];
-    [self configureHeightsArray];
-    [self.mainTableView reloadData];
-    goodCount = 0;
+    
+    if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
+        //ui数量加1
+        CommentListInterface *commentlist = listArrayWithInfo[goodCount];
+        NSInteger good = [commentlist.countBad integerValue];
+        good ++;
+        commentlist.countBad = [NSString stringWithFormat:@"%d",good];
+        [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
+        [self configureHeightsArray];
+        [self.mainTableView reloadData];
+        [self configureHeightsArray];
+        [self.mainTableView reloadData];
+        goodCount = 0;
+    } else {
+        
+        // Failed to post a DISLIKE action..
+        [[[UIAlertView alloc] initWithTitle:@"后台拒绝" message:[aDic objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
 }
 
-#pragma mark - KEYBOARD HEIGHT 
+#pragma mark - KEYBOARD HEIGHT
 - (void)keyboardHeightInfo:(NSNotification *)aNotification {
     //获取到键盘frame 变化之前的frame
     NSValue  *keyboardBeginBounds = [[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey];
@@ -508,7 +522,11 @@ static  NSInteger goodCount; //记录等号
               [indexPath row],
               [[self.heights objectAtIndex:indexPath.row] floatValue],
               [num floatValue]);
-        [self.heights setObject:num atIndexedSubscript:indexPath.row];
+        if ([[self.heights objectAtIndex:indexPath.row] floatValue] != [num floatValue]) {
+            [self.heights setObject:num atIndexedSubscript:indexPath.row];
+            [self configureHeightsArray];
+            [self.mainTableView reloadData];
+        }
     } else {
         NSNumber *num = [self.heights objectAtIndex:indexPath.row];
         num = [NSNumber numberWithFloat:[cell measuremented]];
@@ -516,8 +534,10 @@ static  NSInteger goodCount; //记录等号
         NSLog(@"+ CRT - %d : %.2f",
               [indexPath row],
               [num floatValue]);
-        [self configureHeightsArray];
-        [self.mainTableView reloadData];
+        if ([num floatValue] == 120.0f) {
+            [self configureHeightsArray];
+            [self.mainTableView reloadData];
+        }
     }
 
     return cell;
