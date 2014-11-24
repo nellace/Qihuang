@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGm-kr-H3I" userLabel="Holder View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="317"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="272"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="32a-Ou-KNC" userLabel="MP Holder View">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
@@ -63,62 +63,8 @@
                                         <constraint firstAttribute="centerY" secondItem="E4f-lg-980" secondAttribute="centerY" id="xpa-Iy-lfK"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QtR-tl-St2" userLabel="Cache Holder View">
-                                    <rect key="frame" x="0.0" y="45" width="320" height="45"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41F-6K-YTN" userLabel="Cache Divider View">
-                                            <rect key="frame" x="0.0" y="44" width="320" height="1"/>
-                                            <color key="backgroundColor" red="0.73725490199999999" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="lBd-lS-aNx"/>
-                                            </constraints>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="清除缓存" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGA-95-xT2" userLabel="Cache Specific Label">
-                                            <rect key="frame" x="8" y="8" width="304" height="29"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.1M" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOf-M7-3NP" userLabel="Cache Indicating Label">
-                                            <rect key="frame" x="8" y="8" width="304" height="29"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.98039215690000003" green="0.37254901959999998" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3F-Dg-1XB" userLabel="Cache Button">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="selected" backgroundImage="denglu_btn_login_press.png"/>
-                                            <state key="highlighted" backgroundImage="shezhi_line_press"/>
-                                            <connections>
-                                                <action selector="pressCacheCleanButton:" destination="-1" eventType="touchUpInside" id="gLB-Zk-yh9"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstItem="41F-6K-YTN" firstAttribute="leading" secondItem="QtR-tl-St2" secondAttribute="leading" id="39g-8a-fCH"/>
-                                        <constraint firstAttribute="bottom" secondItem="eOf-M7-3NP" secondAttribute="bottom" constant="8" id="783-tk-sc1"/>
-                                        <constraint firstAttribute="bottom" secondItem="k3F-Dg-1XB" secondAttribute="bottom" id="8KK-bS-Cyv"/>
-                                        <constraint firstAttribute="bottom" secondItem="41F-6K-YTN" secondAttribute="bottom" id="AX5-lh-8BF"/>
-                                        <constraint firstAttribute="bottom" secondItem="oGA-95-xT2" secondAttribute="bottom" constant="8" id="DGg-LF-d1F"/>
-                                        <constraint firstAttribute="trailing" secondItem="41F-6K-YTN" secondAttribute="trailing" id="KLP-Je-jK5"/>
-                                        <constraint firstItem="k3F-Dg-1XB" firstAttribute="top" secondItem="QtR-tl-St2" secondAttribute="top" id="NPt-NU-bTY"/>
-                                        <constraint firstItem="oGA-95-xT2" firstAttribute="leading" secondItem="QtR-tl-St2" secondAttribute="leading" constant="8" id="Wmb-Yv-pxa"/>
-                                        <constraint firstAttribute="trailing" secondItem="oGA-95-xT2" secondAttribute="trailing" constant="8" id="dVo-ue-1xs"/>
-                                        <constraint firstAttribute="trailing" secondItem="k3F-Dg-1XB" secondAttribute="trailing" id="eDJ-jX-fur"/>
-                                        <constraint firstAttribute="trailing" secondItem="eOf-M7-3NP" secondAttribute="trailing" constant="8" id="fIz-eM-b0P"/>
-                                        <constraint firstItem="oGA-95-xT2" firstAttribute="top" secondItem="QtR-tl-St2" secondAttribute="top" constant="8" id="jOX-SG-MLJ"/>
-                                        <constraint firstItem="k3F-Dg-1XB" firstAttribute="leading" secondItem="QtR-tl-St2" secondAttribute="leading" id="p2X-gM-atc"/>
-                                        <constraint firstItem="eOf-M7-3NP" firstAttribute="leading" secondItem="QtR-tl-St2" secondAttribute="leading" constant="8" id="pdC-Eo-zUO"/>
-                                        <constraint firstItem="eOf-M7-3NP" firstAttribute="top" secondItem="QtR-tl-St2" secondAttribute="top" constant="8" id="tIe-hA-tOS"/>
-                                    </constraints>
-                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBl-Ht-qXg" userLabel="Version Holder View">
-                                    <rect key="frame" x="0.0" y="90" width="320" height="45"/>
+                                    <rect key="frame" x="0.0" y="45" width="320" height="45"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cum-iO-qnu" userLabel="Version Divider View">
                                             <rect key="frame" x="0.0" y="44" width="320" height="1"/>
@@ -156,7 +102,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gv6-7p-Sgk" userLabel="About Holder View">
-                                    <rect key="frame" x="0.0" y="135" width="320" height="45"/>
+                                    <rect key="frame" x="0.0" y="90" width="320" height="45"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zb-QF-pVK" userLabel="About Divider View">
                                             <rect key="frame" x="0.0" y="44" width="320" height="1"/>
@@ -178,7 +124,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeT-jg-UZD" userLabel="About Button">
-                                            <rect key="frame" x="0.0" y="0.5" width="320" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -209,7 +155,7 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOw-yO-Cl4">
-                                    <rect key="frame" x="54" y="220" width="212" height="47"/>
+                                    <rect key="frame" x="54" y="175" width="212" height="47"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <state key="normal" title="退出登录" backgroundImage="denglu_btn_login_press.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -221,30 +167,28 @@
                                 </button>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="ZBl-Ht-qXg" firstAttribute="top" secondItem="QtR-tl-St2" secondAttribute="bottom" id="0fC-E0-DUc"/>
                                 <constraint firstItem="32a-Ou-KNC" firstAttribute="top" secondItem="eGm-kr-H3I" secondAttribute="top" id="5Z4-K2-iPZ"/>
                                 <constraint firstAttribute="trailing" secondItem="gv6-7p-Sgk" secondAttribute="trailing" id="FEy-qm-sb1"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="504" id="Fpv-xC-nyh"/>
                                 <constraint firstItem="ZBl-Ht-qXg" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" id="GT5-hj-Vkx"/>
                                 <constraint firstAttribute="trailing" secondItem="32a-Ou-KNC" secondAttribute="trailing" id="HPg-LR-Em3"/>
-                                <constraint firstItem="QtR-tl-St2" firstAttribute="top" secondItem="32a-Ou-KNC" secondAttribute="bottom" id="PnS-Ud-MZt"/>
-                                <constraint firstItem="32a-Ou-KNC" firstAttribute="height" secondItem="QtR-tl-St2" secondAttribute="height" id="RTJ-dq-2yo"/>
+                                <constraint firstItem="ZBl-Ht-qXg" firstAttribute="top" secondItem="32a-Ou-KNC" secondAttribute="bottom" id="Rds-7i-Npb"/>
                                 <constraint firstAttribute="trailing" secondItem="yOw-yO-Cl4" secondAttribute="trailing" constant="54" id="ar0-LP-zPm"/>
                                 <constraint firstItem="32a-Ou-KNC" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" id="bGC-wY-ISk"/>
-                                <constraint firstItem="ZBl-Ht-qXg" firstAttribute="height" secondItem="QtR-tl-St2" secondAttribute="height" id="cS6-xo-vOD"/>
                                 <constraint firstAttribute="bottom" secondItem="yOw-yO-Cl4" secondAttribute="bottom" priority="999" constant="50" id="foQ-sJ-RLR"/>
+                                <constraint firstItem="32a-Ou-KNC" firstAttribute="height" secondItem="ZBl-Ht-qXg" secondAttribute="height" id="kZ6-Tu-FgS"/>
+                                <constraint firstAttribute="height" secondItem="ZBl-Ht-qXg" secondAttribute="height" id="mak-Gh-tGz"/>
                                 <constraint firstItem="yOw-yO-Cl4" firstAttribute="top" secondItem="gv6-7p-Sgk" secondAttribute="bottom" constant="40" id="niG-nh-Coa"/>
-                                <constraint firstAttribute="trailing" secondItem="QtR-tl-St2" secondAttribute="trailing" id="puX-CP-Ugi"/>
                                 <constraint firstItem="gv6-7p-Sgk" firstAttribute="top" secondItem="ZBl-Ht-qXg" secondAttribute="bottom" id="qbJ-Rz-VU1"/>
                                 <constraint firstAttribute="trailing" secondItem="ZBl-Ht-qXg" secondAttribute="trailing" id="rjg-Nx-CgH"/>
                                 <constraint firstItem="gv6-7p-Sgk" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" id="tze-Iq-ECG"/>
                                 <constraint firstItem="yOw-yO-Cl4" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" constant="54" id="u1r-dz-u3K"/>
-                                <constraint firstItem="QtR-tl-St2" firstAttribute="leading" secondItem="eGm-kr-H3I" secondAttribute="leading" id="yIH-Wv-yYw"/>
                                 <constraint firstItem="gv6-7p-Sgk" firstAttribute="height" secondItem="ZBl-Ht-qXg" secondAttribute="height" id="ycR-2q-Ykb"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="Fpv-xC-nyh"/>
+                                    <exclude reference="mak-Gh-tGz"/>
                                 </mask>
                             </variation>
                         </view>
