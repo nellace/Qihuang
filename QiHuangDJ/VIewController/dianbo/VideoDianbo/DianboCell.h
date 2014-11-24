@@ -22,4 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *badMethod;
 @property (weak, nonatomic) IBOutlet UIButton *goodMethod;
 
+- (CGFloat)measuremented;
+
 @end

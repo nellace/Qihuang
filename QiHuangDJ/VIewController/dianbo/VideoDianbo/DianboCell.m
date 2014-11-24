@@ -8,7 +8,16 @@
 
 #import "DianboCell.h"
 
+@interface DianboCell()
+@property (weak, nonatomic) IBOutlet UIView *measurement;
+@end
+
 @implementation DianboCell
+
+- (CGFloat)measuremented
+{
+    return (self.measurement ? self.measurement.frame.origin.y : 0);
+}
 
 - (void)rowHeight:(NSString *)content {
 
