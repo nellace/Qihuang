@@ -28,9 +28,9 @@
      [UMSocialData setAppKey:@"5461a154fd98c5ce9f0073b4"];
     
 //    //打开新浪微博的SSO开关
-    [UMSocialSinaHandler openSSOWithRedirectURL:nil];
-//    
-     [ShareSDK registerApp:@"44f252ae7228"];
+//    [UMSocialSinaHandler openSSOWithRedirectURL:nil];
+//
+     [ShareSDK registerApp:@"4521b8898422"];
     
     
     //添加新浪微博应用 注册网址 http://open.weibo.com
@@ -79,14 +79,14 @@
 #pragma mark -umeng sina share redirect method
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    return  [UMSocialSnsService handleOpenURL:url];
+    return  [ShareSDK handleOpenURL:url wxDelegate:nil];
 }
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    return  [UMSocialSnsService handleOpenURL:url];
+    return  [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:nil];
 }
 
 #pragma mark -JPush Redirect Method
