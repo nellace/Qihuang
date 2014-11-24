@@ -34,9 +34,10 @@
     
     
     //添加新浪微博应用 注册网址 http://open.weibo.com
-    [ShareSDK connectSinaWeiboWithAppKey:@"933509896"
-                               appSecret:@"f79eb0bdc2c8491cac280695e5ddda7f"
+    [ShareSDK connectSinaWeiboWithAppKey:@"2058806096"
+                               appSecret:@"7ad95e9c8d929be4014c039da27dedab"
                              redirectUri:@"http://175kh.com"];
+    [ShareSDK connectTencentWeiboWithAppKey:@"101149800" appSecret:@"fd01fe1b65ac6a20b97747fd5d570948" redirectUri:@"yxq.175kh.com"];
 //    [ShareSDK connectQQWithAppKey:@"101104063" appSecret:@"9f2c54ba9cf54cd2e55fdb6cb862230e"];
 //    [ShareSDK connectQQWithAppId:<#(NSString *)#> qqApiCls:<#(__unsafe_unretained Class)#>]
     
