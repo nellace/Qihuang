@@ -100,7 +100,6 @@
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mZ-9V-YE3" userLabel="Measurement">
                         <rect key="frame" x="8" y="120" width="304" height="1"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="PZr-S1-9By"/>
                         </constraints>
