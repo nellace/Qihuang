@@ -19,7 +19,7 @@
 @property (nonatomic, strong) InformationDetailInterface *detail;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextFiled;
 
-@property (nonatomic, strong) NSMutableArray *heights;
+//@property (nonatomic, strong) NSMutableArray *heights;
 
 @end
 
@@ -46,22 +46,22 @@ static  NSInteger goodCount; //记录等号
     return _detail;
 }
 
-- (NSMutableArray *)heights
-{
-    if (!_heights) _heights = [[NSMutableArray alloc] init];
-    return _heights;
-}
+//- (NSMutableArray *)heights
+//{
+//    if (!_heights) _heights = [[NSMutableArray alloc] init];
+//    return _heights;
+//}
 
-- (void)configureHeightsArray
-{
-    if (self.heights.count != listArrayWithInfo.count) {
-        [self.heights removeAllObjects];
-        for (int i = 0; i < listArrayWithInfo.count; i++) {
-            NSNumber *height = [[NSNumber alloc] initWithFloat:0];
-            [self.heights addObject:height];
-        }
-    }
-}
+//- (void)configureHeightsArray
+//{
+//    if (self.heights.count != listArrayWithInfo.count) {
+//        [self.heights removeAllObjects];
+//        for (int i = 0; i < listArrayWithInfo.count; i++) {
+//            NSNumber *height = [[NSNumber alloc] initWithFloat:0];
+//            [self.heights addObject:height];
+//        }
+//    }
+//}
 
 #pragma mark - VIEW CONTROLLER LIFECYCLE
 
@@ -220,9 +220,9 @@ static  NSInteger goodCount; //记录等号
             [listArrayWithInfo addObject:commentlist];
         }
 //        NSLog(@"comment list frame front %d",sectionHeight);
-        [self configureHeightsArray];
-        [self.mainTableView reloadData];
-        [self configureHeightsArray];
+//        [self configureHeightsArray];
+//        [self.mainTableView reloadData];
+//        [self configureHeightsArray];
         [self.mainTableView reloadData];
 //        NSLog(@"comment list frame blowe %d",sectionHeight);
     }
@@ -255,9 +255,9 @@ static  NSInteger goodCount; //记录等号
         commentlist.countGood = @"0";
         
         [listArrayWithInfo insertObject:commentlist atIndex:0];
-        [self configureHeightsArray];
-        [self.mainTableView reloadData];
-        [self configureHeightsArray];
+//        [self configureHeightsArray];
+//        [self.mainTableView reloadData];
+//        [self configureHeightsArray];
         [self.mainTableView reloadData];
         NSLog(@"! DATA RELOAD!!!");
         [self.inputTextFiled resignFirstResponder];
@@ -289,9 +289,9 @@ static  NSInteger goodCount; //记录等号
         good ++;
         commentlist.countGood = [NSString stringWithFormat:@"%d",good];
         [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
-        [self configureHeightsArray];
-        [self.mainTableView reloadData];
-        [self configureHeightsArray];
+//        [self configureHeightsArray];
+//        [self.mainTableView reloadData];
+//        [self configureHeightsArray];
         [self.mainTableView reloadData];
         goodCount = 0;
     } else {
@@ -315,9 +315,9 @@ static  NSInteger goodCount; //记录等号
         good ++;
         commentlist.countBad = [NSString stringWithFormat:@"%d",good];
         [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
-        [self configureHeightsArray];
-        [self.mainTableView reloadData];
-        [self configureHeightsArray];
+//        [self configureHeightsArray];
+//        [self.mainTableView reloadData];
+//        [self configureHeightsArray];
         [self.mainTableView reloadData];
         goodCount = 0;
     } else {
@@ -515,30 +515,30 @@ static  NSInteger goodCount; //记录等号
     }
     cell.titleLabel.text = usernametext;
     
-    if ([[self.heights objectAtIndex:indexPath.row] floatValue] > 0) {
-        NSNumber *num = [self.heights objectAtIndex:indexPath.row];
-        num = [NSNumber numberWithFloat:[cell measuremented]];
-        NSLog(@"- EXT - %d : %.2f to %.2f",
-              [indexPath row],
-              [[self.heights objectAtIndex:indexPath.row] floatValue],
-              [num floatValue]);
-        if ([[self.heights objectAtIndex:indexPath.row] floatValue] != [num floatValue]) {
-            [self.heights setObject:num atIndexedSubscript:indexPath.row];
-            [self configureHeightsArray];
-            [self.mainTableView reloadData];
-        }
-    } else {
-        NSNumber *num = [self.heights objectAtIndex:indexPath.row];
-        num = [NSNumber numberWithFloat:[cell measuremented]];
-        [self.heights setObject:num atIndexedSubscript:indexPath.row];
-        NSLog(@"+ CRT - %d : %.2f",
-              [indexPath row],
-              [num floatValue]);
-        if ([num floatValue] == 120.0f) {
-            [self configureHeightsArray];
-            [self.mainTableView reloadData];
-        }
-    }
+//    if ([[self.heights objectAtIndex:indexPath.row] floatValue] > 0) {
+//        NSNumber *num = [self.heights objectAtIndex:indexPath.row];
+//        num = [NSNumber numberWithFloat:[cell measuremented]];
+////        NSLog(@"- EXT - %d : %.2f to %.2f",
+////              [indexPath row],
+////              [[self.heights objectAtIndex:indexPath.row] floatValue],
+////              [num floatValue]);
+//        if ([[self.heights objectAtIndex:indexPath.row] floatValue] != [num floatValue]) {
+//            [self.heights setObject:num atIndexedSubscript:indexPath.row];
+//            [self configureHeightsArray];
+//            [self.mainTableView reloadData];
+//        }
+//    } else {
+//        NSNumber *num = [self.heights objectAtIndex:indexPath.row];
+//        num = [NSNumber numberWithFloat:[cell measuremented]];
+//        [self.heights setObject:num atIndexedSubscript:indexPath.row];
+////        NSLog(@"+ CRT - %d : %.2f",
+////              [indexPath row],
+////              [num floatValue]);
+//        if ([num floatValue] == 120.0f) {
+//            [self configureHeightsArray];
+//            [self.mainTableView reloadData];
+//        }
+//    }
 
     return cell;
 }
@@ -550,7 +550,33 @@ static  NSInteger goodCount; //记录等号
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return [[self.heights objectAtIndex:indexPath.row] floatValue] > 0 ? [[self.heights objectAtIndex:indexPath.row] floatValue] : 120;
+    CommentListInterface* commentlist = listArrayWithInfo[indexPath.row];
+    DianboCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"DianboCell" owner:self options:nil] lastObject];
+    NSString *string = commentlist.content;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentLabel.frame.size.width, MAXFLOAT)];
+    label.numberOfLines = 0;
+    label.font = cell.contentLabel.font;
+    
+    
+//    NSMutableAttributedString *aString = [[NSMutableAttributedString alloc] initWithString:string];
+//    NSMutableParagraphStyle *paras = [[NSMutableParagraphStyle alloc] init];
+//    [paras setLineSpacing:1.0f];
+//    [aString addAttribute:NSParagraphStyleAttributeName value:paras range:NSMakeRange(0, [aString length])];
+//    [label setAttributedText:aString];
+    
+    
+    
+    
+    label.text = string;
+    [label sizeToFit];
+    CGFloat height = [cell measuremented] - cell.contentLabel.frame.size.height + label.frame.size.height;
+    
+//    NSLog(@"- %d HEIGHT: %.1f, ACTUAL: %.1f", indexPath.row, height, [[self.heights objectAtIndex:indexPath.row] floatValue]);
+    
+    
+    
+    return height;
+//    return [[self.heights objectAtIndex:indexPath.row] floatValue] > 0 ? [[self.heights objectAtIndex:indexPath.row] floatValue] : 120;
 }
 
 #pragma mark - UITableViewCell Button Method
@@ -609,9 +635,9 @@ static  NSInteger goodCount; //记录等号
 }
 
 -(void)reloadForTableViewWithWebViewHeight:(NSInteger)het {
-    [self configureHeightsArray];
-    [self.mainTableView reloadData];
-    [self configureHeightsArray];
+//    [self configureHeightsArray];
+//    [self.mainTableView reloadData];
+//    [self configureHeightsArray];
     [self.mainTableView reloadData];
 }
 
