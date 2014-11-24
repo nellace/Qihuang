@@ -259,7 +259,7 @@ static  NSInteger goodCount; //记录等号
 //        [self.mainTableView reloadData];
 //        [self configureHeightsArray];
         [self.mainTableView reloadData];
-        NSLog(@"! DATA RELOAD!!!");
+//        NSLog(@"! DATA RELOAD!!!");
         [self.inputTextFiled resignFirstResponder];
         self.inputTextFiled.text = @"";
         otherUserName = @"";
@@ -462,7 +462,7 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    NSLog(@"headerHeight %d",sectionHeight);
+//    NSLog(@"headerHeight %d",sectionHeight);
     return sectionHeight;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
