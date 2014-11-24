@@ -219,10 +219,12 @@ static  NSInteger goodCount; //记录等号
             
             [listArrayWithInfo addObject:commentlist];
         }
-        NSLog(@"comment list frame front %d",sectionHeight);
+//        NSLog(@"comment list frame front %d",sectionHeight);
         [self configureHeightsArray];
         [self.mainTableView reloadData];
-        NSLog(@"comment list frame blowe %d",sectionHeight);
+        [self configureHeightsArray];
+        [self.mainTableView reloadData];
+//        NSLog(@"comment list frame blowe %d",sectionHeight);
     }
     
 }
@@ -238,7 +240,7 @@ static  NSInteger goodCount; //记录等号
     if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUsername"];
         NSString *replyTitle;
-        NSLog(@"othexrUserName  %@",otherUserName);
+//        NSLog(@"othexrUserName  %@",otherUserName);
         if (otherUserName.length == 0) {
             replyTitle = username;
         }else {
@@ -255,6 +257,9 @@ static  NSInteger goodCount; //记录等号
         [listArrayWithInfo insertObject:commentlist atIndex:0];
         [self configureHeightsArray];
         [self.mainTableView reloadData];
+        [self configureHeightsArray];
+        [self.mainTableView reloadData];
+        NSLog(@"! DATA RELOAD!!!");
         [self.inputTextFiled resignFirstResponder];
         self.inputTextFiled.text = @"";
         otherUserName = @"";
@@ -284,6 +289,8 @@ static  NSInteger goodCount; //记录等号
     [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
     [self configureHeightsArray];
     [self.mainTableView reloadData];
+    [self configureHeightsArray];
+    [self.mainTableView reloadData];
     goodCount = 0;
 
 }
@@ -299,6 +306,8 @@ static  NSInteger goodCount; //记录等号
     good ++;
     commentlist.countBad = [NSString stringWithFormat:@"%d",good];
     [listArrayWithInfo replaceObjectAtIndex:goodCount withObject:commentlist];
+    [self configureHeightsArray];
+    [self.mainTableView reloadData];
     [self configureHeightsArray];
     [self.mainTableView reloadData];
     goodCount = 0;
@@ -370,19 +379,10 @@ static  NSInteger goodCount; //记录等号
 
 }
 
-- (void)refreshData
-{
-    NSString *content = @"致身千乘卿相归把钓渔钩春昼五湖烟浪秋夜一天云月此外尽悠悠永弃人间事吾道付沧州";
-    NSString *finalContent = @"";
-    //NSUInteger i = 2 + arc4random()%5;
-    for (int i = 0; i < 5 + 3 * arc4random()%10; i++) {
-        finalContent = [NSString stringWithFormat:@"%@%@", finalContent, content];
-    }
-    
-    [infoHeader.bodyLabel setText:finalContent];
-}
+
 
 #pragma mark - BUTTON ACTION METHOD
+
 - (IBAction)backRootMehod:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -393,8 +393,8 @@ static  NSInteger goodCount; //记录等号
         [self pushLoginVCMethod];
     }
 }
+
 - (IBAction)zanMehod:(id)sender {
-    NSLog(@"-------17");
     if ([KHLColor isLogin]) {
         NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
         NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
@@ -404,6 +404,7 @@ static  NSInteger goodCount; //记录等号
     }
     
 }
+
 - (IBAction)discussMehod:(id)sender {
     if ([self.inputTextFiled.text isEqualToString:@""]) {
         [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -500,12 +501,23 @@ static  NSInteger goodCount; //记录等号
     }
     cell.titleLabel.text = usernametext;
     
-    if ([[self.heights objectAtIndex:indexPath.row] floatValue] > 0) ;
-    else {
+    if ([[self.heights objectAtIndex:indexPath.row] floatValue] > 0) {
         NSNumber *num = [self.heights objectAtIndex:indexPath.row];
-        num = [NSNumber numberWithFloat:100 + (10 * (arc4random() % 10))];
+        num = [NSNumber numberWithFloat:[cell measuremented]];
+        NSLog(@"- EXT - %d : %.2f to %.2f",
+              [indexPath row],
+              [[self.heights objectAtIndex:indexPath.row] floatValue],
+              [num floatValue]);
         [self.heights setObject:num atIndexedSubscript:indexPath.row];
-        NSLog(@"%d - %.2f", indexPath.row, num.floatValue);
+    } else {
+        NSNumber *num = [self.heights objectAtIndex:indexPath.row];
+        num = [NSNumber numberWithFloat:[cell measuremented]];
+        [self.heights setObject:num atIndexedSubscript:indexPath.row];
+        NSLog(@"+ CRT - %d : %.2f",
+              [indexPath row],
+              [num floatValue]);
+        [self configureHeightsArray];
+        [self.mainTableView reloadData];
     }
 
     return cell;
@@ -517,7 +529,8 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [[self.heights objectAtIndex:indexPath.row] floatValue] > 0 ? [[self.heights objectAtIndex:indexPath.row] floatValue] : 100;
+    
+    return [[self.heights objectAtIndex:indexPath.row] floatValue] > 0 ? [[self.heights objectAtIndex:indexPath.row] floatValue] : 120;
 }
 
 #pragma mark - UITableViewCell Button Method
@@ -576,6 +589,8 @@ static  NSInteger goodCount; //记录等号
 }
 
 -(void)reloadForTableViewWithWebViewHeight:(NSInteger)het {
+    [self configureHeightsArray];
+    [self.mainTableView reloadData];
     [self configureHeightsArray];
     [self.mainTableView reloadData];
 }
