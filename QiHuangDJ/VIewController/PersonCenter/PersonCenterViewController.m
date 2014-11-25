@@ -431,8 +431,9 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 
 - (IBAction)clickRecommendItem:(UIButton *)sender
 {
-    if (-1 < sender.tag < self.recommends.count) {
-        RecommendListInterface *instance = [self.recommends objectAtIndex:sender.tag];
+    NSInteger index = sender.tag - 2;
+    if (-1 < index < self.recommends.count) {
+        RecommendListInterface *instance = [self.recommends objectAtIndex:index];
         if (instance) {
             UIViewController *targetViewController = nil;
             if ([@"video" isEqualToString:instance.type]) {
