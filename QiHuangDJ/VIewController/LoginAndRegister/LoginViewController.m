@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "RetrievePasswordViewController.h"
 #import <ShareSDK/ShareSDK.h>
 
 @interface LoginViewController () 
@@ -48,7 +49,6 @@
     
     // Register notification..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginNotified:) name:@"KHLNotiLogin" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrievePasswordNotified:) name:@"KHLNotiRetrievePassword" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginNotified:) name:@"HKLUrlThrild" object:nil];
 }
 
@@ -56,7 +56,7 @@
     
     // Remove notification..
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiLogin" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiRetrievePassword" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"HKLUrlThrild" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,7 +81,7 @@
     }
 }
 
-# pragma mark - USER INTERACTION RESPONSE
+# pragma mark - USER INTERACTION RESPONSES
 
 - (IBAction)pressCancel:(UIButton *)sender
 {
@@ -168,7 +168,8 @@
 
 - (IBAction)pressForgotPasswordButton:(UIButton *)sender
 {
-    [[KHLDataManager instance] retrievePasswordHUDHolder:self.view email:@"cl4p_prime@hotmail.com"];
+    RetrievePasswordViewController *retrievePasswordViewController = [[RetrievePasswordViewController alloc] init];
+    [self.navigationController pushViewController:retrievePasswordViewController animated:TRUE];
 }
 
 #pragma mark - NOTIFICATION METHODES
@@ -227,10 +228,7 @@
     }
 }
 
-- (void)retrievePasswordNotified:(NSNotification *)notification
-{
-    
-}
+
 
 #pragma mark - UITEXTFILED-DELEGATE
 
