@@ -14,6 +14,13 @@
 #import "MobClick.h"
 #import "APService.h"
 #import <ShareSDK/ShareSDK.h>
+#import <TencentOpenAPI/QQApi.h>
+
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+
+
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -37,7 +44,15 @@
     [ShareSDK connectSinaWeiboWithAppKey:@"2058806096"
                                appSecret:@"7ad95e9c8d929be4014c039da27dedab"
                              redirectUri:@"http://175kh.com"];
-    [ShareSDK connectTencentWeiboWithAppKey:@"101149800" appSecret:@"fd01fe1b65ac6a20b97747fd5d570948" redirectUri:@"yxq.175kh.com"];
+//    [ShareSDK connectTencentWeiboWithAppKey:@"101149800" appSecret:@"fd01fe1b65ac6a20b97747fd5d570948" redirectUri:@"yxq.175kh.com"];
+    
+//    [ShareSDK connectQZoneWithAppKey:@"100371282" appSecret:@"aed9b0303e3ed1e27bae87c33761161d" qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
+    
+    [ShareSDK connectQZoneWithAppKey:@"100371282" appSecret:@"aed9b0303e3ed1e27bae87c33761161d" qqApiInterfaceCls:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
+    
+//    [ShareSDK importQQClass:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
+    
+//    [ShareSDK connectQQWithAppId:@"801537286" qqApiCls:[QQApi class]];
 //    [ShareSDK connectQQWithAppKey:@"101104063" appSecret:@"9f2c54ba9cf54cd2e55fdb6cb862230e"];
 //    [ShareSDK connectQQWithAppId:<#(NSString *)#> qqApiCls:<#(__unsafe_unretained Class)#>]
     
