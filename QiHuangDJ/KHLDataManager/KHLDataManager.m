@@ -29,9 +29,6 @@
                    gender:(NSString *)gender
                     email:(NSString *)email
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlRegister];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -40,26 +37,8 @@
                            gender, @"sex",
                            email, @"email",
                            nil];
-    NSLog(@"register url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"register succ=\n%@ \n(reason=%@)", json, [json objectForKey:@"reason"]);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiRegistered" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"register fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiRegistered" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiRegistered holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 2.2 （2.2）登录
@@ -67,98 +46,35 @@
              loginName:(NSString *)loginName
               password:(NSString *)password
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlLogin];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
                            loginName, @"loginname",
                            password, @"password",
                            nil];
-    NSLog(@"login url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"login succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiLogin" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"login fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiLogin" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiLogin holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 2.3 （2.22）找回密码
 - (void)retrievePasswordHUDHolder:(UIView *)holder
                             email:(NSString *)email
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlRetrievePassword];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
                            email, @"email", nil];
-    NSLog(@"retrieve password url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"retrieve password succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiRetrievePassword" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"retrieve password fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiRetrievePassword" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiRetrievePassword holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 3.1 （2.3）获取推荐列表
 - (void)recommendListHUDHolder:(UIView *)holder
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlRecommendListAcquire];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"recommend ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"recommend succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiRecommendListAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"recommend fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiRecommendListAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodeGetName:KHLNotiRecommendListAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 3.2 （2.4）获取订阅列表
@@ -166,29 +82,10 @@
                               uid:(NSString *)uid
                             token:(NSString *)token
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlSubscriptionListAcquire, uid, token];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"subscription ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSError *error;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-        NSLog(@"subscription succ=\n%@", json);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubscriptionListAcquired" object:json];
-        
-        // Stop progress HUD..
-        [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"subscription fail=\n%@", error);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubscriptionListAcquired" object:nil];
-        
-        // Stop progress HUD..
-        [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-    }];
+    [self methodeGetName:KHLNotiSubscriptionListAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 3.3 （2.5）获取收藏列表
@@ -196,29 +93,10 @@
                             uid:(NSString *)uid
                           token:(NSString *)token
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlCollectionListAcquire, uid, token];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"collection ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSError *error;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-        NSLog(@"collection succ=\n%@", json);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiCollectionListAcquired" object:json];
-        
-        // Stop progress HUD..
-        [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"collection fail=\n%@", error);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiCollectionListAcquired" object:nil];
-        
-        // Stop progress HUD..
-        [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-    }];
+    [self methodeGetName:KHLNotiCollectionListAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 4.2 （2.6）修改个人资料
@@ -232,9 +110,6 @@
                                         qq:(NSString *)qq
                                      token:(NSString *)token
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlPersonalInformationModify];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -247,95 +122,32 @@
                            qq, @"qq",
                            token, @"token",
                            nil];
-    NSLog(@"PIM url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"PIM succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiPersonalInformationModify" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"PIM fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiPersonalInformationModify" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiPersonalInformationModify holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 5.1 （2.7）首页图片（轮播图、背景图）
 - (void)homepageImagesHUDHolder:(UIView *)holder
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlHomepageImagesAcquire];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"homepage ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"homepage succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiHomepageImagesAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"homepage fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiHomepageImagesAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodeGetName:KHLNotiHomepageImagesAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 6.1 （2.8）获取直播列表
 - (void)liveListHUDHolder:(UIView *)holder
                      type:(NSString *)type
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlLiveListAcquire, type];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"livelist ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"livelist succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiLiveListAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"livelist fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiLiveListAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodeGetName:KHLNotiLiveListAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 6.2 （2.9）获取直播详情
 - (void)liveDetailHUDHolder:(UIView *)holder identity:(NSString *)identity uid:(NSString *)uid token:(NSString *)token
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlLiveDetailAcquire];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -343,26 +155,8 @@
                            uid, @"uid",
                            token, @"token",
                            nil];
-    NSLog(@"livedetail url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"livedetail succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiLiveDetailAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"livedetail fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiLiveDetailAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiLiveDetailAcquired holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 7.1 （2.14）获取点播列表
@@ -372,31 +166,10 @@
                     page:(NSString *)page
                   search:(NSString *)keyword
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlVODListAcquire, type, category, page, keyword];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"vodlist ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"vodlist succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiVODListAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"vodlist fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiVODListAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodeGetName:KHLNotiVODListAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 7.2 （2.15）获取点播详情
@@ -404,31 +177,10 @@
                   identity:(NSString *)identity
                       type:(NSString *)type
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlVODDetailAcquire, identity, type];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"voddetail ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"voddetail succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiVODDetailAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"voddetail fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiVODDetailAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodeGetName:KHLNotiVODDetailAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 8.1 （2.12）订阅
@@ -437,35 +189,6 @@
                   category:(NSString *)category
                      token:(NSString *)token
 {
-//    // Start progress HUD..
-//    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-//    
-//    NSString *ustr = [NSString stringWithFormat:KHLUrlSubscribeCategory, uid, category, token];
-//    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    NSLog(@"subscribe ustr=%@", ustr);
-//    
-//    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-//    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-//     {
-//         NSError *error;
-//         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-//         NSLog(@"subscribe succ=\n%@", json);
-//         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubscribeCategory" object:json];
-//         
-//         // Stop progress HUD..
-//         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-//     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-//     {
-//         NSLog(@"subscribe fail=\n%@", error);
-//         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubscribeCategory" object:nil];
-//         
-//         // Stop progress HUD..
-//         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-//     }];
-    
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlSubscribeCategory];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -473,26 +196,8 @@
                            category, @"cate_id",
                            token, @"token",
                            nil];
-    NSLog(@"subscribe url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"subscribe succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubscribeCategory" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"subscribe fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubscribeCategory" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiSubscribeCategory holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 8.2 （2.13）退订
@@ -501,9 +206,6 @@
                     category:(NSString *)category
                        token:(NSString *)token
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlUnsubscribeCategory];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -511,26 +213,8 @@
                            category, @"cate_id",
                            token, @"token",
                            nil];
-    NSLog(@"unsubscribe url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"unsubscribe succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiUnsubscribeCategory" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"unsubscribe fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiUnsubscribeCategory" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiUnsubscribeCategory holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 9.1 （2.16）添加收藏
@@ -541,9 +225,6 @@
                        category:(UIView *)category
                           token:(UIView *)token
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlCollectArticle];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -552,26 +233,8 @@
                            category, @"cate_id",
                            token, @"token",
                            nil];
-    NSLog(@"collect url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"collect succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiCollectArticle" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"collect fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiCollectArticle" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiCollectArticle holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 9.2 （2.17）取消收藏
@@ -581,9 +244,6 @@
                          category:(NSString *)category
                             token:(NSString *)token
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlUncollectArticle];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -592,56 +252,17 @@
                            category, @"cate_id",
                            token, @"token",
                            nil];
-    NSLog(@"uncollect url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"uncollect succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiUncollectArticle" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"uncollect fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiUncollectArticle" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiUncollectArticle holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 10.1 （2.18）获取艺人列表
 - (void)entertainersListHUDHolder:(UIView *)holder
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlEntertainersListAcquire];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"entertainers ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"entertainers succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiEntertainersAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"entertainers fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiEntertainersAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodeGetName:KHLNotiEntertainersAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 11.1 （2.19）获取资讯列表
@@ -651,31 +272,10 @@
                          keyword:(NSString *)keyword
                             page:(NSString *)page
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlInformationListAcquire, category, type, keyword, page];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"infolist ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"infolist succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiInformationListAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"infolist fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiInformationListAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodeGetName:KHLNotiInformationListAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 11.2 （2.20）获取资讯详情
@@ -683,31 +283,10 @@
                           identity:(NSString *)identity
                               type:(NSString *)type
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlInformationDetailAcquire, identity, type];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"infodetail ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"infodetail succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiInformationDetailAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"infodetail fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiInformationDetailAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodeGetName:KHLNotiInformationDetailAcquired holder:holder url:ustr];
 }
 
 #pragma mark - 12.1 （2.21）搜索
@@ -715,31 +294,10 @@
                 keyword:(NSString *)keyword
                    page: (NSString *)page
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlSearch, keyword,page];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"search ustr=%@", ustr);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"search succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSearchResult" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"search fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSearchResult" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodeGetName:KHLNotiSearchResult holder:holder url:ustr];
 }
 
 #pragma mark - ?.? （2.11）举报
@@ -750,9 +308,6 @@
                   token:(NSString *)token
              targetType:(NSString *)targetType
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlReport];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -762,26 +317,8 @@
                            token, @"token",
                            targetType, @"model",
                            nil];
-    NSLog(@"report url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"report succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiReported" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"report fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiReported" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiReported holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - ?.? （2.10）评论
@@ -792,9 +329,6 @@
                  token:(NSString *)token
             targetType:(NSString *)targetType
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlCommentReply];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -804,106 +338,44 @@
                            token, @"token",
                            targetType, @"model",
                            nil];
-    NSLog(@"reply url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"reply succ=\n%@ reason %@", json,[json objectForKey:@"reason"]);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiReplied" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"reply fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiReplied" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiReplied holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 2.23
-- (void)commentlistHUDHolder :(UIView *)holder
-                          model:(NSString *)model
-                      zhiboid:(NSString *)zhiboid {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
+- (void)commentlistHUDHolder:(UIView *)holder
+                       model:(NSString *)model
+                     zhiboid:(NSString *)zhiboid
+{
     NSString *ustr = [NSString stringWithFormat:KHLUrlcommentlist];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
                            model, @"model",
                            zhiboid, @"info_id",
                            nil];
-    NSLog(@"reply url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"commentlist succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlcommentlist" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"commentlist fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlcommentlist" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
-
+    [self methodePostName:KHLNotiCommentListAcquired holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - (2.25) 点播分类列表
 - (void)categoryListHUDHolder:(UIView *)holder uid:(NSString *)uid token:(NSString *)token
 {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
     NSString *ustr = [NSString stringWithFormat:KHLUrlCategoryListAcquire];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
                            uid, @"uid",
                            token, @"token",
                            nil];
-    NSLog(@"catelist url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"catelist succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiCategoryListAcquired" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"catelist fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiCategoryListAcquired" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiCategoryListAcquired holder:holder url:ustr arguments:param];
 }
 
 //sg 2.26
-- (void)goodHUDHolder: (UIView *)holder
-                  uid: (NSString *)uid
-                token: (NSString *)token
-           comment_id:(NSString *)comment_id {
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
+- (void)goodHUDHolder:(UIView *)holder
+                  uid:(NSString *)uid
+                token:(NSString *)token
+           comment_id:(NSString *)comment_id
+{
     NSString *ustr = [NSString stringWithFormat:KHLUrlGoodWithComment];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -911,62 +383,33 @@
                            token, @"token",
                            comment_id,@"comment_id",
                            nil];
-    NSLog(@"good url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"good succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlGoodWithComment" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"good fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlGoodWithComment" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiCommentLiked holder:holder url:ustr arguments:param];
 }
 
-- (void)zanHUDHolder: (UIView *)holder
-                 uid: (NSString *)uid
-               token: (NSString *)token
+- (void)zanHUDHolder:(UIView *)holder
+                 uid:(NSString *)uid
+               token:(NSString *)token
              info_id:(NSString *)info_id
                model:(NSString*)model
 {
-    [MBProgressHUD showHUDAddedTo:holder animated:YES];
     NSString *ustr = [NSString stringWithFormat:KHLUrlGoodWithComment];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc]initWithObjectsAndKeys:
-                                                    uid,@"uid",
-                                                    token,@"token",
-                                                    info_id,@"info_id",
-                                                    model,@"model",nil];
-    NSLog(@"good url=%@ param=%@", ustr, param);
-    AFHTTPClient *client = [[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSError *error;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-        NSLog(@"good succ=\n%@", json);
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"KHLUrlZanWithModel" object:json];
-        [MBProgressHUD hideHUDForView:holder animated:YES];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"zan fail = \n%@",error);
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"KHLUrlZanWithModel" object:nil];
-        [MBProgressHUD hideHUDForView:holder animated:YES];
-    }];
+                           uid, @"uid",
+                           token, @"token",
+                           info_id, @"info_id",
+                           model, @"model",
+                           nil];
+    
+    [self methodePostName:KHLNotiPraised holder:holder url:ustr arguments:param];
 }
 
-- (void)badHUDHolder:(UIView *)holder uid:(NSString *)uid token:(NSString *)token comment_id:(NSString *)comment_id {
-    
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
+- (void)badHUDHolder:(UIView *)holder
+                 uid:(NSString *)uid
+               token:(NSString *)token
+          comment_id:(NSString *)comment_id
+{
     NSString *ustr = [NSString stringWithFormat:KHLUrlbadWithComment];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -974,36 +417,16 @@
                            token, @"token",
                            comment_id,@"comment_id",
                            nil];
-    NSLog(@"bad url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"bad succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlbadWithComment" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"bad fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLUrlbadWithComment" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
+    [self methodePostName:KHLNotiCommentDisliked holder:holder url:ustr arguments:param];
 }
 
-- (void)thirdLogin: (UIView *)holder
+- (void)thirdLogin:(UIView *)holder
         third_type:(NSString *)third_type
            sina_id:(NSString *)sina_id
          tencet_id:(NSString *)tencet_id
-    third_username:(NSString*)third_username{
-    // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
-    
+    third_username:(NSString*)third_username
+{
     NSString *ustr = [NSString stringWithFormat:HKLUrlThrild];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -1012,59 +435,84 @@
                            tencet_id,@"open_id",
                            third_username,@"sina_uname",
                            nil];
-    NSLog(@"bad url=%@ param=%@", ustr, param);
     
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client postPath:ustr parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSError *error;
-         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"bad succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"HKLUrlThrild" object:json];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"bad fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"HKLUrlThrild" object:nil];
-         
-         // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
-     }];
-
+    [self methodePostName:KHLNotiThirdPartyLogin holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 2.24 二级导航
 - (void)subpageHUDHolder:(UIView *)holder
                 category:(NSString *)category
 {
+    NSString *ustr = [NSString stringWithFormat:KHLUrlSubpage, category];
+    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [self methodeGetName:KHLNotiSubpageAcquired holder:holder url:ustr];
+}
+
+
+
+#pragma mark - IT'S COOL AND ELEGANT TO DO THIS WAY BUT I DONT KNOW HOW TO CALL
+
+- (void)methodeGetName:(NSString *)notificationName
+                holder:(UIView *)holder
+                   url:(NSString *)url
+{
+    // Print methode name and arguments..
+    NSLog(@"+ GET  %@: %@", notificationName, url);
+    
     // Start progress HUD..
     [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
     
-    NSString *ustr = [NSString stringWithFormat:KHLUrlSubpage, category];
-    ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"subpage ustr=%@", ustr);
-    
+    // Create client and try get methode..
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
-    [client getPath:ustr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [client getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSError *error;
          NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
-         NSLog(@"subpage succ=\n%@", json);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubpageAcquired" object:json];
+         [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:json];
          
          // Stop progress HUD..
          [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
-         NSLog(@"subpage fail=\n%@", error);
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"KHLNotiSubpageAcquired" object:nil];
+         [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
          
          // Stop progress HUD..
          [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
      }];
 }
+
+- (void)methodePostName:(NSString *)notificationName
+                 holder:(UIView *)holder
+                    url:(NSString *)url
+              arguments:(NSDictionary *)arguments
+{
+    // Print methode name and arguments..
+    NSLog(@"+ POST %@: %@", notificationName, arguments);
+    
+    // Start progress HUD..
+    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
+    
+    // Create client and try post methode..
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
+    [client postPath:url parameters:arguments success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSError *error;
+         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+         [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:json];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
+         
+         // Stop progress HUD..
+         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+     }];
+}
+
+
 
 
 @end

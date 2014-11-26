@@ -13,6 +13,40 @@
 
 @interface KHLDataManager : NSObject
 
+
+#pragma mark - NOTIFICATION NAME DEFINATION
+#define KHLNotiRegistered @"KHLNotiRegistered"
+#define KHLNotiLogin @"KHLNotiLogin"
+#define KHLNotiRetrievePassword @"KHLNotiRetrievePassword"
+#define KHLNotiRecommendListAcquired @"KHLNotiRecommendListAcquired"
+#define KHLNotiSubscriptionListAcquired @"KHLNotiSubscriptionListAcquired"
+#define KHLNotiCollectionListAcquired @"KHLNotiCollectionListAcquired"
+#define KHLNotiPersonalInformationModify @"KHLNotiPersonalInformationModify"
+#define KHLNotiHomepageImagesAcquired @"KHLNotiHomepageImagesAcquired"
+#define KHLNotiLiveListAcquired @"KHLNotiLiveListAcquired"
+#define KHLNotiLiveDetailAcquired @"KHLNotiLiveDetailAcquired"
+#define KHLNotiVODListAcquired @"KHLNotiVODListAcquired"
+#define KHLNotiVODDetailAcquired @"KHLNotiVODDetailAcquired"
+#define KHLNotiSubscribeCategory @"KHLNotiSubscribeCategory"
+#define KHLNotiUnsubscribeCategory @"KHLNotiUnsubscribeCategory"
+#define KHLNotiCollectArticle @"KHLNotiCollectArticle"
+#define KHLNotiUncollectArticle @"KHLNotiUncollectArticle"
+#define KHLNotiEntertainersAcquired @"KHLNotiEntertainersAcquired"
+#define KHLNotiInformationListAcquired @"KHLNotiInformationListAcquired"
+#define KHLNotiInformationDetailAcquired @"KHLNotiInformationDetailAcquired"
+#define KHLNotiSearchResult @"KHLNotiSearchResult"
+#define KHLNotiReported @"KHLNotiReported"
+#define KHLNotiReplied @"KHLNotiReplied"
+#define KHLNotiCommentListAcquired @"KHLUrlcommentlist"
+#define KHLNotiCategoryListAcquired @"KHLNotiCategoryListAcquired"
+#define KHLNotiCommentLiked @"KHLUrlGoodWithComment"
+#define KHLNotiCommentDisliked @"KHLUrlbadWithComment"
+#define KHLNotiPraised @"KHLUrlZanWithModel"
+#define KHLNotiThirdPartyLogin @"HKLUrlThrild"
+#define KHLNotiSubpageAcquired @"KHLNotiSubpageAcquired"
+
+
+
 #pragma mark - 获取单例文件实例
 + (KHLDataManager *)instance;
 
