@@ -33,7 +33,7 @@ static  NSInteger goodCount; //记录等号
     NSString *otherUserName;
     NSString *infomId;
     NSString *cateId;
-   
+    BOOL isCollected;
     
 }
 
@@ -98,6 +98,8 @@ static  NSInteger goodCount; //记录等号
 
     // collection
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addCollectionNotifiMethod:) name:@"KHLNotiCollectArticle" object:nil];
+    //uncollection
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uncollectionNotificationMethod:) name:@"KHLNotiUncollectArticle" object:nil];
 }
 
 - (void)removeNotificaiton {
@@ -108,6 +110,7 @@ static  NSInteger goodCount; //记录等号
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlGoodWithComment" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlbadWithComment" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiCollectArticle" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"KHLNotiUncollectArticle" object:nil];
 }
 
 - (void)requestDianboInfo {
@@ -130,8 +133,8 @@ static  NSInteger goodCount; //记录等号
         self.titleForVideoLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
         self.liulanCountLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"count"]];
         self.editorLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
-//        infomId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"info_id"]];
-//        cateId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cate_id"]];
+        infomId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"info_id"]];
+        cateId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cate_id"]];
     }
     
     if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"1"]) {
@@ -237,10 +240,25 @@ static  NSInteger goodCount; //记录等号
     }else if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"])
     {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"收藏成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        isCollected = TRUE;
         [alert show];
     }
 }
 
+- (void)uncollectionNotificationMethod:(NSNotification*)aNotification
+{
+    NSDictionary *dic = aNotification.object;
+    NSLog(@"%@",[dic objectForKey:@"reason"]);
+    if (dic == nil) {
+        NSLog(@"bad for collect falied");
+        return;
+    }else if ([[dic objectForKey:@"resultCode"] isEqualToString:@"0"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"取消收藏成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        isCollected = FALSE;
+        [alert show];
+    }
+}
 # pragma mark UITableViewDataSouce
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -336,9 +354,16 @@ static  NSInteger goodCount; //记录等号
 //sg
 - (IBAction)collectonMethod:(id)sender {
     if ([KHLColor isLogin]) {
-        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
-        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-        [[KHLDataManager instance] collectArticleHUDHolder:self.view uid:uidStr identity:@"81" category:@"45" token:tokenStr];
+        if (isCollected == FALSE) {
+            NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+            NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+            [[KHLDataManager instance] collectArticleHUDHolder:self.view uid:uidStr identity:infomId    category:cateId token:tokenStr];
+        }else
+        {
+            NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+            NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+            [[KHLDataManager instance]uncollectArticleHUDHolder:self.view uid:uidStr identity:infomId category:cateId token:tokenStr];
+        }
     }else {
         [self pushLoginVCMethod];
     }
