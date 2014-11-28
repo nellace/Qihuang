@@ -16,6 +16,7 @@
 
 @interface ClassifyViewController () <UISearchBarDelegate> {
     UIImageView *backImage;
+    NSString *keyWord;
 }
 
 
@@ -179,6 +180,7 @@
         KHLSearchResultViewController *searchResultViewController = [[KHLSearchResultViewController alloc] init];
         searchResultViewController.videos = [videos copy];
         searchResultViewController.informations = [informations copy];
+        searchResultViewController.keyWord = keyWord;
         [self.navigationController pushViewController:searchResultViewController animated:TRUE];
         
     } else {
@@ -225,6 +227,8 @@
         return;
     }
     //sg
+    KHLSearchResultViewController *search = [[KHLSearchResultViewController alloc]init];
+    keyWord = searchBar.text;
     [[KHLDataManager instance] searchHUDHolder:self.view keyword:searchBar.text page:@""];
 }
 
