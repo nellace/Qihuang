@@ -10,6 +10,7 @@
 #import "DianboCell.h"
 #import "LoginViewController.h"
 #import "JubaoViewController.h"
+#import <ShareSDK/ShareSDK.h>
 //#import "LTPlayerSDK.h"
 @interface DianboViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *shuruTextFiled;
@@ -56,6 +57,7 @@ static  NSInteger goodCount; //记录等号
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullScreenMehod)];
     
+    [self rightButtonMethod];
     [self.videoScaleImageView addGestureRecognizer:tap];
     [self.videoScaleImageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
 }
@@ -465,5 +467,46 @@ static  NSInteger goodCount; //记录等号
     LoginViewController * loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     [self.navigationController pushViewController:loginVC animated:YES];
 
+}
+//share
+-(void)rightButtonMethod {
+    UIButton * shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun.png"] forState:UIControlStateNormal];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"nav_btn_baocun_press.png"] forState:UIControlStateHighlighted];
+    [shareBtn setTitle:@"分享" forState:UIControlStateNormal];
+    [shareBtn setFrame:CGRectMake(0, 0, 42, 27)];
+    [shareBtn setTitleColor:[KHLColor colorFromHexRGB:@"FE6024"] forState:UIControlStateNormal];
+    [shareBtn.titleLabel setFont: [UIFont systemFontOfSize:14.0f]];
+    UIBarButtonItem *fenleiRightBtn = [[UIBarButtonItem alloc] initWithCustomView:shareBtn];
+    [shareBtn addTarget:self action:@selector(shareInfo:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = fenleiRightBtn;
+}
+
+- (void)shareInfo:(UIButton*)sender
+{
+    NSLog(@"123");
+    NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeSinaWeibo,ShareTypeQQSpace, nil];
+    NSString *imagePath = [[NSBundle mainBundle]pathForResource:@"logo_80" ofType:@"png"];
+    id<ISSContent>publishContent = [ShareSDK content:@"这个应用不错" defaultContent:@"" image:[ShareSDK imageWithPath:imagePath] title:@"七煌" url:@"www.bai.com" description:@"这是一条测试信息" mediaType:SSPublishContentMediaTypeNews];
+    id<ISSContainer> container = [ShareSDK container];
+    [container setIPadContainerWithView:sender arrowDirect:UIPopoverArrowDirectionUp];
+    id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES allowCallback:YES authViewStyle:SSAuthViewStyleFullScreenPopup viewDelegate:nil authManagerViewDelegate:nil];
+    
+    [ShareSDK showShareActionSheet:container shareList:shareList content:publishContent statusBarTips:YES authOptions:authOptions shareOptions:[ShareSDK defaultShareOptionsWithTitle:nil oneKeyShareList:[NSArray defaultOneKeyShareList] cameraButtonHidden:NO mentionButtonHidden:NO topicButtonHidden:NO qqButtonHidden:NO wxSessionButtonHidden:NO wxTimelineButtonHidden:NO showKeyboardOnAppear:NO shareViewDelegate:nil friendsViewDelegate:nil picViewerViewDelegate:nil] result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+        if (state == SSPublishContentStateSuccess) {
+             NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
+        }else if (state ==SSPublishContentStateFail)
+        {
+             NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+        }
+    }];
+//    [ShareSDK showShareActionSheet:container shareList:shareList content:publishContent statusBarTips:YES authOptions:[ShareSDK defaultShareOptionsWithTitle:nil oneKeyShareList:[NSArray defaultOneKeyShareList] cameraButtonHidden:NO mentionButtonHidden:NO topicButtonHidden:NO qqButtonHidden:NO wxSessionButtonHidden:NO wxTimelineButtonHidden:NO showKeyboardOnAppear:NO shareViewDelegate:nil friendsViewDelegate:nil picViewerViewDelegate:nil] result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+//        if (state == SSPublishContentStateSuccess) {
+//             NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
+//        }else if (state == SSPublishContentStateFail)
+//        {
+//            NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+//        }
+//    }];
 }
 @end
