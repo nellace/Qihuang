@@ -142,7 +142,7 @@
             //如果有直接登录，没有就将该用户的ID和相关资料在数据库中创建新用户。
 
             id<ISSPlatformCredential> credential = [ShareSDK getCredentialWithType:ShareTypeSinaWeibo];
-            [[KHLDataManager instance] thirdLogin:self.view third_type:@"sina" sina_id:[credential uid] tencet_id:[credential uid] third_username:@"新浪微博用户"];
+            [[KHLDataManager instance] thirdLogin:self.view third_type:@"sina" sina_id:[credential uid] tencet_id:[credential uid] third_username:@""];
         }
     }];
 }

@@ -487,7 +487,7 @@ static  NSInteger goodCount; //记录等号
     NSLog(@"123");
     NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeSinaWeibo,ShareTypeQQSpace, nil];
     NSString *imagePath = [[NSBundle mainBundle]pathForResource:@"logo_80" ofType:@"png"];
-    id<ISSContent>publishContent = [ShareSDK content:@"这个应用不错" defaultContent:@"" image:[ShareSDK imageWithPath:imagePath] title:@"七煌" url:@"www.bai.com" description:@"这是一条测试信息" mediaType:SSPublishContentMediaTypeNews];
+    id<ISSContent>publishContent = [ShareSDK content:@"这个应用不错" defaultContent:@"" image:[ShareSDK imageWithPath:imagePath] title:@"七煌" url:@"http://i.imgur.com/4SvHy9L.gifv" description:@"七煌好应用的一条测试信息" mediaType:SSPublishContentMediaTypeNews];
     id<ISSContainer> container = [ShareSDK container];
     [container setIPadContainerWithView:sender arrowDirect:UIPopoverArrowDirectionUp];
     id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES allowCallback:YES authViewStyle:SSAuthViewStyleFullScreenPopup viewDelegate:nil authManagerViewDelegate:nil];
