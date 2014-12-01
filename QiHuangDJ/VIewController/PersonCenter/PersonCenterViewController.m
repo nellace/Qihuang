@@ -18,6 +18,8 @@
 #import "KHLPICSettingsViewController.h"
 #import "KHLPICProfileViewController.h"
 
+#import "MJRefresh.h"
+
 #pragma mark - DEFINATION AND ENUMERATION
 
 #define COMMON_ITEM_DIVIDER_HEIGHT (2.0f)
@@ -42,6 +44,9 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 #pragma mark - PROPERTIES AND IMPLEMENTATIONS
 
 @interface PersonCenterViewController () <LoginDelegate, LogoutDelegate, KHLPICHeaderViewDelegate>
+{
+    int pCount;
+}
 @property (weak, nonatomic) IBOutlet UIScrollView *pageHolder;
 @property (weak, nonatomic) IBOutlet UIView *thumbHolder;
 @property (weak, nonatomic) IBOutlet UIView *contentHolder;
@@ -57,6 +62,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 @property (nonatomic, strong) NSMutableArray *collections;
 @property (nonatomic, strong) NSString *uid;
 @property (nonatomic, strong) NSString *token;
+@property (nonatomic, strong) NSString *selectedType;
 
 @property (nonatomic, getter = needRequestData) BOOL dataRequestTag;
 @property (nonatomic) KHLPICListState state;
@@ -102,7 +108,8 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
     [self setNavigationRightButton];
     [self setCascTitle:@"个人中心"];
     [self setFanhui];
-    
+    [self addFooter];
+    pCount = 1;
     // Register notification..
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recommendListNotified:) name:@"KHLNotiRecommendListAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subscriptionListNotified:) name:@"KHLNotiSubscriptionListAcquired" object:nil];
@@ -138,7 +145,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             [self performSelector:@selector(onPressMyCollectionButton) withObject:nil];
             
         } else {
-            [[KHLDataManager instance] recommendListHUDHolder:self.view];
+            [[KHLDataManager instance] recommendListHUDHolder:self.view page:@""];
         }
         
         [self setDataRequestTag:FALSE];
@@ -233,7 +240,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
     NSLog(@"onLogoutSuccess Implementation");
 //    [self setDataRequestTag:FALSE];
     [self setLogIn:FALSE];
-    [[KHLDataManager instance] recommendListHUDHolder:self.view];
+    [[KHLDataManager instance] recommendListHUDHolder:self.view page:@""];
 }
 
 
@@ -495,6 +502,8 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 - (void)onPressMyCollectionButton
 {
     NSLog(@"pressMyCollection");
+    self.selectedType = @"collection";
+    pCount = 1;
     if (self.state == KHLPICListStateRecommend) {
         [self setLogIn:FALSE];
         [self pressPhotoImageView];
@@ -507,12 +516,14 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
     [self refreshButtonHolder];
     self.uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
     self.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-    [[KHLDataManager instance] collectionListHUDHolder:self.view uid:self.uid token:self.token];
+    [[KHLDataManager instance] collectionListHUDHolder:self.view uid:self.uid token:self.token page:@""];
 }
 
 - (void)onPressMySubscriptionButton
 {
     NSLog(@"pressMySubscription");
+    self.selectedType = @"subscription";
+    pCount = 1;
     if (self.state == KHLPICListStateRecommend) {
         [self setLogIn:FALSE];
         [self pressPhotoImageView];
@@ -525,7 +536,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
     [self refreshButtonHolder];
     self.uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
     self.token = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-    [[KHLDataManager instance] subscriptionListHUDHolder:self.view uid:self.uid token:self.token];
+    [[KHLDataManager instance] subscriptionListHUDHolder:self.view uid:self.uid token:self.token page:@""];
 }
 
 
@@ -649,6 +660,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
         NSLog(@"妈蛋，返回nil了。");
         return;
     }
+    self.selectedType = @"recommend";
     
     if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         
@@ -659,7 +671,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             return;
         }
         
-        [self.recommends removeAllObjects];
+//        [self.recommends removeAllObjects];
         self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
         self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
         NSLog(@"data arr=%@",[result objectForKey:@"data"]);
@@ -705,7 +717,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             return;
         }
         
-        [self.subscriptions removeAllObjects];
+//        [self.subscriptions removeAllObjects];
         self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
         self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
         NSLog(@"data arr=%@",[result objectForKey:@"data"]);
@@ -770,7 +782,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             return;
         }
         
-        [self.collections removeAllObjects];
+//        [self.collections removeAllObjects];
         self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
         self.allPages = [NSString stringWithFormat:@"%@", [result objectForKey:@"size"]];
         NSLog(@"data arr=%@",[result objectForKey:@"data"]);
@@ -819,10 +831,39 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
 }
 
 
+//sg refresh when pull
+- (void)addFooter
+{
+    [self.tableView addFooterWithTarget:self action:@selector(footerRefreshing)];
+}
 
+- (void)footerRefreshing
+{
+    pCount++;
+    if (pCount > [self.allPages intValue]) {
+        UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"没有更多内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alter show];
+        [self.tableView footerEndRefreshing];
+        //        [self.tableView footerEndRefreshing];
+        return;
+    }
+    if (pCount > 1) {
+        if ([self.selectedType isEqualToString:@"subscription"]) {
+                    [[KHLDataManager instance]subscriptionListHUDHolder:self.view uid:self.uid token:self.token page:[NSString stringWithFormat:@"%D",pCount]];
+        }else if([self.selectedType isEqualToString:@"collection"]){
+            [[KHLDataManager instance]collectionListHUDHolder:self.view uid:self.uid token:self.token page:[NSString stringWithFormat:@"%d",pCount]];
+        }else if ([self.selectedType isEqualToString:@"recommend"])
+        {
+            [[KHLDataManager instance]recommendListHUDHolder:self.view page:[NSString stringWithFormat:@"%d",pCount]];
+        }
 
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        [self.tableView footerEndRefreshing];
+    });
 
-
+}
 
 
 

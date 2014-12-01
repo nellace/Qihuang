@@ -184,7 +184,8 @@
      KHLUrlRecommendListAcquire
  
  */
-- (void)recommendListHUDHolder: (UIView *)holder;
+- (void)recommendListHUDHolder: (UIView *)holder
+                          page: (NSString *)page;
 
 
 
@@ -230,7 +231,8 @@
  */
 - (void)subscriptionListHUDHolder: (UIView *)holder
                               uid: (NSString *)uid
-                            token: (NSString *)token;
+                            token: (NSString *)token
+                             page: (NSString *)page;
 
 
 
@@ -277,7 +279,8 @@
  */
 - (void)collectionListHUDHolder: (UIView *)holder
                             uid: (NSString *)uid
-                          token: (NSString *)token;
+                          token: (NSString *)token
+                           page: (NSString *)page;
 
 
 
