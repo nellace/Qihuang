@@ -33,6 +33,12 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    UITapGestureRecognizer *tapToHideKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:tapToHideKeyboard];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     // Draw navigation bar..
@@ -236,5 +242,21 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+
+
+#pragma mark - HIDE KEYBOARD
+
+- (void)hideKeyboard
+{
+    [self.usernameTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+}
+
+
+
+
+
+
 
 @end
