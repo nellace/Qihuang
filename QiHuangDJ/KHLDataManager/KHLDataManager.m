@@ -179,11 +179,23 @@
 - (void)VODDetailHUDHolder:(UIView *)holder
                   identity:(NSString *)identity
                       type:(NSString *)type
+                       uid:(NSString *)uid
+                     token:(NSString *)token
 {
-    NSString *ustr = [NSString stringWithFormat:KHLUrlVODDetailAcquire, identity, type];
+    NSString *ustr = [NSString stringWithFormat:KHLUrlVODDetailAcquire];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    [self methodeGetName:KHLNotiVODDetailAcquired holder:holder url:ustr];
+//    [self methodeGetName:KHLNotiVODDetailAcquired holder:holder url:ustr];
+    
+//    NSString *ustr = [NSString stringWithFormat:KHLUrlVODDetailAcquire,agrum];
+    NSDictionary *param = [[NSDictionary alloc]initWithObjectsAndKeys:
+                           identity,@"info_id",
+                           type,@"model",
+                           uid,@"uid",
+                           token,@"token",
+                           nil];
+    
+    [self methodePostName:KHLNotiVODDetailAcquired holder:holder url:ustr arguments:param];
 }
 
 #pragma mark - 8.1 （2.12）订阅

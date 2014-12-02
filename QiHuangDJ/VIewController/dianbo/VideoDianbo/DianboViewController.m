@@ -135,8 +135,10 @@ static  NSInteger goodCount; //记录等号
 }
 
 - (void)requestDianboInfo {
+    NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+    NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
 
-    [[KHLDataManager instance] VODDetailHUDHolder:self.view identity:self.info_id type:@"article"];
+    [[KHLDataManager instance] VODDetailHUDHolder:self.view identity:self.info_id type:@"article" uid:uidStr token:tokenStr];
     //获取评论列表
     [[KHLDataManager instance] commentlistHUDHolder:self.view model:@"article" zhiboid:self.info_id];
 }
