@@ -48,7 +48,7 @@
 #define KHLUrlVODListAcquire @"app_dianbolist.php?type=%@&cate_id=%@&p=%@&search=%@"
 
 #pragma mark - 7.2 （2.15）获取点播详情（获取评论？）
-#define KHLUrlVODDetailAcquire @"app_dianbo.php?info_id=%@&model=%@"
+#define KHLUrlVODDetailAcquire @"app_dianbo.php"
 
 #pragma mark - 8.1 （2.12）订阅
 #define KHLUrlSubscribeCategory @"app_dingyue.php"

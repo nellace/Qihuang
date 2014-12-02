@@ -537,7 +537,9 @@
  */
 - (void)VODDetailHUDHolder: (UIView *)holder
                   identity: (NSString *)identity
-                      type: (NSString *)type;
+                      type: (NSString *)type
+                       uid: (NSString *)uid
+                     token: (NSString *)token;
 
 
 
