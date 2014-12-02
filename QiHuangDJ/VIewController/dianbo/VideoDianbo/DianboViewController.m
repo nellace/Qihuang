@@ -51,6 +51,10 @@ static  NSInteger goodCount; //记录等号
     return self.inputView ? self.inputView.frame.size.height : 0;
 }
 
+
+
+#pragma mark - VIEW CONTROLLER LIFECYCLE
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -529,17 +533,14 @@ static  NSInteger goodCount; //记录等号
 //    }];
 }
 
-#pragma mark - KEYBOARD CHANGE CARRIAGE REFRAME
+#pragma mark - KEYBOARD AND INPUT RELATED METHODES
 
 - (void)keyboardWillChangeFrame: (NSNotification *)notification
 {
     CGRect enRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat offset = self.view.frame.size.height - enRect.origin.y + self.groundOffset + self.navigationController.navigationBar.frame.size.height + 20;
     
-    NSLog(@"___kwc update carriage offset: %f ground: %f", offset, self.groundOffset);
-    
     if (self.groundOffset == offset) {
-        NSLog(@"detected..");
         offset = 0;
     }
     
@@ -554,7 +555,12 @@ static  NSInteger goodCount; //记录等号
 
 - (void)tapScreenBackdrop
 {
-    
+    [self hideKeyboard];
+}
+
+- (void)hideKeyboard
+{
+    [self.shuruTextFiled resignFirstResponder];
 }
 
 
