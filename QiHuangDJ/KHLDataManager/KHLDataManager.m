@@ -390,13 +390,15 @@
                   uid:(NSString *)uid
                 token:(NSString *)token
            comment_id:(NSString *)comment_id
+                model:(NSString *)model
 {
     NSString *ustr = [NSString stringWithFormat:KHLUrlGoodWithComment];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
                            uid, @"uid",
                            token, @"token",
-                           comment_id,@"comment_id",
+                           comment_id,@"info_id",
+                           model,@"model",
                            nil];
     
     [self methodePostName:KHLNotiCommentLiked holder:holder url:ustr arguments:param];
@@ -430,7 +432,7 @@
     NSDictionary *param = [[NSDictionary alloc] initWithObjectsAndKeys:
                            uid, @"uid",
                            token, @"token",
-                           comment_id,@"comment_id",
+                           comment_id,@"info_id",
                            nil];
     
     [self methodePostName:KHLNotiCommentDisliked holder:holder url:ustr arguments:param];

@@ -617,7 +617,7 @@ static  NSInteger goodCount; //记录等号
         NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
         CommentListInterface * commentlist = listArrayWithInfo[sender.tag];
         goodCount = sender.tag;
-        [[KHLDataManager instance] goodHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster];
+        [[KHLDataManager instance] goodHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster model:@"comment"];
     } else {
         [self pushLoginVCMethod];
     }

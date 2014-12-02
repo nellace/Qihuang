@@ -60,7 +60,7 @@
 #define KHLUrlCollectArticle @"app_shoucang.php"
 
 #pragma mark - 9.2 （2.17）取消收藏
-#define KHLUrlUncollectArticle @"app_quxiaodingyue.php"
+#define KHLUrlUncollectArticle @"app_quxiaoshoucang.php"
 
 #pragma mark - 10.1 （2.18）获取艺人列表
 #define KHLUrlEntertainersListAcquire @"app_ourstar.php"

@@ -12,4 +12,7 @@
 
 @property (nonatomic,strong) NSString *info_id;
 @property (nonatomic,strong) NSString *imageUrl;
+@property (nonatomic,retain) IBOutlet UIButton *collectBtn;
+@property (nonatomic,retain) IBOutlet UIButton *likeBtn;
+
 @end

@@ -1003,7 +1003,8 @@
 - (void)goodHUDHolder: (UIView *)holder
                           uid: (NSString *)uid
                         token: (NSString *)token
-                   comment_id:(NSString *)comment_id;
+                   comment_id:(NSString *)comment_id
+                model:(NSString *)model;
 
 
 #pragma mark - (2.26) 赞
