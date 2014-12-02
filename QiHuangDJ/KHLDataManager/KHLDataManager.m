@@ -70,8 +70,9 @@
 
 #pragma mark - 3.1 （2.3）获取推荐列表
 - (void)recommendListHUDHolder:(UIView *)holder
+                          page:(NSString *)page
 {
-    NSString *ustr = [NSString stringWithFormat:KHLUrlRecommendListAcquire];
+    NSString *ustr = [NSString stringWithFormat:KHLUrlRecommendListAcquire,page];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [self methodeGetName:KHLNotiRecommendListAcquired holder:holder url:ustr];
@@ -81,8 +82,9 @@
 - (void)subscriptionListHUDHolder:(UIView *)holder
                               uid:(NSString *)uid
                             token:(NSString *)token
+                             page: (NSString *)page
 {
-    NSString *ustr = [NSString stringWithFormat:KHLUrlSubscriptionListAcquire, uid, token];
+    NSString *ustr = [NSString stringWithFormat:KHLUrlSubscriptionListAcquire, uid, token,page];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [self methodeGetName:KHLNotiSubscriptionListAcquired holder:holder url:ustr];
@@ -92,8 +94,9 @@
 - (void)collectionListHUDHolder:(UIView *)holder
                             uid:(NSString *)uid
                           token:(NSString *)token
+                           page:(NSString *)page
 {
-    NSString *ustr = [NSString stringWithFormat:KHLUrlCollectionListAcquire, uid, token];
+    NSString *ustr = [NSString stringWithFormat:KHLUrlCollectionListAcquire, uid, token,page];
     ustr = [ustr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [self methodeGetName:KHLNotiCollectionListAcquired holder:holder url:ustr];

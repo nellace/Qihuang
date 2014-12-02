@@ -22,13 +22,13 @@
 #define KHLUrlRetrievePassword @"app_forget.php"
 
 #pragma mark - 3.1 （2.3）获取推荐列表
-#define KHLUrlRecommendListAcquire @"app_tuijianlist.php"
+#define KHLUrlRecommendListAcquire @"app_tuijianlist.php?p=%@"
 
 #pragma mark - 3.2 （2.4）获取订阅列表
-#define KHLUrlSubscriptionListAcquire @"app_dingyuelist.php?uid=%@&token=%@"
+#define KHLUrlSubscriptionListAcquire @"app_dingyuelist.php?uid=%@&token=%@&p=%@"
 
 #pragma mark - 3.3 （2.5）获取收藏列表
-#define KHLUrlCollectionListAcquire @"app_shoucanglist.php?uid=%@&token=%@"
+#define KHLUrlCollectionListAcquire @"app_shoucanglist.php?uid=%@&token=%@&p=%@"
 
 #pragma mark - 4.1 获取个人资料？
 
