@@ -19,7 +19,10 @@
 @property (nonatomic, strong) InformationDetailInterface *detail;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextFiled;
 
-//@property (nonatomic, strong) NSMutableArray *heights;
+@property (weak, nonatomic) IBOutlet UIView *carriage;
+@property (nonatomic) CGFloat groundOffset;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carriageOffsetConstraint;
+
 
 @end
 
@@ -33,6 +36,11 @@ static  NSInteger goodCount; //记录等号
 }
 
 #pragma mark - ATTRIBUTES GETTER AND SETTER
+
+- (CGFloat)groundOffset
+{
+    return self.carriage ? self.carriage.frame.size.height : 0;
+}
 
 - (SearchInterface *)prestrain
 {
@@ -127,7 +135,8 @@ static  NSInteger goodCount; //记录等号
 
 #pragma mark - ABOUT NSNOTIFICATION
 -(void)registerNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHeightInfo:) name:UIKeyboardWillChangeFrameNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHeightInfo:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(informationDetailNotified:) name:@"KHLNotiInformationDetailAcquired" object:nil];
     //zan
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(infoZanNotified:) name:@"KHLUrlZanWithModel" object:nil];
@@ -639,6 +648,36 @@ static  NSInteger goodCount; //记录等号
 //    [self.mainTableView reloadData];
 //    [self configureHeightsArray];
     [self.mainTableView reloadData];
+}
+
+#pragma mark - KEYBOARD AND INPUT RELATED METHODES
+
+- (void)keyboardWillChangeFrame: (NSNotification *)notification
+{
+    CGRect enRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat offset = self.view.frame.size.height - enRect.origin.y + self.groundOffset + self.navigationController.navigationBar.frame.size.height + 20;
+    
+    if (self.groundOffset == offset) {
+        offset = 0;
+    }
+    
+    [CATransaction begin];
+    [UIView animateWithDuration:0.3f animations:^{
+        [self.carriage setFrame:CGRectMake(self.carriage.frame.origin.x , self.view.frame.size.height - offset, self.carriage.frame.size.width, self.carriage.frame.size.height)];
+        [self.carriageOffsetConstraint setConstant:-offset];
+        [self.carriage updateConstraints];
+    }];
+    [CATransaction commit];
+}
+
+- (void)tapScreenBackdrop
+{
+    [self hideKeyboard];
+}
+
+- (void)hideKeyboard
+{
+    [self.inputTextFiled resignFirstResponder];
 }
 
 @end
