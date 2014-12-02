@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *liulanCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *editorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleForVideoLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *zanCountLabel;
 @property (weak, nonatomic) IBOutlet UITableView *mainTabe;
 @property (strong,nonatomic) NSMutableArray *listMutableArr;
 
@@ -39,6 +39,7 @@ static  NSInteger goodCount; //记录等号
     NSString *infomId;
     NSString *cateId;
     BOOL isCollected;
+    int zanCount;
     
 }
 
@@ -110,7 +111,8 @@ static  NSInteger goodCount; //记录等号
 -(void)registerNotification {
     NSLog(@"registered..");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    
+    //zan
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(zanNotifiMethod:) name:@"KHLUrlZanWithModel" object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dianboInfoMehod:) name:@"KHLNotiVODDetailAcquired" object:nil];
     //commentlist
@@ -131,6 +133,7 @@ static  NSInteger goodCount; //记录等号
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiVODDetailAcquired" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlcommentlist" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiPraised" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLNotiReplied" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlGoodWithComment" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KHLUrlbadWithComment" object:nil];
@@ -156,6 +159,8 @@ static  NSInteger goodCount; //记录等号
     NSDictionary *dic = [aDic objectForKey:@"result"];
     if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         NSString *timeStr = [NSString stringWithFormat:@"%@",[dic objectForKey:@"time"]];
+        zanCount = [[dic objectForKey:@"zan"]integerValue];
+        self.zanCountLabel.text = [NSString stringWithFormat:@"%d",zanCount];
         self.timeLabel.text = [timeStr substringToIndex:10];
         self.titleForVideoLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
         self.liulanCountLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"count"]];
@@ -355,6 +360,32 @@ static  NSInteger goodCount; //记录等号
 - (IBAction)discussMehod:(id)sender {
     [self.shuruTextFiled becomeFirstResponder];
 }
+
+- (IBAction)zanMethod:(id)sender {
+    NSLog(@"123");
+    if ([KHLColor isLogin]) {
+        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+        [[KHLDataManager instance]zanHUDHolder:self.view uid:uidStr token:tokenStr info_id:self.info_id model:@"article"];
+    }else {
+        [self pushLoginVCMethod];
+    }
+
+}
+
+- (void)zanNotifiMethod:(NSNotification *)aNotification
+{
+    NSDictionary *aDic = aNotification.object;
+    if ([[aDic objectForKey:@"resultCode"]integerValue] == 0) {
+        UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"点赞成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alter show];
+        NSLog(@"------1");
+        zanCount++;
+        self.zanCountLabel.text = [NSString stringWithFormat:@"%d",zanCount];
+    }
+}
+
+
 - (IBAction)fabiaopinglunMethod:(id)sender {
     if ([self.shuruTextFiled.text isEqualToString:@""]) {
         [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
