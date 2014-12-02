@@ -25,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *mainTabe;
 @property (strong,nonatomic) NSMutableArray *listMutableArr;
 
+@property (nonatomic) CGFloat groundOffset;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carriageOffsetConstraint;
+
+
 @end
 
 static  NSInteger goodCount; //记录等号
@@ -36,6 +40,15 @@ static  NSInteger goodCount; //记录等号
     NSString *cateId;
     BOOL isCollected;
     
+}
+
+
+
+#pragma mark - ATTRIBUTES GETTER AND SETTER
+
+- (CGFloat)groundOffset
+{
+    return self.inputView ? self.inputView.frame.size.height : 0;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,6 +67,9 @@ static  NSInteger goodCount; //记录等号
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UITapGestureRecognizer *tapScreenBackdrop = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreenBackdrop)];
+    [self.view addGestureRecognizer:tapScreenBackdrop];
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fullScreenMehod)];
     
@@ -88,7 +104,10 @@ static  NSInteger goodCount; //记录等号
 
 #pragma mark - dianboInfo
 -(void)registerNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    NSLog(@"registered..");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dianboInfoMehod:) name:@"KHLNotiVODDetailAcquired" object:nil];
     //commentlist
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dianboCommentlistMehod:) name:@"KHLUrlcommentlist" object:nil];
@@ -509,4 +528,36 @@ static  NSInteger goodCount; //记录等号
 //        }
 //    }];
 }
+
+#pragma mark - KEYBOARD CHANGE CARRIAGE REFRAME
+
+- (void)keyboardWillChangeFrame: (NSNotification *)notification
+{
+    CGRect enRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat offset = self.view.frame.size.height - enRect.origin.y + self.groundOffset + self.navigationController.navigationBar.frame.size.height + 20;
+    
+    NSLog(@"___kwc update carriage offset: %f ground: %f", offset, self.groundOffset);
+    
+    if (self.groundOffset == offset) {
+        NSLog(@"detected..");
+        offset = 0;
+    }
+    
+    [CATransaction begin];
+    [UIView animateWithDuration:0.3f animations:^{
+        [self.inputView setFrame:CGRectMake(self.inputView.frame.origin.x , self.view.frame.size.height - offset, self.inputView.frame.size.width, self.inputView.frame.size.height)];
+        [self.carriageOffsetConstraint setConstant:-offset];
+        [self.inputView updateConstraints];
+    }];
+    [CATransaction commit];
+}
+
+- (void)tapScreenBackdrop
+{
+    
+}
+
+
+
+
 @end
