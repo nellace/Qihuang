@@ -422,7 +422,7 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
     DianboViewController *dianboVC = [[DianboViewController alloc] initWithNibName:@"DianboViewController" bundle:nil];
     VODListInterface * vodlist = self.vods[indexPath.row];
     dianboVC.info_id = vodlist.identity;
-    dianboVC.imageUrl = vodlist.imageUrl;
+//    dianboVC.imageUrl = vodlist.imageUrl;
     
     [UIView animateWithDuration:0.3f animations:^{
         self.holder.frame = CGRectMake(0, 0, self.fixedWidth, self.view.frame.size.height);

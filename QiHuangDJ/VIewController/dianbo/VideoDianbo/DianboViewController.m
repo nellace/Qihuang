@@ -38,8 +38,12 @@ static  NSInteger goodCount; //记录等号
     NSString *otherUserName;
     NSString *infomId;
     NSString *cateId;
-    BOOL isCollected;
+//    BOOL isCollected;
     int zanCount;
+    NSString *isCollected;
+    BOOL hadDingPingLun;
+    BOOL hadCaiPingLun;
+    BOOL hadZan;
     
 }
 
@@ -80,7 +84,7 @@ static  NSInteger goodCount; //记录等号
     
     [self rightButtonMethod];
     [self.videoScaleImageView addGestureRecognizer:tap];
-    [self.videoScaleImageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
+
 }
 
 - (void)fullScreenMehod {
@@ -97,6 +101,13 @@ static  NSInteger goodCount; //记录等号
 - (void)viewWillAppear:(BOOL)animated {
     [self registerNotification];
     [self requestDianboInfo];
+
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ([isCollected integerValue] == 1) {
+        [self.collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_shoucang_press"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -165,6 +176,9 @@ static  NSInteger goodCount; //记录等号
         self.titleForVideoLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
         self.liulanCountLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"count"]];
         self.editorLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
+        self.imageUrl = [NSString stringWithFormat:@"%@",[dic objectForKey:@"image"]];
+        [self.videoScaleImageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
+        isCollected = [NSString stringWithFormat:@"%@",[dic objectForKey:@"collect"]];
         infomId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"info_id"]];
         cateId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cate_id"]];
     }
@@ -246,6 +260,7 @@ static  NSInteger goodCount; //记录等号
     [self.listMutableArr replaceObjectAtIndex:goodCount withObject:commentlist];
     [self.mainTabe reloadData];
         goodCount = 0;
+    hadDingPingLun = YES;
     
 }
 - (void)badDianboNotifiMethod:(NSNotification *)aNotification {
@@ -261,6 +276,7 @@ static  NSInteger goodCount; //记录等号
     [self.listMutableArr replaceObjectAtIndex:goodCount withObject:commentlist];
     [self.mainTabe reloadData];
     goodCount = 0;
+    hadCaiPingLun = YES;
 }
 
 - (void)addCollectionNotifiMethod:(NSNotification *)aNotification {
@@ -271,8 +287,10 @@ static  NSInteger goodCount; //记录等号
         return;
     }else if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"])
     {
+        isCollected = @"1";
+        [self.collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_shoucang_press"] forState:UIControlStateNormal];
+
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"收藏成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        isCollected = TRUE;
         [alert show];
     }
 }
@@ -282,12 +300,14 @@ static  NSInteger goodCount; //记录等号
     NSDictionary *dic = aNotification.object;
     NSLog(@"%@",[dic objectForKey:@"reason"]);
     if (dic == nil) {
-        NSLog(@"bad for collect falied");
+        NSLog(@"bad for uncollect falied");
         return;
     }else if ([[dic objectForKey:@"resultCode"] isEqualToString:@"0"])
     {
+        isCollected = @"0";
+        [self.collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_shoucang"] forState:UIControlStateNormal];
+
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"取消收藏成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        isCollected = FALSE;
         [alert show];
     }
 }
@@ -364,9 +384,11 @@ static  NSInteger goodCount; //记录等号
 - (IBAction)zanMethod:(id)sender {
     NSLog(@"123");
     if ([KHLColor isLogin]) {
-        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
-        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-        [[KHLDataManager instance]zanHUDHolder:self.view uid:uidStr token:tokenStr info_id:self.info_id model:@"article"];
+        if (hadZan == NO) {
+            NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+            NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+            [[KHLDataManager instance]zanHUDHolder:self.view uid:uidStr token:tokenStr info_id:self.info_id model:@"article"];
+        }
     }else {
         [self pushLoginVCMethod];
     }
@@ -381,6 +403,8 @@ static  NSInteger goodCount; //记录等号
         [alter show];
         NSLog(@"------1");
         zanCount++;
+        hadZan = YES;
+        [self.likeBtn setBackgroundImage:[UIImage imageNamed:@"zhibo_btn_zan_press"] forState:UIControlStateNormal];
         self.zanCountLabel.text = [NSString stringWithFormat:@"%d",zanCount];
     }
 }
@@ -412,7 +436,7 @@ static  NSInteger goodCount; //记录等号
 //sg
 - (IBAction)collectonMethod:(id)sender {
     if ([KHLColor isLogin]) {
-        if (isCollected == FALSE) {
+        if ([isCollected isEqualToString:@"0"]) {
             NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
             NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
             [[KHLDataManager instance] collectArticleHUDHolder:self.view uid:uidStr identity:infomId    category:cateId token:tokenStr];
@@ -453,11 +477,13 @@ static  NSInteger goodCount; //记录等号
 
 - (void)goodDianboMethod:(UIButton *)sender {
     if ([KHLColor isLogin]) {
-        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
-        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-        CommentListInterface * commentlist = self.listMutableArr[sender.tag];
-        goodCount = sender.tag;
-        [[KHLDataManager instance] goodHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster];
+        if (hadDingPingLun == NO) {
+            NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+            NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+            CommentListInterface * commentlist = self.listMutableArr[sender.tag];
+            goodCount = sender.tag;
+            [[KHLDataManager instance] goodHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster model:@"comment"];
+        }
     } else {
         [self pushLoginVCMethod];
     }
@@ -465,11 +491,13 @@ static  NSInteger goodCount; //记录等号
 
 - (void)badDianboMethod:(UIButton *)sender {
     if ([KHLColor isLogin]) {
-        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
-        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-        CommentListInterface * commentlist = self.listMutableArr[sender.tag];
-        goodCount = sender.tag;
-        [[KHLDataManager instance] badHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster];
+        if (hadCaiPingLun == NO) {
+            NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+            NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+            CommentListInterface * commentlist = self.listMutableArr[sender.tag];
+            goodCount = sender.tag;
+            [[KHLDataManager instance] badHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster];
+        }
     } else {
         [self pushLoginVCMethod];
     }

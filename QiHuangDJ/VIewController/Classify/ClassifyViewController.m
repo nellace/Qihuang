@@ -195,7 +195,6 @@
 {
 //    VideoLiveViewController * videoLiveVC = [[VideoLiveViewController alloc] initWithNibName:@"VideoLiveViewController" bundle:nil];
 //    [self.navigationController pushViewController:videoLiveVC animated:YES];
-    
     LiveListViewController *liveListViewController = [[LiveListViewController alloc] init];
     liveListViewController.gameId = self.gameId;
     [self.navigationController pushViewController:liveListViewController animated:TRUE];
@@ -204,14 +203,23 @@
 - (IBAction)dianbo:(id)sender
 {
     DianboListViewController * dianboVC = [[DianboListViewController alloc] initWithNibName:@"DianboListViewController" bundle:nil];
-    dianboVC.category = self.category;
+    SubpageInterface *interface = [self.modules objectAtIndex:1];
+    if (interface) {
+        dianboVC.category = interface.category;
+    }
+    
+//    NSLog(@"%@",dic);
+//    dianboVC.category = [dic objectForKey:@"_category"];
     [self.navigationController pushViewController:dianboVC animated:YES];
 }
 
 - (IBAction)Infomation:(id)sender
 {
     KHLInformationTableViewController *informationViewController = [[KHLInformationTableViewController alloc] init];
-    informationViewController.category = self.category;
+    SubpageInterface *interface = [self.modules objectAtIndex:2];
+    if (interface) {
+        informationViewController.category = interface.category;
+    }
     [self.navigationController pushViewController:informationViewController animated:TRUE];
 }
 #pragma mark - UISEARCHBAR DELEGATE
