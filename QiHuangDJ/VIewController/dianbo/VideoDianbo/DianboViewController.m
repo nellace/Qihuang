@@ -84,7 +84,7 @@ static  NSInteger goodCount; //记录等号
     
     [self rightButtonMethod];
     [self.videoScaleImageView addGestureRecognizer:tap];
-    [self.videoScaleImageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
+
 }
 
 - (void)fullScreenMehod {
@@ -101,6 +101,7 @@ static  NSInteger goodCount; //记录等号
 - (void)viewWillAppear:(BOOL)animated {
     [self registerNotification];
     [self requestDianboInfo];
+
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -175,6 +176,8 @@ static  NSInteger goodCount; //记录等号
         self.titleForVideoLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"title"]];
         self.liulanCountLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"count"]];
         self.editorLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickname"]];
+        self.imageUrl = [NSString stringWithFormat:@"%@",[dic objectForKey:@"image"]];
+        [self.videoScaleImageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
         isCollected = [NSString stringWithFormat:@"%@",[dic objectForKey:@"collect"]];
         infomId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"info_id"]];
         cateId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"cate_id"]];
