@@ -18,7 +18,7 @@
 @property (nonatomic, getter=needsPrestrain, setter=setNeedsPrestrain:) BOOL prestrainTag;
 @property (nonatomic, strong) InformationDetailInterface *detail;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextFiled;
-
+@property (nonatomic,retain)IBOutlet UILabel *zanCountLabel;
 @property (weak, nonatomic) IBOutlet UIView *carriage;
 @property (nonatomic) CGFloat groundOffset;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carriageOffsetConstraint;
@@ -33,6 +33,8 @@ static  NSInteger goodCount; //记录等号
     NSInteger sectionHeight;
     NSMutableArray *listArrayWithInfo;
     NSString *otherUserName;  //被评论人的名子
+    int zanCount;
+    BOOL hadZan;
 }
 
 #pragma mark - ATTRIBUTES GETTER AND SETTER
@@ -198,7 +200,7 @@ static  NSInteger goodCount; //记录等号
         self.detail.publisher = [NSString stringWithFormat:@"%@", [result objectForKey:@"nickname"]];
         self.detail.content = [NSString stringWithFormat:@"%@", [result objectForKey:@"content"]];
         self.detail.time = [NSString stringWithFormat:@"%@", [result objectForKey:@"time"]];
-        
+        zanCount = [[result objectForKey:@"zan"]integerValue];
         // Refresh with received detail..
         [self loadDetailData];
         
@@ -279,9 +281,17 @@ static  NSInteger goodCount; //记录等号
 - (void)infoZanNotified:(NSNotification *)aNotification
 {
     NSDictionary *aDic = aNotification.object;
-    if (aDic == nil) {
-        NSLog(@"zan for dianbo failed");
+    if ([[aDic objectForKey:@"resultCode"]integerValue] == 0) {
+        UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"点赞成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alter show];
+        NSLog(@"------1");
+        zanCount++;
+        self.zanCountLabel.text = [NSString stringWithFormat:@"%D",zanCount];
+        hadZan = YES;
+        [self.likeBtn setBackgroundImage:[UIImage imageNamed:@"zhibo_btn_zan_press"] forState:UIControlStateNormal];
+        self.zanCountLabel.text = [NSString stringWithFormat:@"%d",zanCount];
     }
+
 }
 
 // good
@@ -382,6 +392,7 @@ static  NSInteger goodCount; //记录等号
 //    NSString *dateString = [dateFormatter stringFromDate:date];
     NSString *dateString = [self.detail.time length] > 10 ? [self.detail.time substringToIndex:10] : @"";
     
+    self.zanCountLabel.text = [NSString stringWithFormat:@"%d",zanCount];
     infoHeader.titleLabel.text = [NSString stringWithFormat:@"%@", self.detail.title];
     infoHeader.attachLabel.text = [NSString stringWithFormat:@"来源：%@ 时间：%@ 浏览量：%@ 编辑：%@", self.detail.source, dateString, self.detail.count, self.detail.publisher];
 //    self.bodyLabel.text = [NSString stringWithFormat:@"%@", self.detail.content];
@@ -419,9 +430,11 @@ static  NSInteger goodCount; //记录等号
 
 - (IBAction)zanMehod:(id)sender {
     if ([KHLColor isLogin]) {
-        NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
-        NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
-        [[KHLDataManager instance] zanHUDHolder:self.view uid:uidStr token:tokenStr info_id:@"45" model:@"article"];
+        if (hadZan == NO) {
+            NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
+            NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
+            [[KHLDataManager instance] zanHUDHolder:self.view uid:uidStr token:tokenStr info_id:self.detail.identity model:@"article"];
+        }
     }else{
         [self pushLoginVCMethod];
     }

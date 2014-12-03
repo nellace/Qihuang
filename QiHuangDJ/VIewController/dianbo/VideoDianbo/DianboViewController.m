@@ -388,6 +388,10 @@ static  NSInteger goodCount; //记录等号
             NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
             NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
             [[KHLDataManager instance]zanHUDHolder:self.view uid:uidStr token:tokenStr info_id:self.info_id model:@"article"];
+        }else
+        {
+            UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"已经点过赞了哦" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alter show];
         }
     }else {
         [self pushLoginVCMethod];
@@ -483,6 +487,10 @@ static  NSInteger goodCount; //记录等号
             CommentListInterface * commentlist = self.listMutableArr[sender.tag];
             goodCount = sender.tag;
             [[KHLDataManager instance] goodHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster model:@"comment"];
+        }else
+        {
+            UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"不能频繁点赞" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alter show];
         }
     } else {
         [self pushLoginVCMethod];

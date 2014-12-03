@@ -11,5 +11,5 @@
 @interface InfomationViewController : MQLCustomViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) SearchInterface *prestrain;
-
+@property (nonatomic,retain) IBOutlet UIButton *likeBtn;
 @end
