@@ -447,7 +447,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
                 targetViewController = [[DianboViewController alloc] init];
                 // Configure prestrain..
             } else if ([@"article" isEqualToString:instance.type]) {
-                targetViewController = [[InfomationViewController alloc] init];
+                targetViewController = [[DianboViewController alloc] init];
                 SearchInterface *prestrain = [[SearchInterface alloc] init];
                 [prestrain setTitle:instance.title];
                 [prestrain setTime:instance.time];
@@ -455,7 +455,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
                 [prestrain setCategory:instance.category];
                 [prestrain setIdentity:instance.identity];
                 [prestrain setCount:instance.count];
-                [(InfomationViewController *)targetViewController setPrestrain:prestrain];
+                [(DianboViewController *)targetViewController setInfo_id:instance.identity];
             } else return;
             [self.navigationController pushViewController:targetViewController animated:TRUE];
         }
@@ -475,6 +475,9 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             prestrain.time = instance.time;
             prestrain.count = instance.count;
             prestrain.publisher = instance.publisher;
+            DianboViewController *dianbo =[[DianboViewController alloc]init];
+            dianbo.info_id = prestrain.identity;
+            [self.navigationController pushViewController:dianbo animated:YES];
         } else if (self.state == KHLPICListStateSubscription) {
             SubscriptionListInterface *instance = [self.subscriptions objectAtIndex:indexPath.row];
             prestrain.title = instance.title;
@@ -483,11 +486,26 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             prestrain.time = instance.time;
             prestrain.count = instance.count;
             prestrain.publisher = instance.publisher;
-        } else return;
+            DianboViewController *dianbo =[[DianboViewController alloc]init];
+            dianbo.info_id = prestrain.identity;
+            [self.navigationController pushViewController:dianbo animated:YES];
+        } else if (self.state == KHLPICListStateRecommend)
+        {
+            SubscriptionListInterface *instance = [self.subscriptions objectAtIndex:indexPath.row];
+            prestrain.title = instance.title;
+            prestrain.identity = instance.identity;
+            prestrain.category = instance.category;
+            prestrain.time = instance.time;
+            prestrain.count = instance.count;
+            prestrain.publisher = instance.publisher;
+            DianboViewController *dianbo = [[DianboViewController alloc]init];
+            dianbo.info_id = instance.identity;
+            [self.navigationController pushViewController:dianbo animated:YES];
+        }
         
-        InfomationViewController *informationViewController = [[InfomationViewController alloc] init];
-        [informationViewController setPrestrain:prestrain];
-        [self.navigationController pushViewController:informationViewController animated:TRUE];
+//        InfomationViewController *informationViewController = [[InfomationViewController alloc] init];
+//        [informationViewController setPrestrain:prestrain];
+//        [self.navigationController pushViewController:informationViewController animated:TRUE];
     } else return;
 }
 
@@ -711,6 +729,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
     if ([[dict objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         
         NSDictionary *result = [dict objectForKey:@"result"];
+        NSLog(@"%@",result);
         if ((!result) || (result.count == 0)) {
             NSLog(@"妈蛋，result里没东西。");
             [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

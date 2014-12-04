@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -10,6 +10,7 @@
                 <outlet property="carriage" destination="cBH-Fs-UDY" id="HmI-VE-8XO"/>
                 <outlet property="carriageOffsetConstraint" destination="twc-pT-fm9" id="ZCp-UE-FTM"/>
                 <outlet property="inputTextFiled" destination="hr0-5U-Tgx" id="0JL-r1-JXR"/>
+                <outlet property="likeBtn" destination="nTP-wl-N3n" id="xcH-2H-ORS"/>
                 <outlet property="mainTableView" destination="hIl-Vg-tDO" id="wOj-jh-rCZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -35,7 +36,7 @@
                 <view alpha="0.80000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JG9-kT-ZNy" userLabel="bottom bar View">
                     <rect key="frame" x="0.0" y="459" width="320" height="45"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYz-is-33a" userLabel="Back Button">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYz-is-33a" userLabel="Back Button">
                             <rect key="frame" x="20" y="12" width="9" height="22"/>
                             <state key="normal" image="zhibo_btn_fanhui.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

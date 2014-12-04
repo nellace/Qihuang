@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *mainTabe;
 @property (strong,nonatomic) NSMutableArray *listMutableArr;
 
+@property (nonatomic, weak) NSTimer *countDownTimer;
 @property (nonatomic) CGFloat groundOffset;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carriageOffsetConstraint;
 
@@ -44,7 +45,8 @@ static  NSInteger goodCount; //记录等号
     BOOL hadDingPingLun;
     BOOL hadCaiPingLun;
     BOOL hadZan;
-    
+    int dingCountDown;
+    int caiCountDown;
 }
 
 
@@ -261,8 +263,31 @@ static  NSInteger goodCount; //记录等号
     [self.mainTabe reloadData];
         goodCount = 0;
     hadDingPingLun = YES;
+    dingCountDown = 10;
+    self.countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeFireMethod) userInfo:nil repeats:YES];
     
 }
+
+- (void)timeFireMethod
+{
+    
+    if (dingCountDown) {
+        dingCountDown--;
+        if (dingCountDown == 0) {
+            hadDingPingLun = NO;
+            [self.countDownTimer invalidate];
+        }
+    }
+
+    if (caiCountDown) {
+        caiCountDown--;
+        if (caiCountDown == 0) {
+            hadCaiPingLun = NO;
+            [self.countDownTimer invalidate];
+        }
+    }
+}
+
 - (void)badDianboNotifiMethod:(NSNotification *)aNotification {
     NSDictionary *aDic = aNotification.object;
     if (aDic == nil) {
@@ -277,6 +302,8 @@ static  NSInteger goodCount; //记录等号
     [self.mainTabe reloadData];
     goodCount = 0;
     hadCaiPingLun = YES;
+    caiCountDown = 10;
+    self.countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeFireMethod) userInfo:nil repeats:YES];
 }
 
 - (void)addCollectionNotifiMethod:(NSNotification *)aNotification {
@@ -388,6 +415,10 @@ static  NSInteger goodCount; //记录等号
             NSString * uidStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUID"];
             NSString * tokenStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIToken"];
             [[KHLDataManager instance]zanHUDHolder:self.view uid:uidStr token:tokenStr info_id:self.info_id model:@"article"];
+        }else
+        {
+            UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"已经点过赞了哦" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alter show];
         }
     }else {
         [self pushLoginVCMethod];
@@ -483,6 +514,10 @@ static  NSInteger goodCount; //记录等号
             CommentListInterface * commentlist = self.listMutableArr[sender.tag];
             goodCount = sender.tag;
             [[KHLDataManager instance] goodHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster model:@"comment"];
+        }else
+        {
+            UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"不能频繁点赞" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alter show];
         }
     } else {
         [self pushLoginVCMethod];
@@ -497,6 +532,10 @@ static  NSInteger goodCount; //记录等号
             CommentListInterface * commentlist = self.listMutableArr[sender.tag];
             goodCount = sender.tag;
             [[KHLDataManager instance] badHUDHolder:self.view uid:uidStr token:tokenStr comment_id:commentlist.poster];
+        }else{
+            UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"" message:@"不能频繁操作" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alter show];
+
         }
     } else {
         [self pushLoginVCMethod];
