@@ -345,6 +345,18 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
 
 - (IBAction)sectionBtn:(id)sender {
     
+    if ([self bSliderShowing]) {
+        [UIView animateWithDuration:0.3f animations:^{
+            self.holder.frame = CGRectMake(0, 0, self.fixedWidth, self.view.frame.size.height);
+            self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.fixedWidth, 44);
+        } completion:^(BOOL finished) {
+            [self setSliderShowing:FALSE];
+        }];
+        
+        return;
+    }
+        
+    
     UIButton * btn = (UIButton *)sender;
     NSInteger tagBtn = btn.tag;
     
@@ -707,6 +719,20 @@ typedef NS_ENUM(NSInteger, KHLVODFilter) {
         // Subscribe fail..
         [[[UIAlertView alloc] initWithTitle:@"退订失败" message:[dict objectForKey:@"reason"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
+}
+
+
+
+#pragma mark - CUSTOM LAYOUT METHODES
+
+- (void)recoverLayout
+{
+    [UIView animateWithDuration:0.3f animations:^{
+        self.holder.frame = CGRectMake(0, 0, self.fixedWidth, self.view.frame.size.height);
+        self.navigationController.navigationBar.frame = CGRectMake(self.holder.frame.origin.x, 20, self.fixedWidth, 44);
+    } completion:^(BOOL finished) {
+        [self setSliderShowing:FALSE];
+    }];
 }
 
 
