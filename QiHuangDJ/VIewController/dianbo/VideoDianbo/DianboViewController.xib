@@ -191,7 +191,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1P4-Zc-Jkw">
-                            <rect key="frame" x="8" y="8" width="266" height="29"/>
+                            <rect key="frame" x="8" y="8" width="256" height="29"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -199,7 +199,10 @@
                             </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5L-hy-Nco">
-                            <rect key="frame" x="282" y="8" width="30" height="29"/>
+                            <rect key="frame" x="272" y="8" width="40" height="29"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="6rq-Bp-61S"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="评论">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
