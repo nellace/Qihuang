@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -39,13 +39,13 @@
                     <rect key="frame" x="0.0" y="153" width="320" height="23"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="视频:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="34" translatesAutoresizingMaskIntoConstraints="NO" id="2CI-Bj-jbg">
-                            <rect key="frame" x="0.0" y="-153" width="28" height="14.5"/>
+                            <rect key="frame" x="0.0" y="-153" width="28" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="视频名称   视频名称   视频名称   视频名称   " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEg-5N-b3r">
-                            <rect key="frame" x="0.0" y="-153" width="235" height="14.5"/>
+                            <rect key="frame" x="0.0" y="-153" width="235" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -77,41 +77,18 @@
                                 <action selector="pinglunMethondWithBottomBar:" destination="-1" eventType="touchUpInside" id="mwP-Fr-Xow"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgT-dW-QTS" userLabel="Like Button">
-                            <rect key="frame" x="178" y="12" width="19" height="22"/>
-                            <state key="normal" image="zhibo_btn_zan.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="zhibo_icon_zan_press.png"/>
-                            <connections>
-                                <action selector="zanMethod:" destination="-1" eventType="touchUpInside" id="td1-Dd-sKT"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="232" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="74" translatesAutoresizingMaskIntoConstraints="NO" id="YlA-hS-UeZ" userLabel="Liked Counting Label">
-                            <rect key="frame" x="205" y="14" width="24" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="s6z-RH-uzx" firstAttribute="top" secondItem="wgT-dW-QTS" secondAttribute="bottom" constant="-22" id="20v-WW-t24"/>
                         <constraint firstAttribute="centerY" secondItem="s6z-RH-uzx" secondAttribute="centerY" id="4wc-S5-UiH"/>
                         <constraint firstAttribute="centerY" secondItem="vg7-94-E7u" secondAttribute="centerY" id="5KF-X6-Woy"/>
                         <constraint firstAttribute="centerX" secondItem="s6z-RH-uzx" secondAttribute="centerX" id="JS6-iM-ZW0"/>
                         <constraint firstItem="vg7-94-E7u" firstAttribute="leading" secondItem="0Di-EP-X9g" secondAttribute="leading" constant="20" symbolic="YES" id="JzN-oV-ZvV"/>
-                        <constraint firstItem="YlA-hS-UeZ" firstAttribute="leading" secondItem="wgT-dW-QTS" secondAttribute="trailing" constant="8" id="Y4y-gd-eYu"/>
-                        <constraint firstAttribute="centerY" secondItem="wgT-dW-QTS" secondAttribute="centerY" id="cgf-YT-8aw"/>
                         <constraint firstAttribute="height" constant="37" id="f0G-w0-BEv"/>
-                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YlA-hS-UeZ" secondAttribute="trailing" constant="20" symbolic="YES" id="jA9-cq-J6o"/>
-                        <constraint firstItem="wgT-dW-QTS" firstAttribute="leading" secondItem="s6z-RH-uzx" secondAttribute="trailing" constant="8" symbolic="YES" id="ry2-In-wdo"/>
-                        <constraint firstAttribute="centerY" secondItem="YlA-hS-UeZ" secondAttribute="centerY" id="vMu-dk-Nth"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="f0G-w0-BEv"/>
-                            <exclude reference="20v-WW-t24"/>
                         </mask>
                     </variation>
                 </view>
@@ -204,8 +181,6 @@
     <resources>
         <image name="zhibo_btn_fanhui.png" width="9" height="16"/>
         <image name="zhibo_btn_huifu.png" width="19" height="17"/>
-        <image name="zhibo_btn_zan.png" width="19" height="17"/>
         <image name="zhibo_huifukuang.png" width="320" height="40"/>
-        <image name="zhibo_icon_zan_press.png" width="16" height="14"/>
     </resources>
 </document>
