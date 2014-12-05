@@ -18,6 +18,10 @@
     __weak IBOutlet UIView *inputViewWithTextFiled;
 }
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carriageOffsetConstraint;
+@property (nonatomic) CGFloat groundOffset;
+
+
 @end
 
 @implementation VideoLiveViewController {
@@ -32,6 +36,11 @@
     NSString *otherUserName; //被回复人的用户名
     
     UIViewController *listViewController ;
+}
+
+- (CGFloat)groundOffset
+{
+    return inputViewWithTextFiled ? inputViewWithTextFiled.frame.size.height : 0;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -96,7 +105,8 @@ appKey:@"687706a51ff9836859a643485fc684bddacc3576"
 }
 #pragma mark - Register Notification
 - (void)registerNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 //    直播详情
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(liveDetailMethodWithNotification:) name:@"KHLNotiLiveDetailAcquired" object:nil];
 //    评论列表
@@ -458,4 +468,30 @@ appKey:@"687706a51ff9836859a643485fc684bddacc3576"
     [textField resignFirstResponder];
     return YES;
 }
+
+
+
+
+#pragma mark - INPUT VIEW WITH KEYBOARD METHODES
+
+- (void)keyboardWillChangeFrame: (NSNotification *)notification
+{
+    CGRect enRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat offset = self.view.frame.size.height - enRect.origin.y + self.groundOffset + self.navigationController.navigationBar.frame.size.height + 20;
+    
+    if (self.groundOffset == offset) {
+        offset = 0;
+    }
+    
+    [CATransaction begin];
+    [UIView animateWithDuration:0.3f animations:^{
+        [inputViewWithTextFiled setFrame:CGRectMake(inputViewWithTextFiled.frame.origin.x , self.view.frame.size.height - offset, inputViewWithTextFiled.frame.size.width, inputViewWithTextFiled.frame.size.height)];
+        [self.carriageOffsetConstraint setConstant:-offset];
+        [inputViewWithTextFiled updateConstraints];
+    }];
+    [CATransaction commit];
+}
+
+
+
 @end
