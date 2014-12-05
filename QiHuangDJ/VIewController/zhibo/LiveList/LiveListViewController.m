@@ -161,7 +161,7 @@
     cell.textLabel.text = textlabel1;
     cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
 //    cell.imageView.image = [UIImage imageNamed:@"zhibo_huanchongtu"];
 //    cell.textLabel.text = @"一起风暴吧";
     

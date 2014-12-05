@@ -224,6 +224,13 @@ static  NSInteger goodCount; //记录等号
         NSLog(@"reply failed");
         return;
     }
+    if ([[aDic objectForKey:@"resultCode"]isEqualToString:@"1"])
+    {
+        NSString *reason = [aDic objectForKey:@"reason"];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:reason delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+        [self.shuruTextFiled resignFirstResponder];
+    }
     
     if ([[aDic objectForKey:@"resultCode"] isEqualToString:@"0"]) {
         NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"KHLPIUsername"];

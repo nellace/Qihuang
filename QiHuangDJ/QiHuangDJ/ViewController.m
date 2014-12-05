@@ -16,6 +16,7 @@
 #import "KHLGamesphereViewController.h"
 #import "InfomationViewController.h"
 #import "DianboViewController.h"
+#import "VideoLiveViewController.h"
 
 @interface ViewController () <UIScrollViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UIView *anchorView;
@@ -416,7 +417,9 @@ typedef NS_ENUM(NSUInteger, KHLHomeBackdropTag) {
             [self.navigationController pushViewController:detailViewController animated:TRUE];
         } else if ([@"live" isEqualToString:looping.loopingType]) {
             // goto live
-            DianboViewController *vodViewController = [[DianboViewController alloc] init];
+             VideoLiveViewController*vodViewController = [[VideoLiveViewController alloc] init];
+
+            vodViewController.liveInfoID = looping.loopingIdentity;
             [self.navigationController pushViewController:vodViewController animated:TRUE];
         } else {
             // 你点到奇怪的东西了……
