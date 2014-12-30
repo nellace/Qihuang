@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VIewController/Information/KHLInformationTableViewController.m"
-            timestampString = "438081029.978037"
+            filePath = "VIewController/zhibo/GameVideoLive/VideoLiveViewController.m"
+            timestampString = "439436883.542638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-initWithNibName:bundle:"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-liveDetailMethodWithNotification:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VIewController/Information/KHLInformationTableViewController.m"
-            timestampString = "438081035.381319"
+            filePath = "VIewController/zhibo/GameVideoLive/VideoLiveViewController.m"
+            timestampString = "439436888.464143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "-headerRereshing"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-liveDetailMethodWithNotification:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VIewController/dianbo/dianbolist/DianboListViewController.m"
-            timestampString = "438166754.434558"
+            filePath = "VIewController/zhibo/GameVideoLive/VideoLiveViewController.m"
+            timestampString = "439436890.967019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "603"
-            endingLineNumber = "603"
-            landmarkName = "-videoOnDemandListNotified:"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-liveDetailMethodWithNotification:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,61 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VIewController/dianbo/dianbolist/DianboListViewController.m"
-            timestampString = "438166754.434558"
+            filePath = "VIewController/zhibo/GameVideoLive/VideoLiveViewController.m"
+            timestampString = "439438816.799943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "586"
-            endingLineNumber = "586"
-            landmarkName = "-videoOnDemandListNotified:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "KHLDataManager/KHLDataManager.m"
-            timestampString = "438166506.759695"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "917"
-            endingLineNumber = "917"
-            landmarkName = "-goodHUDHolder:uid:token:comment_id:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VIewController/dianbo/dianbolist/DianboListViewController.m"
-            timestampString = "438166754.434558"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "-addHeader"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VIewController/dianbo/dianbolist/DianboListViewController.m"
-            timestampString = "438166731.434719"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "-addFooter"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-commentListMehod:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
