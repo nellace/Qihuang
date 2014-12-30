@@ -506,7 +506,7 @@
 {
     // Print methode name and arguments..
     NSLog(@"+ POST %@: %@", notificationName, arguments);
-    
+    NSLog(@"+ POST %@: %@", notificationName, arguments);
     // Start progress HUD..
     [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
     
