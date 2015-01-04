@@ -11,6 +11,7 @@
 #import "infomationForHeader.h"
 #import "LoginViewController.h"
 #import "JubaoViewController.h"
+#import "UIWebView+sizeToFitWithImage.h"
 @interface InfomationViewController () <UIWebViewDelegate,UITextFieldDelegate>
 @property (nonatomic,strong) IBOutlet UITableView *mainTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyboardHeighAuto;
@@ -395,11 +396,15 @@ static  NSInteger goodCount; //记录等号
     self.zanCountLabel.text = [NSString stringWithFormat:@"%d",zanCount];
     infoHeader.titleLabel.text = [NSString stringWithFormat:@"%@", self.detail.title];
     infoHeader.attachLabel.text = [NSString stringWithFormat:@"来源：%@ 时间：%@ 浏览量：%@ 编辑：%@", self.detail.source, dateString, self.detail.count, self.detail.publisher];
-//    self.bodyLabel.text = [NSString stringWithFormat:@"%@", self.detail.content];
-//    NSLog(@"content%@",self.detail.content);
-    [infoHeader.webViewLaytou loadHTMLString:self.detail.content baseURL:nil];
-    infoHeader.commentLabel.text = @"";
+
+
+//    [infoHeader.webViewLaytou loadHTMLString:self.detail.content baseURL:nil];
     
+    NSMutableString * str = [self.detail.content mutableCopy];
+    [infoHeader.webViewLaytou sizeToFitWithImage:str];
+    infoHeader.webViewLaytou.scrollView.alwaysBounceHorizontal = NO;
+    infoHeader.commentLabel.text = @"";
+
     if (self.detail.imageUrls && [self.detail.imageUrls isKindOfClass:[NSArray class]] && [self.detail.imageUrls firstObject] && [[self.detail.imageUrls firstObject] isKindOfClass:[NSString class]]) {
         //[self.photoImageView setImageWithURL:[NSURL URLWithString:[self.detail.imageUrls objectAtIndex:0]]];
         BOOL loaded = FALSE;

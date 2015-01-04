@@ -192,11 +192,6 @@
 		3D44752719C972CE00D9B2B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44752619C972CE00D9B2B1 /* main.m */; };
 		3D44752B19C972CE00D9B2B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44752A19C972CE00D9B2B1 /* AppDelegate.m */; };
 		3D44752D19C972CE00D9B2B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D44752C19C972CE00D9B2B1 /* Images.xcassets */; };
-		3D44753419C972CE00D9B2B1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D44753319C972CE00D9B2B1 /* XCTest.framework */; };
-		3D44753519C972CE00D9B2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D44751A19C972CE00D9B2B1 /* Foundation.framework */; };
-		3D44753619C972CE00D9B2B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D44751E19C972CE00D9B2B1 /* UIKit.framework */; };
-		3D44753E19C972CE00D9B2B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D44753C19C972CE00D9B2B1 /* InfoPlist.strings */; };
-		3D44754019C972CE00D9B2B1 /* QiHuangDJTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44753F19C972CE00D9B2B1 /* QiHuangDJTests.m */; };
 		3D44757C19C984AC00D9B2B1 /* CustomNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44756B19C984AC00D9B2B1 /* CustomNavViewController.m */; };
 		3D44757D19C984AC00D9B2B1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44756E19C984AC00D9B2B1 /* MBProgressHUD.m */; };
 		3D44757E19C984AC00D9B2B1 /* MQLCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D44757119C984AC00D9B2B1 /* MQLCustomViewController.m */; };
@@ -254,6 +249,7 @@
 		3DED34451A10CD4C008483D4 /* JubaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DED34431A10CD4C008483D4 /* JubaoViewController.m */; };
 		3DED34461A10CD4C008483D4 /* JubaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DED34441A10CD4C008483D4 /* JubaoViewController.xib */; };
 		3DED34621A10FCE5008483D4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED34611A10FCE5008483D4 /* libsqlite3.0.dylib */; };
+		D460334E1A591FC900187E41 /* UIWebView+sizeToFitWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D460334D1A591FC900187E41 /* UIWebView+sizeToFitWithImage.m */; };
 		FC2FA76B1A08B8AC006290BE /* KHLSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2FA7691A08B8AC006290BE /* KHLSearchResultViewController.m */; };
 		FC2FA76C1A08B8AC006290BE /* KHLSearchResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2FA76A1A08B8AC006290BE /* KHLSearchResultViewController.xib */; };
 		FC2FA7701A08F0E8006290BE /* KHLSearchResultSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2FA76E1A08F0E8006290BE /* KHLSearchResultSubViewController.m */; };
@@ -284,16 +280,6 @@
 		FCED6BEA19EE553F0009F8FF /* KHLPICVideoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCED6BE819EE553F0009F8FF /* KHLPICVideoItemCell.m */; };
 		FCED6BEB19EE553F0009F8FF /* KHLPICVideoItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCED6BE919EE553F0009F8FF /* KHLPICVideoItemCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3D44753719C972CE00D9B2B1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3D44750F19C972CE00D9B2B1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D44751619C972CE00D9B2B1;
-			remoteInfo = QiHuangDJ;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3969CE181A242A6900E17F20 /* denglu_btn_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "denglu_btn_login@2x.png"; sourceTree = "<group>"; };
@@ -495,11 +481,6 @@
 		3D44752919C972CE00D9B2B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3D44752A19C972CE00D9B2B1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3D44752C19C972CE00D9B2B1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3D44753219C972CE00D9B2B1 /* QiHuangDJTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QiHuangDJTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D44753319C972CE00D9B2B1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		3D44753B19C972CE00D9B2B1 /* QiHuangDJTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QiHuangDJTests-Info.plist"; sourceTree = "<group>"; };
-		3D44753D19C972CE00D9B2B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3D44753F19C972CE00D9B2B1 /* QiHuangDJTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QiHuangDJTests.m; sourceTree = "<group>"; };
 		3D44756A19C984AC00D9B2B1 /* CustomNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavViewController.h; sourceTree = "<group>"; };
 		3D44756B19C984AC00D9B2B1 /* CustomNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavViewController.m; sourceTree = "<group>"; };
 		3D44756D19C984AC00D9B2B1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -607,6 +588,8 @@
 		3DED34431A10CD4C008483D4 /* JubaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JubaoViewController.m; sourceTree = "<group>"; };
 		3DED34441A10CD4C008483D4 /* JubaoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JubaoViewController.xib; sourceTree = "<group>"; };
 		3DED34611A10FCE5008483D4 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		D460334C1A591FC900187E41 /* UIWebView+sizeToFitWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+sizeToFitWithImage.h"; sourceTree = "<group>"; };
+		D460334D1A591FC900187E41 /* UIWebView+sizeToFitWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+sizeToFitWithImage.m"; sourceTree = "<group>"; };
 		FC2FA7681A08B8AC006290BE /* KHLSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KHLSearchResultViewController.h; path = SearchResult/KHLSearchResultViewController.h; sourceTree = "<group>"; };
 		FC2FA7691A08B8AC006290BE /* KHLSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KHLSearchResultViewController.m; path = SearchResult/KHLSearchResultViewController.m; sourceTree = "<group>"; };
 		FC2FA76A1A08B8AC006290BE /* KHLSearchResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KHLSearchResultViewController.xib; path = SearchResult/KHLSearchResultViewController.xib; sourceTree = "<group>"; };
@@ -691,16 +674,6 @@
 				3D44751B19C972CE00D9B2B1 /* Foundation.framework in Frameworks */,
 				3DC17A371A1DD4A700C6A23F /* ShareSDK.framework in Frameworks */,
 				3DC17A3A1A1DD4A700C6A23F /* ShareSDKShareActionSheet.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3D44752F19C972CE00D9B2B1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D44753419C972CE00D9B2B1 /* XCTest.framework in Frameworks */,
-				3D44753619C972CE00D9B2B1 /* UIKit.framework in Frameworks */,
-				3D44753519C972CE00D9B2B1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,8 +1014,9 @@
 		3D44750E19C972CE00D9B2B1 = {
 			isa = PBXGroup;
 			children = (
+				D460334C1A591FC900187E41 /* UIWebView+sizeToFitWithImage.h */,
+				D460334D1A591FC900187E41 /* UIWebView+sizeToFitWithImage.m */,
 				3D44752019C972CE00D9B2B1 /* QiHuangDJ */,
-				3D44753919C972CE00D9B2B1 /* QiHuangDJTests */,
 				3D44751919C972CE00D9B2B1 /* Frameworks */,
 				3D44751819C972CE00D9B2B1 /* Products */,
 			);
@@ -1052,7 +1026,6 @@
 			isa = PBXGroup;
 			children = (
 				3D44751719C972CE00D9B2B1 /* QiHuangDJ.app */,
-				3D44753219C972CE00D9B2B1 /* QiHuangDJTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1078,7 +1051,6 @@
 				3D44751A19C972CE00D9B2B1 /* Foundation.framework */,
 				3D44751C19C972CE00D9B2B1 /* CoreGraphics.framework */,
 				3D44751E19C972CE00D9B2B1 /* UIKit.framework */,
-				3D44753319C972CE00D9B2B1 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1110,24 +1082,6 @@
 				3D44752619C972CE00D9B2B1 /* main.m */,
 				3D44752819C972CE00D9B2B1 /* QiHuangDJ-Prefix.pch */,
 				3DCA5A8F1A13618100A51183 /* PushConfig.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3D44753919C972CE00D9B2B1 /* QiHuangDJTests */ = {
-			isa = PBXGroup;
-			children = (
-				3D44753F19C972CE00D9B2B1 /* QiHuangDJTests.m */,
-				3D44753A19C972CE00D9B2B1 /* Supporting Files */,
-			);
-			path = QiHuangDJTests;
-			sourceTree = "<group>";
-		};
-		3D44753A19C972CE00D9B2B1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				3D44753B19C972CE00D9B2B1 /* QiHuangDJTests-Info.plist */,
-				3D44753C19C972CE00D9B2B1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1520,24 +1474,6 @@
 			productReference = 3D44751719C972CE00D9B2B1 /* QiHuangDJ.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3D44753119C972CE00D9B2B1 /* QiHuangDJTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3D44754619C972CE00D9B2B1 /* Build configuration list for PBXNativeTarget "QiHuangDJTests" */;
-			buildPhases = (
-				3D44752E19C972CE00D9B2B1 /* Sources */,
-				3D44752F19C972CE00D9B2B1 /* Frameworks */,
-				3D44753019C972CE00D9B2B1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3D44753819C972CE00D9B2B1 /* PBXTargetDependency */,
-			);
-			name = QiHuangDJTests;
-			productName = QiHuangDJTests;
-			productReference = 3D44753219C972CE00D9B2B1 /* QiHuangDJTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1558,9 +1494,6 @@
 							};
 						};
 					};
-					3D44753119C972CE00D9B2B1 = {
-						TestTargetID = 3D44751619C972CE00D9B2B1;
-					};
 				};
 			};
 			buildConfigurationList = 3D44751219C972CE00D9B2B1 /* Build configuration list for PBXProject "QiHuangDJ" */;
@@ -1577,7 +1510,6 @@
 			projectRoot = "";
 			targets = (
 				3D44751619C972CE00D9B2B1 /* QiHuangDJ */,
-				3D44753119C972CE00D9B2B1 /* QiHuangDJTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1772,14 +1704,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D44753019C972CE00D9B2B1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D44753E19C972CE00D9B2B1 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1818,6 +1742,7 @@
 				3D121C2819CAB47E0040870C /* ViewController.m in Sources */,
 				3D121C3219CABCD10040870C /* ClassifyViewController.m in Sources */,
 				3D0F5A2D1A14B077003AB516 /* AFDownloadRequestOperation.m in Sources */,
+				D460334E1A591FC900187E41 /* UIWebView+sizeToFitWithImage.m in Sources */,
 				FCED6BEA19EE553F0009F8FF /* KHLPICVideoItemCell.m in Sources */,
 				3D121C5119CAE4B80040870C /* SuperStartViewController.m in Sources */,
 				3D44757C19C984AC00D9B2B1 /* CustomNavViewController.m in Sources */,
@@ -1847,37 +1772,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D44752E19C972CE00D9B2B1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D44754019C972CE00D9B2B1 /* QiHuangDJTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3D44753819C972CE00D9B2B1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3D44751619C972CE00D9B2B1 /* QiHuangDJ */;
-			targetProxy = 3D44753719C972CE00D9B2B1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3D44752319C972CE00D9B2B1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3D44752419C972CE00D9B2B1 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		3D44753C19C972CE00D9B2B1 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D44753D19C972CE00D9B2B1 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2056,46 +1957,6 @@
 			};
 			name = Release;
 		};
-		3D44754719C972CE00D9B2B1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/QiHuangDJ.app/QiHuangDJ";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "QiHuangDJ/QiHuangDJ-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "QiHuangDJTests/QiHuangDJTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		3D44754819C972CE00D9B2B1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/QiHuangDJ.app/QiHuangDJ";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "QiHuangDJ/QiHuangDJ-Prefix.pch";
-				INFOPLIST_FILE = "QiHuangDJTests/QiHuangDJTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2113,15 +1974,6 @@
 			buildConfigurations = (
 				3D44754419C972CE00D9B2B1 /* Debug */,
 				3D44754519C972CE00D9B2B1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D44754619C972CE00D9B2B1 /* Build configuration list for PBXNativeTarget "QiHuangDJTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3D44754719C972CE00D9B2B1 /* Debug */,
-				3D44754819C972CE00D9B2B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
