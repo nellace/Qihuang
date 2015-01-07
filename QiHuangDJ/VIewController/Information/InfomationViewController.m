@@ -291,6 +291,8 @@ static  NSInteger goodCount; //记录等号
         hadZan = YES;
         [self.likeBtn setBackgroundImage:[UIImage imageNamed:@"zhibo_btn_zan_press"] forState:UIControlStateNormal];
         self.zanCountLabel.text = [NSString stringWithFormat:@"%d",zanCount];
+    }else{
+        [[[UIAlertView alloc]initWithTitle:@"" message:@"点赞失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
     }
 
 }
@@ -403,6 +405,7 @@ static  NSInteger goodCount; //记录等号
     NSMutableString * str = [self.detail.content mutableCopy];
     [infoHeader.webViewLaytou sizeToFitWithImage:str];
     infoHeader.webViewLaytou.scrollView.alwaysBounceHorizontal = NO;
+    infoHeader.webViewLaytou.scrollView.showsVerticalScrollIndicator = NO;
     infoHeader.commentLabel.text = @"";
 
     if (self.detail.imageUrls && [self.detail.imageUrls isKindOfClass:[NSArray class]] && [self.detail.imageUrls firstObject] && [[self.detail.imageUrls firstObject] isKindOfClass:[NSString class]]) {
