@@ -687,7 +687,11 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             NSLog(@"妈蛋，result里没东西。");
             [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             return;
+        }else if ([[result objectForKey:@"size"]isEqualToString:@"0"])
+        {
+            [[[UIAlertView alloc]initWithTitle:@"" message:@"没有推荐内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil]show];
         }
+
         
 //        [self.recommends removeAllObjects];
         self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
@@ -718,6 +722,8 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
     }
 }
 
+
+
 - (void)subscriptionListNotified: (NSNotification *)notification
 {
     NSDictionary *dict = notification.object;
@@ -734,7 +740,11 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             NSLog(@"妈蛋，result里没东西。");
             [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             return;
+        }else if ([[result objectForKey:@"size"]isEqualToString:@"0"])
+        {
+            [[[UIAlertView alloc]initWithTitle:@"" message:@"没有订阅内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil]show];
         }
+
         
 //        [self.subscriptions removeAllObjects];
         self.currentPage = [NSString stringWithFormat:@"%@", [result objectForKey:@"page"]];
@@ -784,6 +794,7 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
     }
 }
 
+
 - (void)collectionListNotified: (NSNotification *)notification
 {
     NSDictionary *dict = notification.object;
@@ -799,6 +810,9 @@ typedef NS_ENUM(NSUInteger, KHLPICListState) {
             NSLog(@"妈蛋，result里没东西。");
             [[[UIAlertView alloc] initWithTitle:@"后台错误" message:@"result为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             return;
+        }else if ([[result objectForKey:@"size"]isEqualToString:@"0"])
+        {
+            [[[UIAlertView alloc]initWithTitle:@"" message:@"没有收藏内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil]show];
         }
         
 //        [self.collections removeAllObjects];

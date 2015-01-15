@@ -477,8 +477,9 @@
     // Print methode name and arguments..
     NSLog(@"+ GET  %@: %@", notificationName, url);
     
+    UIWindow *window = [[[UIApplication sharedApplication] windows] lastObject];
     // Start progress HUD..
-    [MBProgressHUD showHUDAddedTo:holder animated:TRUE];
+    [MBProgressHUD showHUDAddedTo:window animated:TRUE];
     
     // Create client and try get methode..
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:KHLUrlBase]];
@@ -489,13 +490,13 @@
          [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:json];
          
          // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+         [MBProgressHUD hideAllHUDsForView:window animated:TRUE];
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
          
          // Stop progress HUD..
-         [MBProgressHUD hideAllHUDsForView:holder animated:TRUE];
+//         [MBProgressHUD hideAllHUDsForView:window animated:TRUE];
      }];
 }
 
